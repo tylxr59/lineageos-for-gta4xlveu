@@ -1,5 +1,9 @@
 # Port findings
 
+The [speaker audio audit](audio-audit.md) records the current vendor calibration,
+TI amplifier route, AudioFX capabilities, unresolved ACDB table errors and the
+checks required before audio tuning. It made no changes to tablet audio settings.
+
 The pinned Sevenrock LOS24 baseline compiled unchanged, but compilation did not
 establish bootability. Initial boot testing on SM-P613 found four independent defects.
 

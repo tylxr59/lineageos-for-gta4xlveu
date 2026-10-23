@@ -14,13 +14,14 @@ and the update feed. The device, kernel, and vendor sources live in the
 
 ## Downloads
 
-There is **no public ROM release yet**. Private-key ROM/recovery installation
-and a same-key update through Android Updater have passed on the test tablet,
-including the original unlock pattern and data preservation. Do not install images intended
-for the 2020 Exynos model, SM-P610/P615, or the LTE SM-P619.
+**[Download the 2026-10-23 release](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792775790)** — LineageOS 24.0 / Android 17,
+security patch **2026-10-01**. Private-key installation and same-key updates have
+passed on the test tablet, including the original unlock pattern and data
+preservation. Do not install images intended for the 2020 Exynos SM-P610/P615 or
+LTE SM-P619.
 
-Future builds will be listed under [Releases](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases).
-Each release must include the ROM, matching recovery/vbmeta package, SHA-256
+Later builds appear under [Releases](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases).
+The release includes the ROM, matching recovery/vbmeta package, SHA-256
 checksums, and its exact source manifest. Google apps and app-root tools are
 not included. Optional rooted ADB is a developer setting and is off on the
 tested installation.
@@ -30,7 +31,7 @@ tested installation.
 1. Check **Settings → About tablet → Model**: this project targets SM-P613 only.
 2. Back up your files. First installation requires an unlocked bootloader and
    a factory reset. The tested firmware base is `P613XXS7CXJ1`.
-3. Once a release is available, download its ROM and **matching recovery/vbmeta**
+3. Download the release ROM and **matching recovery/vbmeta**
    assets, then verify them against that release’s `SHA256SUMS`.
 4. Install the matching Lineage Recovery, format data, and sideload the ROM as
    described in [the installation guide](docs/installing.md).
@@ -47,10 +48,9 @@ download the new build, and choose Install. This is a **non-A/B** device: the
 installation reboots into recovery. Ordinary updates within this project’s
 release-key channel should preserve apps and data; keep a backup.
 
-The update feed is live but currently empty, and Updater successfully checks it.
+The update feed is live and advertises the signed release.
 Signed local updates through Updater have been tested without losing setup,
-the unlock pattern, or saved test data. Public ROM download and installation
-through the feed await the first release.
+the unlock pattern, or saved test data. The public download/install test is recorded in the test matrix.
 See [updating and recovery](docs/installing.md#updates) and [OTA maintenance](docs/ota.md).
 
 ## Bugs and development

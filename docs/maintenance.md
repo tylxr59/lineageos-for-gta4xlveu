@@ -15,7 +15,8 @@ other signing identities through a tested migration or clean installation.
 Clean private-key bootstrap and a subsequent same-key Updater local install
 passed with credential/data persistence on 2026-10-23. The initial test-key
 prototype is not an established public update channel.
-See [OTA/signing](ota.md). The empty live feed currently advertises no builds.
+See [OTA/signing](ota.md). The first signed release and live v2 feed are published. Reuse this established
+identity for every subsequent release.
 
 ## Routine platform updates
 

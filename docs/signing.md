@@ -113,14 +113,14 @@ and its passphrase separately in owner-controlled storage.
 
 The private-key candidate is an **unofficial release-key build**, not an official
 LineageOS build. Offline signature checks do not establish hardware boot or an
-in-place migration. The installed development-key build has a different system
-app/APEX identity. Before advertising an OTA to public users, test a one-time
+in-place migration. Development-key builds have a different system app/APEX identity. Before advertising an OTA to public users, test a one-time
 clean installation or a separately reviewed key migration, using the matching
 signed recovery, and then a subsequent same-key update. Do not silently wipe
 userdata as part of a routine update or treat the first key transition as an
-ordinary OTA. The live feed remains empty until an authorized tested release.
+ordinary OTA. Only advertise an authorized, tested release on the live feed.
 
 The 2026-10-23 bootstrap and subsequent same-key Android Updater local install
 passed on SM-P613 after the Gatekeeper-policy fix. The original pattern, setup
 and saved data survived. This verifies the clean bootstrap/local installation
-path; the empty public feed has not advertised a network OTA yet.
+path. The first public release and its feed entry are now published; the
+HTTPS download/install test is recorded separately in docs/testing.md.

@@ -46,8 +46,7 @@ LOS24 Updater consumes a **v2 JSON array**, not the old `response` object.
 The ROM sets `lineage.updater.uri` to this repo’s HTTPS raw ota/gta4xlveu.json.
 Full packages are required for this non-A/B device; recovery performs installation.
 Keep this release channel on stable private signing keys. Public test-key builds
-are not release candidates. The current feed is intentionally empty until an
-approved, signed, tested release exists. Never advertise nonexistent/draft assets.
+are not release candidates. The live feed advertises the first approved, signed, tested release. Never advertise nonexistent/draft assets.
 
 Use tools/ota.py to prepare/validate metadata; it never publishes. Pin the
 release certificate in ota/release-cert.sha256 before the first public build.
@@ -76,7 +75,8 @@ recovery status, full image readback, boot completion/encryption/SELinux, and
 actual hardware evidence as applicable. Distinguish source checks, successful
 compilation, recovery boot, Android boot, and hardware functionality.
 
-No public ROM has been published yet. Private-key bootstrap and a subsequent
+The first full public ROM release and v2 feed entry are published (tag
+`lineage-24.0-20261023-gta4xlveu-1792775790`). Private-key bootstrap and a subsequent
 same-key Android Updater local install passed. The Gatekeeper credential-unlock
 defect was fixed by including the existing narrow tee rules in vendor policy
 (device `4c68bc9`); retain that fix and the four boot fixes. The final tested
@@ -84,5 +84,5 @@ build timestamp is `1792775790`, release-keys, FBE, SELinux enforcing, normal
 ADB UID2000, Rooted debugging disabled, empty crash buffer, original pattern/
 setup/test file retained. Owner hardware smoke passed for Wi-Fi, both cameras,
 speakers and S Pen. See docs/testing.md for hashes and remaining tests.
-An actual advertised public HTTPS OTA download/install remains untested. Do not
-turn the successful local Updater installation or empty-feed check into that claim.
+An advertised public HTTPS OTA download/install test is in progress on the
+previous identical-source build. Record its real outcome in docs/testing.md.

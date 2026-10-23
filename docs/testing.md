@@ -28,7 +28,7 @@ The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 | Private signing | Candidate verified: 126 standalone + 28 nested APKs, 38 APEXes, OTA/recovery/AVB |
 | Private-key hardware bootstrap | Clean install and Android boot passed |
 | Same-key Android Updater local install | Corrected signed build installed and booted; original pattern/setup/test data retained |
-| Advertised public OTA download/install | Not tested; feed empty |
+| Advertised public OTA download/install | Release/feed published; real Updater download/install test in progress |
 
 Manual sideload updates were installed with recovery status 0 and full boot/DTBO
 readback matching OTA images. ZIP CRC, OTA certificate continuity, AVB image
@@ -108,5 +108,7 @@ the documented Heimdall command. Recovery booted; full partition hashes and its
 live single-certificate OTA trust matched the release assets. The earlier
 same-key recovery performed the preceding local update test.
 
-The live public feed remains empty. An actual advertised HTTPS ROM download
-and installation has not been tested or published.
+The first signed release and v2 feed entry are now published. Public asset sizes
+and GitHub SHA-256 digests match the local bundle; the downloaded public checksum
+file matches. Android Updater on the prior same-source build detected the newer
+release and started the real HTTPS download. Installation validation is in progress.

@@ -18,16 +18,15 @@ and [endpoint selection](https://github.com/LineageOS/android_packages_apps_Upda
 The client requires HTTPS and does not follow redirects for the feed, so use the
 raw URL directly. An empty `[]` is a valid no-updates response.
 
-**No ROM release exists yet.** Persistent signing keys are initialized and the
-public certificate is pinned. See [signing operations](signing.md) for reuse,
-backup, signing and verification commands. The URL is configured in source and the OTA-enabled development build has
-compiled, been installed without wiping, and booted successfully. The owner
-confirmed Updater refresh updates “Last checked” without an error on this feed.
-This verifies client/server fetch and parsing, not an advertised ROM download or
-installation. Private-key clean bootstrap and a corrected same-key local update through
-Android Updater are now hardware-tested, including original credential/data
-persistence. An actual advertised HTTPS download/install remains untested; the
-live feed is empty until an authorized release.
+[The first signed release](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792775790) and its v2 feed entry are published.
+All 12 release assets were uploaded before the feed commit. Public checksum
+contents match the local bundle; asset byte sizes and GitHub's SHA-256 digests
+match. Exact release recovery/vbmeta flashing, recovery boot, full image readback
+and live OTA trust passed. Private-key clean bootstrap and corrected same-key
+local Updater installation retained the original credential/setup/test data.
+The advertised HTTPS Updater download/install test is in progress on the prior
+identical-source, same-key build. Keep that evidence separate from local import.
+Persistent keys and their public pin remain unchanged; see [signing operations](signing.md).
 
 ## Persistent signing identity
 

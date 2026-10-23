@@ -2,8 +2,8 @@
 
 ## Availability and supported hardware
 
-No public release is available yet. These instructions describe the tested
-Lineage Recovery procedure and the required future release assets. Only
+[The first signed release](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792775790) is available. These instructions describe the tested
+Lineage Recovery procedure and its matching release assets. Only
 **SM-P613 (2022 Qualcomm Wi-Fi), gta4xlveu** was tested. Do not use these images
 for the Exynos 2020 models or LTE variants. The tested bootloader/firmware base
 was `P613XXS7CXJ1`; other firmware bases have not been validated.
@@ -73,8 +73,8 @@ This route preserved the owner’s setup/settings during local tests.
 The release-key build and a newer same-key local update through Android Updater
 have been tested on the owner's SM-P613 without losing the unlock pattern,
 setup or saved test data. Updater's **Install local update** also accepts a
-matching signed ZIP copied to Downloads. The public feed is currently empty;
-public download/install remains pending the first authorized release. A major
+matching signed ZIP copied to Downloads. The public feed advertises the signed release; devices on the same build
+correctly show no newer update. A major
 LineageOS/Android upgrade may have separate migration instructions; do not
 assume that a minor-update procedure applies unchanged.
 

@@ -41,8 +41,8 @@ The prototype is signed with public development keys. Its OTA SHA-256 is
 `21d9fd0f505ff93b8cd8b418b719dbcb1eefcdece66853490a69bb433e2de90a`.
 No prototype binary is offered as a public release.
 
-The OTA-enabled follow-up (device `d4723ed`, same kernel/vendor), pinned in
-[resolved.xml](../manifests/resolved.xml), compiled successfully in 5m09s.
+The earlier OTA-enabled follow-up (device `d4723ed`, same kernel/vendor)
+compiled successfully in 5m09s.
 It passed ZIP/certificate continuity checks; OTA boot/DTBO match the preceding
 working package byte for byte, and its actual product filesystem contains the
 correct endpoint. It was installed by recovery sideload-auto-reboot without
@@ -103,8 +103,10 @@ identical to the successful repair. Final tested ROM SHA-256:
 `3f6464a2673b86a23aaf690fa3789d007b122f5f521a420af6f60042f0cb8c8c`.
 Matching candidate recovery SHA-256:
 `da434b6e7b8dd095a88f86daff568b057b5d38fd17496d7c3ff61a7d1e4e2767`.
-This final recovery's embedded trust and AVB signature passed offline checks;
-the installed earlier same-key recovery performed the tested update.
+The exact final recovery and padded vbmeta were transferred together through
+the documented Heimdall command. Recovery booted; full partition hashes and its
+live single-certificate OTA trust matched the release assets. The earlier
+same-key recovery performed the preceding local update test.
 
 The live public feed remains empty. An actual advertised HTTPS ROM download
 and installation has not been tested or published.

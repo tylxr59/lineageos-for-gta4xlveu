@@ -58,9 +58,10 @@ Persistent keys are already initialized and pinned. Read docs/signing.md before
 using them; restore the existing owner backup on a new builder, never generate a
 replacement release identity. The current inventory has 47 private identities.
 
-Creating this public source/docs repo was authorized. Publishing a ROM was
-previously prohibited and is **not authorized by that alone**. An explicit
-request to ship/push a ROM update authorizes that release after validation.
+The owner explicitly authorized the first full public release on 2026-10-23
+after successful signed bootstrap/local-update tests. An explicit request to
+ship/push a ROM update authorizes release publication after validation. Source
+repo creation alone does not authorize an otherwise unrequested ROM release.
 Tablet modification permission applies only to the owner’s tablet and existing
 session authorization. Otherwise use read-only ADB unless authorized. Never
 wipe personal data as an ordinary update step. Do not collect device identifiers

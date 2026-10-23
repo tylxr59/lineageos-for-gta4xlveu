@@ -21,13 +21,22 @@ and is not documented as tested here. First installation wipes userdata.
    all listed downloaded files, or check the individual file hashes).
 3. Enter Samsung Download Mode with USB connected: restart using Power + Volume
    Down, then hold both volume buttons as the screen goes black; confirm with
-   Volume Up if prompted. Use the release’s recovery/vbmeta tar with a compatible
-   Samsung flashing tool, or its documented Heimdall image commands. Do not
-   repartition or flash unrelated bootloader/modem firmware.
+   Volume Up if prompted. With `recovery.img` and `vbmeta.img` from this release
+   in the current directory, run:
+
+   ```sh
+   heimdall flash --RECOVERY recovery.img --VBMETA vbmeta.img --no-reboot
+   ```
+
+   Both partition transfers were tested on SM-P613 using
+   [amo13/Heimdall commit 8378ba4](https://github.com/amo13/Heimdall/tree/8378ba4081875e220d31815ccb7e907112c16481).
+   The original Heimdall build encountered connection failures; a fresh blue
+   Downloading screen was required for each session. Do not repartition or
+   flash unrelated bootloader/modem firmware. `recovery.tar` contains these same
+   two images for Samsung flashing tools; Windows/Odin installation is untested.
 4. Boot the installed recovery directly: Power + Volume Down until black, then
    immediately Power + Volume Up with USB connected. Confirm **Lineage Recovery
-   24.0**. A ROM release must supply tested commands/assets for this step before
-   public use; the old 23.2 recovery is not the tested LOS24 installation path.
+   24.0**. The old 23.2 recovery is not the tested LOS24 installation path.
 5. Choose **Factory reset → Format data/factory reset** and confirm.
 6. Choose **Apply update → Apply from ADB**, then run:
 

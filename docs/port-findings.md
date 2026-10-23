@@ -73,3 +73,31 @@ the original pattern and saved data with SELinux enforcing. A subsequent signed
 Android Updater local install also retained the pattern/setup/test file, with
 no further Gatekeeper AVCs. Never remove lock settings or set SELinux permissive
 to make this test appear successful.
+
+## Cosmetic sizing on the first release
+
+The very small lock-screen padlock is reproducible at the native 1200×2000,
+240dpi configuration (font scale1.0; resolution scale1.0), without a display-size
+override. On this non-UDFPS device, SystemUI's `DefaultDeviceEntrySection` creates
+a72dp device-entry icon container:108px at density1.5. The running resource
+`com.android.systemui:dimen/lock_icon_padding` resolves to48px on **each side**,
+and `DeviceEntryForegroundViewModel` passes that padding to the foreground image.
+The live view bounds are108×108px, leaving only12×12px for the drawable.
+
+A device-specific SystemUI overlay of `lock_icon_padding` to24dp is a candidate
+fix: at the default density this would leave36px (24dp) of foreground space.
+This candidate has **not** been implemented, compiled or visually validated.
+Keep it separate from the tested release; do not change global DPI to mask it or
+replace published assets in place. Validate the lock icon and its touch target
+on-device before including a fix in a later release.
+
+The built-in Clock digital home widget is a separate sizing case. A4×1 widget
+on the six-column/five-row launcher grid gets about684×180px. DeskClock's
+`DigitalAppWidgetProvider` searches for a font that fits **both** dimensions;
+one row constrains the clock even when it is wide. The device's maximum widget
+clock-font resource resolves to124dp, so a low global font cap is not the cause.
+Long-pressing the widget and increasing its **height** to two or more grid rows
+should allow a larger clock. This is a layout workaround inferred from measured
+bounds and source behavior, not a tested resize or a platform rendering fix.
+No density/font-scale settings or launcher layout were changed in this audit.
+Screenshots and raw diagnostic dumps remain private local artifacts.

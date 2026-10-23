@@ -124,3 +124,13 @@ OTA test, in addition to the earlier local-import test.
 
 Published release: [lineage-24.0-20261023-gta4xlveu-1792775790](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792775790). Bluetooth audio, microSD, deep suspend/battery endurance, MTP file transfer,
 and S Pen pressure accuracy remain untested.
+
+## Known cosmetic issue
+
+The lock-screen padlock is unusually small at default density. Runtime bounds,
+resource lookup and source inspection identify excessive fixed-pixel padding;
+a possible device overlay is documented in [port findings](port-findings.md#cosmetic-sizing-on-the-first-release)
+but has not been built or tested. The Clock home widget's small text in a one-row
+layout is separately constrained by its height; vertical resizing is the proposed
+workaround and was not applied during the investigation. These findings do not
+alter the published release or its existing installation test results.

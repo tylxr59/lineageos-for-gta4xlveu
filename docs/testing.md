@@ -50,4 +50,3 @@ Updater refresh succeeds with the empty v2 feed. This does not establish a
 public release-signed OTA download/install or a key-migration procedure.
 Follow-up OTA SHA-256:
 `869cb070f474168b62d7b7a527898d65b5f924cf79f8db26afedc3cf0822aedc`.
-

@@ -20,8 +20,9 @@ branches should remain intact; use maintained work branches in the source forks.
 
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` pins the tested prototype; `manifests/resolved.xml`
-pins the current candidate, which adds the project OTA URL. Do not call the
-candidate hardware-tested merely because the earlier prototype booted.
+pins the OTA-enabled development build, now compiled, installed and booted;
+the owner confirmed Updater fetch on the empty public feed. Keep hardware
+smoke evidence separate from public release-signed OTA installation evidence.
 `manifests/gta4xlveu.xml` pins the three device-specific forks for upstream sync.
 Platform source updates and Android major-version migrations are separate risk
 levels: review compatibility and installation/signing implications explicitly.
@@ -71,5 +72,6 @@ actual hardware evidence as applicable. Distinguish source checks, successful
 compilation, recovery boot, Android boot, and hardware functionality.
 
 No public ROM has been published yet. First release-key generation/signing,
-key migration/bootstrap, and end-to-end in-Android OTA remain to be completed.
+release-key migration/bootstrap, and an actual advertised OTA download/install
+remain to be completed.
 Do not turn an empty-feed connectivity test into a claim of verified OTA install.

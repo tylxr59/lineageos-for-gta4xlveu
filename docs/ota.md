@@ -18,10 +18,12 @@ and [endpoint selection](https://github.com/LineageOS/android_packages_apps_Upda
 The client requires HTTPS and does not follow redirects for the feed, so use the
 raw URL directly. An empty `[]` is a valid no-updates response.
 
-**No ROM release or certificate pin exists yet.** The URL is configured in the
-candidate source; the original installed prototype lacks it. Empty-feed parsing
-and URL reachability are not end-to-end update installation tests. First public
-release signing/bootstrap and automatic download/install still need testing.
+**No ROM release or certificate pin exists yet.** The URL is configured in source and the OTA-enabled development build has
+compiled, been installed without wiping, and booted successfully. The owner
+confirmed Updater refresh updates “Last checked” without an error on this feed.
+This verifies client/server fetch and parsing, not an advertised ROM download or
+installation. First public release signing/bootstrap and automatic package
+download/install still need testing.
 
 ## Persistent signing identity
 

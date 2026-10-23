@@ -47,9 +47,9 @@ download the new build, and choose Install. This is a **non-A/B** device: the
 installation reboots into recovery. Ordinary updates within this project’s
 release-key channel should preserve apps and data; keep a backup.
 
-The update feed is provisioned but currently empty. The first local prototype
-did not contain this project’s endpoint; it needs a bootstrap installation of
-an OTA-enabled build. Public OTA download/install has not yet been tested.
+The update feed is live but currently empty. The OTA-enabled development build
+is installed on the test tablet, and Updater successfully checks the feed.
+Public ROM download/install through Updater still needs the first signed release.
 Manual same-key sideload updates have been tested without losing setup/settings.
 See [updating and recovery](docs/installing.md#updates) and [OTA maintenance](docs/ota.md).
 

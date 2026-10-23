@@ -61,9 +61,10 @@ Manual fallback: enter matching recovery, choose Apply from ADB, sideload the
 new same-key ZIP, confirm success, and reboot **without formatting data**.
 This route preserved the owner’s setup/settings during local tests.
 
-The initial prototype needs an OTA-enabled bootstrap build. The server feed is
-currently empty; in-Android public download/install is pending the first signed
-release test. A major LineageOS/Android upgrade may have separate migration
+The earliest prototype needs an OTA-enabled bootstrap build; that bootstrap
+has now been installed on the test tablet, and its Updater refresh succeeds.
+The feed is currently empty; public download/install is pending the first
+release-key-signed build and test. A major LineageOS/Android upgrade may have separate migration
 instructions; do not assume that a minor-update procedure applies unchanged.
 
 ## If startup fails

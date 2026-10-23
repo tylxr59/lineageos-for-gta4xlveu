@@ -24,7 +24,8 @@ The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 | Deep suspend / battery endurance | Untested |
 | microSD | Untested |
 | Credential-protected encryption after lock/reboot | Untested |
-| Public release keys / automatic OTA | Not yet tested |
+| OTA endpoint / v2 feed fetch | OTA-enabled build installed; owner confirms Updater refresh succeeds |
+| Public release keys / advertised ROM download + install | Not yet tested |
 
 Manual sideload updates were installed with recovery status 0 and full boot/DTBO
 readback matching OTA images. ZIP CRC, OTA certificate continuity, AVB image
@@ -35,5 +36,18 @@ not proof of verified-boot security or complete Android17/kernel compatibility.
 
 The prototype is signed with public development keys. Its OTA SHA-256 is
 `21d9fd0f505ff93b8cd8b418b719dbcb1eefcdece66853490a69bb433e2de90a`.
-No prototype binary is offered as a public release. The newer candidate adds
-the maintained OTA endpoint; update this table only after its own checks pass.
+No prototype binary is offered as a public release.
+
+The OTA-enabled follow-up (device `d4723ed`, same kernel/vendor), pinned in
+[resolved.xml](../manifests/resolved.xml), compiled successfully in 5m09s.
+It passed ZIP/certificate continuity checks; OTA boot/DTBO match the preceding
+working package byte for byte, and its actual product filesystem contains the
+correct endpoint. It was installed by recovery sideload-auto-reboot without
+wiping. The subsequent Android boot reports its unique new timestamp and URL,
+boot complete, encrypted data, enforcing SELinux, normal ADB UID2000, and an
+empty crash buffer. Rooted debugging stays off. The owner confirmed the live
+Updater refresh succeeds with the empty v2 feed. This does not establish a
+public release-signed OTA download/install or a key-migration procedure.
+Follow-up OTA SHA-256:
+`869cb070f474168b62d7b7a527898d65b5f924cf79f8db26afedc3cf0822aedc`.
+

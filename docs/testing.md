@@ -95,10 +95,10 @@ file. Android reports FBE, enforcing SELinux, normal shell UID2000, disabled
 Rooted debugging and an empty crash buffer. The owner repeated Wi-Fi, both
 cameras, speakers and S Pen smoke checks successfully.
 
-Current tested source: device `4c68bc975d304483675ceab24e75c31ab2d2c515`, kernel
+First signed release source: device `4c68bc975d304483675ceab24e75c31ab2d2c515`, kernel
 `75a416868f994657bb1095f9e76864525c184f84`, vendor
-`4388d72aed64812cf27496986bcf8fb3af64bf1d`. All 1,242 project revisions match
-[resolved.xml](../manifests/resolved.xml). The follow-up vendor policy is byte-
+`4388d72aed64812cf27496986bcf8fb3af64bf1d`. Its exact snapshot is attached as
+[source-manifest.xml](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/download/lineage-24.0-20261023-gta4xlveu-1792775790/source-manifest.xml). The follow-up vendor policy is byte-
 identical to the successful repair. Final tested ROM SHA-256:
 `3f6464a2673b86a23aaf690fa3789d007b122f5f521a420af6f60042f0cb8c8c`.
 Matching candidate recovery SHA-256:
@@ -125,12 +125,44 @@ OTA test, in addition to the earlier local-import test.
 Published release: [lineage-24.0-20261023-gta4xlveu-1792775790](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792775790). Bluetooth audio, microSD, deep suspend/battery endurance, MTP file transfer,
 and S Pen pressure accuracy remain untested.
 
-## Known cosmetic issue
+## Wi-Fi tablet and lock-icon follow-up
 
-The lock-screen padlock is unusually small at default density. Runtime bounds,
-resource lookup and source inspection identify excessive fixed-pixel padding;
-a possible device overlay is documented in [port findings](port-findings.md#cosmetic-sizing-on-the-first-release)
-but has not been built or tested. The Clock home widget's small text in a one-row
-layout is separately constrained by its height; vertical resizing is the proposed
-workaround and was not applied during the investigation. These findings do not
-alter the published release or its existing installation test results.
+Device `eb9bc69ee6b6750f66258a55535fa41ff008541a` adds the Wi-Fi-only tablet
+configuration and SystemUI padding overlay. Kernel/vendor/platform revisions
+are unchanged. All 1,242 revisions match the current [resolved manifest](../manifests/resolved.xml).
+
+The product reconfiguration required broad SDK/app rebuilds. Earlier attempts
+were stopped by the host's memory-pressure manager. Resuming cached work with
+four compile jobs and verified Go runtime budgeting completed target files in
+17m34s. This is an incremental recovery time, not a clean-build benchmark.
+
+Signed local-test build `1792785825` passed recovery sideload and Android boot
+without a wipe. Actual signed target-file content confirms tablet characteristics,
+no bundled Phone/Contacts/Messaging/SIM Toolkit APKs, no unconditional IMS feature,
+and a matching embedded recovery image. Android retains the contacts provider
+and picker needed by other apps; these are separate from the removed launcher app.
+Verification passed for 120 standalone APKs, 37 APEX containers/payloads and 26
+nested APKs, the single-certificate recovery trust, AVB and the whole-file OTA
+signature, using the existing persistent signing identity.
+
+Runtime reports `ro.build.characteristics=tablet`, no telephony feature, and
+voice/SMS/mobile-data capability resources set to false. Lock-icon padding
+resolves to `24.0dip`:36px per side at the unchanged native 240dpi, leaving a
+36px foreground within the unchanged 108px target. The owner confirmed the icon
+looks normal. The original pattern, setup and saved-file checksum survived;
+FBE, SELinux enforcing, normal shell UID2000, Rooted debugging disabled and an
+empty crash buffer passed. Owner Wi-Fi, both cameras, speakers and S Pen smoke
+tests passed again.
+
+The newer same-source build `1792787032` is being prepared for advertised public
+OTA validation. Comparison of 3,779 executable/package entries finds only the
+expected recovery installer's image-digest change; all APK/APEX/native-library
+and remaining binary entries, boot/DTBO images and vendor policy match the
+locally tested build. Final publication/network-update results will be recorded
+here after that test.
+
+The Clock home widget's one-row text size remains constrained by its height;
+increasing widget height is the proposed layout workaround. The launcher layout
+and global density/font scale were not changed. Bluetooth audio, microSD, deep
+suspend/battery endurance, MTP file transfer and S Pen pressure accuracy remain
+outside the completed smoke matrix.

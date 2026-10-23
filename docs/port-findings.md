@@ -84,12 +84,18 @@ a 72 dp device-entry icon container:108 px at density 1.5. The running resource
 and `DeviceEntryForegroundViewModel` passes that padding to the foreground image.
 The live view bounds are 108×108 px, leaving only 12×12 px for the drawable.
 
-A device-specific SystemUI overlay of `lock_icon_padding` to 24 dp is a candidate
-fix: at the default density this would leave 36 px (24 dp) of foreground space.
-This candidate has **not** been implemented, compiled or visually validated.
-Keep it separate from the tested release; do not change global DPI to mask it or
-replace published assets in place. Validate the lock icon and its touch target
-on-device before including a fix in a later release.
+Device `eb9bc69` adds a SystemUI resource overlay setting
+`lock_icon_padding` to 24 dp: at the default density this leaves 36 px (24 dp)
+of foreground space inside the unchanged 108×108 px touch target. It also
+switches from `full_base_telephony.mk` / `common_full_tablet.mk` to
+`full_base.mk` / `common_full_tablet_wifionly.mk`, sets
+`PRODUCT_CHARACTERISTICS := tablet`, and removes the unconditional IMS feature
+declaration. The cellular product packages (Phone/Dialer, Contacts and Messaging)
+are no longer inherited. Shared Qualcomm vendor components and the existing
+SKU-specific LTE permission are retained; this does not add SM-P619 support.
+No global density or font-scale override is used. See [testing](testing.md)
+for build and on-device validation of this follow-up. Runtime lookup now returns
+`24.0dip`, and the owner confirms normal icon appearance on the signed update.
 
 The built-in Clock digital home widget is a separate sizing case. A 4×1 widget
 on the six-column/five-row launcher grid gets about 684×180 px. DeskClock's

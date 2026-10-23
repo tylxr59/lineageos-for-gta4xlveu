@@ -7,4 +7,4 @@ mkdir -p "$workspace/artifacts" "$workspace/logs"
 repo manifest -r -o "$workspace/artifacts/prebuild-manifest.xml"
 source build/envsetup.sh
 breakfast gta4xlveu userdebug
-m -j"${LOS24_JOBS:-12}" bacon recoveryimage
+m -j"${LOS24_JOBS:-4}" bacon recoveryimage

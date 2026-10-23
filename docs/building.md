@@ -10,8 +10,8 @@
 | Vendor | [vendor fork](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu) | imported lineage-24.0 |
 
 `manifests/known-good.xml` records the tested prototype. `manifests/resolved.xml`
-pins the tested release-key source including the OTA endpoint and Gatekeeper
-policy fix. The local manifest
+pins the release-key source including the OTA endpoint, Gatekeeper
+policy fix, Wi-Fi-only tablet configuration and lock-icon overlay. The local manifest
 `manifests/gta4xlveu.xml` supplies the maintained device forks when following the
 upstream platform branch. Do not replace the fixed kernel/device pins with the
 unmodified imported branches.
@@ -61,7 +61,7 @@ Direct build inside a configured environment:
 cd android
 source build/envsetup.sh
 breakfast gta4xlveu userdebug
-m -j12 bacon recoveryimage
+m -j4 bacon recoveryimage
 repo manifest -r -o ../artifacts/prebuild-manifest.xml
 ```
 
@@ -70,6 +70,21 @@ RAM/swap. Initial full compilation is much slower than small incremental builds;
 recent incremental image/package rebuilds took about 5–8 minutes. Use a temporary
 sleep inhibitor and a durable log/status runner for long builds; do not change
 persistent host power settings.
+
+The build helper defaults to four jobs; set `LOS24_JOBS` explicitly when more
+memory is available. Size concurrency against **available** RAM on a shared
+host, not installed RAM alone. The Wi-Fi-tablet product reconfiguration caused
+broad SDK/app rebuilds and exhausted memory at higher concurrency. Cached
+configuration and completed compilation work can be reused after an interrupted
+build. Monitor memory/swap and the host's memory-pressure manager.
+
+Go runtime budgets also require care: Soong's generated bootstrap command uses
+`env -i`, and the main executor filters its environment. Simply exporting
+`GOMEMLIMIT` does not prove that either process received it. The local recovery
+used a 24 GiB/eight-CPU generator budget, a 12 GiB Siso budget, and four compile
+jobs. Verify the effective process environment; keep any launcher adaptation
+separate from Android source changes, and refresh generated bootstrap rules
+when upstream build-tool sources change.
 
 ## Output and release signing
 

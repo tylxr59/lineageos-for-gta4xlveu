@@ -21,7 +21,7 @@ branches should remain intact; use maintained work branches in the source forks.
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
 `manifests/resolved.xml` pins the current privately signed, hardware-tested
-source: device `4c68bc9`, kernel `75a416868`, vendor `4388d72`. Clean bootstrap
+source: device `eb9bc69`, kernel `75a416868`, vendor `4388d72`. Clean bootstrap
 and a subsequent same-key Android Updater local install passed, retaining the
 original unlock pattern, setup and saved data. Keep hardware/local-install
 proof separate from advertised public HTTPS OTA download/install evidence.
@@ -46,7 +46,7 @@ LOS24 Updater consumes a **v2 JSON array**, not the old `response` object.
 The ROM sets `lineage.updater.uri` to this repo’s HTTPS raw ota/gta4xlveu.json.
 Full packages are required for this non-A/B device; recovery performs installation.
 Keep this release channel on stable private signing keys. Public test-key builds
-are not release candidates. The live feed advertises the first approved, signed, tested release. Never advertise nonexistent/draft assets.
+are not release candidates. The live feed advertises approved, signed releases. Never advertise nonexistent/draft assets.
 
 Use tools/ota.py to prepare/validate metadata; it never publishes. Pin the
 release certificate in ota/release-cert.sha256 before the first public build.
@@ -89,3 +89,25 @@ installation and boot passed from timestamp1792775285 to1792775790 with no wipe.
 The original pattern/setup/test file persisted; FBE, enforcing SELinux, normal
 ADB, disabled Rooted debugging and empty crash buffer were verified. The exact
 released recovery/vbmeta pair was boot-tested and fully hash/trust-checked.
+
+
+## Wi-Fi tablet / UI follow-up
+
+Device `eb9bc69` switches SM-P613 to the Wi-Fi-only tablet product, sets tablet
+characteristics, removes the incorrect IMS declaration and bundled Phone,
+Contacts, Messaging and SIM Toolkit apps, and overlays SystemUI lock-icon padding
+to 24dp. Keep Android's shared providers/picker and Qualcomm vendor components;
+the removed launcher apps do not require stripping shared APIs or LTE-SKU blobs.
+Native density remains 240dpi. The Clock widget still needs sufficient row height.
+
+Signed build1792785825 passed a no-wipe recovery sideload, Android boot, original
+pattern/setup/test-file persistence, FBE, enforcing SELinux, normal UID2000,
+Rooted debugging off and an empty crash buffer. Owner confirmed normal lock-icon
+appearance and Wi-Fi/both cameras/speakers/S Pen operation. The newer same-source
+build1792787032 is being prepared for public HTTPS OTA validation. Until that
+entry is published, the live feed still contains the preceding release.
+
+A shared-host product reconfiguration exhausted memory at higher concurrency.
+The helper now defaults to four jobs. Read the demonstrated memory-budget notes
+in docs/building.md; plain Go environment exports may be stripped by the build
+launchers. Preserve completed outputs and verify effective executor settings.

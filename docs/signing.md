@@ -83,7 +83,9 @@ The signer calls this Android branch’s `sign_target_files_apks`, replaces OTA
 trust, re-signs APK/APEX keys, substitutes private recovery/vbmeta AVB keys, and
 changes build tags to release-keys. The verifier checks actual APK/container and
 APEX payload signatures, nested APKs, OTA trust archives, the actual recovery
-ramdisk and AVB signatures. `verify-ota` verifies Android’s detached CMS whole-file
+ramdisk and AVB signatures. OTA trust ZIPs must also contain unique entry names; recovery
+rejects duplicate names even when every certificate fingerprint matches. The
+wrapper deduplicates mapped extra keys before signing. `verify-ota` verifies Android’s detached CMS whole-file
 signature against the pinned self-signed identity. It skips public-CA chain
 validation, never cryptographic content/signature verification. The publisher
 runs this whole-file check before offering its dry-run or publishing.

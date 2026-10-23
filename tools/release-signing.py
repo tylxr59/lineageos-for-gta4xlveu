@@ -10,6 +10,8 @@ from pathlib import Path
 import re
 import secrets
 import shlex
+import shutil
+import tempfile
 import subprocess
 import tarfile
 import zipfile
@@ -136,6 +138,37 @@ def signing_args(source, keys):
     return args
 
 
+
+def normalize_ota_extras(misc, ota_keys, key_map):
+    """Deduplicate mapped OTA keys before Android creates trust ZIPs.
+
+    Releasetools writes each mapped extra key verbatim, including duplicate ZIP
+    names. Recovery's libziparchive rejects that entire archive.
+    """
+    def mapped(key):
+        key = key.removesuffix('.x509.pem')
+        return key_map.get(key, key)
+
+    values = dict(line.split('=', 1) for line in misc.splitlines() if '=' in line)
+    primary_keys = ota_keys.split() or [values.get('default_system_dev_certificate',
+                                                   'build/make/target/product/security/testkey')]
+    primary = {mapped(key) for key in primary_keys}
+    lines = []
+    for line in misc.splitlines():
+        name, sep, value = line.partition('=')
+        if sep and name in {'extra_recovery_keys', 'extra_ota_keys'}:
+            seen = set(primary)
+            keep = []
+            for key in value.split():
+                identity = mapped(key)
+                if identity not in seen:
+                    keep.append(key)
+                    seen.add(identity)
+            line = name + '=' + ' '.join(keep)
+        lines.append(line)
+    return '\n'.join(lines) + '\n'
+
+
 def sign(source, keys, android, output):
     if not source.is_file() or output.exists():
         raise ValueError('Input ZIP required and output must not exist')
@@ -144,8 +177,24 @@ def sign(source, keys, android, output):
     env = os.environ.copy()
     env['JAVA_HOME'] = str(android / 'prebuilts/jdk/jdk21/linux-x86')
     env['PATH'] = str(Path(env['JAVA_HOME']) / 'bin') + ':' + str(android / 'out/host/linux-x86/bin') + ':' + env['PATH']
-    run([android / 'out/host/linux-x86/bin/sign_target_files_apks', '-p', android / 'out/host/linux-x86',
-         '--threads', '8', *args, source, output], cwd=android, env=env)
+    key_map = {root + '/' + name: str(keys / ('releasekey' if name in {'testkey', 'devkey'} else name))
+               for root in ['build/make/target/product/security', 'build/target/product/security']
+               for name in [*BASE_KEYS, 'testkey', 'devkey']}
+    key_map.update(dict(args[i + 1].split('=', 1) for i, arg in enumerate(args) if arg == '-k'))
+    misc = metadata(source, 'misc_info.txt')
+    normalized = normalize_ota_extras(misc, metadata(source, 'otakeys.txt'), key_map)
+    # Keep the unsigned build untouched. Info-ZIP preserves the other compressed
+    # entries while replacing metadata, without duplicate target-files entries.
+    with tempfile.TemporaryDirectory(prefix='signing-input-', dir=output.parent) as work:
+        work = Path(work).resolve()
+        prepared = work / 'target-files.zip'
+        shutil.copyfile(source, prepared)
+        (work / 'META').mkdir()
+        (work / 'META/misc_info.txt').write_text(normalized)
+        run(['zip', '-q', '-d', prepared, 'META/misc_info.txt'], env=env)
+        run(['zip', '-q', prepared, 'META/misc_info.txt'], cwd=work, env=env)
+        run([android / 'out/host/linux-x86/bin/sign_target_files_apks', '-p', android / 'out/host/linux-x86',
+             '--threads', '8', *args, prepared, output], cwd=android, env=env)
 
 
 def backup(keys, destination):

@@ -37,3 +37,19 @@ Downloading screen using amo13/Heimdall commit
 before transfer. Fastboot answered queries but rejected flash commands; it is
 not the supported installation path. No PIT rewrite or bootloader firmware
 flash was needed. Original partition backups and rollback resources are local.
+
+## Release-signing trust archive
+
+The first private-key recovery booted, but refused the matching signed OTA before
+signature verification. Its log reported `Duplicate entries in archive` while
+opening `otacerts.zip`, followed by `Failed to load keys`. Mapping the upstream
+extra Lineage recovery key to our primary release key made releasetools write the
+same ZIP filename twice. Checking certificate fingerprints alone missed this.
+The install was cancelled rather than accepting the signature warning.
+
+The signing wrapper now removes extra OTA/recovery keys that map to an already
+listed primary identity before invoking releasetools. It handles the empty
+`META/otakeys.txt` case, which falls back to `default_system_dev_certificate`.
+The original unsigned archive and persistent keys remain unchanged. Component
+verification rejects empty trust archives and duplicate ZIP entries, including
+inside the actual recovery ramdisk. Hardware retry is pending regeneration.

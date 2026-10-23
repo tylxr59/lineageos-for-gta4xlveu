@@ -59,9 +59,14 @@ in `ota/release-cert.sha256`. The signed candidate and matching recovery/vbmeta
 assets passed APK/container signatures, APEX public-key/payload signatures,
 nested APK signatures, actual recovery ramdisk OTA trust, root AVB signatures,
 and Android whole-file OTA CMS signature verification. The prescribed presigned
-CTS self-test shim is retained. The release publisher dry-run passed; 17 local
-tooling tests pass, including tamper rejection and key-loss/permission guards.
+CTS self-test shim is retained. The release publisher dry-run passed. The first hardware sideload was then
+rejected: duplicate certificate ZIP entries prevented recovery from loading its
+trust archive. The owner cancelled the installation. The corrected tooling has
+20 passing tests, including duplicate-entry rejection and mapped-key
+deduplication; regenerated candidates and hardware retry are pending.
 
-These checks are offline evidence. The tablet still runs the working development-
-key installation. No first private-key boot, cross-key migration, or subsequent
+These checks are offline evidence. The system partition still contains the development-key installation; userdata
+has been formatted for the authorized clean private-key bootstrap. The signed
+recovery boots and its full partition hash matches, but its first trust archive
+was rejected as described above. No first private-key boot, cross-key migration, or subsequent
 same-key OTA has been claimed, and the live public feed remains empty.

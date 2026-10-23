@@ -39,6 +39,12 @@ def signer_digests(output):
     return set(re.findall(r'(?:Signer #\d+:?|V[\d.]+ Signer:) certificate SHA-256 digest: ([0-9a-f]+)', output))
 
 
+def reject_duplicate_trust_entries(archive):
+    names = archive.namelist()
+    if not names or len(names) != len(set(names)):
+        raise ValueError('Empty or duplicate-entry OTA trust archive: rejected by recovery')
+
+
 def verify(args):
     android, keys = args.android.resolve(), args.keys.resolve()
     inventory = signing.check_keys(keys, signing.plan(args.target_files)['aliases'])
@@ -122,6 +128,7 @@ def verify(args):
         trust = []
         for path in temp.rglob('otacerts.zip'):
             with zipfile.ZipFile(path) as archive:
+                reject_duplicate_trust_entries(archive)
                 for info in archive.infolist():
                     result = subprocess.run(['openssl', 'x509', '-outform', 'DER'], input=archive.read(info), capture_output=True, check=True)
                     if hashlib.sha256(result.stdout).hexdigest() != release_pin:
@@ -139,6 +146,7 @@ def verify(args):
         for name, data in cpio_files(ramdisk):
             if name.endswith('otacerts.zip'):
                 with zipfile.ZipFile(io.BytesIO(data)) as archive:
+                    reject_duplicate_trust_entries(archive)
                     for cert in archive.infolist():
                         result = subprocess.run(['openssl', 'x509', '-outform', 'DER'], input=archive.read(cert), capture_output=True, check=True)
                         if hashlib.sha256(result.stdout).hexdigest() != release_pin:

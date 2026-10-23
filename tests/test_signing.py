@@ -28,6 +28,34 @@ components = load('verify_release', ROOT / 'tools/verify-release.py')
 
 
 class SigningTests(unittest.TestCase):
+    def test_mapped_extra_ota_keys_are_deduplicated_without_dropping_other_roots(self):
+        misc = 'unrelated=unchanged\nextra_recovery_keys=upstream same other other\nextra_ota_keys=upstream\n'
+        result = signing.normalize_ota_extras(misc, 'test.x509.pem',
+                                             {'test': 'release', 'upstream': 'release', 'same': 'release'})
+        self.assertEqual(result, 'unrelated=unchanged\nextra_recovery_keys=other\nextra_ota_keys=\n')
+
+    def test_empty_ota_key_list_uses_default_system_certificate(self):
+        misc = 'default_system_dev_certificate=test\nextra_recovery_keys=upstream\n'
+        self.assertEqual(signing.normalize_ota_extras(misc, '', {'test': 'release', 'upstream': 'release'}),
+                         'default_system_dev_certificate=test\nextra_recovery_keys=\n')
+
+    def test_recovery_trust_zip_rejects_duplicate_entries(self):
+        import warnings
+        data = io.BytesIO()
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore', UserWarning)
+            with zipfile.ZipFile(data, 'w') as archive:
+                archive.writestr('release.x509.pem', b'certificate')
+                archive.writestr('release.x509.pem', b'certificate')
+        with zipfile.ZipFile(data) as archive:
+            with self.assertRaises(ValueError):
+                components.reject_duplicate_trust_entries(archive)
+        data = io.BytesIO()
+        with zipfile.ZipFile(data, 'w') as archive:
+            archive.writestr('release.x509.pem', b'certificate')
+        with zipfile.ZipFile(data) as archive:
+            components.reject_duplicate_trust_entries(archive)
+
     def test_versioned_and_legacy_apksigner_output(self):
         digest = 'a' * 64
         self.assertEqual(components.signer_digests('Signer #1 certificate SHA-256 digest: ' + digest), {digest})

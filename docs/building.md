@@ -80,7 +80,7 @@ build. Monitor memory/swap and the host's memory-pressure manager.
 
 Go runtime budgets also require care: Soong's generated bootstrap command uses
 `env -i`, and the main executor filters its environment. Simply exporting
-`GOMEMLIMIT` does not prove that either process received it. The local recovery
+`GOMEMLIMIT` does not prove that either process received it. The successful retry
 used a 24 GiB/eight-CPU generator budget, a 12 GiB Siso budget, and four compile
 jobs. Verify the effective process environment; keep any launcher adaptation
 separate from Android source changes, and refresh generated bootstrap rules

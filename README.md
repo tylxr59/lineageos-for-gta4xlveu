@@ -14,8 +14,10 @@ and the update feed. The device, kernel, and vendor sources live in the
 
 ## Downloads
 
-**[Download the 2026-10-23 release](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792775790)** — LineageOS 24.0 / Android 17,
-security patch **2026-10-01**. Private-key installation and same-key updates have
+**[Download the 2026-10-23 Wi-Fi tablet update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792787032)** — LineageOS 24.0 / Android 17,
+security patch **2026-10-01**. This update uses the Wi-Fi tablet configuration,
+fixes the small lock-screen icon, and removes the bundled Phone, Contacts and
+Messaging apps. Private-key installation and same-key updates have
 passed on the test tablet, including the original unlock pattern and data
 preservation. Do not install images intended for the 2020 Exynos SM-P610/P615 or
 LTE SM-P619.

@@ -79,8 +79,8 @@ The first full public ROM release and v2 feed entry are published (tag
 `lineage-24.0-20261023-gta4xlveu-1792775790`). Private-key bootstrap and a subsequent
 same-key Android Updater local install passed. The Gatekeeper credential-unlock
 defect was fixed by including the existing narrow tee rules in vendor policy
-(device `4c68bc9`); retain that fix and the four boot fixes. The final tested
-build timestamp is `1792775790`, release-keys, FBE, SELinux enforcing, normal
+(device `4c68bc9`); retain that fix and the four boot fixes. The first release’s tested
+build timestamp was `1792775790`, release-keys, FBE, SELinux enforcing, normal
 ADB UID2000, Rooted debugging disabled, empty crash buffer, original pattern/
 setup/test file retained. Owner hardware smoke passed for Wi-Fi, both cameras,
 speakers and S Pen. See docs/testing.md for hashes and remaining tests.
@@ -104,8 +104,16 @@ Signed build1792785825 passed a no-wipe recovery sideload, Android boot, origina
 pattern/setup/test-file persistence, FBE, enforcing SELinux, normal UID2000,
 Rooted debugging off and an empty crash buffer. Owner confirmed normal lock-icon
 appearance and Wi-Fi/both cameras/speakers/S Pen operation. The newer same-source
-build1792787032 is being prepared for public HTTPS OTA validation. Until that
-entry is published, the live feed still contains the preceding release.
+build1792787032 is now the [current public release](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792787032). Actual advertised
+HTTPS Updater detection/download/signature verification/recovery installation
+and Android boot passed from1792785825 to1792787032 without a wipe. Encrypted
+data unlocked, setup flags and the saved-file checksum persisted, SELinux stayed
+enforcing, normal ADB/Rooted debugging off and an empty crash buffer passed.
+The automatically updated release recovery booted; full boot/DTBO/recovery
+partition hashes and its single live OTA trust certificate match the assets.
+Ordinary OTA retained the preceding vbmeta; the new bundled vbmeta was verified
+on the host. All 12 public assets and the two-entry feed were checked. The
+existing 47 private signing identities and owner backup remain unchanged.
 
 A shared-host product reconfiguration exhausted memory at higher concurrency.
 The helper now defaults to four jobs. Read the demonstrated memory-budget notes

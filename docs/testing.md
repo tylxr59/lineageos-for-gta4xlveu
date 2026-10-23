@@ -1,5 +1,14 @@
 # Test status
 
+Current release: [lineage-24.0-20261023-gta4xlveu-1792787032](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792787032), with device `eb9bc69`, kernel `75a416868` and vendor
+`4388d72`. Public HTTPS OTA, data persistence, security checks and the released
+recovery round trip passed. Owner Wi-Fi/camera/speaker/S Pen smoke and lock-icon
+visual checks passed on the same-source signed build; executable/package
+contents match the published build. See the [follow-up evidence](#wi-fi-tablet-and-lock-icon-follow-up)
+for exact results and remaining untested hardware cases.
+
+## Initial port validation
+
 The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 2026-10-23. Sources: device `44bda91`, kernel `75a416868`, unchanged vendor
 `4388d72`; exact snapshot: [known-good.xml](../manifests/known-good.xml).
@@ -147,19 +156,42 @@ signature, using the existing persistent signing identity.
 
 Runtime reports `ro.build.characteristics=tablet`, no telephony feature, and
 voice/SMS/mobile-data capability resources set to false. Lock-icon padding
-resolves to `24.0dip`:36px per side at the unchanged native 240dpi, leaving a
+resolves to `24.0dip`: 36px per side at the unchanged native 240dpi, leaving a
 36px foreground within the unchanged 108px target. The owner confirmed the icon
 looks normal. The original pattern, setup and saved-file checksum survived;
 FBE, SELinux enforcing, normal shell UID2000, Rooted debugging disabled and an
 empty crash buffer passed. Owner Wi-Fi, both cameras, speakers and S Pen smoke
 tests passed again.
 
-The newer same-source build `1792787032` is being prepared for advertised public
-OTA validation. Comparison of 3,779 executable/package entries finds only the
-expected recovery installer's image-digest change; all APK/APEX/native-library
-and remaining binary entries, boot/DTBO images and vendor policy match the
-locally tested build. Final publication/network-update results will be recorded
-here after that test.
+The newer same-source build `1792787032` is the [published follow-up](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792787032).
+Comparison of 3,779 executable/package entries finds only the expected recovery
+installer's image-digest change; all APK/APEX/native-library and remaining binary
+entries, boot/DTBO images and vendor policy match the locally tested build.
+
+All 12 public asset sizes/digests and the downloaded checksum file matched.
+The installed previous same-key test build detected the new entry through the
+canonical HTTPS feed, downloaded the GitHub asset, completed signature
+verification, and installed it through Updater's normal recovery flow. Android
+booted at1792787032 without a wipe. Encrypted data unlocked, the saved-file
+checksum and setup flags persisted, SELinux was enforcing, ADB UID2000 and
+Rooted debugging off passed, and the crash buffer was empty with no observed
+Gatekeeper data AVCs. A further recovery/Android round trip repeated the data
+and security checks.
+
+Automatic recovery updating also passed: the exact released recovery booted at
+1792787032, and full boot/DTBO/recovery partition readback matched the release
+assets. Its live trust archive contains exactly the pinned OTA certificate.
+Ordinary OTA retained the preceding vbmeta partition
+(`95bafe991ff7875da220522abd1b916d92ba563eaff42447e3eac8d01be80f10`), with the
+inherited flags3 configuration. The new matching vbmeta asset was validated on
+the host; it was not manually flashed for this routine update.
+
+ROM SHA-256: `7947f4ddff96e85dc5772a7a7a30474d430b55af2938e2223b7781634bd278d3`.
+Recovery SHA-256: `856aa83f9cba5f113b25a04f72a6d95ca7703b4058e8a00e9957c471a5cf22a8`.
+The same 47 private signing identities and owner-held encrypted backup were
+retained. Initial tablet feed checks received GitHub's cached old feed; after
+cache revalidation the regular Updater refresh detected the new build. No ROM
+or endpoint change was needed.
 
 The Clock home widget's one-row text size remains constrained by its height;
 increasing widget height is the proposed layout workaround. The launcher layout

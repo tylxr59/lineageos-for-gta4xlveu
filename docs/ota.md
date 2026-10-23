@@ -115,3 +115,10 @@ has no unattended GitHub Actions deployment or embedded signing credentials.
 Finally verify raw feed HTTP 200, checksums and downloadable assets, then test
 refresh/download/install on the prior same-key build. Public HTTPS reachability
 alone is not evidence of successful recovery installation.
+
+
+GitHub's raw-file CDN can cache the feed for five minutes after publication.
+If a refresh still shows the preceding feed, compare the canonical endpoint
+from the tablet's network and allow for cache expiry or HTTP revalidation.
+A successful refresh with an older cached feed is separate from package
+signature/installation failure; do not rebuild or change signing keys for it.

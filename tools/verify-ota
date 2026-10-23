@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+"""Verify Android whole-file OTA CMS signature against a pinned self-signed cert."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import struct
+import subprocess
+import tempfile
+import zipfile
+
+
+def digest(cert):
+    data = subprocess.check_output(['openssl', 'x509', '-in', str(cert), '-outform', 'DER'])
+    return hashlib.sha256(data).hexdigest()
+
+
+def verify(rom, cert, pin, work_dir):
+    if digest(cert) != pin.read_text().strip():
+        raise ValueError('Certificate does not match the public release pin')
+    size = rom.stat().st_size
+    with rom.open('rb') as source:
+        if size < 28:
+            raise ValueError('OTA too short')
+        source.seek(-6, 2)
+        footer = source.read(6)
+        signature_start, marker, comment_size = struct.unpack('<H2sH', footer)
+        if marker != b'\xff\xff' or not 6 < signature_start <= comment_size:
+            raise ValueError('Invalid Android OTA signature footer')
+        source.seek(size - comment_size - 22)
+        eocd = source.read(22)
+        if eocd[:4] != b'PK\x05\x06' or struct.unpack_from('<H', eocd, 20)[0] != comment_size:
+            raise ValueError('Invalid signed ZIP end record')
+        signed_length = size - comment_size - 2
+        source.seek(size - signature_start)
+        signature = source.read(signature_start - 6)
+        work_dir.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix='ota-verify-', dir=work_dir) as temp:
+            temp = Path(temp)
+            sig = temp / 'signature.der'
+            sig.write_bytes(signature)
+            content = temp / 'signed-content'
+            source.seek(0)
+            remaining = signed_length
+            with content.open('wb') as output:
+                while remaining:
+                    chunk = source.read(min(8 * 1024 * 1024, remaining))
+                    if not chunk:
+                        raise ValueError('Truncated OTA content')
+                    output.write(chunk)
+                    remaining -= len(chunk)
+            # Trust only the supplied pinned cert. -noverify skips CA validation
+            # for this self-signed identity; CMS content/signature verification
+            # remains enabled. -nointern refuses certificates supplied by the CMS.
+            subprocess.run(['openssl', 'cms', '-verify', '-binary', '-inform', 'DER',
+                            '-in', str(sig), '-content', str(content), '-certfile', str(cert),
+                            '-nointern', '-noverify', '-out', '/dev/null'], check=True,
+                           capture_output=True)
+    with zipfile.ZipFile(rom) as archive:
+        embedded = archive.read('META-INF/com/android/otacert')
+        result = subprocess.run(['openssl', 'x509', '-outform', 'DER'], input=embedded,
+                                capture_output=True, check=True)
+        if hashlib.sha256(result.stdout).hexdigest() != pin.read_text().strip():
+            raise ValueError('Embedded OTA certificate does not match release pin')
+    return {'whole_file_signature_valid': True, 'ota_certificate_sha256': digest(cert),
+            'signed_bytes': signed_length}
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('rom', type=Path)
+    p.add_argument('--cert', required=True, type=Path)
+    p.add_argument('--pin', type=Path, default=Path(__file__).resolve().parent.parent / 'ota/release-cert.sha256')
+    p.add_argument('--work-dir', required=True, type=Path)
+    a = p.parse_args()
+    try:
+        print(json.dumps(verify(a.rom, a.cert, a.pin, a.work_dir), indent=2))
+    except (ValueError, OSError, KeyError, zipfile.BadZipFile, subprocess.CalledProcessError) as e:
+        p.exit(1, f'OTA signature verification failed: {e}\n')
+
+
+if __name__ == '__main__':
+    main()

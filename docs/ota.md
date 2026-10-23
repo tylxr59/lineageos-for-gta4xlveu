@@ -18,12 +18,14 @@ and [endpoint selection](https://github.com/LineageOS/android_packages_apps_Upda
 The client requires HTTPS and does not follow redirects for the feed, so use the
 raw URL directly. An empty `[]` is a valid no-updates response.
 
-**No ROM release or certificate pin exists yet.** The URL is configured in source and the OTA-enabled development build has
+**No ROM release exists yet.** Persistent signing keys are initialized and the
+public certificate is pinned. See [signing operations](signing.md) for reuse,
+backup, signing and verification commands. The URL is configured in source and the OTA-enabled development build has
 compiled, been installed without wiping, and booted successfully. The owner
 confirmed Updater refresh updates “Last checked” without an error on this feed.
 This verifies client/server fetch and parsing, not an advertised ROM download or
-installation. First public release signing/bootstrap and automatic package
-download/install still need testing.
+installation. The first privately signed candidate is prepared; its hardware bootstrap and
+automatic package download/install still need testing.
 
 ## Persistent signing identity
 
@@ -76,8 +78,9 @@ build tags, then prepends a new v2 entry. It writes a **candidate**, not the liv
 feed. The timestamp is the ROM’s `post-timestamp`, never the upload time.
 
 `tools/ota.py` does not sign packages or verify their whole-file cryptographic
-signature. Those are required release/signing and recovery checks, not replaced
-by the certificate/CRC/metadata gates. The initial known test-key ROM is refused.
+signature. Run `tools/verify-ota`; the publisher now performs that check too.
+Recovery installation/boot checks remain required. The initial known test-key
+ROM is refused.
 
 ## Publish an authorized release
 

@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
+import zipfile
 from urllib.parse import unquote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -35,6 +37,15 @@ def main():
         url = candidate[0]['files'][0]['url']
         tag = unquote(url.rsplit('/', 2)[-2])
         require(prepare(a.rom, root / 'ota/release-cert.sha256', tag) == candidate[0], 'Candidate does not match the ROM, certificate pin, and tag')
+        work = root / 'artifacts/signature-verification'
+        work.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix='publish-', dir=work) as temp:
+            certificate = Path(temp) / 'ota-cert.pem'
+            with zipfile.ZipFile(a.rom) as archive:
+                certificate.write_bytes(archive.read('META-INF/com/android/otacert'))
+            run(sys.executable, str(root / 'tools/verify-ota'), str(a.rom),
+                '--cert', str(certificate), '--pin', str(root / 'ota/release-cert.sha256'),
+                '--work-dir', temp, stdout=subprocess.PIPE)
         require(not current or candidate[0]['datetime'] > current[0]['datetime'], 'Timestamp is not newer')
         assets = [a.rom, *a.asset]
         require(all(x.is_file() for x in assets) and a.notes.is_file(), 'Release input file missing')

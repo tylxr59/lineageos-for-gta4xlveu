@@ -3,6 +3,7 @@ import copy
 import hashlib
 import json
 import shutil
+import struct
 from pathlib import Path
 import subprocess
 import sys
@@ -130,11 +131,19 @@ class PrepareTests(unittest.TestCase):
         (root / 'tools').mkdir(parents=True, exist_ok=True)
         (root / 'ota').mkdir(exist_ok=True)
         source = Path(__file__).resolve().parents[1]
-        for name in ['ota.py', 'publish-update']:
+        for name in ['ota.py', 'publish-update', 'verify-ota']:
             shutil.copy2(source / 'tools' / name, root / 'tools' / name)
         (root / 'ota/gta4xlveu.json').write_text('[]')
         (root / 'ota/release-cert.sha256').write_bytes(self.pin.read_bytes())
         rom = self.make_rom()
+        content = root / 'content'
+        content.write_bytes(rom.read_bytes()[:-2])
+        signature = subprocess.check_output(['openssl', 'cms', '-sign', '-binary', '-in', str(content),
+                                             '-signer', str(self.cert), '-inkey', str(self.root / 'ephemeral.key'),
+                                             '-outform', 'DER', '-nosmimecap', '-md', 'sha256'])
+        length = len(signature) + 6
+        rom.write_bytes(content.read_bytes() + struct.pack('<H', length) + signature +
+                        struct.pack('<H2sH', length, b'\xff\xff', length))
         candidate = root / 'candidate.json'
         candidate.write_text(json.dumps([ota.prepare(rom, self.pin, 'test')]))
         notes = root / 'notes.md'

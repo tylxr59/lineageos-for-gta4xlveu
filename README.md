@@ -14,9 +14,10 @@ and the update feed. The device, kernel, and vendor sources live in the
 
 ## Downloads
 
-There is **no public ROM release yet**. The working local prototype uses public
-development signing keys; a release-key-signed build and recovery must be
-prepared and tested before public distribution. Do not install images intended
+There is **no public ROM release yet**. The installed local prototype uses public
+development signing keys. Persistent private signing keys and a matching signed
+ROM/recovery candidate are prepared; a hardware bootstrap test is still needed
+before public distribution. Do not install images intended
 for the 2020 Exynos model, SM-P610/P615, or the LTE SM-P619.
 
 Future builds will be listed under [Releases](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases).

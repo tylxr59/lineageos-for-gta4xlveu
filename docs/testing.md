@@ -25,7 +25,8 @@ The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 | microSD | Untested |
 | Credential-protected encryption after lock/reboot | Untested |
 | OTA endpoint / v2 feed fetch | OTA-enabled build installed; owner confirms Updater refresh succeeds |
-| Public release keys / advertised ROM download + install | Not yet tested |
+| Private signing | Candidate verified: 126 standalone + 28 nested APKs, 38 APEXes, OTA/recovery/AVB |
+| Private-key hardware bootstrap / advertised OTA install | Not yet tested |
 
 Manual sideload updates were installed with recovery status 0 and full boot/DTBO
 readback matching OTA images. ZIP CRC, OTA certificate continuity, AVB image
@@ -50,3 +51,17 @@ Updater refresh succeeds with the empty v2 feed. This does not establish a
 public release-signed OTA download/install or a key-migration procedure.
 Follow-up OTA SHA-256:
 `869cb070f474168b62d7b7a527898d65b5f924cf79f8db26afedc3cf0822aedc`.
+
+## Private-key candidate verification
+
+Persistent signing keys are initialized and the OTA public certificate is pinned
+in `ota/release-cert.sha256`. The signed candidate and matching recovery/vbmeta
+assets passed APK/container signatures, APEX public-key/payload signatures,
+nested APK signatures, actual recovery ramdisk OTA trust, root AVB signatures,
+and Android whole-file OTA CMS signature verification. The prescribed presigned
+CTS self-test shim is retained. The release publisher dry-run passed; 17 local
+tooling tests pass, including tamper rejection and key-loss/permission guards.
+
+These checks are offline evidence. The tablet still runs the working development-
+key installation. No first private-key boot, cross-key migration, or subsequent
+same-key OTA has been claimed, and the live public feed remains empty.

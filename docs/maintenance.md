@@ -7,9 +7,10 @@ alone is not a release success criterion.
 
 ## One-time prerequisites
 
-Before the first public ROM release, establish persistent private release keys,
-a separate owner-held key backup, and the public certificate fingerprint. Build
-and test the release-signed ROM plus matching recovery. Bootstrap users from
+Persistent private release keys and the public pin are now initialized; see
+[signing operations](signing.md). Reuse/restore those keys. Before the first
+public ROM release, confirm the separate owner-held key backup and
+the public certificate fingerprint. Build and test the release-signed ROM plus matching recovery. Bootstrap users from
 other signing identities through a tested migration or clean installation.
 The initial test-key prototype is not an established public update channel.
 See [OTA/signing](ota.md). The empty live feed currently advertises no builds.

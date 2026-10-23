@@ -52,7 +52,9 @@ release certificate in ota/release-cert.sha256 before the first public build.
 Use tools/publish-update only when publication is authorized; it publishes the
 release assets before pushing the feed. Do not regenerate signing keys between
 builds. Keys must stay outside Git and have a separate owner-held backup.
-See docs/ota.md for one-time signing/bootstrap work still required.
+Persistent keys are already initialized and pinned. Read docs/signing.md before
+using them; restore the existing owner backup on a new builder, never generate a
+replacement release identity. The current inventory has 47 private identities.
 
 Creating this public source/docs repo was authorized. Publishing a ROM was
 previously prohibited and is **not authorized by that alone**. An explicit
@@ -71,7 +73,7 @@ recovery status, full image readback, boot completion/encryption/SELinux, and
 actual hardware evidence as applicable. Distinguish source checks, successful
 compilation, recovery boot, Android boot, and hardware functionality.
 
-No public ROM has been published yet. First release-key generation/signing,
-release-key migration/bootstrap, and an actual advertised OTA download/install
-remain to be completed.
+No public ROM has been published yet. The first private-key candidate is signed
+and prepared locally; hardware migration/bootstrap and an actual advertised
+OTA download/install remain to be completed.
 Do not turn an empty-feed connectivity test into a claim of verified OTA install.

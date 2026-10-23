@@ -61,11 +61,13 @@ Manual fallback: enter matching recovery, choose Apply from ADB, sideload the
 new same-key ZIP, confirm success, and reboot **without formatting data**.
 This route preserved the owner’s setup/settings during local tests.
 
-The earliest prototype needs an OTA-enabled bootstrap build; that bootstrap
-has now been installed on the test tablet, and its Updater refresh succeeds.
-The feed is currently empty; public download/install is pending the first
-release-key-signed build and test. A major LineageOS/Android upgrade may have separate migration
-instructions; do not assume that a minor-update procedure applies unchanged.
+The release-key build and a newer same-key local update through Android Updater
+have been tested on the owner's SM-P613 without losing the unlock pattern,
+setup or saved test data. Updater's **Install local update** also accepts a
+matching signed ZIP copied to Downloads. The public feed is currently empty;
+public download/install remains pending the first authorized release. A major
+LineageOS/Android upgrade may have separate migration instructions; do not
+assume that a minor-update procedure applies unchanged.
 
 ## If startup fails
 

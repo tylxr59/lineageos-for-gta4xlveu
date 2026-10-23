@@ -10,7 +10,8 @@
 | Vendor | [vendor fork](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu) | imported lineage-24.0 |
 
 `manifests/known-good.xml` records the tested prototype. `manifests/resolved.xml`
-is the current source candidate including the OTA endpoint. The local manifest
+pins the tested release-key source including the OTA endpoint and Gatekeeper
+policy fix. The local manifest
 `manifests/gta4xlveu.xml` supplies the maintained device forks when following the
 upstream platform branch. Do not replace the fixed kernel/device pins with the
 unmodified imported branches.

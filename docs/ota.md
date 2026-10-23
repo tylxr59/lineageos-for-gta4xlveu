@@ -24,8 +24,10 @@ backup, signing and verification commands. The URL is configured in source and t
 compiled, been installed without wiping, and booted successfully. The owner
 confirmed Updater refresh updates “Last checked” without an error on this feed.
 This verifies client/server fetch and parsing, not an advertised ROM download or
-installation. The first privately signed candidate is prepared; its hardware bootstrap and
-automatic package download/install still need testing.
+installation. Private-key clean bootstrap and a corrected same-key local update through
+Android Updater are now hardware-tested, including original credential/data
+persistence. An actual advertised HTTPS download/install remains untested; the
+live feed is empty until an authorized release.
 
 ## Persistent signing identity
 

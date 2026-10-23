@@ -68,6 +68,8 @@ record load/save errors (`-506`).
 The tree already had the intended directory/file allow rules in
 `sepolicy/private/tee.te`, but BoardConfig includes only the vendor and
 system_ext/public policy directories. Device `4c68bc9` moves these existing
-narrow rules to `sepolicy/vendor/tee.te`. Compile and no-wipe hardware repair
-verification are pending. Never remove lock settings or set SELinux permissive
+narrow rules to `sepolicy/vendor/tee.te`. The real build/neverallow checks passed. A no-wipe, same-key repair restored
+the original pattern and saved data with SELinux enforcing. A subsequent signed
+Android Updater local install also retained the pattern/setup/test file, with
+no further Gatekeeper AVCs. Never remove lock settings or set SELinux permissive
 to make this test appear successful.

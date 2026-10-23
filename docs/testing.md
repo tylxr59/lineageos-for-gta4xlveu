@@ -23,11 +23,11 @@ The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 | Bluetooth audio | Untested |
 | Deep suspend / battery endurance | Untested |
 | microSD | Untested |
-| Credential-protected encryption after lock/reboot | Untested |
+| Credential-protected encryption after update/reboot | Original pattern unlock and saved-file checksum passed on corrected signed build |
 | OTA endpoint / v2 feed fetch | OTA-enabled build installed; owner confirms Updater refresh succeeds |
 | Private signing | Candidate verified: 126 standalone + 28 nested APKs, 38 APEXes, OTA/recovery/AVB |
 | Private-key hardware bootstrap | Clean install and Android boot passed |
-| Same-key Android Updater local install | Installed and booted; credential unlock failed, repair pending |
+| Same-key Android Updater local install | Corrected signed build installed and booted; original pattern/setup/test data retained |
 | Advertised public OTA download/install | Not tested; feed empty |
 
 Manual sideload updates were installed with recovery status 0 and full boot/DTBO
@@ -77,16 +77,34 @@ certificate. Android Updater imported and verified a newer same-key full OTA,
 then rebooted to recovery and installed it without a format. The new build
 returned with timestamp `1792773624` and setup flags intact.
 
-**Credential-unlock blocker:** after that reboot, the owner’s correct newly
-created pattern was rejected. User 0 remained `RUNNING_LOCKED`; credential-
-protected storage and the persistence marker were consequently unavailable.
-Logs show `tee`/QSEECom denied access to `gatekeeper_vendor_data_file`, followed
-by Gatekeeper secure-failure-record errors. Existing allow rules were in
-`sepolicy/private`, which BoardConfig never includes. Device commit `4c68bc9`
-moves those narrow rules to the included vendor policy; compilation/signing
-and a no-wipe repair installation are in progress. No lock settings were
-removed and SELinux remains enforcing. A booted update is not a successful
-credential/data-persistence test. Do not publish the affected candidates.
+The first credential-protected reboot exposed a Gatekeeper policy defect: the
+correct pattern was rejected and user 0 stayed `RUNNING_LOCKED`. QSEECom in the
+`tee` domain could not access `gatekeeper_vendor_data_file`. Device `4c68bc9`
+moved the two existing narrow allow rules out of the unincluded private policy
+directory into the active vendor policy. Neverallow checks passed; the compiled
+policy delta contains exactly those two added allow rules. SELinux stayed
+enforcing and no credentials or data were removed.
+
+The repair installed with the same keys and no wipe, passed recovery signature
+verification/status 0, and booted at timestamp `1792775285`. The owner's original
+pattern unlocked it; the original saved-file checksum matched and Gatekeeper
+AVCs disappeared. A subsequent same-source, newer signed build then imported,
+verified and installed through Android Updater's local-update path. It booted at
+`1792775790`, unlocked with that same pattern, and retained setup and the saved
+file. Android reports FBE, enforcing SELinux, normal shell UID2000, disabled
+Rooted debugging and an empty crash buffer. The owner repeated Wi-Fi, both
+cameras, speakers and S Pen smoke checks successfully.
+
+Current tested source: device `4c68bc975d304483675ceab24e75c31ab2d2c515`, kernel
+`75a416868f994657bb1095f9e76864525c184f84`, vendor
+`4388d72aed64812cf27496986bcf8fb3af64bf1d`. All 1,242 project revisions match
+[resolved.xml](../manifests/resolved.xml). The follow-up vendor policy is byte-
+identical to the successful repair. Final tested ROM SHA-256:
+`3f6464a2673b86a23aaf690fa3789d007b122f5f521a420af6f60042f0cb8c8c`.
+Matching candidate recovery SHA-256:
+`da434b6e7b8dd095a88f86daff568b057b5d38fd17496d7c3ff61a7d1e4e2767`.
+This final recovery's embedded trust and AVB signature passed offline checks;
+the installed earlier same-key recovery performed the tested update.
 
 The live public feed remains empty. An actual advertised HTTPS ROM download
 and installation has not been tested or published.

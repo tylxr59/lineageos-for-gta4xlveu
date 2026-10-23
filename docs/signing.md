@@ -119,3 +119,8 @@ clean installation or a separately reviewed key migration, using the matching
 signed recovery, and then a subsequent same-key update. Do not silently wipe
 userdata as part of a routine update or treat the first key transition as an
 ordinary OTA. The live feed remains empty until an authorized tested release.
+
+The 2026-10-23 bootstrap and subsequent same-key Android Updater local install
+passed on SM-P613 after the Gatekeeper-policy fix. The original pattern, setup
+and saved data survived. This verifies the clean bootstrap/local installation
+path; the empty public feed has not advertised a network OTA yet.

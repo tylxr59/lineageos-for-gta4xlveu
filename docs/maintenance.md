@@ -12,7 +12,9 @@ Persistent private release keys and the public pin are now initialized; see
 public ROM release, confirm the separate owner-held key backup and
 the public certificate fingerprint. Build and test the release-signed ROM plus matching recovery. Bootstrap users from
 other signing identities through a tested migration or clean installation.
-The initial test-key prototype is not an established public update channel.
+Clean private-key bootstrap and a subsequent same-key Updater local install
+passed with credential/data persistence on 2026-10-23. The initial test-key
+prototype is not an established public update channel.
 See [OTA/signing](ota.md). The empty live feed currently advertises no builds.
 
 ## Routine platform updates
@@ -26,7 +28,7 @@ See [OTA/signing](ota.md). The empty live feed currently advertises no builds.
    sync changes and capture `repo manifest -r` before building. Do not discard
    uncommitted source fixes or a developer’s branch.
 3. Review device/kernel upstream changes separately and merge useful fixes onto
-   maintained branches, preserving the four demonstrated boot fixes. Do not
+   maintained branches, preserving the four demonstrated boot fixes and the Gatekeeper policy fix. Do not
    auto-replace forks with upstream just because a branch has a newer timestamp.
 4. Build the ROM/recovery, fix demonstrated failures, and record all source
    revisions. Sign target files with the existing release identity, then generate

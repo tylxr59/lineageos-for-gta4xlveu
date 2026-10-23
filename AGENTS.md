@@ -19,10 +19,12 @@ branches should remain intact; use maintained work branches in the source forks.
 ## Source and build state
 
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
-`manifests/known-good.xml` pins the tested prototype; `manifests/resolved.xml`
-pins the OTA-enabled development build, now compiled, installed and booted;
-the owner confirmed Updater fetch on the empty public feed. Keep hardware
-smoke evidence separate from public release-signed OTA installation evidence.
+`manifests/known-good.xml` retains the earlier tested development prototype;
+`manifests/resolved.xml` pins the current privately signed, hardware-tested
+source: device `4c68bc9`, kernel `75a416868`, vendor `4388d72`. Clean bootstrap
+and a subsequent same-key Android Updater local install passed, retaining the
+original unlock pattern, setup and saved data. Keep hardware/local-install
+proof separate from advertised public HTTPS OTA download/install evidence.
 `manifests/gta4xlveu.xml` pins the three device-specific forks for upstream sync.
 Platform source updates and Android major-version migrations are separate risk
 levels: review compatibility and installation/signing implications explicitly.
@@ -73,9 +75,13 @@ recovery status, full image readback, boot completion/encryption/SELinux, and
 actual hardware evidence as applicable. Distinguish source checks, successful
 compilation, recovery boot, Android boot, and hardware functionality.
 
-No public ROM has been published yet. Clean private-key bootstrap and a same-key
-Updater local install booted. Credential unlock after reboot FAILED due to
-missing active tee/Gatekeeper policy; device fix `4c68bc9` is rebuilding. Do not
-publish the affected candidates or reset credentials to hide the failure.
-An actual advertised OTA download/install remains untested.
-Do not turn an empty-feed connectivity test into a claim of verified OTA install.
+No public ROM has been published yet. Private-key bootstrap and a subsequent
+same-key Android Updater local install passed. The Gatekeeper credential-unlock
+defect was fixed by including the existing narrow tee rules in vendor policy
+(device `4c68bc9`); retain that fix and the four boot fixes. The final tested
+build timestamp is `1792775790`, release-keys, FBE, SELinux enforcing, normal
+ADB UID2000, Rooted debugging disabled, empty crash buffer, original pattern/
+setup/test file retained. Owner hardware smoke passed for Wi-Fi, both cameras,
+speakers and S Pen. See docs/testing.md for hashes and remaining tests.
+An actual advertised public HTTPS OTA download/install remains untested. Do not
+turn the successful local Updater installation or empty-feed check into that claim.

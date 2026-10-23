@@ -1,6 +1,8 @@
 """Metadata/security gates only: synthetic ZIPs are not signed installation tests."""
 import copy
 import hashlib
+import json
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -122,6 +124,40 @@ class PrepareTests(unittest.TestCase):
     def test_bad_range_rejected(self):
         with self.assertRaises(ValueError):
             ota.prepare(self.make_rom(wrong_range=True), self.pin, 'test')
+
+    def test_publisher_dry_run_and_asset_mismatch(self):
+        root = self.root / 'publisher'
+        (root / 'tools').mkdir(parents=True, exist_ok=True)
+        (root / 'ota').mkdir(exist_ok=True)
+        source = Path(__file__).resolve().parents[1]
+        for name in ['ota.py', 'publish-update']:
+            shutil.copy2(source / 'tools' / name, root / 'tools' / name)
+        (root / 'ota/gta4xlveu.json').write_text('[]')
+        (root / 'ota/release-cert.sha256').write_bytes(self.pin.read_bytes())
+        rom = self.make_rom()
+        candidate = root / 'candidate.json'
+        candidate.write_text(json.dumps([ota.prepare(rom, self.pin, 'test')]))
+        notes = root / 'notes.md'
+        notes.write_text('Synthetic metadata test; never publish.')
+        assets = []
+        for name in ['recovery.img', 'vbmeta.img', 'recovery.tar', 'source-manifest.xml']:
+            path = root / name
+            path.write_text('test asset')
+            assets.append(path)
+        sums = root / 'SHA256SUMS'
+        sums.write_text(''.join(ota.file_sha256(x) + '  ' + x.name + '\n' for x in [rom, *assets]))
+        command = [sys.executable, str(root / 'tools/publish-update'), '--rom', str(rom),
+                   '--candidate-feed', str(candidate), '--notes', str(notes)]
+        for path in [*assets, sums]:
+            command += ['--asset', str(path)]
+        result = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn('Dry-run only', result.stdout)
+        self.assertEqual((root / 'ota/gta4xlveu.json').read_text(), '[]')
+        assets[0].write_text('corrupted asset')
+        result = subprocess.run(command, capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Checksum mismatch', result.stderr)
 
 
 if __name__ == '__main__':

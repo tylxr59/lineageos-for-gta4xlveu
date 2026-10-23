@@ -1,0 +1,14 @@
+/android/
+/artifacts/
+/logs/
+/keys/
+/private/
+/tools/bin/
+/tools/ubuntu/
+/tools/downloads/
+/tools/home/
+*.pk8
+*.key
+*.p12
+*.jks
+__pycache__/

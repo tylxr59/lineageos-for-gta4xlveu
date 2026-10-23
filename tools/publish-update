@@ -1,0 +1,77 @@
+#!/usr/bin/env python3
+"""Publish an authorized, validated release; dry-run unless --execute is passed."""
+import argparse
+import json
+from pathlib import Path
+import subprocess
+import sys
+from urllib.parse import unquote
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from ota import REPOSITORY, file_sha256, prepare, require, validate
+
+
+def run(*args, **kwargs):
+    return subprocess.run(args, check=True, **kwargs)
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--rom', required=True, type=Path)
+    p.add_argument('--candidate-feed', required=True, type=Path)
+    p.add_argument('--notes', required=True, type=Path)
+    p.add_argument('--asset', action='append', type=Path, default=[])
+    p.add_argument('--execute', action='store_true', help='Publish assets, then commit/push the live feed; requires owner release authorization')
+    a = p.parse_args()
+    a.rom = a.rom.resolve()
+    a.notes = a.notes.resolve()
+    a.asset = [x.resolve() for x in a.asset]
+    root = Path(__file__).resolve().parent.parent
+    feed_path = root / 'ota/gta4xlveu.json'
+    try:
+        candidate = validate(json.loads(a.candidate_feed.read_text()))
+        current = validate(json.loads(feed_path.read_text()))
+        require(candidate and candidate[1:] == current, 'Candidate must append exactly one new build to current feed')
+        url = candidate[0]['files'][0]['url']
+        tag = unquote(url.rsplit('/', 2)[-2])
+        require(prepare(a.rom, root / 'ota/release-cert.sha256', tag) == candidate[0], 'Candidate does not match the ROM, certificate pin, and tag')
+        require(not current or candidate[0]['datetime'] > current[0]['datetime'], 'Timestamp is not newer')
+        assets = [a.rom, *a.asset]
+        require(all(x.is_file() for x in assets) and a.notes.is_file(), 'Release input file missing')
+        names = [x.name for x in assets]
+        require(len(names) == len(set(names)), 'Duplicate asset names')
+        require({'recovery.img', 'vbmeta.img', 'recovery.tar', 'SHA256SUMS', 'source-manifest.xml'} <= set(names), 'Include matching recovery/vbmeta/tar, SHA256SUMS and exact manifest')
+        sums = next(x for x in assets if x.name == 'SHA256SUMS')
+        expected = {}
+        for line in sums.read_text().splitlines():
+            digest, name = line.split(maxsplit=1)
+            expected[name.removeprefix('*')] = digest
+        for asset in assets:
+            if asset != sums:
+                require(file_sha256(asset) == expected.get(asset.name), 'Checksum mismatch or missing: ' + asset.name)
+        print(f'Repository: {REPOSITORY}\nRelease: {tag}\nAssets: {", ".join(names)}')
+        print('Publish release assets first; update ota/gta4xlveu.json only afterward.')
+        if not a.execute:
+            print('Dry-run only. No GitHub/Git mutation performed.')
+            return
+        # Refuse branch drift or unrelated pending changes before publication.
+        require(subprocess.check_output(['git', 'branch', '--show-current'], cwd=root, text=True).strip() == 'main', 'Publish from main')
+        require(not subprocess.check_output(['git', 'status', '--porcelain'], cwd=root, text=True).strip(), 'Commit repository changes before publishing')
+        run('git', 'fetch', 'origin', 'main', cwd=root)
+        require(subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root) ==
+                subprocess.check_output(['git', 'rev-parse', 'origin/main'], cwd=root), 'Local main must match origin/main')
+        run('gh', 'release', 'create', tag, *map(str, assets), '--repo', REPOSITORY,
+            '--target', 'main', '--title', f'LineageOS 24.0 — {tag}',
+            '--notes-file', str(a.notes), '--latest', cwd=root)
+        # gh returns only after successful asset uploads. A failure above leaves the live feed untouched.
+        feed_path.write_text(json.dumps(candidate, indent=2) + '\n')
+        run('git', 'add', 'ota/gta4xlveu.json', cwd=root)
+        run('git', 'commit', '-m', f'Publish OTA metadata for {tag}', cwd=root)
+        run('git', 'push', 'origin', 'main', cwd=root)
+        print('Release and OTA feed published. If push failed, preserve the release and reconcile main; do not force-push.')
+    except (ValueError, OSError, KeyError, subprocess.CalledProcessError) as e:
+        p.exit(1, f'Error: {e}\nIf release creation succeeded before a later error, inspect GitHub before retrying.\n')
+
+
+if __name__ == '__main__':
+    main()

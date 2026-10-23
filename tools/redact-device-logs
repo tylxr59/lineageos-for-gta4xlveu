@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+"""Redact known device identifiers in local text and ramoops diagnostics."""
+import argparse
+from pathlib import Path
+import re
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("paths", nargs="+", type=Path)
+args = parser.parse_args()
+
+files = set()
+for path in args.paths:
+    for item in path.rglob("*") if path.is_dir() else [path]:
+        if item.is_file() and (item.suffix in {".log", ".txt"} or "ramoops" in item.name):
+            files.add(item)
+
+identifiers = re.compile(
+    rb"(?:(?:androidboot\.|ro\.boot\.)(?:serialno|ap_serial|em\.did|kg\.ap)|ro\.serialno)="
+    rb"([^\s\x00]+)"
+)
+mac = re.compile(rb"(?i)(?<![0-9a-f])(?:[0-9a-f]{2}:){5}[0-9a-f]{2}(?![0-9a-f])")
+private_ipv4 = re.compile(
+    rb"(?<![0-9.])(?:10\.[0-9]{1,3}|192\.168|172\.(?:1[6-9]|2[0-9]|3[01])|169\.254)"
+    rb"\.[0-9]{1,3}\.[0-9]{1,3}(?![0-9.])"
+)
+values = {match[1] for file in files for match in identifiers.finditer(file.read_bytes())
+          if len(match[1]) >= 6}
+changed = 0
+for file in sorted(files):
+    original = file.read_bytes()
+    redacted = original
+    for value in values:
+        redacted = redacted.replace(value, b"X" * len(value))
+    for pattern in (mac, private_ipv4):
+        redacted = pattern.sub(lambda match: b"X" * len(match[0]), redacted)
+    # Keep byte lengths unchanged so binary pmsg record framing remains usable.
+    if redacted != original:
+        file.write_bytes(redacted)
+        changed += 1
+print(f"Redacted {changed} local diagnostic files; identifiers were not printed.")

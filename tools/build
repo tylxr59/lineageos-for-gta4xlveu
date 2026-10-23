@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Run in Ubuntu build environment (optionally via tools/ubuntu-run).
+set -eo pipefail
+workspace=${LOS24_WORKSPACE:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)}
+cd "$workspace/android"
+mkdir -p "$workspace/artifacts" "$workspace/logs"
+repo manifest -r -o "$workspace/artifacts/prebuild-manifest.xml"
+source build/envsetup.sh
+breakfast gta4xlveu userdebug
+m -j"${LOS24_JOBS:-12}" bacon recoveryimage

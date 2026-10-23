@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Run inside a prepared Linux/Ubuntu build environment. Sync mutates source checkouts.
+set -euo pipefail
+repository=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+workspace=${LOS24_WORKSPACE:-$repository}
+mode=${1:-pinned}
+mkdir -p "$workspace/android" "$workspace/artifacts"
+cd "$workspace/android"
+case "$mode" in
+    pinned)
+        if [[ -e .repo/local_manifests/gta4xlveu.xml ]]; then
+            echo "Review/remove the old gta4xlveu local manifest before switching to the full pinned manifest." >&2
+            exit 2
+        fi
+        repo init -u https://github.com/tylxr59/lineageos-for-gta4xlveu \
+            -b main -m manifests/resolved.xml --git-lfs --no-clone-bundle --depth=1
+        ;;
+    upstream)
+        platform_ref=${2:-lineage-24.0}
+        repo init -u https://github.com/LineageOS/android.git -b "$platform_ref" \
+            --git-lfs --no-clone-bundle --depth=1
+        mkdir -p .repo/local_manifests
+        cp "$repository/manifests/gta4xlveu.xml" \
+            .repo/local_manifests/gta4xlveu.xml
+        ;;
+    *) echo 'Usage: tools/sync-source [pinned | upstream [lineage-branch]]' >&2; exit 2 ;;
+esac
+repo sync --no-tags --optimized-fetch
+repo manifest -r -o "$workspace/artifacts/source-manifest.xml"

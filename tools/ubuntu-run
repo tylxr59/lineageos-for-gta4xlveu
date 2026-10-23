@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Rootless Ubuntu build environment; all writable storage stays in this workspace.
+set -euo pipefail
+workspace=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+if [[ ${LOS24_IN_NAMESPACE:-} != 1 ]]; then
+    exec unshare --user --map-root-user --map-auto --mount --fork env LOS24_IN_NAMESPACE=1 "$0" "$@"
+fi
+mount --make-rprivate /
+rootfs="$workspace/tools/ubuntu"
+mkdir -p "$rootfs$workspace" "$rootfs/proc" "$rootfs/dev" "$rootfs/sys"
+mount --bind "$workspace" "$rootfs$workspace"
+mount --rbind /proc "$rootfs/proc"
+mount --rbind /dev "$rootfs/dev"
+mount --rbind /sys "$rootfs/sys"
+exec chroot "$rootfs" /usr/bin/env -i \
+    HOME="$workspace/tools/home" USER=root LOGNAME=root \
+    PATH="$workspace/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+    LANG=C.UTF-8 LC_ALL=C.UTF-8 TERM="${TERM:-dumb}" WORKSPACE="$workspace" \
+    /bin/bash -c 'cd "$WORKSPACE"; exec "$@"' bash "$@"

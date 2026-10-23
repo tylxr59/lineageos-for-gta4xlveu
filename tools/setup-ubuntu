@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Install build dependencies in a workspace-local rootless Ubuntu 24.04 filesystem.
+set -euo pipefail
+workspace=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+cd "$workspace"
+mkdir -p tools/{bin,downloads,home,ubuntu} logs artifacts android
+if [[ ! -f tools/ubuntu/etc/os-release ]]; then
+    curl -fL --retry 3 \
+        https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.4-base-amd64.tar.gz \
+        -o tools/downloads/ubuntu-base.tar.gz
+    printf '%s  %s\n' c1e67ef7b17a6300e136118bd1dc04725009cb376c1aad10abcf8cd453628d58 \
+        tools/downloads/ubuntu-base.tar.gz | sha256sum -c -
+    tar --no-same-owner -xzf tools/downloads/ubuntu-base.tar.gz -C tools/ubuntu
+fi
+cp -L /etc/resolv.conf tools/ubuntu/etc/resolv.conf
+tools/ubuntu-run bash -c '
+    set -e
+    . /etc/os-release
+    [[ $ID == ubuntu && $VERSION_ID == 24.04 ]]
+    apt-get update
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        bc bison build-essential ca-certificates ccache curl erofs-utils flex \
+        g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick kmod \
+        protobuf-compiler python3 python-is-python3 python3-protobuf \
+        lib32readline-dev lib32z1-dev libdw-dev libelf-dev libgnutls28-dev \
+        lz4 libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush \
+        rsync schedtool squashfs-tools xsltproc xxd zip zlib1g-dev unzip \
+        fontconfig procps time
+    dpkg --audit
+'
+if [[ ! -x tools/bin/repo ]]; then
+    curl -fLsS https://storage.googleapis.com/git-repo-downloads/repo -o tools/bin/repo
+    chmod +x tools/bin/repo
+fi

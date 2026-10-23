@@ -1,0 +1,39 @@
+# Port findings
+
+The pinned Sevenrock LOS24 baseline compiled unchanged, but compilation did not
+establish bootability. Hardware testing on SM-P613 found four independent defects.
+
+| Defect | Evidence | Fix |
+| --- | --- | --- |
+| Missing recovery init | New ramdisk lacked init.recovery.qcom.rc; init could not establish bootdevice/cache paths or USB/backlight setup | Device `e44d4d7`: explicitly copy recovery/root/init.recovery.qcom.rc with PRODUCT_COPY_FILES; remove unused TARGET_RECOVERY_DEVICE_DIRS |
+| Removed reserved memory | Baseline recovery returned to Download Mode; replacing only DTB with the installed known-good DTB booted the new kernel/recovery | Kernel `75a416868`: restore five-line disp_rdump_region@9c000000 node and symbol in atoll.dtsi |
+| Obsolete ueventd path | init reached storage, but QSEECom/ION nodes had restrictive default permissions and Keymaster could not register | Device `78014df`: install rules at vendor/etc/ueventd.rc, imported by Android17, instead of vendor/ueventd.rc |
+| Missing USB controller | QTI gadget HAL exited “UDC name not defined”; system_server watchdog stack waited in UsbService boot phase, causing repeated animation | Device `44bda91`: vendor.usb.controller=a600000.dwc3, matching live UDC and boot command line |
+
+The working DTB matches the original installed DTB byte for byte. This retains
+the newer kernel’s clone3/TLS backports and module signing; no kernel downgrade
+or global SELinux relaxation was needed. The DTB substitution establishes the
+node’s practical requirement on this tablet without claiming a proven internal
+bootloader failure mechanism.
+
+A temporary userdebug cache logcat service was used to capture logs before
+userdata mounted. It was removed from source and actual final system image.
+No diagnostic logger should enter a public build.
+
+The source forks preserve imported lineage-24.0 branches. Working fixes are on
+device fix/los24-usb-controller and kernel fix/los24-boot-dtb; the OTA candidate
+adds one product property on device fix/los24-updater. The exact known-good and
+current-candidate manifests preserve all platform project revisions separately.
+
+During testing, plain `adb reboot` once returned to recovery. Recovery-menu
+normal reboot uses `sys.powerctl=reboot,userrequested,recovery`; with the BCB
+command clear, that route consistently booted Android. Read actual state before
+using this workaround. Recovery ADB may need Advanced → Enable ADB after each
+sideload. Successful adb transfer alone is insufficient: check recovery status 0.
+
+Heimdall recovery/vbmeta transfers worked after fresh entry into the blue Samsung
+Downloading screen using amo13/Heimdall commit
+`8378ba4081875e220d31815ccb7e907112c16481`. Reusing a stale USB session failed
+before transfer. Fastboot answered queries but rejected flash commands; it is
+not the supported installation path. No PIT rewrite or bootloader firmware
+flash was needed. Original partition backups and rollback resources are local.

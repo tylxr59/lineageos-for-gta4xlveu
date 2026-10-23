@@ -14,10 +14,9 @@ and the update feed. The device, kernel, and vendor sources live in the
 
 ## Downloads
 
-There is **no public ROM release yet**. The installed local prototype uses public
-development signing keys. Persistent private signing keys and a matching signed
-ROM/recovery candidate are prepared; a hardware bootstrap test is still needed
-before public distribution. Do not install images intended
+There is **no public ROM release yet**. Private-key ROM/recovery installation
+and Android boot have been tested. A credential-unlock defect found during the
+update test is being repaired before distribution. Do not install images intended
 for the 2020 Exynos model, SM-P610/P615, or the LTE SM-P619.
 
 Future builds will be listed under [Releases](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases).
@@ -48,10 +47,10 @@ download the new build, and choose Install. This is a **non-A/B** device: the
 installation reboots into recovery. Ordinary updates within this project’s
 release-key channel should preserve apps and data; keep a backup.
 
-The update feed is live but currently empty. The OTA-enabled development build
-is installed on the test tablet, and Updater successfully checks the feed.
-Public ROM download/install through Updater still needs the first signed release.
-Manual same-key sideload updates have been tested without losing setup/settings.
+The update feed is live but currently empty, and Updater successfully checks it.
+A signed local update installed through Updater and booted, but exposed a
+credential-unlock defect that must be fixed before release. Public ROM download
+and installation through the feed remain untested.
 See [updating and recovery](docs/installing.md#updates) and [OTA maintenance](docs/ota.md).
 
 ## Bugs and development

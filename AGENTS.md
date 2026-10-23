@@ -73,7 +73,9 @@ recovery status, full image readback, boot completion/encryption/SELinux, and
 actual hardware evidence as applicable. Distinguish source checks, successful
 compilation, recovery boot, Android boot, and hardware functionality.
 
-No public ROM has been published yet. The first private-key candidate is signed
-and prepared locally; hardware migration/bootstrap and an actual advertised
-OTA download/install remain to be completed.
+No public ROM has been published yet. Clean private-key bootstrap and a same-key
+Updater local install booted. Credential unlock after reboot FAILED due to
+missing active tee/Gatekeeper policy; device fix `4c68bc9` is rebuilding. Do not
+publish the affected candidates or reset credentials to hide the failure.
+An actual advertised OTA download/install remains untested.
 Do not turn an empty-feed connectivity test into a claim of verified OTA install.

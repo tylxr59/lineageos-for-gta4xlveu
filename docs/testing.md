@@ -26,7 +26,9 @@ The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 | Credential-protected encryption after lock/reboot | Untested |
 | OTA endpoint / v2 feed fetch | OTA-enabled build installed; owner confirms Updater refresh succeeds |
 | Private signing | Candidate verified: 126 standalone + 28 nested APKs, 38 APEXes, OTA/recovery/AVB |
-| Private-key hardware bootstrap / advertised OTA install | Not yet tested |
+| Private-key hardware bootstrap | Clean install and Android boot passed |
+| Same-key Android Updater local install | Installed and booted; credential unlock failed, repair pending |
+| Advertised public OTA download/install | Not tested; feed empty |
 
 Manual sideload updates were installed with recovery status 0 and full boot/DTBO
 readback matching OTA images. ZIP CRC, OTA certificate continuity, AVB image
@@ -52,21 +54,39 @@ public release-signed OTA download/install or a key-migration procedure.
 Follow-up OTA SHA-256:
 `869cb070f474168b62d7b7a527898d65b5f924cf79f8db26afedc3cf0822aedc`.
 
-## Private-key candidate verification
+## Private-key signing and update tests
 
 Persistent signing keys are initialized and the OTA public certificate is pinned
-in `ota/release-cert.sha256`. The signed candidate and matching recovery/vbmeta
-assets passed APK/container signatures, APEX public-key/payload signatures,
-nested APK signatures, actual recovery ramdisk OTA trust, root AVB signatures,
-and Android whole-file OTA CMS signature verification. The prescribed presigned
-CTS self-test shim is retained. The release publisher dry-run passed. The first hardware sideload was then
-rejected: duplicate certificate ZIP entries prevented recovery from loading its
-trust archive. The owner cancelled the installation. The corrected tooling has
-20 passing tests, including duplicate-entry rejection and mapped-key
-deduplication; regenerated candidates and hardware retry are pending.
+in `ota/release-cert.sha256`. APK/container signatures, APEX public-key/payload
+signatures, nested APKs, actual recovery ramdisk OTA trust, AVB signatures and
+Android whole-file OTA signatures passed. The prescribed presigned CTS self-test
+shim is retained. Twenty local tooling tests pass.
 
-These checks are offline evidence. The system partition still contains the development-key installation; userdata
-has been formatted for the authorized clean private-key bootstrap. The signed
-recovery boots and its full partition hash matches, but its first trust archive
-was rejected as described above. No first private-key boot, cross-key migration, or subsequent
-same-key OTA has been claimed, and the live public feed remains empty.
+The first private-key recovery refused its OTA because mapped extra keys created
+duplicate ZIP names in `otacerts.zip`. The owner cancelled that installation.
+The wrapper now deduplicates mapped extra keys and the verifier rejects such
+archives. The regenerated recovery and matching vbmeta booted, with full image
+readback and its live single-certificate trust archive checked. The corrected
+OTA then passed recovery's real signature check and installed with status 0.
+Its boot/DTBO/recovery/vbmeta partition hashes matched the signed bundle.
+
+The clean private-key Android installation completed setup and reported
+release-keys, FBE, SELinux enforcing, normal ADB UID2000, rooted debugging off,
+and an empty crash buffer. Its installed Updater APK matched the private platform
+certificate. Android Updater imported and verified a newer same-key full OTA,
+then rebooted to recovery and installed it without a format. The new build
+returned with timestamp `1792773624` and setup flags intact.
+
+**Credential-unlock blocker:** after that reboot, the owner’s correct newly
+created pattern was rejected. User 0 remained `RUNNING_LOCKED`; credential-
+protected storage and the persistence marker were consequently unavailable.
+Logs show `tee`/QSEECom denied access to `gatekeeper_vendor_data_file`, followed
+by Gatekeeper secure-failure-record errors. Existing allow rules were in
+`sepolicy/private`, which BoardConfig never includes. Device commit `4c68bc9`
+moves those narrow rules to the included vendor policy; compilation/signing
+and a no-wipe repair installation are in progress. No lock settings were
+removed and SELinux remains enforcing. A booted update is not a successful
+credential/data-persistence test. Do not publish the affected candidates.
+
+The live public feed remains empty. An actual advertised HTTPS ROM download
+and installation has not been tested or published.

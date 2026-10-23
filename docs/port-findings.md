@@ -1,7 +1,7 @@
 # Port findings
 
 The pinned Sevenrock LOS24 baseline compiled unchanged, but compilation did not
-establish bootability. Hardware testing on SM-P613 found four independent defects.
+establish bootability. Initial boot testing on SM-P613 found four independent defects.
 
 | Defect | Evidence | Fix |
 | --- | --- | --- |
@@ -52,4 +52,22 @@ listed primary identity before invoking releasetools. It handles the empty
 `META/otakeys.txt` case, which falls back to `default_system_dev_certificate`.
 The original unsigned archive and persistent keys remain unchanged. Component
 verification rejects empty trust archives and duplicate ZIP entries, including
-inside the actual recovery ramdisk. Hardware retry is pending regeneration.
+inside the actual recovery ramdisk. The regenerated image booted and accepted the signed OTA with a real recovery
+whole-file signature check and installation status 0.
+
+## Pattern unlock after reboot
+
+The first signed same-key update installed through Android Updater and booted,
+but a correct setup-created pattern was rejected after restart. This was the
+first credential-protected reboot test; an update-triggered reboot exposed the
+defect without establishing that the update introduced it. User 0 remained
+`RUNNING_LOCKED`. QSEECom in the `tee` domain was denied read/search access to
+`gatekeeper_vendor_data_file`, and Samsung Gatekeeper reported secure-failure-
+record load/save errors (`-506`).
+
+The tree already had the intended directory/file allow rules in
+`sepolicy/private/tee.te`, but BoardConfig includes only the vendor and
+system_ext/public policy directories. Device `4c68bc9` moves these existing
+narrow rules to `sepolicy/vendor/tee.te`. Compile and no-wipe hardware repair
+verification are pending. Never remove lock settings or set SELinux permissive
+to make this test appear successful.

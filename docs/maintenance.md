@@ -16,7 +16,8 @@ Clean private-key bootstrap and a subsequent same-key Updater local install
 passed with credential/data persistence on 2026-10-23. The initial test-key
 prototype is not an established public update channel.
 See [OTA/signing](ota.md). The first signed release and live v2 feed are published. Reuse this established
-identity for every subsequent release.
+identity for every subsequent release. The first advertised network OTA test
+also passed, retaining the original pattern and data without wipe.
 
 ## Routine platform updates
 

@@ -123,4 +123,5 @@ The 2026-10-23 bootstrap and subsequent same-key Android Updater local install
 passed on SM-P613 after the Gatekeeper-policy fix. The original pattern, setup
 and saved data survived. This verifies the clean bootstrap/local installation
 path. The first public release and its feed entry are now published; the
-HTTPS download/install test is recorded separately in docs/testing.md.
+HTTPS Updater download/verification/install/reboot also passed with the original
+pattern and data retained; evidence is recorded separately in docs/testing.md.

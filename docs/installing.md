@@ -17,12 +17,13 @@ and is not documented as tested here. First installation wipes userdata.
 1. Back up files, authenticate access to needed accounts, and download all assets
    before starting. Keep a copy of the previous ROM/recovery for rollback.
 2. Download the release ROM ZIP and its **matching** recovery/vbmeta assets and
-   `SHA256SUMS`. Verify checksums on the computer (`sha256sum -c SHA256SUMS` for
-   all listed downloaded files, or check the individual file hashes).
+   `SHA256SUMS`. Verify checksums on the computer (`sha256sum --ignore-missing -c SHA256SUMS` on Linux checks the files
+   you downloaded, or check the individual file hashes).
 3. Enter Samsung Download Mode with USB connected: restart using Power + Volume
    Down, then hold both volume buttons as the screen goes black; confirm with
    Volume Up if prompted. With `recovery.img` and `vbmeta.img` from this release
-   in the current directory, run:
+   in the current directory, run (extract `recovery.tar` first with
+   `tar -xf recovery.tar` if you downloaded the tar instead of individual images):
 
    ```sh
    heimdall flash --RECOVERY recovery.img --VBMETA vbmeta.img --no-reboot

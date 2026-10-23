@@ -49,8 +49,9 @@ installation reboots into recovery. Ordinary updates within this project’s
 release-key channel should preserve apps and data; keep a backup.
 
 The update feed is live and advertises the signed release.
-Signed local updates through Updater have been tested without losing setup,
-the unlock pattern, or saved test data. The public download/install test is recorded in the test matrix.
+Public Updater detection, download, signature verification, recovery installation
+and reboot have passed without losing setup, the unlock pattern, or saved test
+data. The test matrix records the details.
 See [updating and recovery](docs/installing.md#updates) and [OTA maintenance](docs/ota.md).
 
 ## Bugs and development

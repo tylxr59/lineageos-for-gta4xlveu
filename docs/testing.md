@@ -28,7 +28,7 @@ The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 | Private signing | Candidate verified: 126 standalone + 28 nested APKs, 38 APEXes, OTA/recovery/AVB |
 | Private-key hardware bootstrap | Clean install and Android boot passed |
 | Same-key Android Updater local install | Corrected signed build installed and booted; original pattern/setup/test data retained |
-| Advertised public OTA download/install | Release/feed published; real Updater download/install test in progress |
+| Advertised public OTA download/install | Passed: live feed → GitHub download → signature verification → recovery install → boot; original pattern/data/setup retained |
 
 Manual sideload updates were installed with recovery status 0 and full boot/DTBO
 readback matching OTA images. ZIP CRC, OTA certificate continuity, AVB image
@@ -111,4 +111,16 @@ same-key recovery performed the preceding local update test.
 The first signed release and v2 feed entry are now published. Public asset sizes
 and GitHub SHA-256 digests match the local bundle; the downloaded public checksum
 file matches. Android Updater on the prior same-source build detected the newer
-release and started the real HTTPS download. Installation validation is in progress.
+release, downloaded it from GitHub, and verified the package using the installed
+OTA trust. The normal Install confirmation rebooted into the exact released
+recovery, installed the package, and returned to Android at timestamp1792775790.
+The owner unlocked with the original pattern and confirmed setup intact. The
+original saved-file SHA-256 matched, user 0 was RUNNING_UNLOCKED, FBE and SELinux
+enforcing remained active, normal ADB UID2000 and disabled Rooted debugging were
+verified, and the crash buffer was empty with no Gatekeeper AVCs. No factory
+reset was used. Temporary test files/local-import entry were removed and the
+original screen-awake setting restored. This is an actual advertised network
+OTA test, in addition to the earlier local-import test.
+
+Published release: [lineage-24.0-20261023-gta4xlveu-1792775790](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792775790). Bluetooth audio, microSD, deep suspend/battery endurance, MTP file transfer,
+and S Pen pressure accuracy remain untested.

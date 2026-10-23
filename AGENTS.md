@@ -84,5 +84,8 @@ build timestamp is `1792775790`, release-keys, FBE, SELinux enforcing, normal
 ADB UID2000, Rooted debugging disabled, empty crash buffer, original pattern/
 setup/test file retained. Owner hardware smoke passed for Wi-Fi, both cameras,
 speakers and S Pen. See docs/testing.md for hashes and remaining tests.
-An advertised public HTTPS OTA download/install test is in progress on the
-previous identical-source build. Record its real outcome in docs/testing.md.
+Public HTTPS Updater detection, download, signature verification, recovery
+installation and boot passed from timestamp1792775285 to1792775790 with no wipe.
+The original pattern/setup/test file persisted; FBE, enforcing SELinux, normal
+ADB, disabled Rooted debugging and empty crash buffer were verified. The exact
+released recovery/vbmeta pair was boot-tested and fully hash/trust-checked.

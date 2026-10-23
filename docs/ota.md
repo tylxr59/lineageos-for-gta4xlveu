@@ -24,8 +24,10 @@ contents match the local bundle; asset byte sizes and GitHub's SHA-256 digests
 match. Exact release recovery/vbmeta flashing, recovery boot, full image readback
 and live OTA trust passed. Private-key clean bootstrap and corrected same-key
 local Updater installation retained the original credential/setup/test data.
-The advertised HTTPS Updater download/install test is in progress on the prior
-identical-source, same-key build. Keep that evidence separate from local import.
+The advertised HTTPS Updater path also passed: the prior identical-source,
+same-key build detected and downloaded the public release, verified its signature,
+installed through recovery and rebooted. The original pattern/setup/test file
+survived without wipe, with encrypted storage and SELinux enforcing.
 Persistent keys and their public pin remain unchanged; see [signing operations](signing.md).
 
 ## Persistent signing identity

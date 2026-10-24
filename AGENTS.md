@@ -242,3 +242,14 @@ Samsung properties are cleanup leads, not proof of global AOT failure. Active
 SurfaceFlinger offsets need controlled traces before changing them. Normal ADB
 cannot inspect all HAL/sysfs state; shell inspection AVCs are not product bugs.
 No tuning/build/install/release change was made by this follow-up audit.
+
+Performance follow-up work is now authorized, but the owner explicitly said
+**do not flash anything yet**. Do not install, flash, wipe or reboot a candidate
+without renewed instruction. Device branch fix/los24-performance-followup72a336a
+contains reporting-only thermal staging, the diagnosed8137->8136 launch-hint fix
+and obsolete-property cleanup. Build pending; no hardware success claimed.
+Read the latest follow-up section in docs/performance-followup-audit.md. Release
+pins/feed1792876959 remain unchanged. Temporary rooted inspection was cleaned up
+and normal ADB/Rooted debugging off verified. BPF override/active graphics tuning
+remain, DMA-BUF fallback is confirmed absent, and newer-kernel work is only a
+researched lead. Retain these limits in future claims and source reviews.

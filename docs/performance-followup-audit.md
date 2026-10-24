@@ -123,3 +123,56 @@ remained off. Restricted GPU/zram/sysctl/HAL reads are unknowns, not failed
 features. Broad shell service inspection itself generated SELinux find denials;
 do not turn those into product-policy allow rules. Raw logs, app/process lists
 and traces remain private. No new ROM build/install or OTA was performed.
+
+## Improvement work in progress: no installation authorized
+
+The owner subsequently requested improvements while explicitly prohibiting
+flashing for now. Work branch `fix/los24-performance-followup` in the device fork
+is separate from the release pins. Current source72a336a is building; neither
+compilation nor runtime success is claimed yet. Kernel/vendor remain unchanged.
+
+A brief owner-authorized rooted-debugging inspection established the launch
+hint's exact failure: the live LLCC-DDR maximum and highest advertised OPP are
+**8136**, while the hint requested8137. Other inspected bandwidth requests were
+within their live limits. The source node/action now request8136. The running
+hint configuration was not changed. Rooted debugging was disabled afterward;
+normal ADB reattached automatically and the self-deleting helper was absent.
+
+The thermal candidate installs the existing Pixel AIDL HAL and its dedicated
+executable label, starting it after boot. Hidden physical step-wise sensors are
+unmonitored; only virtual one-to-one pass-through sensors are monitored. This
+causes the upstream trip-initialization path to skip every physical sensor,
+including if generic-netlink is enabled. No cooling devices or power hints are
+configured. Reporting thresholds use observed CPU120C/GPU95C passive trips and
+Samsung battery warm42C/overheat50C values. These are limited mappings of existing
+policy, not a calibrated skin model or comprehensive thermal certification.
+The source checker verifies this reporting-only contract and rejected five
+unsafe mutations. Actual HAL startup/readings/callbacks and idle cost remain
+unverified until a separately authorized test installation.
+
+The cleanup removes obsolete quicken filters, the duplicate dex2oat thread entry
+and two unused SurfaceFlinger switches. It preserves the current compilation
+policy, active frame offsets and BPF override. A separate unapplied patch for a
+platform-default frame-timing comparison is retained locally, not integrated
+without a controlled comparison.
+
+Privileged inspection found146 pinned BPF objects and no BPF error lines in the
+netd dump. This supports working current network integration, not complete API
+coverage. The DMA-BUF iterator and `/sys/kernel/dmabuf/buffers` are both absent:
+the fallback is unavailable too. This is a genuine telemetry gap, not merely a
+missing iterator with a known-working fallback. An accurate solution needs a
+reviewed kernel interface/backport; replacing unknown totals with incomplete
+userspace counts or just hiding logs would not repair accounting. No such
+kernel change is included in this candidate.
+
+### Newer-kernel research lead
+
+There is existing [SM7125 mainline work](https://github.com/sm7125-mainline/linux)
+and a [Samsung A52/A72 tree](https://github.com/map220v/sm7125-mainline).
+The inspected linux-6.14.7 branch includes Samsung A52/A72 and Xiaomi SM7125 device
+trees, but no gta4xlve/P613 tree in the queried directory. This is a credible
+separate research base, not evidence of Android/vendor compatibility on SM-P613.
+A newer kernel could reduce future compatibility/backport burden, but does not
+establish faster rendering or better battery life. Panel/S Pen, graphics/vendor
+interfaces, cameras, audio, power and encryption/boot must be evaluated. No
+kernel-port implementation, checkout switch or device experiment was started.

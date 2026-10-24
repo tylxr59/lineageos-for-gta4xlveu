@@ -7,6 +7,14 @@ A request such as “get us up to date with mainline LineageOS and push an updat
 means carry the process through upstream review, source fixes, reproducible
 build, release signing, validation, and publication of a working OTA. Follow
 [docs/maintenance.md](docs/maintenance.md); report material blockers candidly.
+For **“check/look for updates”**, start with the exact repository/branch map and
+fetch/compare procedure in [docs/maintenance.md](docs/maintenance.md#start-here-request-scope-and-update-sources).
+Report the delta against released manifest pins; do not install or publish from
+an audit-only request. Check both the LOS24 platform and shared Qualcomm kernel
+base (historically `lineage-20`), plus the Sevenrock/gta4xlve-dev device forks.
+The dated [source audit](docs/source-upstream-audit.md) records the last reviewed
+kernel base; refresh live heads rather than assuming it is still current.
+
 Do not silently change the supported device, add app-root tooling or GApps,
 relax SELinux, or drop compatibility checks to get a build through.
 

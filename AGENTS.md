@@ -227,3 +227,18 @@ release 1792876959 is published with matching manifests and feed. All 12 public
 assets and canonical HTTPS feed were verified. The tablet already ran this
 timestamp; no separate older-to-newer public Updater installation is claimed.
 See docs/testing.md for hashes and remaining limitations.
+
+
+## Follow-up correctness/performance audit
+
+Read docs/performance-followup-audit.md before new performance tuning. Read-only
+review of release1792876959 confirmed missing framework thermal HAL feedback
+while the vendor thermal engine runs, failed launch LLCC bandwidth hint writes,
+and the inherited BPF kernel-version override (5.10.239 over actual4.14.357).
+Prioritize truthful thermal integration and diagnosing the failed hint. Audit
+BPF capabilities/backports separately; do not remove the override blindly.
+DMA-BUF iterator errors have a sysfs fallback requiring validation. Old ART and
+Samsung properties are cleanup leads, not proof of global AOT failure. Active
+SurfaceFlinger offsets need controlled traces before changing them. Normal ADB
+cannot inspect all HAL/sysfs state; shell inspection AVCs are not product bugs.
+No tuning/build/install/release change was made by this follow-up audit.

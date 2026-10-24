@@ -327,3 +327,10 @@ installation and recovery/Android testing are separate from public distribution:
 no additional older-to-newer public Updater installation was repeated. Earlier
 public Updater installation tests remain historical evidence. Persistent signing
 keys are unchanged. The release includes the hardening fixes tested in1792860066.
+
+
+A subsequent [read-only correctness/performance review](performance-followup-audit.md)
+identified thermal-framework integration and launch-bandwidth hint issues plus
+compatibility/tuning follow-ups. These are investigation findings, not new
+performance or hardware pass results. Release1792876959 and its OTA assets are
+unchanged; no settings, root mode or ROM were modified during that review.

@@ -34,6 +34,11 @@ default branch is not automatically the released baseline.
 | Samsung firmware provenance | Official SM-P613 [XAR history](https://doc.samsungmobile.com/SM-P613/XAR/doc.html) and [BTU history](https://doc.samsungmobile.com/SM-P613/BTU/doc.html) | Follow the English history/iframe (`dflt_page`) if the wrapper is empty. Record region, firmware build and vendor security date. Do not substitute another model's blobs or flash firmware as an ordinary source update. |
 | Our maintained destination forks | [Device](https://github.com/tylxr59/android_device_samsung_gta4xlveu), [kernel](https://github.com/tylxr59/android_kernel_samsung_gta4xlve), [vendor](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu) | Device/kernel `fix/los24-maintenance-20261024`, vendor `lineage-24.0`; exact release SHAs come from manifests, not moving branch tips. |
 
+For USB-related updates, inspect the manifest-selected
+LineageOS/android_vendor_qcom_opensource_usb lineage-24.0 source as well. The
+SM-P613 correction is in device init; it uses upstream QTI HAL ownership and
+requires no fourth maintained fork. See [USB findings](usb-mtp-audit.md).
+
 Use the platform manifest's selected AOSP revisions; do not independently
 replace them with AOSP `main` or an arbitrary newer tag. Merged upstream changes
 are the normal update inputs. Pending Gerrit changes require a specific reviewed

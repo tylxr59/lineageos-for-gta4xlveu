@@ -207,3 +207,17 @@ update setting (persist.vendor.recovery_update). The combined candidate's vendor
 recovery payload/updater target matches its signed recovery and live partition.
 A pending sideload-auto-reboot request can show No command while ADB is already
 in sideload mode; inspect USB/ADB state before another bootloader restore.
+
+## USB/MTP candidate (not published)
+
+Read docs/usb-mtp-audit.md before USB init changes. Candidate1792876959 uses
+manifest manifests/candidates/usb-mtp-20261024.xml: device02b4ef7, kernel0c5ccf4fc,
+vendor1c0a6f2. Only the device project differs from the tested hardening candidate.
+Normal on boot now selects HAL configfs2; charger legacy mode remains1. Shared
+QTI USB stays upstream0d32cd0; maintain the existing three forks.
+
+Signed no-wipe installation, Android/data/security checks, five mode selections,
+exactly one ADB interface, automatic ADB reattachment and KDE KIO checksum copies
+passed without rooted debugging. Owner physical-reconnect/Dolphin/pattern check,
+matching recovery/full partition readback and final cleanup remain pending.
+Preserve public release pins/feed1792851872. Complete those checks before shipping.

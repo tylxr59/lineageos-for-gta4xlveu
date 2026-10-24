@@ -30,7 +30,7 @@ The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 | S Pen | Owner writing/hover smoke test passed; pressure-level accuracy untested |
 | Crash buffer | Empty after ordinary build boot; not an endurance test |
 | Bluetooth audio | Untested |
-| Deep suspend / battery endurance | Untested |
+| Deep suspend / battery endurance | Initial overnight confounded by background media; controlled baseline pending ([audit](battery-audit.md)) |
 | microSD | Untested |
 | Credential-protected encryption after update/reboot | Original pattern unlock and saved-file checksum passed on corrected signed build |
 | OTA endpoint / v2 feed fetch | OTA-enabled build installed; owner confirms Updater refresh succeeds |

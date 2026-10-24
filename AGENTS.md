@@ -29,8 +29,8 @@ branches should remain intact; use maintained work branches in the source forks.
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
 `manifests/resolved.xml` pins the current privately signed, hardware-tested
-source: device `12c0e2d`, kernel `88b63b7ae`, vendor `4388d72`. Current public
-release is `1792851872`; its exact candidate manifest is retained separately.
+source: device `02b4ef7`, kernel `0c5ccf4fc`, vendor `1c0a6f2`. Current public
+release is `1792876959`; its exact candidate manifest is retained separately.
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
 proof separate from advertised public HTTPS OTA download/install evidence.
@@ -147,7 +147,7 @@ in docs/building.md; plain Go environment exports may be stripped by the build
 launchers. Preserve completed outputs and verify effective executor settings.
 
 
-## Current maintenance release
+## Previous maintenance release 1792851872
 
 Published build `1792851872` combines genuine enforcing CFI, restored OTA kernel
 checks and upstream LineageOS changes. See docs/source-upstream-audit.md for the
@@ -165,20 +165,20 @@ tablet also fetched the canonical three-entry HTTPS feed successfully.
 
 
 Before further hardening, read [the build/security exceptions audit](docs/build-exceptions-audit.md).
-The published1792851872 baseline disables KPTI and reports Meltdown Vulnerable,
-but physical susceptibility/exploitability is unproved. Three BUILD_BROKEN flags
-and four vendor ELF-check exclusions remain. Do not blindly flip AVB flags,
+The audited1792851872 baseline disables KPTI and reports Meltdown Vulnerable,
+but physical susceptibility/exploitability is unproved. That baseline also had
+three BUILD_BROKEN flags and vendor ELF-check exclusions, resolved below. Do not blindly flip AVB flags,
 relock the bootloader, enable root or treat boot sleep_disabled=1 as a proven
 standby failure; runtime post-boot handling and access limitations are documented.
 
 
-## Tested hardening candidate (not published)
+## Hardening test history (superseded by release 1792876959)
 
 Read the follow-up in docs/build-exceptions-audit.md before changing these sources.
-Candidate1792860066 is signed and hardware-tested: deviceb07f055, kernel0c5ccf4fc,
+Historical candidate1792860066 is signed and hardware-tested: deviceb07f055, kernel0c5ccf4fc,
 vendor1c0a6f2 on fix/los24-hardening. See
-manifests/candidates/hardening-20261024.xml; public release pins/feed remain1792851872.
-Do not advance them without a request to ship an update.
+manifests/candidates/hardening-20261024.xml. Its fixes are included in the later
+public release 1792876959; retain this earlier validation record.
 
 KPTI requires kernel entry fix18eeda8c4: apply_ssbd clobbered NZCV later used to
 select native/compat return. Both mitigations remain enabled. The candidate adds
@@ -208,9 +208,9 @@ recovery payload/updater target matches its signed recovery and live partition.
 A pending sideload-auto-reboot request can show No command while ADB is already
 in sideload mode; inspect USB/ADB state before another bootloader restore.
 
-## USB/MTP candidate (not published)
+## Current USB and hardening release 1792876959
 
-Read docs/usb-mtp-audit.md before USB init changes. Candidate1792876959 uses
+Read docs/usb-mtp-audit.md before USB init changes. Release 1792876959 uses
 manifest manifests/candidates/usb-mtp-20261024.xml: device02b4ef7, kernel0c5ccf4fc,
 vendor1c0a6f2. Only the device project differs from the tested hardening candidate.
 Normal on boot now selects HAL configfs2; charger legacy mode remains1. Shared
@@ -222,5 +222,8 @@ passed without rooted debugging. Owner physical-reconnect/Dolphin/pattern checks
 also passed. Matching recovery/full partition hashes passed; original vbmeta is
 unchanged. Final recovery-menu Android return, unlocked encrypted data, saved
 checksums and another KDE MTP readback passed. Both owned probes were removed;
-normal ADB/Rooted debugging off remain. Preserve public release pins/feed1792851872
-until an explicit request to ship. See docs/testing.md for candidate hashes.
+normal ADB/Rooted debugging off remain. The owner authorized publication, and
+release 1792876959 is published with matching manifests and feed. All 12 public
+assets and canonical HTTPS feed were verified. The tablet already ran this
+timestamp; no separate older-to-newer public Updater installation is claimed.
+See docs/testing.md for hashes and remaining limitations.

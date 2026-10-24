@@ -285,7 +285,7 @@ verification-enabled custom vbmeta. AVB enforcement, old closed vendor component
 performance/endurance and broad CTS/VTS coverage remain separate limitations.
 
 
-## USB ownership fix candidate (2026-10-24; not published)
+## USB and hardening release 1792876959 (2026-10-24)
 
 Signed candidate **1792876959** uses device02b4ef7, kernel0c5ccf4fc and
 vendor1c0a6f2; see the [candidate manifest](../manifests/candidates/usb-mtp-20261024.xml)
@@ -315,6 +315,15 @@ the tested hardening candidate. ROM SHA256:
   Both owned probes were removed, the post-reboot USB selection restored and
   normal ADB/Rooted debugging off verified. Owner files were left untouched.
 
-Public release/feed remains1792851872. No wipe, new keys, app-root, audio changes
-or ROM publication occurred. These checks establish the tested USB behavior;
+The owner then authorized publication of this exact tested build as 1792876959.
+All 12 public asset sizes and SHA256 digests, downloaded checksums and ROM, and
+the canonical HTTPS feed matched the tested bundle. No wipe, new keys, app-root
+or audio changes occurred. These checks establish the tested USB behavior;
 long-term cable/host reliability and broader compatibility remain separate tests.
+
+
+The tablet already ran 1792876959 before publication. Signed local no-wipe
+installation and recovery/Android testing are separate from public distribution:
+no additional older-to-newer public Updater installation was repeated. Earlier
+public Updater installation tests remain historical evidence. Persistent signing
+keys are unchanged. The release includes the hardening fixes tested in1792860066.

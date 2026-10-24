@@ -4,8 +4,8 @@ Unofficial **LineageOS 24.0 / Android 17** for the Samsung **SM-P613**, codename
 **gta4xlveu**. Based on Sevenrock’s port and gta4xlve-dev / danielml3’s work.
 
 **Status:** boots on an SM-P613. Encrypted data, SELinux enforcing, USB debugging,
-and charging have been checked. Wi-Fi, front/rear cameras, speakers, and S Pen
-writing/hover passed owner smoke tests. See [tested features](docs/testing.md)
+USB file transfer and charging have been checked. Wi-Fi, front/rear cameras,
+speakers, and S Pen writing/hover passed owner smoke tests. See [tested features](docs/testing.md)
 for what remains unverified.
 
 This repository holds installation guidance, reproducible source manifests,
@@ -14,12 +14,12 @@ and the update feed. The device, kernel, and vendor sources live in the
 
 ## Downloads
 
-**[Download the 2026-10-24 maintenance update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792851872)** — LineageOS 24.0 / Android 17,
-security patch **2026-10-01**. This update enables kernel control-flow integrity
-and restores VINTF kernel compatibility checks, integrates reviewed upstream
-kernel fixes, and updates LineageOS components including WebView. It retains the
-Wi-Fi tablet configuration and previous UI/app changes. Same-key installation
-and recovery tests preserved the original unlock pattern, setup and data.
+**[Download the 2026-10-24 USB and hardening update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792876959)** — LineageOS 24.0 / Android 17,
+security patch **2026-10-01**. This update fixes USB File Transfer and duplicate
+ADB interfaces, enables kernel page-table isolation, restores build/vendor checks
+and corrects targeted SELinux labels. It retains the previous upstream LineageOS,
+Wi-Fi tablet and UI/app improvements. Signed installation and recovery tests
+preserved the original unlock pattern, setup and data.
 Do not install images intended for the 2020 Exynos SM-P610/P615 or
 LTE SM-P619.
 

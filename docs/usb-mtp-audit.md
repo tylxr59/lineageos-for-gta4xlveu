@@ -2,8 +2,8 @@
 
 The owner reported File Transfer reverting to No data transfer before the
 hardening update. The issue was reproduced on signed candidate1792860066 using
-the same computer/cable as ADB and KDE Dolphin. The public1792851872 release has
-not received this correction.
+the same computer/cable as ADB and KDE Dolphin. The earlier1792851872 release lacked this correction; it is included in the
+new public1792876959 release.
 
 ## Demonstrated cause
 
@@ -86,6 +86,6 @@ post-reboot USB selection restored, and normal ADB/disabled Rooted debugging and
 enforcing SELinux verified. The owner's separate transferred file was untouched.
 
 These repeated mode-switch and physical reconnect tests support both symptoms
-being corrected; they do not establish long-term USB reliability. No ROM release
-or OTA feed change occurred. The public release remains1792851872; do not point
-its manifests at this unreleased candidate.
+being corrected; they do not establish long-term USB reliability. The owner subsequently authorized publishing this exact tested build as
+release 1792876959. The matching source pins and feed are now public; asset and
+HTTPS distribution verification is recorded separately in [testing](testing.md).

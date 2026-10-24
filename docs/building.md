@@ -5,9 +5,9 @@
 | Component | Repository | Maintained revision/branch |
 | --- | --- | --- |
 | Platform | [LineageOS/android](https://github.com/LineageOS/android) | LOS24; exact project pins in manifests |
-| Device | [device fork](https://github.com/tylxr59/android_device_samsung_gta4xlveu) | fix/los24-updater |
-| Kernel | [kernel fork](https://github.com/tylxr59/android_kernel_samsung_gta4xlve) | fix/los24-boot-dtb |
-| Vendor | [vendor fork](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu) | imported lineage-24.0 |
+| Device | [device fork](https://github.com/tylxr59/android_device_samsung_gta4xlveu) | fix/los24-usb-mtp |
+| Kernel | [kernel fork](https://github.com/tylxr59/android_kernel_samsung_gta4xlve) | fix/los24-hardening |
+| Vendor | [vendor fork](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu) | fix/los24-hardening |
 
 `manifests/known-good.xml` records the tested prototype. `manifests/resolved.xml`
 pins the release-key source including the OTA endpoint, Gatekeeper

@@ -6,7 +6,8 @@ feed was changed. This is a targeted configuration audit, not a complete
 security assessment, CTS/VTS run or vulnerability scan.
 
 The follow-up below records fixes and device tests after this baseline audit.
-The public release and OTA feed remain at the baseline until a separately approved update.
+The owner later authorized release 1792876959, which includes these tested fixes
+and the device-only USB correction; public manifests/feed now identify that build.
 
 ## Kernel page-table isolation: original finding
 
@@ -207,8 +208,8 @@ limitation; OTA authentication does not imply enforced boot-time integrity.
   that independent metadata/codec limitation.
 
 Candidate sources are on `fix/los24-hardening` in the three maintained forks.
-Release manifests/feed still describe the public release1792851872, rather than
-this separately tested candidate. Performance, suspend/battery and full CTS/VTS remain
+At this test stage, release manifests/feed still described1792851872. The later
+release 1792876959 includes these fixes. Performance, suspend/battery and full CTS/VTS remain
 separate validation gaps.
 
 
@@ -228,8 +229,8 @@ vbmeta is unchanged. The original pattern/setup, saved-file checksum, file
 encryption, enforcing SELinux, normal ADB and Rooted debugging off passed,
 including the recovery-menu return to Android. The owner confirmed Wi-Fi,
 both cameras, speakers, S Pen and auto-rotate. Temporary probe/test files were
-removed. This candidate is not on the public OTA feed and is not a published
-ROM release. See [testing](testing.md) for the candidate digest and limitations.
+removed. This intermediate test build was not published; its fixes are included
+in the later public release 1792876959. See [testing](testing.md) for the candidate digest and limitations.
 
 
 ### Boot-only diagnostic hazard: automatic recovery updating

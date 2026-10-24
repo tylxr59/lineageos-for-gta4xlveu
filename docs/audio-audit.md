@@ -125,18 +125,48 @@ Preserve the original profile14 fallback and existing factory tuning. Do not
 add bass boost, amplifier gain or proprietary coefficient edits based only on
 this subjective comparison.
 
-## Dolby follow-up lead (paused)
+## Dolby follow-up: controlled offload prototype
 
-Read-only inspection found `capi_v2_Dolby_Atmos` / Dolby DAP processing code and
-profile/volume parameter handling in the installed ADSP firmware, including a
-reference to `/readonly/vendor/firmware/dax_param.bin`. The maintained vendor
-checkout already includes that parameter file. This makes further investigation
-plausible; it does not demonstrate a usable end-to-end Dolby implementation.
-The maintained Android-side blobs have no identified Dolby controller/effect
-library; the generic CAF DS2 hook expects `libhwdaphal.so`, which is absent.
-Samsung's firmware-side interface may differ from that generic DS2 hook.
-No Dolby property was enabled, no Dolby listening test was performed, and no
-third-party Dolby package was imported. Work was paused at the owner's request.
-The TI source candidate is saved locally; its kernel routing control compiled,
-but the Android library build was intentionally stopped during graph generation.
-No new audio ROM was built, installed or published.
+The installed ADSP includes `capi_v2_Dolby_Atmos` / DAP processing code and reads
+the existing vendor `dax_param.bin`. The global ACDB maps app11130 to ASM
+playback topology `0x10005000`, which contains Dolby module `0x10001fd0`.
+The Samsung kernel already exposes a three-value `DA data` mixer control:
+enable, output device and profile. It sends parameter `0x10001fd1` to the
+MultiMedia4/ASM frontend3 session. This Samsung interface does not depend on
+the absent generic CAF `libhwdaphal.so` controller.
+
+The published policy exposes compressed offload for HDMI, with no MP3 speaker
+route. An authorized, bounded test temporarily added an MP3 offload mix port
+and speaker route through a bind-mounted policy file. AudioFlinger confirmed
+an active OFFLOAD thread, stereo48kHz MP3 and built-in speaker output. Enabling
+and disabling device2/profile0 returned success, and the kernel recorded the
+exact intended payloads. Tinyalsa integer arrays use `long` elements; an initial
+helper using `int` was rejected and corrected before accepting the result.
+
+The first synthetic listening sample had abrupt note-boundary discontinuities.
+The owner heard clicks and increased volume. A smoothed replacement removed
+the clicks; the owner described Dolby as mainly louder. A further comparison
+used a repeated excerpt from a real song supplied by the owner, again with
+Dolby OFF/ON at20-second intervals. The owner again reported mainly increased
+volume. Test playback was stopped promptly when the owner requested a lower
+level; media volume was lowered to3/15 and the player gain reduced further.
+The downloaded song, diagnostic APK and raw evidence remain private artifacts.
+
+This demonstrates an operational Dolby control path for the diagnostic offload
+stream, not a demonstrated fidelity improvement or a complete Android Dolby
+implementation. The trials were not acoustically level-matched and do not prove
+that Dolby has no other effect, or that every profile behaves the same. Ordinary
+YouTube playback is not covered by this offload-only prototype. Broader support
+would require playback-route/lifecycle integration, correct volume handling,
+and appropriate Android controls, followed by listening and power tests.
+
+The temporary policy was detached, diagnostic playback stopped, audio services
+restarted and the test app/helpers removed. No Dolby setting was retained.
+Final checks confirmed normal ADB UID2000, Rooted debugging disabled, SELinux
+enforcing and the diagnostic app absent. Media volume remains3/15 at the
+owner's request. The installed ROM and public OTA feed remain unchanged. TI integration stays
+paused at the owner's request; its source candidates are saved locally. The
+kernel routing control compiled, but the production audio-library build was
+intentionally stopped during graph generation. No new audio ROM was built,
+installed or published. Neither experiment establishes a measured acoustic
+quality ceiling for this device.

@@ -170,3 +170,16 @@ but physical susceptibility/exploitability is unproved. Three BUILD_BROKEN flags
 and four vendor ELF-check exclusions remain. Do not blindly flip AVB flags,
 relock the bootloader, enable root or treat boot sleep_disabled=1 as a proven
 standby failure; runtime post-boot handling and access limitations are documented.
+
+
+## Hardening candidate in progress
+
+Read the follow-up in docs/build-exceptions-audit.md before changing these sources.
+KPTI needs kernel entry fix18eeda8c4: apply_ssbd clobbered flags later used to
+select native/compat return. That corrected boot passed Android/data/owner hardware
+checks with enforcing CFI and PTI active. The combined fix/los24-hardening branches
+also remove build exceptions, restore vendor ELF dependencies/checks, add narrow
+policy labels and remove unused vendor test policy. Full combined ROM/recovery
+build and hardware validation are pending; do not advance release manifests/feed.
+Verification-enabled vbmeta was tested and rejected by Samsung bootloader trust;
+original metadata restored. Do not repeat a flags-only AVB experiment or relock.

@@ -1,11 +1,14 @@
 # Build and security exceptions audit (2026-10-24)
 
-Read-only review of released build **1792851872**, device `12c0e2d`, kernel
+Historical baseline: read-only review of released build **1792851872**, device `12c0e2d`, kernel
 `88b63b7ae`, vendor `4388d72`. No ROM source, tablet setting, root mode or public
 feed was changed. This is a targeted configuration audit, not a complete
 security assessment, CTS/VTS run or vulnerability scan.
 
-## Kernel page-table isolation: investigate next
+The follow-up below records fixes and device tests after this baseline audit.
+The public release and OTA feed remain at the baseline until a separately approved update.
+
+## Kernel page-table isolation: original finding
 
 `BoardConfig.mk` includes `kpti=off`. The actual embedded/live kernel config has
 `# CONFIG_UNMAP_KERNEL_AT_EL0 is not set`, inherited from
@@ -108,3 +111,88 @@ configuration presence alone is not evidence that apps can use those interfaces.
 Suggested order: investigate KPTI, remove build-validation exceptions one at a
 time, then triage useful SELinux denials and kernel attack-surface restrictions.
 Keep AVB/bootloader experiments separate from routine updates.
+
+
+## Hardening follow-up (in progress)
+
+The KPTI-only build compiled and passed strict VINTF/signature validation but
+failed to boot. A temporary fault diagnostic identified init's invalid frame
+pointer and SIGSEGV on return to userspace. Review of the actual kernel binary
+found that `apply_ssbd` changed NZCV after the native/compat task-mode test;
+KPTI's later conditional branch could select the wrong trampoline and corrupt
+userspace x29. Kernel commit `18eeda8c4` repeats the saved task-mode test after
+`apply_ssbd`, retaining both mitigations. The diagnostic logging is excluded.
+
+That corrected boot image has now booted on the owner's tablet. Live config
+confirms KPTI and enforcing CFI; Meltdown sysfs reports **Mitigation: PTI**.
+Android completed boot, encrypted data unlocked, the saved-file checksum
+persisted, SELinux remained enforcing, ordinary ADB was UID2000 and Rooted
+debugging was off. The owner confirmed the original pattern/setup, Wi-Fi, both
+cameras, speakers and S Pen. This is a boot-component test with the KPTI candidate
+userland, not yet a complete hardening ROM/recovery validation or public release.
+
+The combined candidate also backports upstream Linux
+[`f4617be35b4b`](https://github.com/torvalds/linux/commit/f4617be35b4b547e82d30993f56d631dfc2d5f88),
+which identifies Kryo 3xx/4xx silver CPUs as Meltdown-safe, with the required
+upstream MIDR definitions. The tablet's silver part is 0x805. This does not
+blanket-mark the gold CPUs safe, change existing vendor erratum matching, or
+turn off KPTI's KASLR protection. Combined-candidate behavior still needs testing.
+
+### Build and policy changes awaiting full candidate validation
+
+All three `BUILD_BROKEN_*` switches have been removed in the candidate device
+branch. Restored ELF checks pass for all six ABI/module variants of the four
+previously exempt modules. Missing media dependencies now build from existing
+source; the LOWI executable declares its existing libwpa_client dependency.
+Extraction regeneration also creates the six Adreno symlinks already specified
+by the proprietary list. No proprietary binary was modified. Graph checks pass;
+the full image build must still execute copy checks and partition filtering.
+
+The policy candidate labels actual SM5714 battery paths and wakeup statistics,
+uses the existing vendor sensor label, and gives tee a dedicated QSEECom status
+property type. It excludes four unused Qualcomm vendor test-policy directories.
+These changes still require complete policy/neverallow compilation and fresh
+runtime-denial review. No broad generic-sysfs/default-property allow, permissive
+workaround or new denial-suppression rule was added.
+
+The baseline compiled policy contains nine permissive domains inherited through
+userdebug/Qualcomm policy: su, backuptool, qti-testscripts and six vendor test
+domains. None was active in the captured process snapshot. Excluding the vendor
+test directories is intended to remove those six domains; compiled results must
+be checked. Ordinary userdebug's remaining permissive domains must be disclosed,
+not confused with globally permissive SELinux or app-root availability.
+
+### Verified Boot experiment: blocked by Samsung trust
+
+A flags-0 vbmeta using the existing AVB identity passed offline signature,
+boot/DTBO hash and all five dynamic-partition hashtree checks. On the tablet,
+Samsung's bootloader rejected it with **“public key used to sign data rejected.”**
+The exact original vbmeta was restored, and Android booted/unlocked afterward.
+No wipe or bootloader relock occurred. No supported custom-key enrollment has
+been established. Flags-3 vbmeta therefore remains a demonstrated platform
+limitation; OTA authentication does not imply enforced boot-time integrity.
+
+### Other reviewed boundaries
+
+- No newer maintained proprietary vendor drop was found. The inherited list
+  identifies P619XXSACYD1 shared-maintainer blobs; the vendor patch date remains
+  May 2025. Platform updates cannot supply missing closed-firmware fixes.
+- BPF default-off is not blindly enabled: this legacy syscall's privilege check
+  precedes command dispatch and would also reject pinned-map operations used
+  by Android services without CAP_BPF/CAP_SYS_ADMIN. For example, system_suspend
+  has only BLOCK_SUSPEND capability and opens/reads a pinned BPF statistics map. SELinux and existing capability checks
+  remain relevant. A compatible restriction requires separate work.
+- `perf_event_paranoid=-1` is deliberately set by AOSP's Perfetto init policy;
+  SELinux perf hooks are present. ART uses userfaultfd, whose kernel-fault mode
+  already has a privilege/default-sysctl gate. Neither feature is disabled just
+  because it appears in an attack-surface list.
+- The candidate defaults to restricted kernel-log access, pending boot checks.
+- H.264 encoder/decoder creation works on the baseline and corrected KPTI boot.
+  The legacy software MPEG4/H263 OMX names are absent from the actual CAF
+  registry even though XML advertises them. Restoring ELF checks does not fix
+  that independent metadata/codec limitation.
+
+Candidate sources are on `fix/los24-hardening` in the three maintained forks.
+Release manifests/feed still describe the tested public release, not these
+pending combined changes. Performance, suspend/battery and full CTS/VTS remain
+separate validation gaps.

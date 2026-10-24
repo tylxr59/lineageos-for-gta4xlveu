@@ -136,16 +136,19 @@ The combined candidate also backports upstream Linux
 which identifies Kryo 3xx/4xx silver CPUs as Meltdown-safe, with the required
 upstream MIDR definitions. The tablet's silver part is 0x805. This does not
 blanket-mark the gold CPUs safe, change existing vendor erratum matching, or
-turn off KPTI's KASLR protection. Combined-candidate behavior still needs testing.
+turn off KPTI's KASLR protection. The combined candidate reports **Not affected**
+in Android; matching recovery explicitly detects KPTI and forces it on for
+KASLR. These remain kernel reports, not independent CPU certification.
 
-### Combined build passed; device validation pending
+### Combined build and device checks passed
 
 All three `BUILD_BROKEN_*` switches have been removed in the candidate device
 branch. Restored ELF checks pass for all six ABI/module variants of the four
 previously exempt modules. Missing media dependencies now build from existing
 source; the LOWI executable declares its existing libwpa_client dependency.
 Extraction regeneration also creates the six Adreno symlinks already specified
-by the proprietary list. No proprietary binary was modified. The full image build passed with copy checks and partition filtering active.
+by the proprietary list. No proprietary binary was modified. The full image build passed with copy
+checks and partition filtering active.
 The final target files include both ABI variants of libc2dcolorconvert and
 libplatformconfig, and the six audited proprietary ELF variants match the
 published baseline byte for byte.
@@ -153,17 +156,23 @@ published baseline byte for byte.
 The policy candidate labels actual SM5714 battery paths and wakeup statistics,
 uses the existing vendor sensor label, and gives tee a dedicated QSEECom status
 property type. It excludes four unused Qualcomm vendor test-policy directories.
-Complete policy/neverallow compilation and image policy checks passed. Fresh
-runtime-denial review is still pending. Common HAL references required retaining
+Complete policy/neverallow compilation and image policy checks passed. Live
+matching-recovery checks confirm all 51 wakeup targets and three SM5714 battery
+attributes have the intended labels; vendor sensor child labels are present.
+Ordinary Android ADB cannot expose the full kernel audit stream, so this does
+not establish elimination of every legacy denial. Common HAL references required retaining
 the vtloopback app declaration and three existing property types/labels outside
 the excluded test directories, without restoring factory-test grants. Duplicate
-genfs labels already supplied by Qualcomm/platform policy were removed. No broad generic-sysfs/default-property allow, permissive
-workaround or new denial-suppression rule was added.
+genfs labels already supplied by Qualcomm/platform policy were removed. No
+broad generic-sysfs/default-property allow, permissive workaround or new
+denial-suppression rule was added.
 
 The baseline compiled policy contains nine permissive domains inherited through
 userdebug/Qualcomm policy: su, backuptool, qti-testscripts and six vendor test
-domains. None was active in the captured process snapshot. The combined candidate's compiled policy confirms all six vendor test domains
-are removed; only su, backuptool and qti-testscripts remain. Ordinary userdebug's remaining permissive domains must be disclosed,
+domains. None was active in the captured process snapshot. The combined
+candidate's compiled policy confirms all six vendor test domains are removed;
+only su, backuptool and qti-testscripts remain. Ordinary userdebug's remaining
+permissive domains must be disclosed,
 not confused with globally permissive SELinux or app-root availability.
 
 ### Verified Boot experiment: blocked by Samsung trust
@@ -184,21 +193,22 @@ limitation; OTA authentication does not imply enforced boot-time integrity.
 - BPF default-off is not blindly enabled: this legacy syscall's privilege check
   precedes command dispatch and would also reject pinned-map operations used
   by Android services without CAP_BPF/CAP_SYS_ADMIN. For example, system_suspend
-  has only BLOCK_SUSPEND capability and opens/reads a pinned BPF statistics map. SELinux and existing capability checks
+  has only BLOCK_SUSPEND capability and opens/reads a pinned BPF statistics map.
+  SELinux and existing capability checks
   remain relevant. A compatible restriction requires separate work.
 - `perf_event_paranoid=-1` is deliberately set by AOSP's Perfetto init policy;
   SELinux perf hooks are present. ART uses userfaultfd, whose kernel-fault mode
   already has a privilege/default-sysctl gate. Neither feature is disabled just
   because it appears in an attack-surface list.
-- The candidate defaults to restricted kernel-log access, pending boot checks.
+- The candidate boots Android and recovery with restricted kernel-log access.
 - H.264 encoder/decoder creation works on the baseline and corrected KPTI boot.
   The legacy software MPEG4/H263 OMX names are absent from the actual CAF
   registry even though XML advertises them. Restoring ELF checks does not fix
   that independent metadata/codec limitation.
 
 Candidate sources are on `fix/los24-hardening` in the three maintained forks.
-Release manifests/feed still describe the tested public release, not these
-pending combined changes. Performance, suspend/battery and full CTS/VTS remain
+Release manifests/feed still describe the public release1792851872, rather than
+this separately tested candidate. Performance, suspend/battery and full CTS/VTS remain
 separate validation gaps.
 
 
@@ -212,6 +222,33 @@ Exact sources: device `b07f055`, kernel `0c5ccf4fc`, vendor `1c0a6f2`; all other
 1,239 projects match the public release. See the
 [candidate source manifest](../manifests/candidates/hardening-20261024.xml).
 
-**Combined Android installation/recovery/runtime checks are still pending.**
-The earlier successful return-mode boot test remains separate evidence. This
-candidate is not on the public OTA feed and is not a published ROM release.
+Signed no-wipe installation, Android boot and matching recovery boot passed.
+Full boot/DTBO/recovery partition hashes match the signed package; original
+vbmeta is unchanged. The original pattern/setup, saved-file checksum, file
+encryption, enforcing SELinux, normal ADB and Rooted debugging off passed,
+including the recovery-menu return to Android. The owner confirmed Wi-Fi,
+both cameras, speakers, S Pen and auto-rotate. Temporary probe/test files were
+removed. This candidate is not on the public OTA feed and is not a published
+ROM release. See [testing](testing.md) for the candidate digest and limitations.
+
+
+### Boot-only diagnostic hazard: automatic recovery updating
+
+The temporary corrected boot image was tested with the earlier KPTI userland.
+That userland's install-recovery script full-flashes its bundled older recovery
+when the partition hash differs. The subsequent sideload reboot bootlooped;
+restoring the known-good recovery allowed the pending sideload to start. This
+is consistent with automatic recovery updating having restored the earlier
+broken recovery; its partition was not read back before restoration, so this
+specific transition is an inference. No ROM transfer or wipe preceded it.
+
+The final package's vendor recovery payload and updater SHA1 target were checked
+against its signed recovery image; they match. After installation, the actual
+recovery partition hash and recovery boot also matched. For future boot-only
+diagnostics, account for automatic recovery updating and verify the recovery
+partition after Android boots. A boot-only flash does not preserve recovery
+indefinitely when the installed updater contains another image. Prefer a complete
+matched candidate, or deliberately manage and restore the Updater recovery-update
+setting within the authorized test scope. If a restored recovery shows “No
+command,” check `adb get-state`: a pending `sideload-auto-reboot` request can
+already have placed it in sideload mode.

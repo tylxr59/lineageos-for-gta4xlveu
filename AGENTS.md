@@ -165,24 +165,45 @@ tablet also fetched the canonical three-entry HTTPS feed successfully.
 
 
 Before further hardening, read [the build/security exceptions audit](docs/build-exceptions-audit.md).
-KPTI is disabled in config and command line; live Meltdown sysfs says Vulnerable,
+The published1792851872 baseline disables KPTI and reports Meltdown Vulnerable,
 but physical susceptibility/exploitability is unproved. Three BUILD_BROKEN flags
 and four vendor ELF-check exclusions remain. Do not blindly flip AVB flags,
 relock the bootloader, enable root or treat boot sleep_disabled=1 as a proven
 standby failure; runtime post-boot handling and access limitations are documented.
 
 
-## Hardening candidate in progress
+## Tested hardening candidate (not published)
 
 Read the follow-up in docs/build-exceptions-audit.md before changing these sources.
-KPTI needs kernel entry fix18eeda8c4: apply_ssbd clobbered flags later used to
-select native/compat return. That corrected boot passed Android/data/owner hardware
-checks with enforcing CFI and PTI active. The combined fix/los24-hardening branches
-also remove build exceptions, restore vendor ELF dependencies/checks, add narrow
-policy labels and remove unused vendor test policy. Full combined ROM/recovery build, policy/neverallow, strict VINTF and signing
-checks passed for candidate1792860066 (deviceb07f055, kernel0c5ccf4fc, vendor1c0a6f2).
-Combined Android installation/recovery/runtime checks remain pending. Candidate
-manifest: manifests/candidates/hardening-20261024.xml. Do not advance release
-manifests/feed.
+Candidate1792860066 is signed and hardware-tested: deviceb07f055, kernel0c5ccf4fc,
+vendor1c0a6f2 on fix/los24-hardening. See
+manifests/candidates/hardening-20261024.xml; public release pins/feed remain1792851872.
+Do not advance them without a request to ship an update.
+
+KPTI requires kernel entry fix18eeda8c4: apply_ssbd clobbered NZCV later used to
+select native/compat return. Both mitigations remain enabled. The candidate adds
+upstream Kryo silver CPU identification; Android reports Not affected, while
+matching recovery explicitly detects KPTI forced on for KASLR. Enforcing CFI,
+strict VINTF, all three removed BUILD_BROKEN switches, restored vendor ELF checks,
+actual dependency installation and full policy/neverallow/image checks passed.
+Six unused permissive vendor test domains are removed; normal userdebug's su,
+backuptool and qti-testscripts remain. Live recovery labels passed51 wakeup and3
+battery checks. Full Android kernel-audit visibility was unavailable to normal
+ADB; do not claim all legacy denials disappeared.
+
+Signed no-wipe installation, owner original pattern/setup/hardware smoke checks,
+matching recovery/full boot-DTBO-recovery hashes and final Android return passed.
+Encryption/enforcing SELinux/normal ADB/Rooted debugging off passed, with no app-root
+added. Temporary probe/test file removed; signing identity/backup unchanged.
 Verification-enabled vbmeta was tested and rejected by Samsung bootloader trust;
 original metadata restored. Do not repeat a flags-only AVB experiment or relock.
+No newer maintained vendor blobs were found; do not fake the vendor patch date.
+
+Boot-only diagnostic tests must account for automatic recovery updating. The
+installed /vendor/etc/recovery.img can replace a manually preserved recovery
+after Android boots. Verify the live partition before another recovery reboot;
+prefer complete matched updates, or deliberately manage/restore Updater's recovery
+update setting (persist.vendor.recovery_update). The combined candidate's vendor
+recovery payload/updater target matches its signed recovery and live partition.
+A pending sideload-auto-reboot request can show No command while ADB is already
+in sideload mode; inspect USB/ADB state before another bootloader restore.

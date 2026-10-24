@@ -242,3 +242,44 @@ signed local installation plus public distribution. Persistent keys are unchange
 
 A fresh download of the public ROM ZIP matched the tested bundle SHA256. The
 tablet also fetched the canonical three-entry HTTPS feed successfully.
+
+
+## Hardening candidate1792860066 (not published)
+
+The signed candidate uses deviceb07f055, kernel0c5ccf4fc and vendor1c0a6f2,
+with the other1,239 projects unchanged from public1792851872. Exact source:
+[hardening manifest](../manifests/candidates/hardening-20261024.xml).
+ROM SHA256: `bc901b5f5f7c3d22f55cb823af89ebca8610c1435cead341c78d48bb34614d41`.
+
+- Full build passed with duplicate-rule/ELF-copy/image-filtering checks enabled,
+  all six restored vendor ELF variants checked, actual media dependencies
+  installed and audited proprietary binaries unchanged. Policy/neverallow/APEX
+  policy checks and strict target-files VINTF passed; real embedded kernel config
+  matches OTA metadata. CFI is enforcing; KPTI and dmesg restriction are enabled.
+- Existing-key signing verification passed for120 standalone APKs,37 APEX
+  containers/payloads,26 nested APKs, recovery trust and AVB components, and the
+  whole-file OTA signature. The persistent OTA identity is unchanged.
+- Signed no-wipe sideload and Android boot passed. Owner confirmed the original
+  pattern/setup, Wi-Fi, both cameras, speakers, S Pen and auto-rotate. H.264
+  encoder/decoder creation passed; legacy software OMX names remain absent from
+  the actual CAF registry, as on the baseline.
+- Recovery booted with the candidate timestamp/kernel. Full boot/DTBO/recovery
+  partition hashes match the signed images; vbmeta remains the exact original
+  backup. Recovery detects KPTI forced on for KASLR. Android reports Meltdown
+  Not affected after the upstream Kryo silver identification backport; this is
+  kernel reporting, not independent CPU vulnerability certification.
+- Compiled policy has three inherited permissive userdebug domains instead of
+  nine; six unused vendor factory-test domains were removed. Live matching
+  recovery labels passed51 wakeup targets and3 SM5714 battery attributes, and
+  vendor sensor child labels were present. Ordinary Android ADB does not expose
+  the complete kernel audit stream, so elimination of all AVCs is not claimed.
+- The final recovery-menu Android return retained unlocked encrypted data and
+  the saved-file checksum. SELinux enforcing, normal UID2000, Rooted debugging
+  off, release-keys, expected WebView and an empty crash buffer passed. The owned
+  temporary marker and probe DEX were removed. No reset, new keys, app-root or
+  public OTA publication occurred.
+
+See the [exceptions follow-up](build-exceptions-audit.md) for the recovered
+boot-only diagnostic/recovery-updater hazard and Samsung's rejection of
+verification-enabled custom vbmeta. AVB enforcement, old closed vendor components,
+performance/endurance and broad CTS/VTS coverage remain separate limitations.

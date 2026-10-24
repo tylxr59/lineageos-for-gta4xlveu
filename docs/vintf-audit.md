@@ -7,9 +7,10 @@ source or tablet software.
 
 The [implementation follow-up](#first-enforcement-candidate-2026-10-24) now records
 a separately signed enforcing-CFI candidate that passed local installation,
-Android/recovery boot and owner hardware smoke checks. The public ROM feed and
-release manifests continue to identify `1792787032`; candidate testing does not
-publish a replacement release.
+Android/recovery boot and owner hardware smoke checks. The owner subsequently
+authorized the combined maintenance release `1792851872`, now published with
+matching source pins and OTA feed. Historical failures below describe the old
+release `1792787032`.
 
 ## What VINTF checks
 
@@ -26,7 +27,7 @@ substitute for VTS/CTS or hardware/endurance testing.
 
 ## Exact bypass and origin
 
-The released device tree sets
+The audited old release device tree sets
 `PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false` in `device.mk`.
 Inherited commit
 [`cf0c60b391aa690b1b9210bff70599c8d3ad1722`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/cf0c60b391aa690b1b9210bff70599c8d3ad1722)
@@ -184,7 +185,7 @@ This is a tested local candidate, not a public ROM release or an endurance/
 complete compatibility certification. Startup logs contain sysfs/property
 SELinux denials; no broad policy allowances were added to hide them. Existing
 Bluetooth, storage and other untested hardware cases still need coverage.
-Public release manifests and feed continue to identify release `1792787032`.
+At that test stage, public release manifests and feed still identified `1792787032`.
 The owner subsequently requested combining this fix with current LOS24 platform
 and reviewed shared-kernel updates in a separate maintenance candidate.
 
@@ -198,4 +199,4 @@ for exact revisions and its separate manifest. Full build, strict VINTF checks,
 same-key signing, no-wipe Android installation and owner hardware smoke checks
 passed. The live enforcing-CFI configuration matches the embedded image. The
 automatically updated recovery booted and its full boot/DTBO/recovery partition
-hashes match the signed candidate. Public release pins/feed remain unchanged.
+hashes match the signed candidate. After owner authorization, this combined build was published as `1792851872`.

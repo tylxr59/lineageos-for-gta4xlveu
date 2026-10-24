@@ -99,5 +99,7 @@ Default `bacon` output is development/test signed. A public release needs the
 separate persistent-private-key signing step in [OTA maintenance](ota.md).
 Check ZIP integrity, OTA certificate and whole-file signature, AVB image set,
 VINTF results, actual ramdisk/system/vendor contents, and hardware boot. Retain
-the inherited kernel-requirements bypass in the risk record; passing a bypassed
-check does not prove kernel feature compatibility.
+the historical kernel-requirements bypass in the risk record. The current
+release restores checks with genuine toolchain detection and enforcing CFI; see
+[the VINTF audit](vintf-audit.md). Never replace kernel inputs with diagnostic
+configuration claims.

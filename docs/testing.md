@@ -209,7 +209,9 @@ The [VINTF audit](vintf-audit.md) records the CFI-only signed build `1792849929`
 and its successful Android/recovery/data-unlock/hardware tests. The subsequent
 [combined candidate](source-upstream-audit.md#combined-maintenance-candidate-2026-10-24)
 is build `1792851872`, with [separate exact source pins](../manifests/candidates/maintenance-20261024.xml).
-It is locally installed; public OTA release `1792787032` remains unchanged.
+After local testing, the owner authorized publication as public release
+`1792851872`. All 12 public asset sizes/SHA256 digests, downloaded checksums and
+the canonical HTTPS feed matched the tested bundle.
 
 Full target-files/recovery compilation and strict VINTF checks passed, using
 authentic kernel metadata with enforcing CFI. Persistent signing identity and
@@ -231,3 +233,12 @@ coverage remain outstanding; startup SELinux denials remain under investigation.
 
 ROM SHA256: `1cf7987f98ca09088f7c2133886b60009b3e1d3eb69e2ce010ec4706e1c23733`.
 Recovery SHA256: `e2d75e181e20c4b555531a17f94913c4a0cb65196fdf06bf6921097945254d71`.
+
+
+The tablet already ran `1792851872` before publication, so no separate public
+older-to-newer Updater installation was repeated for this release. Existing
+public Updater tests above are historical; this release's new evidence covers
+signed local installation plus public distribution. Persistent keys are unchanged.
+
+A fresh download of the public ROM ZIP matched the tested bundle SHA256. The
+tablet also fetched the canonical three-entry HTTPS feed successfully.

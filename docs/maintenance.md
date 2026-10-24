@@ -32,7 +32,7 @@ default branch is not automatically the released baseline.
 | Samsung kernel integration | [sevenrock/android_kernel_samsung_gta4xlve](https://github.com/sevenrock/android_kernel_samsung_gta4xlve/tree/lineage-24.0) and [gta4xlve-dev/android_kernel_samsung_gta4xlve](https://github.com/gta4xlve-dev/android_kernel_samsung_gta4xlve/tree/lineage-23.2) | Sevenrock `lineage-24.0`; original maintainer `lineage-23.2`. Check these **in addition to** the shared Lineage kernel base. |
 | Proprietary vendor files | [sevenrock/android_vendor_samsung_gta4xlveu](https://github.com/sevenrock/android_vendor_samsung_gta4xlveu/tree/lineage-24.0) and [gta4xlve-dev/android_vendor_samsung_gta4xlveu](https://github.com/gta4xlve-dev/android_vendor_samsung_gta4xlveu/tree/lineage-23.2) | Sevenrock `lineage-24.0`; original maintainer `lineage-23.2`. A new commit must be reviewed for blob provenance and device compatibility. |
 | Samsung firmware provenance | Official SM-P613 [XAR history](https://doc.samsungmobile.com/SM-P613/XAR/doc.html) and [BTU history](https://doc.samsungmobile.com/SM-P613/BTU/doc.html) | Follow the English history/iframe (`dflt_page`) if the wrapper is empty. Record region, firmware build and vendor security date. Do not substitute another model's blobs or flash firmware as an ordinary source update. |
-| Our maintained destination forks | [Device](https://github.com/tylxr59/android_device_samsung_gta4xlveu), [kernel](https://github.com/tylxr59/android_kernel_samsung_gta4xlve), [vendor](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu) | Device `fix/los24-updater`, kernel `fix/los24-boot-dtb`, vendor `lineage-24.0`; exact release SHAs come from manifests, not moving branch tips. |
+| Our maintained destination forks | [Device](https://github.com/tylxr59/android_device_samsung_gta4xlveu), [kernel](https://github.com/tylxr59/android_kernel_samsung_gta4xlve), [vendor](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu) | Device/kernel `fix/los24-maintenance-20261024`, vendor `lineage-24.0`; exact release SHAs come from manifests, not moving branch tips. |
 
 Use the platform manifest's selected AOSP revisions; do not independently
 replace them with AOSP `main` or an arbitrary newer tag. Merged upstream changes
@@ -80,12 +80,11 @@ conflicts. A clean preview does not establish compilation or hardware operation.
 If history is shallow, fetch the required ancestry before interpreting results;
 do not mistake missing history for an unrelated or current upstream.
 
-The [2026-10-24 source audit](source-upstream-audit.md) records the last checked
+The [2026-10-24 source audit](source-upstream-audit.md) records the previous
 published kernel base `f136eaf93d6285680e683d7827c690ecc5c28b54`. The later
-local maintenance candidate integrates the 18 reviewed commits through
+published maintenance release `1792851872` integrates the 18 reviewed commits through
 `285869032633b3de3c6bdefd8f3b553f988c11da`, using kernel `88b63b7aeb73`.
-Keep that candidate distinct from the public release. These are dated references,
-not an instruction to reuse stale heads. Refresh the comparison and record the
+These are dated references, not an instruction to reuse stale heads. Refresh the comparison and record the
 integrated base after each kernel maintenance release. Keep paused experimental audio branches separate.
 
 For a platform update, save the resolved manifest before and after the reviewed

@@ -18,7 +18,7 @@ These GitHub repositories still default to lineage-23.2, but the build manifest
 pins the intended commits explicitly. Do not replace them with the default
 branch or assume the displayed branch determines the installed Android version.
 
-## Shared Lineage kernel base: 18 commits pending review
+## Initial audit: 18 shared Lineage kernel commits pending review
 
 Our kernel contains the shared Lineage base through
 `f136eaf93d6285680e683d7827c690ecc5c28b54`. The shared repository's maintained
@@ -63,7 +63,8 @@ a separate compatibility change, with source provenance and hardware validation.
 After the successful [CFI enforcement test](vintf-audit.md#first-enforcement-candidate-2026-10-24),
 the owner requested current upstream changes in the same candidate. The
 [exact candidate manifest](../manifests/candidates/maintenance-20261024.xml)
-pins all 1,242 projects. It is separate from the published release manifest.
+pins all 1,242 projects. It retains the candidate snapshot; the published release manifest now pins
+the same project revisions.
 
 Device `12c0e2db5ea75f284b144db2322738a01f6231fd`, kernel
 `88b63b7aeb73fc983a9a13f76601135a9950cb89`, and unchanged vendor `4388d72`
@@ -102,5 +103,6 @@ both cameras, speakers, S Pen and general operation.
 The automatically updated recovery also booted; full boot/DTBO/recovery
 partition hashes and its live kernel configuration match the signed images.
 A recovery-menu reboot returned to Android; original pattern/setup, saved-file
-checksum and the same security checks passed again. This is a locally installed
-candidate; public release manifests and the OTA feed still identify `1792787032`.
+checksum and the same security checks passed again. The owner then authorized publication as release `1792851872`; source manifests
+and the OTA feed now identify that build. Public asset digests and the HTTPS
+feed were verified separately from local installation evidence.

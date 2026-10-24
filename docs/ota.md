@@ -122,3 +122,16 @@ If a refresh still shows the preceding feed, compare the canonical endpoint
 from the tablet's network and allow for cache expiry or HTTP revalidation.
 A successful refresh with an older cached feed is separate from package
 signature/installation failure; do not rebuild or change signing keys for it.
+
+
+## Current maintenance release
+
+[Build 1792851872](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792851872) is published with the same persistent signing identity.
+All 12 assets were uploaded before the feed, and public asset sizes/digests,
+downloaded checksums and the canonical HTTPS feed were verified. Signed local
+installation, recovery partition readback and Android/data/security tests passed.
+The tablet already ran this timestamp at publication, so no separate older-to-newer
+public Updater installation is claimed for this build. See [testing](testing.md).
+
+A fresh download of the public ROM ZIP matched the tested bundle SHA256. The
+tablet also fetched the canonical three-entry HTTPS feed successfully.

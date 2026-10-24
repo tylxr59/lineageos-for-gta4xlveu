@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <manifest>
   <remote name="los24-forks" fetch="https://github.com/" />
-  <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="eb9bc69ee6b6750f66258a55535fa41ff008541a" upstream="fix/los24-updater" />
-  <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="75a416868f994657bb1095f9e76864525c184f84" upstream="fix/los24-boot-dtb" />
+  <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="12c0e2db5ea75f284b144db2322738a01f6231fd" upstream="fix/los24-maintenance-20261024" />
+  <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="88b63b7aeb73fc983a9a13f76601135a9950cb89" upstream="fix/los24-maintenance-20261024" />
   <project name="tylxr59/android_vendor_samsung_gta4xlveu" path="vendor/samsung/gta4xlveu" remote="los24-forks" revision="4388d72aed64812cf27496986bcf8fb3af64bf1d" upstream="lineage-24.0" />
 </manifest>

@@ -138,28 +138,32 @@ upstream MIDR definitions. The tablet's silver part is 0x805. This does not
 blanket-mark the gold CPUs safe, change existing vendor erratum matching, or
 turn off KPTI's KASLR protection. Combined-candidate behavior still needs testing.
 
-### Build and policy changes awaiting full candidate validation
+### Combined build passed; device validation pending
 
 All three `BUILD_BROKEN_*` switches have been removed in the candidate device
 branch. Restored ELF checks pass for all six ABI/module variants of the four
 previously exempt modules. Missing media dependencies now build from existing
 source; the LOWI executable declares its existing libwpa_client dependency.
 Extraction regeneration also creates the six Adreno symlinks already specified
-by the proprietary list. No proprietary binary was modified. Graph checks pass;
-the full image build must still execute copy checks and partition filtering.
+by the proprietary list. No proprietary binary was modified. The full image build passed with copy checks and partition filtering active.
+The final target files include both ABI variants of libc2dcolorconvert and
+libplatformconfig, and the six audited proprietary ELF variants match the
+published baseline byte for byte.
 
 The policy candidate labels actual SM5714 battery paths and wakeup statistics,
 uses the existing vendor sensor label, and gives tee a dedicated QSEECom status
 property type. It excludes four unused Qualcomm vendor test-policy directories.
-These changes still require complete policy/neverallow compilation and fresh
-runtime-denial review. No broad generic-sysfs/default-property allow, permissive
+Complete policy/neverallow compilation and image policy checks passed. Fresh
+runtime-denial review is still pending. Common HAL references required retaining
+the vtloopback app declaration and three existing property types/labels outside
+the excluded test directories, without restoring factory-test grants. Duplicate
+genfs labels already supplied by Qualcomm/platform policy were removed. No broad generic-sysfs/default-property allow, permissive
 workaround or new denial-suppression rule was added.
 
 The baseline compiled policy contains nine permissive domains inherited through
 userdebug/Qualcomm policy: su, backuptool, qti-testscripts and six vendor test
-domains. None was active in the captured process snapshot. Excluding the vendor
-test directories is intended to remove those six domains; compiled results must
-be checked. Ordinary userdebug's remaining permissive domains must be disclosed,
+domains. None was active in the captured process snapshot. The combined candidate's compiled policy confirms all six vendor test domains
+are removed; only su, backuptool and qti-testscripts remain. Ordinary userdebug's remaining permissive domains must be disclosed,
 not confused with globally permissive SELinux or app-root availability.
 
 ### Verified Boot experiment: blocked by Samsung trust
@@ -196,3 +200,18 @@ Candidate sources are on `fix/los24-hardening` in the three maintained forks.
 Release manifests/feed still describe the tested public release, not these
 pending combined changes. Performance, suspend/battery and full CTS/VTS remain
 separate validation gaps.
+
+
+### Signed candidate 1792860066
+
+The complete combined build passed, including strict target-files VINTF with
+actual embedded kernel config matching OTA metadata. All APK/APEX, recovery
+trust, component AVB and whole-file OTA signature checks passed with the existing
+pinned identity. Kernel config has enforcing CFI, KPTI and restricted dmesg.
+Exact sources: device `b07f055`, kernel `0c5ccf4fc`, vendor `1c0a6f2`; all other
+1,239 projects match the public release. See the
+[candidate source manifest](../manifests/candidates/hardening-20261024.xml).
+
+**Combined Android installation/recovery/runtime checks are still pending.**
+The earlier successful return-mode boot test remains separate evidence. This
+candidate is not on the public OTA feed and is not a published ROM release.

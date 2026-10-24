@@ -65,7 +65,8 @@ The signed no-wipe update booted Android. Data unlocked and the pre-update saved
 file checksum matched. File encryption, enforcing SELinux, normal ADB UID2000,
 Rooted debugging disabled, actual kernel/config identity and empty crash buffer
 passed. Automatic recovery payload/updater target matches the signed recovery;
-a fresh recovery boot/full partition readback is still pending.
+matching recovery boot and full boot/DTBO/recovery partition readback passed.
+The original vbmeta is unchanged.
 
 Fresh Android boot selected configfs2 without runtime root changes. Five USB mode
 selections (MTP, charging, MTP, charging, MTP) passed. Every host descriptor check
@@ -76,8 +77,15 @@ matching host/tablet SHA256. The issuing shell can disconnect during USB functio
 changes, so tests check actual reattachment/functions rather than interpreting
 that shell's transport exit as the function-switch result.
 
-Owner physical reconnect/Dolphin and pattern/setup confirmation, matching
-recovery and final cleanup are pending. These repeated mode-switch tests support
-both symptoms being corrected; they do not establish long-term USB reliability.
-No ROM release or OTA feed change has occurred. The public release remains
-1792851872; do not point its manifests at this unreleased candidate.
+The owner confirmed normal pattern/setup, physical USB unplug/reconnect and
+Dolphin browsing/copying. Normal ADB reattached with Rooted debugging off. The
+recovery-menu Android return also passed: unlocked encrypted data and both probe
+checksums persisted. Another KDE MTP readback matched after that round trip;
+exactly one ADB interface remained. Both owned probes were then removed, the
+post-reboot USB selection restored, and normal ADB/disabled Rooted debugging and
+enforcing SELinux verified. The owner's separate transferred file was untouched.
+
+These repeated mode-switch and physical reconnect tests support both symptoms
+being corrected; they do not establish long-term USB reliability. No ROM release
+or OTA feed change occurred. The public release remains1792851872; do not point
+its manifests at this unreleased candidate.

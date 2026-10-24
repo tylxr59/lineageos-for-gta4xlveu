@@ -218,6 +218,9 @@ QTI USB stays upstream0d32cd0; maintain the existing three forks.
 
 Signed no-wipe installation, Android/data/security checks, five mode selections,
 exactly one ADB interface, automatic ADB reattachment and KDE KIO checksum copies
-passed without rooted debugging. Owner physical-reconnect/Dolphin/pattern check,
-matching recovery/full partition readback and final cleanup remain pending.
-Preserve public release pins/feed1792851872. Complete those checks before shipping.
+passed without rooted debugging. Owner physical-reconnect/Dolphin/pattern checks
+also passed. Matching recovery/full partition hashes passed; original vbmeta is
+unchanged. Final recovery-menu Android return, unlocked encrypted data, saved
+checksums and another KDE MTP readback passed. Both owned probes were removed;
+normal ADB/Rooted debugging off remain. Preserve public release pins/feed1792851872
+until an explicit request to ship. See docs/testing.md for candidate hashes.

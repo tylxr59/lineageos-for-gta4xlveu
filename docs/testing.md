@@ -283,3 +283,38 @@ See the [exceptions follow-up](build-exceptions-audit.md) for the recovered
 boot-only diagnostic/recovery-updater hazard and Samsung's rejection of
 verification-enabled custom vbmeta. AVB enforcement, old closed vendor components,
 performance/endurance and broad CTS/VTS coverage remain separate limitations.
+
+
+## USB ownership fix candidate (2026-10-24; not published)
+
+Signed candidate **1792876959** uses device02b4ef7, kernel0c5ccf4fc and
+vendor1c0a6f2; see the [candidate manifest](../manifests/candidates/usb-mtp-20261024.xml)
+and [USB investigation](usb-mtp-audit.md). Only the device project differs from
+the tested hardening candidate. ROM SHA256:
+`d3ab698672ad0aa5d0c40f1945bb7e1c47fee0653cb9f9ac48c0b324a12c75ab`.
+
+- Compilation, strict VINTF, kernel-config/metadata identity and existing-key
+  APK/APEX/AVB/recovery trust/whole-OTA signature checks passed. Kernel, DTBO,
+  compiled SELinux policy and shared QTI USB init are byte-identical to the
+  tested hardening candidate. Normal boot selects HAL ownership configfs2.
+- Signed no-wipe sideload and Android boot passed. Original pattern/setup and
+  saved-file checksums persisted. File encryption, enforcing SELinux/CFI/KPTI,
+  normal ADB UID2000, disabled Rooted debugging and empty crash buffer passed.
+- Five USB mode selections passed with exactly one ADB interface, plus one MTP
+  interface when selected. ADB reattached without host-server restarts or
+  debugging toggles. KDE KIO host/tablet/readback checksums matched. The owner
+  confirmed physical unplug/reconnect and Dolphin browsing/file copying.
+- Matching recovery boot and full partition readback passed. Boot SHA256:
+  `1994ed1379fb833feabf8cf02f987e77fd320908a6bc26ef465df530a1ee7e27`;
+  recovery SHA256:
+  `f32a9b47f7dd5a2770be8383d99f047bf3da7b9f978e98ab55d21b3cd674770c`.
+  DTBO matches the preceding candidate. Vendor recovery payload/updater target
+  matches this recovery; original live vbmeta remains unchanged.
+- Final recovery-menu Android return retained unlocked data and both saved
+  probes. A further MTP/KDE checksum readback passed with one ADB interface.
+  Both owned probes were removed, the post-reboot USB selection restored and
+  normal ADB/Rooted debugging off verified. Owner files were left untouched.
+
+Public release/feed remains1792851872. No wipe, new keys, app-root, audio changes
+or ROM publication occurred. These checks establish the tested USB behavior;
+long-term cable/host reliability and broader compatibility remain separate tests.

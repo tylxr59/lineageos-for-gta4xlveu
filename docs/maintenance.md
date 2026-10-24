@@ -81,11 +81,12 @@ If history is shallow, fetch the required ancestry before interpreting results;
 do not mistake missing history for an unrelated or current upstream.
 
 The [2026-10-24 source audit](source-upstream-audit.md) records the last checked
-Lineage kernel base `f136eaf93d6285680e683d7827c690ecc5c28b54` and 18 pending
-commits through `285869032633b3de3c6bdefd8f3b553f988c11da`. Those are a dated
-reference, not an instruction to reuse stale heads or assume the changes were
-installed. Refresh the comparison and record the integrated base after each
-kernel maintenance release. Keep paused experimental audio branches separate.
+published kernel base `f136eaf93d6285680e683d7827c690ecc5c28b54`. The later
+local maintenance candidate integrates the 18 reviewed commits through
+`285869032633b3de3c6bdefd8f3b553f988c11da`, using kernel `88b63b7aeb73`.
+Keep that candidate distinct from the public release. These are dated references,
+not an instruction to reuse stale heads. Refresh the comparison and record the
+integrated base after each kernel maintenance release. Keep paused experimental audio branches separate.
 
 For a platform update, save the resolved manifest before and after the reviewed
 sync and compare **project revisions**, not just the manifest repository tip.

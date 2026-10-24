@@ -82,8 +82,13 @@ symbols and disabled kernel CFI. Separately pushed candidate branches
 `fix/los24-vintf-cfi` provide genuine detection, enforcing CFI and restored checks;
 build1792849929 passed signed no-wipe installation, Android/recovery boot,
 original pattern/data persistence and owner hardware smoke checks. See the audit
-for exact revisions/evidence. A combined upstream maintenance candidate is being
-prepared separately; preserve release pins until validation. Host-only edited
+for exact revisions/evidence. Combined candidate `1792851872` uses device
+`12c0e2d`, kernel `88b63b7ae` (shared Lineage base `285869032`), and vendor
+`4388d72`, with current platform changes. Its separate resolved manifest is
+`manifests/candidates/maintenance-20261024.xml`. Signed no-wipe Android boot,
+owner hardware smoke checks, recovery partition verification and a final
+recovery-menu Android return with pattern/data persistence all passed. Preserve
+public release pins/feed until a ROM release is requested. Host-only edited
 diagnostic configs are not a fix. Keep this separate from AVB and paused audio.
 
 Run `python3 -m unittest discover -s tests -v`, `tools/ota.py validate ota/gta4xlveu.json`, and shell syntax checks after tooling changes.

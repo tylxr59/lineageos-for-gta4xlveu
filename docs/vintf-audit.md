@@ -187,3 +187,15 @@ Bluetooth, storage and other untested hardware cases still need coverage.
 Public release manifests and feed continue to identify release `1792787032`.
 The owner subsequently requested combining this fix with current LOS24 platform
 and reviewed shared-kernel updates in a separate maintenance candidate.
+
+
+## Combined upstream candidate
+
+Build `1792851872` combines the same device fix with shared Lineage kernel base
+`285869032633b3de3c6bdefd8f3b553f988c11da` and current platform changes. See
+[the maintenance record](source-upstream-audit.md#combined-maintenance-candidate-2026-10-24)
+for exact revisions and its separate manifest. Full build, strict VINTF checks,
+same-key signing, no-wipe Android installation and owner hardware smoke checks
+passed. The live enforcing-CFI configuration matches the embedded image. The
+automatically updated recovery booted and its full boot/DTBO/recovery partition
+hashes match the signed candidate. Public release pins/feed remain unchanged.

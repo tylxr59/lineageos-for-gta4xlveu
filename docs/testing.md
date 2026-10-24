@@ -201,3 +201,33 @@ increasing widget height is the proposed layout workaround. The launcher layout
 and global density/font scale were not changed. Bluetooth audio, microSD, deep
 suspend/battery endurance, MTP file transfer and S Pen pressure accuracy remain
 outside the completed smoke matrix.
+
+
+## CFI and upstream maintenance candidate (2026-10-24)
+
+The [VINTF audit](vintf-audit.md) records the CFI-only signed build `1792849929`
+and its successful Android/recovery/data-unlock/hardware tests. The subsequent
+[combined candidate](source-upstream-audit.md#combined-maintenance-candidate-2026-10-24)
+is build `1792851872`, with [separate exact source pins](../manifests/candidates/maintenance-20261024.xml).
+It is locally installed; public OTA release `1792787032` remains unchanged.
+
+Full target-files/recovery compilation and strict VINTF checks passed, using
+authentic kernel metadata with enforcing CFI. Persistent signing identity and
+whole-file OTA/component signatures passed. A no-wipe recovery sideload booted
+Android, retained the existing pattern/setup and saved-file checksum, and passed
+FBE, enforcing SELinux, UID2000, Rooted debugging off and empty initial crash
+buffer checks. WebView reports 156.0.8078.47. The owner confirmed Wi-Fi, both
+cameras, speakers, S Pen and general operation.
+
+Automatic recovery updating passed: recovery boots at the new timestamp and
+full boot/DTBO/recovery partition readback matches the signed images. The live
+kernel config matches in both Android and recovery. A recovery-menu reboot
+returned to Android with the original pattern/setup and saved-file checksum
+intact; security checks and an empty crash buffer passed again. The temporary
+test file was removed afterward. Bundled vbmeta was validated on the host; no new manual vbmeta flash
+or clean-install test was performed. No new public HTTPS OTA test was performed.
+Bluetooth audio, microSD, deep suspend/endurance, MTP and detailed S Pen pressure
+coverage remain outstanding; startup SELinux denials remain under investigation.
+
+ROM SHA256: `1cf7987f98ca09088f7c2133886b60009b3e1d3eb69e2ce010ec4706e1c23733`.
+Recovery SHA256: `e2d75e181e20c4b555531a17f94913c4a0cb65196fdf06bf6921097945254d71`.

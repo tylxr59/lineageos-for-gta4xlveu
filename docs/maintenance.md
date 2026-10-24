@@ -66,3 +66,12 @@ manifest, attempt a baseline, then fix demonstrated build/runtime problems.
 Keep the previous release available and do not advertise a new major version
 in the existing feed until its upgrade path is tested. Version/API guards in
 tools/ota.py must be deliberately updated with tests and migration instructions.
+
+
+## Source freshness reference
+
+The [2026-10-24 device-source audit](source-upstream-audit.md) found no missing
+Sevenrock/gta4xlve-dev device commits, but18 pending changes in the shared
+Lineage kernel base. Its maintained branch is historically lineage-20. Recheck
+actual tips and review the diff; never infer compatibility or freshness from
+branch labels or fork depth. Preserve the paused TI experiment separately.

@@ -1,5 +1,21 @@
 [
   {
+    "datetime": 1792851872,
+    "files": [
+      {
+        "filename": "lineage-24.0-20261024-UNOFFICIAL-gta4xlveu.zip",
+        "os_patch_level": "2026-10-01",
+        "os_sdk_level": 37,
+        "ota_property_files": "metadata:69:342,metadata.pb:479:227",
+        "sha256": "1cf7987f98ca09088f7c2133886b60009b3e1d3eb69e2ce010ec4706e1c23733",
+        "size": 1327144367,
+        "url": "https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/download/lineage-24.0-20261024-gta4xlveu-1792851872/lineage-24.0-20261024-UNOFFICIAL-gta4xlveu.zip"
+      }
+    ],
+    "type": "unofficial",
+    "version": "24.0"
+  },
+  {
     "datetime": 1792787032,
     "files": [
       {

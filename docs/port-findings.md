@@ -111,3 +111,11 @@ should allow a larger clock. This is a layout workaround inferred from measured
 bounds and source behavior, not a tested resize or a platform rendering fix.
 No density/font-scale settings or launcher layout were changed in this audit.
 Screenshots and raw diagnostic dumps remain private local artifacts.
+
+
+## Remaining build/security exceptions
+
+See [the 2026-10-24 audit](build-exceptions-audit.md) for disabled KPTI, three
+build-validation exceptions, four vendor ELF-check exclusions, known AVB/vendor
+limitations and unresolved runtime policy checks. The audit made no source or
+tablet changes; findings are separate from the resolved CFI/VINTF defects.

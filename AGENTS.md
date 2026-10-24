@@ -162,3 +162,11 @@ remain valid history; distinguish them from this release's distribution checks.
 
 A fresh download of the public ROM ZIP matched the tested bundle SHA256. The
 tablet also fetched the canonical three-entry HTTPS feed successfully.
+
+
+Before further hardening, read [the build/security exceptions audit](docs/build-exceptions-audit.md).
+KPTI is disabled in config and command line; live Meltdown sysfs says Vulnerable,
+but physical susceptibility/exploitability is unproved. Three BUILD_BROKEN flags
+and four vendor ELF-check exclusions remain. Do not blindly flip AVB flags,
+relock the bootloader, enable root or treat boot sleep_disabled=1 as a proven
+standby failure; runtime post-boot handling and access limitations are documented.

@@ -76,6 +76,12 @@ or personal data; redact local logs before showing excerpts.
 
 ## Verification and completion
 
+Read [docs/vintf-audit.md](docs/vintf-audit.md) before kernel compatibility work.
+The current OTA kernel-check bypass hides missing toolchain-reporting symbols
+and disabled kernel CFI. Host-only edited diagnostic configs are not a fix.
+Backport genuine detection/CFI, then rebuild and test before removing the bypass;
+keep this separate from AVB and paused audio experiments.
+
 Run `python3 -m unittest discover -s tests -v`, `tools/ota.py validate ota/gta4xlveu.json`, and shell syntax checks after tooling changes.
 Test security-sensitive metadata failure cases. Build source changes in the
 real Android environment. Record build, manifest, hashes, signing identity,

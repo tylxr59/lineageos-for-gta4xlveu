@@ -45,6 +45,9 @@ verification, and actual system/vendor filesystem content were checked. The
 installed imported vbmeta configuration uses flags 3; the device tree also
 retains a VINTF kernel-requirements bypass. Those are inherited limitations,
 not proof of verified-boot security or complete Android17/kernel compatibility.
+The [VINTF audit](vintf-audit.md) reproduces the skipped kernel failure: three
+missing toolchain-reporting symbols, followed by disabled kernel CFI. Genuine
+CFI enablement and removal of the bypass remain unbuilt and untested.
 
 The prototype is signed with public development keys. Its OTA SHA-256 is
 `21d9fd0f505ff93b8cd8b418b719dbcb1eefcdece66853490a69bb433e2de90a`.

@@ -1,10 +1,15 @@
 # VINTF kernel compatibility audit
 
-Read-only investigation on 2026-10-24 of public release
-`1792787032`, device `eb9bc69`, kernel `75a416868`, vendor `4388d72`.
-No source configuration, installed image, tablet setting or release feed was
-changed. Findings below are compatibility checks, not a completed CFI build or
-hardware validation.
+The initial read-only audit on 2026-10-24 examined public release
+`1792787032`, device `eb9bc69`, kernel `75a416868`, vendor `4388d72`, and
+reproduced the skipped kernel compatibility failures. That audit changed no
+source or tablet software.
+
+The [implementation follow-up](#first-enforcement-candidate-2026-10-24) now records
+a separately signed enforcing-CFI candidate that passed local installation,
+Android/recovery boot and owner hardware smoke checks. The public ROM feed and
+release manifests continue to identify `1792787032`; candidate testing does not
+publish a replacement release.
 
 ## What VINTF checks
 
@@ -121,3 +126,64 @@ spoofing configuration output or suppressing CFI failures would conceal the gap.
 A clean host check would establish the declared kernel requirements only;
 full compatibility and reliable hardware operation still need their own tests.
 The inherited vbmeta/AVB limitation is separate and was not resolved by this audit.
+
+## First enforcement candidate (2026-10-24)
+
+The owner requested implementation after the audit. Candidate source is saved
+and pushed separately from the published release:
+
+- Kernel [`793125bc3c452d8a72efa9bedfeaa5defb39f889`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/793125bc3c452d8a72efa9bedfeaa5defb39f889)
+  on `fix/los24-vintf-cfi` derives the three public toolchain booleans from actual
+  compiler/linker/assembler probes using this older Kconfig's tracked environment
+  mechanism, and enables enforcing CFI in the device configuration fragment.
+- Device [`12c0e2db5ea75f284b144db2322738a01f6231fd`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/12c0e2db5ea75f284b144db2322738a01f6231fd)
+  on `fix/los24-vintf-cfi` restores OTA kernel-requirement enforcement.
+
+All other 1,240 projects match the released resolved manifest. Paused audio work
+and pending common-kernel updates are excluded. There are no new CFI exemptions
+or permissive settings in these changes.
+
+Tool probes returned true for Clang/integrated assembler/LLD, false for the
+assembler when external assembly was selected, and false for GCC/GNU tools.
+The real legacy Kconfig parser produced the expected derived booleans for
+positive and negative probe inputs.
+
+Full target-files/recovery compilation passed in 13m26s with Clang22. Generated
+configuration enables `CONFIG_CFI=y`, `CONFIG_CFI_CLANG=y` and the three toolchain
+markers; `CONFIG_CFI_PERMISSIVE` is disabled. Recorded compiler commands include
+CFI instrumentation without recovery mode; linked vmlinux contains
+`__cfi_check` and `__cfi_slowpath`.
+
+The target-files archive now includes authentic kernel version/configuration
+metadata. Its config exactly equals the one extracted from its actual
+`BOOT/kernel`, SHA256
+`3e5f36db20ed9fa7ed10c265e57225ad2ce6d957fd663f0518ac58e41bdef776`.
+Normal `check_target_files_vintf` passes with those real inputs and packaged
+APEXes. Explicit build target `check-vintf-all` also passes and records
+`PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS=true`. An additional strict host
+check with the actual SM-P613 SKU passes.
+
+Candidate build timestamp is `1792849929`. Signing with the existing release
+identity and whole-file OTA signature verification passed. A no-wipe automatic
+recovery sideload installed it successfully. Android reached boot complete;
+the live kernel config exactly matches the compiled image, data remains
+file-encrypted, SELinux is enforcing, ordinary ADB is UID2000, rooted debugging
+is off, and the saved test-file checksum survived. The initial crash buffer
+was empty. The owner confirmed their existing pattern/setup, Wi-Fi, both
+cameras, speakers and S Pen work.
+
+The automatically installed CFI recovery also booted. Full recovery, boot and
+DTBO partition hashes match the signed candidate images; recovery's live kernel
+config matches too. After a recovery-menu reboot, Android booted and the owner
+confirmed unlock again; the test-file checksum persisted and rooted debugging
+remained off. A direct ADB reboot from recovery first returned to recovery with
+reboot target `shell`; no CFI panic was found in that saved log. Do not treat
+this as a proved CFI regression or silently equate the ADB and menu reboot paths.
+
+This is a tested local candidate, not a public ROM release or an endurance/
+complete compatibility certification. Startup logs contain sysfs/property
+SELinux denials; no broad policy allowances were added to hide them. Existing
+Bluetooth, storage and other untested hardware cases still need coverage.
+Public release manifests and feed continue to identify release `1792787032`.
+The owner subsequently requested combining this fix with current LOS24 platform
+and reviewed shared-kernel updates in a separate maintenance candidate.

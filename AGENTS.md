@@ -287,3 +287,11 @@ Public resolved/fork pins and feed deliberately remain release1792876959; this
 local test authorization does not authorize publication. Earlier1792893543 is
 rejected for the startup cycle. No general launch-speed or battery gain claimed;
 headroom/skin calibration, BPF capabilities, DMA-BUF and graphics work remain.
+
+
+The owner has now explicitly requested publication of tested1792894491. Release
+preparation pins resolved/fork manifests to devicef38d06f (kernel/vendor unchanged).
+The exact signed local-test bundle is being packaged; live feed remains1792876959
+until all release assets upload successfully. Do not rebuild or publish rejected
+1792893543. Check actual release/feed state and local publish progress before
+retrying any publication command.

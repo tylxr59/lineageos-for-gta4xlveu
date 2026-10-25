@@ -33,7 +33,18 @@ multi-read resumption ([52847c63d](https://github.com/tylxr59/android_kernel_sam
 enables the device test config ([0618060fb](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/0618060fb)),
 adds lifecycle tests ([40dd1806a](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/40dd1806a))
 and adapts the host build to Android's LLVM tools ([1d5531f9a](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/1d5531f9a)).
-Full ROM/device validation is pending. TI speaker processing remains an
+Full ROM/host checks passed, but candidate1792935924 **bootlooped and is rejected**.
+Working thermal ROM1792933707 was restored without wiping. The follow-up repairs
+the BTF parser's obsolete linker symbols
+([4823beeb2](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/4823beeb2))
+and inherited type/string limits plus error propagation
+([8861e8c76](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/8861e8c76)).
+The parser-repair bundle passed host checks but was superseded before flashing.
+The next candidate also backports upstream's perf type-name disambiguation
+([4c536a5bc](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/4c536a5bc))
+and requires iterator/helper type IDs to agree. It is rebuilding; no OTA was
+published.
+TI speaker processing remains an
 experiment, with no released audio tuning change.
 
 ## 2026-10-24 — Thermal reporting and launch hints

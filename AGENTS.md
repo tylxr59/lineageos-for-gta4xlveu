@@ -359,3 +359,31 @@ change only the kernel from locally tested thermal1792933707. Public release
 manifests/feed remain1792894491. Do not reinstall the earlier iterator prototype:
 it can truncate output at legacy read boundaries. Main workspace kernel checkout
 now selects this candidate; preserve before syncing. No audio source changes.
+
+DMA-BUF candidate1792935924 atkernel1d5531f9a is REJECTED: full ROM/host checks
+passed, no-wipe sideload succeeded, owner reported bootloop before Android.
+Do not reinstall/publish unchanged. Known thermal1792933707 recovery restored
+only; collect pstore before any system boot, then restore full known signed ROM.
+Do not boot mismatched restored recovery/new vendor recovery payload without
+restoring the full ROM. Public feed remains unchanged. See dmabuf-accounting.md.
+
+Follow-up BTF diagnosis: failed-boot pstore says hdr_len not found, then kernel
+BTF malformed in critical NetBpfLoad. Parser used obsolete weak binary symbols
+(undefined/zero), while linker/sysfs use __start_BTF/__stop_BTF. Fix4823beeb2
+aligns consumers. Review also found16-bit type/name limits insufficient for full
+vmlinux; fix8861e8c76 matches pinned Android UAPI20/24-bit limits and propagates
+btf_add_type allocation failure. Supported kinds unchanged. Symbol-only build
+stopped before install. Corrected full ROM rebuilding from8861e8c76; not tested.
+Full working1792933707 rollback boot/data/security was verified, rootdebugOFF.
+Keep rejected1792935924 evidence, do not overwrite/reinstall. Preserve local
+candidate pins; public release/feed remain1792894491. No audio work resumed.
+
+Parser-only8861e8c76 bundle passed full build/BTF boundary+limits/sign checks but
+was superseded BEFORE install. Review traced duplicated seq_file BTF through
+perf_event.rb to perf/trace both using tag ring_buffer. Backport4c536a5bc of Linux
+56de4e8f9146 renames only perf tag in4files/64occurrences; no fields/statements/
+function names change. New guard requires unique seq_file and equal iterator
+metadata/typed-helper IDs; rejects pre-rename blob. Latest kernel candidate
+branchfix/los24-dmabuf-candidate now4c536a5bc; full ROM pipeline active separately.
+No device test yet for these repairs. Preserve rejected1d/1792935924, never flash
+it. Last verified installed remains thermal1792933707 with data/security intact.

@@ -70,3 +70,77 @@ Use the previous signed full ROM and its matching recovery for rollback. Preserv
 userdata and the original vbmeta. Do not install an isolated boot-only candidate:
 the existing vendor recovery updater can replace recovery with an incompatible
 image during diagnostics; see the hardening investigation/runbook.
+
+
+## First device result: rejected
+
+Signed candidate1792935924 compiled and passed strict VINTF, persistent-key
+component/whole-OTA signatures, actual embedded kernel configuration checks and
+all nine offline field relocations against the final ROM kernel. DTBO, USB,
+SELinux policy and the thermal HAL matched working1792933707. Its only kernel
+config changes were DEBUG_INFO_BTF and DMABUF_BPF_ITER.
+
+The no-wipe sideload succeeded, but the owner reported a bootloop. **Do not
+install or publish this unchanged candidate.** Boot and actual Android loader/
+accounting tests did not pass. The known-good1792933707 recovery was restored
+without changing vbmeta or formatting data, to collect failure evidence and
+restore the working full ROM. The full known-good signed1792933707 ROM was then restored without wiping.
+Android boot, unlocked encrypted data/test file, enforcing SELinux, UID2000 and
+Rooted debugging off were rechecked.
+Compilation and offline relocation checks were insufficient to establish boot.
+
+
+## Demonstrated BTF parser mismatch and follow-up
+
+The failed-boot log reached Android's critical networking BPF loader. Kernel
+validation reported `hdr_len not found`, then `in-kernel BTF is malformed`, so
+networking programs could not load. This was not evidence of the DMA-BUF
+iterator running and crashing: the earlier common BTF setup was unusable.
+
+The inherited parser used weak `_binary__btf_vmlinux_bin_start/end` symbols,
+which were undefined in the actual linked kernel. The linker and sysfs reader
+instead use `__start_BTF` and `__stop_BTF`. Thus host tools could inspect valid
+BTF from the ELF/sysfs layout while the internal parser saw a zero-length span.
+[4823beeb2](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/4823beeb2)
+makes both consumers use the real section boundaries, retaining header/type
+validation.
+
+Further review before another install found 16-bit type/string limits in the
+inherited UAPI. The generated metadata has approximately173,538 types and4.1MiB
+of strings, exceeding both. The limits now match the standard values carried
+by pinned Android/Linux BTF UAPI: 20-bit type IDs and24-bit string offsets.
+The metadata walk also now propagates a failed type-table allocation instead
+of continuing with an incomplete table. Both fixes are in
+[8861e8c76](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/8861e8c76).
+The symbol-only intermediate build was stopped; it was never installed.
+
+The follow-up host guard inspects the actual parser object and final ELF:
+obsolete weak references must be absent, both real boundaries defined, their
+span equal to the emitted BTF section, and header/type/string counts within the
+actual consumer limits. Supported kinds remain1–15; no invalid metadata or
+allocation error is ignored to make a program load. This improves the preflight
+checks but still requires real kernel/Android loader validation after building.
+The parser-repair full ROM compiled and passed these checks and signing, but
+was superseded before installation by the additional type-name repair below.
+
+
+## Typed helper metadata identity
+
+Review traced duplicate `seq_file` graphs through `perf_event.rb` to two different
+structures both named `ring_buffer` (perf and tracing). In the parser-repair
+bundle, iterator metadata's sequence pointer and the typed printing helper
+resolved to different `seq_file` IDs. Re-running ordinary libbpf deduplication
+preserved that ambiguity. This is not solved by ignoring typed-pointer checks.
+
+Linux already fixed this class of collision in
+[56de4e8f9146, perf: Make struct ring_buffer less ambiguous](https://github.com/torvalds/linux/commit/56de4e8f9146680bcd048a29888f7438d5e58c55).
+The local backport [4c536a5bc](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/4c536a5bc)
+renames only perf's tag to `perf_buffer` in four files (64 occurrences).
+A token-substitution comparison confirms no field, executable statement or
+function name changed. CFI-aware compilation and device tests remain necessary.
+
+The next build's guard additionally requires a unique `seq_file` definition and
+identical IDs for the iterator's real metadata field and the compiled typed
+helper's BTF ID entry. The guard correctly rejects the pre-rename bundle.
+The previous host-only bundle was never installed. The complete candidate with
+all repairs is now building separately; public release/feed remain unchanged.

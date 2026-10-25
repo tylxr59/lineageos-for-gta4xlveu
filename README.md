@@ -12,6 +12,8 @@ This repository holds installation guidance, reproducible source manifests,
 and the update feed. The device, kernel, and vendor sources live in the
 [linked forks](docs/building.md#sources).
 
+See [CHANGES.md](CHANGES.md) for release changes and their source commits.
+
 ## Downloads
 
 **[Download the thermal reporting and launch-hint update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792894491)** — LineageOS 24.0 / Android 17,

@@ -325,10 +325,16 @@ Current follow-up work is recorded in docs/runtime-fixes.md. Shared thermal fix
 uses new fourth fork tylxr59/android_hardware_google_pixel, branch
 fix/los24-thermal-empty-queries atd4f83b6 (base8bd3c71). Service compiled and all11
 standalone native tests passed as UID2000; installed HAL/release1792894491 stays
-unchanged. Full ROM build pending. Candidate overrides are separate from released
+unchanged. Clean full ROM1792933707 built and signed; host VINTF, OTA/component
+signatures and embedded recovery/update digest checks passed. Not installed.
+Candidate overrides are separate from released
 pins. Workspace local manifest currently selects this candidate; do not overwrite
 it with tools/sync-source before preserving the work. DMA-BUF BPF/BTF experiment
 is in an isolated kernel worktree/output, not the main kernel source/output or
 release. No live audio changes or new publication. Temporary test files removed,
 Rooted debugging remained off. User's overnight report100→97 includes30minYouTube;
 duration not supplied, no measured suspend/energy proof or ROM battery-gain claim.
+
+Maintain CHANGES.md with links to implementation commits in the relevant forks
+and project tooling. Keep uninstalled work under Unreleased; promote entries only
+after the release runbook checks. Do not list experiments as shipped fixes.

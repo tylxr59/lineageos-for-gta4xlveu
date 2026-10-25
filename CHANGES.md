@@ -1,0 +1,109 @@
+# Changes
+
+Changes maintained by this project, with links to their implementation commits.
+Device, kernel, vendor and shared Pixel HAL links point to separate source
+repositories; project links point to documentation, manifests and release tools.
+This is not a list of every upstream Android/LineageOS commit: each release's
+resolved source manifest records its complete inputs.
+
+Released entries below passed signed installation and hardware smoke checks
+recorded in [testing](docs/testing.md). Those checks are not exhaustive hardware
+certification. Published releases are immutable; fixes appear in new builds.
+
+## Unreleased
+
+| Change | Implementation commits |
+| --- | --- |
+| Return successful empty thermal API results for absent sensor/cooling types; preserve real read failures. Repair the native test entry point and add regression tests. | [pixel `d4f83b6`](https://github.com/tylxr59/android_hardware_google_pixel/commit/d4f83b6) |
+
+The thermal service and full ROM compile, signing/host checks pass, and all 11
+standalone native tests passed on the tablet. The patched ROM has **not been
+installed**; the installed/public build remains 1792894491. Candidate sources
+are separate from release manifests. See [runtime fixes](docs/runtime-fixes.md).
+DMA-BUF/BTF kernel work and TI speaker processing remain experiments, with no
+released implementation or audio tuning change.
+
+## 2026-10-24 — Thermal reporting and launch hints
+
+[Release 1792894491](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792894491)
+
+| Change | Implementation commits |
+| --- | --- |
+| Configure reporting-only CPU/GPU/battery thermal sensors; give the service an exact executable label and narrow Power HAL/property access. | [device `06447b4`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/06447b4), [device `72a336a`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/72a336a), [device `8289416`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/8289416) |
+| Declare the thermal statistics dependency and start the thermal HAL before the framework waits for it. The earlier boot-completed trigger caused a startup dependency cycle and was rejected. | [device `d61cc85`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/d61cc85), [device `f38d06f`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/f38d06f) |
+| Correct the LLCC bandwidth request from unsupported value 8137 to 8136, with a configuration guard. | [device `c48d6cf`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/c48d6cf) |
+| Remove obsolete ART compiler-filter and unused SurfaceFlinger settings. | [device `e1fe429`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/e1fe429) |
+| Publish tested source pins, OTA metadata and validation records. | [project `f2f258c`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/f2f258c), [project `5ff463e`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/5ff463e), [project `6597c16`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/6597c16) |
+
+Thermal reporting adds no cooling controller or fabricated skin sensor. Launch
+trace samples did not establish a general speed gain; no battery gain is claimed.
+
+## 2026-10-24 — USB File Transfer and hardening
+
+[Release 1792876959](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792876959)
+
+| Change | Implementation commits |
+| --- | --- |
+| Give the QTI USB gadget HAL sole ownership during normal Android boot; retain the legacy charger-mode path. Fixes File Transfer reverting and duplicate ADB interfaces. | [device `02b4ef7`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/02b4ef7) |
+| Stop forcing KPTI off; enable it in the kernel and preserve NZCV/task mode across the SSBD return path. Include the upstream Kryo Silver CPU identification fix. | [device `fe6bc40`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/fe6bc40), [kernel `71bb88b5f`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/71bb88b5f), [kernel `18eeda8c4`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/18eeda8c4), [kernel `cae626ff7`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/cae626ff7) |
+| Restrict unprivileged kernel-log access. | [kernel `0c5ccf4fc`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/0c5ccf4fc) |
+| Restore proprietary-library dependency declarations and enforce ELF/duplicate-module checks; reject ELF prebuilts copied outside modules. | [device `8939dfa`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/8939dfa), [device `e6d8d24`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/e6d8d24), [vendor `1c0a6f2`](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu/commit/1c0a6f2) |
+| Label hardware-statistics sysfs nodes and exclude unused vendor factory-test policy while retaining common QTI types. | [device `b1995e3`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/b1995e3), [device `5f6344e`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/5f6344e), [device `4a8b4e6`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/4a8b4e6) |
+| Reuse inherited wakeup labels and retain the platform virtual-wakeup label to avoid duplicate policy definitions in Android/recovery. | [device `05c3082`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/05c3082), [device `b07f055`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/b07f055) |
+| Record USB transfer/reconnect, recovery and encrypted-data tests; publish the validated OTA. | [project `e24a424`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/e24a424), [project `785febb`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/785febb), [project `c610a91`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/c610a91), [project `7290e12`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/7290e12) |
+
+AVB verification-enabling was rejected by the Samsung bootloader and rolled
+back. It is **not** a shipped hardening feature; the bootloader remains unlocked.
+
+## 2026-10-24 — VINTF, enforcing CFI and upstream maintenance
+
+[Release 1792851872](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792851872)
+
+| Change | Implementation commits |
+| --- | --- |
+| Repair LLVM symbol reporting so CFI builds correctly, and enforce CFI instead of permissive mode. | [kernel `793125bc3`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/793125bc3) |
+| Enforce VINTF kernel requirements during OTA construction. | [device `12c0e2d`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/12c0e2d) |
+| Integrate 18 reviewed LineageOS common-kernel cgroup/freezer maintenance commits. | [kernel `88b63b7ae`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/88b63b7ae) |
+| Record the combined upstream LineageOS update, hardware/recovery validation and published source pins. | [project `58b7a4e`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/58b7a4e), [project `7b211ce`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/7b211ce), [project `ffceedd`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/ffceedd) |
+
+## 2026-10-23 — Wi-Fi tablet configuration and lock-screen UI
+
+[Release 1792787032](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792787032)
+
+| Change | Implementation commits |
+| --- | --- |
+| Use the Wi-Fi tablet product; remove bundled Phone, Contacts, Messaging and STK plus the incorrect IMS feature. Set the lock-icon padding to 24dp at native 240dpi. | [device `eb9bc69`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/eb9bc69) |
+| Pin the tablet fixes and record real public Updater/recovery/data-preservation checks. | [project `4fca86c`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/4fca86c), [project `6e122d8`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/6e122d8), [project `016e3d3`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/016e3d3) |
+
+## 2026-10-23 — First public signed release
+
+[Release 1792775790](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792775790)
+
+| Change | Implementation commits |
+| --- | --- |
+| Adapt recovery init and vendor ueventd configuration for Android 17. | [device `e44d4d7`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/e44d4d7), [device `78014df`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/78014df) |
+| Retain the Samsung reserved display-dump device-tree node needed for boot. | [kernel `75a416868`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/75a416868) |
+| Use the QTI AIDL USB controller. | [device `44bda91`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/44bda91) |
+| Configure the maintained v2 Updater feed. | [device `d4723ed`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/d4723ed) |
+| Include narrow TEE Gatekeeper storage rules in active vendor policy, preserving saved lock patterns across updates. | [device `4c68bc9`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/4c68bc9) |
+| Create installation/build/agent guidance, pinned manifests and OTA tooling. | [project `2fa5bc2`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/2fa5bc2), [project `26587e2`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/26587e2) |
+| Add persistent private release signing, backup and verification workflows; deduplicate mapped OTA trust certificates and reject duplicate trust ZIP entries. | [project `92c201c`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/92c201c), [project `b123e93`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/b123e93) |
+| Document signed updates and recovery flashing; publish and verify the first real HTTPS Updater installation with encrypted data intact. | [project `964271a`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/964271a), [project `f79dc2d`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/f79dc2d), [project `c08e6b5`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/c08e6b5), [project `b1eb4bb`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/b1eb4bb) |
+
+## Maintenance and investigations
+
+These records help future maintainers; they do not imply additional shipped
+features.
+
+| Change | Implementation commits |
+| --- | --- |
+| Document exact upstream branches and the routine update workflow. | [project `e3037f0`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/e3037f0), [project `02aae54`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/02aae54) |
+| Audit TI speaker feedback and Dolby paths. The TI prototype sounded clearer, but production routing/lifecycle validation remains unfinished; Dolby mainly increased volume. Normal audio was restored. | [project `ff9eb2b`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/ff9eb2b), [project `71be255`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/71be255), [project `758bf6b`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/758bf6b) |
+| Record the battery test protocol and runtime-log audit. | [project `7b2c0c9`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/7b2c0c9), [project `a0116a0`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/a0116a0) |
+| Record the thermal API regression tests and isolated DMA-BUF investigation. | [project `f8917fd`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/f8917fd) |
+
+When changing maintained code or release tooling, add the implementation commit
+here. Keep uninstalled candidates under **Unreleased**; move them into a release
+entry only after the runbook's installation and publication checks. Link source
+commits, distinguish documentation from implementation, and keep private logs,
+credentials and device identifiers out of this file.

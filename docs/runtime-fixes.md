@@ -30,7 +30,19 @@ the service daemon instead of gtest_main; the test module now excludes that
 entry point and requires no root. Vendor HAL library labels prevent ordinary
 shell linkage, so the standalone test used temporary local copies of five
 matching signed-release shared libraries. Binary and library copies were removed;
-Rooted debugging stayed off. Full ROM/recovery/VINTF build is in progress.
+Rooted debugging stayed off.
+
+The clean full ROM/recovery build passed, including strict VINTF checks, and
+candidate1792933707 was signed with the existing release identity. Whole-OTA,
+120 standalone APK, 37 APEX container/payload and 26 nested APK signatures passed;
+both OTA trust archives contain the single expected certificate. The embedded
+vendor recovery and updater digest match the signed recovery. Boot/DTBO hashes
+are identical to release1792894491. This is host compilation/signature evidence,
+not installation or hardware validation of the patched service. Standalone test
+binaries accidentally included by an earlier target-files staging run were
+quarantined; the rebuilt clean target files contain none. The exact resolved
+candidate manifest is manifests/candidates/runtime-fixes-20261025.xml; its only
+project revision change from the release is the shared Pixel HAL fork.
 
 ## DMA-BUF: isolated BPF iterator experiment
 
@@ -50,7 +62,14 @@ sysfs objects or extra buffer allocation/free hooks.
 
 The experiment enables BTF and that option only in its separate output config.
 The pinned pahole1.25 invocation skips enum64/decl-tag/type-tag encodings because
-the legacy BTF validator supports kinds1–15. The kernel is building separately;
+the legacy BTF validator supports kinds1–15. The inherited tree referenced a missing resolve_btfids host tool. An adapted
+upstream v5.10 resolver initially stopped early when duplicate BTF type names
+were counted twice; retaining the first matching ID fixes that lookup. The
+udp6_sock type was present in the linked BTF, so this was not a missing-type
+compiler problem. A further build failure exposed unconditional BTF references
+to disabled fault-injection functions; those references now follow the matching
+CONFIG_FAIL_PAGE_ALLOC/CONFIG_FAILSLAB guards. None of these changes bypasses
+unresolved-ID validation. The kernel is building separately;
 no successful boot, loader/CO-RE verification, live accounting, allocation-race
 stress, suspend or performance result is claimed. The existing kernel and ROM
 build outputs remain separate. The userspace BPF-version override is unchanged;

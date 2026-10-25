@@ -147,7 +147,8 @@ also passed, retaining the original pattern and data without wipe.
    encrypted-data/pattern persistence, enforcing SELinux and the hardware smoke
    matrix. Keep rooted debugging off after checks and remove temporary probes.
    Distinguish compilation, local install and real public OTA evidence.
-8. Update release notes, validation records and source manifests to the tested
+8. Update CHANGES.md with implementation commit links, release notes, validation
+   records and source manifests to the tested
    revisions. Record the checked upstream SHAs, integrated common-kernel base,
    exclusions and reasons so the next agent does not repeat discovery. Include
    the ROM, recovery.img, correctly packaged vbmeta.img, recovery.tar,

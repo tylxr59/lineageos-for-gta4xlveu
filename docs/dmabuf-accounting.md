@@ -144,3 +144,26 @@ identical IDs for the iterator's real metadata field and the compiled typed
 helper's BTF ID entry. The guard correctly rejects the pre-rename bundle.
 The previous host-only bundle was never installed. The complete candidate with
 all repairs is now building separately; public release/feed remain unchanged.
+
+
+## Reusable host preflight
+
+The project now provides `tools/verify-kernel-btf.py`. Run it on the completed
+kernel output before signing/installing a BTF-enabled maintenance build:
+
+```sh
+python3 tools/verify-kernel-btf.py \
+  --kernel-source /path/to/android/kernel/samsung/gta4xlve \
+  --kernel-out /path/to/android/out/target/product/gta4xlveu/obj/KERNEL_OBJ \
+  --llvm-bin /path/to/android/prebuilts/clang/host/linux-x86/clang-r596125/bin \
+  --work-dir /path/to/workspace/artifacts/btf-check \
+  --output /path/to/workspace/artifacts/btf-check.json
+```
+
+Use the LLVM tools selected by that build's resolved manifest; update the example
+when its compiler changes. The tool reads the actual parser object/final ELF and
+kernel UAPI limits, writes metadata copies only under the chosen work directory,
+and fails closed on boundary/format/limit/typed-helper ambiguity. Checks remain
+active with Python optimization enabled. The actual final candidate passed; the
+saved obsolete-boundary kernel ELF is rejected even under `python3 -O`.
+This does not replace boot, real loader, accounting, stress or recovery checks.

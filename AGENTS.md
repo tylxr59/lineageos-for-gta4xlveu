@@ -387,3 +387,9 @@ metadata/typed-helper IDs; rejects pre-rename blob. Latest kernel candidate
 branchfix/los24-dmabuf-candidate now4c536a5bc; full ROM pipeline active separately.
 No device test yet for these repairs. Preserve rejected1d/1792935924, never flash
 it. Last verified installed remains thermal1792933707 with data/security intact.
+
+Use tools/verify-kernel-btf.py for every BTF-enabled kernel build before install.
+It checks actual object/ELF symbols, generated BTF against consumer limits, unique
+seq_file and actual iterator/helper BTF ID equality. Positive actual-kernel and
+negative obsolete-ELF checks passed; negative check still rejects under python-O.
+See dmabuf-accounting.md for invocation. Real boot/accounting tests still required.

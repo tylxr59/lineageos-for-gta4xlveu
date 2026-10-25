@@ -142,6 +142,9 @@ also passed, retaining the original pattern and data without wipe.
    manifest and target files. Sign with the existing private release identity,
    then generate the full OTA and matching recovery/vbmeta artifacts. Never
    create fresh keys as part of a routine update.
+   For a BTF-enabled kernel, run tools/verify-kernel-btf.py on its actual object
+   and ELF output before installation; see docs/dmabuf-accounting.md. Preserve
+   its result with the manifest, then still test the real Android loader.
 7. Verify device/version/timestamp metadata, signatures, certificate continuity,
    ZIP/AVB/VINTF results and checksums. Test recovery installation, Android boot,
    encrypted-data/pattern persistence, enforcing SELinux and the hardware smoke

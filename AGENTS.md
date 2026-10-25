@@ -393,3 +393,32 @@ It checks actual object/ELF symbols, generated BTF against consumer limits, uniq
 seq_file and actual iterator/helper BTF ID equality. Positive actual-kernel and
 negative obsolete-ELF checks passed; negative check still rejects under python-O.
 See dmabuf-accounting.md for invocation. Real boot/accounting tests still required.
+
+
+DMA-BUF newest checkpoint (2026-10-25): earlier candidate notes above are history.
+Signed1792944959 / kerneldc07aa16fd2eb4be6dea6a9a14d3385bcb663d3a is now installed
+and has working pinned iterator/accounting. Branch fix/los24-dmabuf-candidate
+(and fix/los24-dmabuf-jit) is pushed. Sources are candidate manifests
+dmabuf-jit-20261025.xml and dmabuf-jit-forks-20261025.xml, including Pixel thermal
+fixd4f83b6, devicef38d06f/vendor1c0a6f2 unchanged. Do not sync back to released
+three-fork pins without preserving this candidate. Public release/feed remain
+1792894491; no new publication requested. Read docs/dmabuf-accounting.md.
+
+The final ARM64 repair adapts upstream exception-table handling282b0b486 and
+user-address guardecf66a6f9, with actual-source host testsdc07aa16f. Full signed
+ROM/VINTF/BTF checks passed, no-wipe boot/data/security passed, live1024-buffer
+probe at1/17/4096/65536-byte chunks returned all owned inodes exactly once, ten
+concurrent scans/2667allocation-free ops and200early-close owned-resume tests
+passed with no owned buffers retained. Six accounting snapshots, live BTF/ELF
+equality, user-space perf functionality and no new observed faults/crashes passed.
+Owner confirmed pattern/setup, video, Wi-Fi, both cameras, speakers, S Pen,
+auto-rotate and File Transfer. No induced ARM64 data-abort test, long endurance,
+energy/memory reduction or blanket modern-BPF compatibility claim.
+
+Temporary probe removed; Rooted debugging disabled through official service and
+UID2000/settingfalse verified. Matching recovery/kernel/config and full boot/DTBO/
+recovery partition hashes passed; old vbmeta unchanged. Final recovery-menu Android return and
+owner unlock, data-marker persistence/security checks passed. Owned marker and
+temporary helpers removed; Rooted debugging off/UID2000 verified. Local evidence stays private
+under artifacts/dmabuf-jit-candidate-20261025/. Do not publish raw logs/helpers.
+TI audio remains paused; no factory calibration/gain/protection changes.

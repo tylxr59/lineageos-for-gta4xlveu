@@ -370,3 +370,30 @@ public bundle is byte-identical to the locally installed signed ROM. No further
 older-to-newer public Updater install was performed because the tablet already
 ran this exact timestamp. Earlier no-publication statements describe local-test
 history. Live source pins and feed now identify this release.
+
+
+## Locally tested DMA-BUF + thermal candidate (2026-10-25)
+
+Installed signed candidate **1792944959**, kernel **dc07aa16fd2e**, includes
+thermal empty-query fix **d4f83b6** and the DMA-BUF/BTF/ARM64 JIT repairs. Exact
+[resolved inputs](../manifests/candidates/dmabuf-jit-20261025.xml) and
+[fork pins](../manifests/candidates/dmabuf-jit-forks-20261025.xml) are separate
+from released manifests. Public release/feed remain **1792894491**.
+
+Full ROM/recovery build, strict VINTF with genuine kernel metadata, existing-key
+component/OTA signatures and actual embedded BTF checks passed. Signed no-wipe
+installation, Android boot, owner original pattern/setup and Wi-Fi, both cameras,
+speakers, S Pen, auto-rotate, video and Dolphin File Transfer passed. Live Android
+BPF loader pins the DMA-BUF iterator; framework/native accounting works. The
+1,024-buffer/four-read-size test, ten concurrent scans/2,667 allocation-free
+operations and 200 early-close cycles passed without retained owned buffers.
+Six follow-up samples and actual kernel BTF equality passed. No new observed
+kernel faults or crash-buffer entries; userspace perf recording works.
+
+The actual matching recovery booted with the exact config and full boot/DTBO/
+recovery hashes; prior vbmeta remains unchanged. Recovery-menu reboot, original
+unlock/data-file persistence, FBE, enforcing SELinux, UID2000, Rooted debugging
+off and empty crash buffer passed. Owned marker/probe/helpers removed. No new
+public HTTPS OTA install, fresh-install, long endurance, induced ARM64 fault or
+measured performance/battery improvement is claimed. See
+[DMA-BUF findings and rejected candidates](dmabuf-accounting.md).

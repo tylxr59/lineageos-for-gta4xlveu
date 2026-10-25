@@ -167,3 +167,79 @@ and fails closed on boundary/format/limit/typed-helper ambiguity. Checks remain
 active with Python optimization enabled. The actual final candidate passed; the
 saved obsolete-boundary kernel ELF is rejected even under `python3 -O`.
 This does not replace boot, real loader, accounting, stress or recovery checks.
+
+
+## Corrected BTF candidate: boots, JIT support still missing
+
+Signed candidate1792942729 (kernel4c536a5bc) passed full build, signatures,
+strict VINTF, embedded config/image and strengthened BTF checks, then a no-wipe
+installation and Android boot. The owner confirmed pattern/setup, Wi-Fi, both
+cameras, speakers, S Pen, auto-rotate and File Transfer. Encrypted data/test file,
+enforcing SELinux/CFI/KPTI and empty crash buffer passed. The live8,967,924-byte
+sysfs BTF blob exactly matches the final ELF. A bounded userspace simpleperf
+recording also passed after the perf tag rename. No speed comparison is claimed.
+
+The critical networking BPF loader now works. The optional DMA-BUF loader gets
+farther but fails with errno524 after ARM64 JIT logs `unknown opcode 39`.
+That is hex0x39: LDX + PROBE_MEM + DW, inserted by the verifier for a typed
+pointer read. This ARM64 backend lacks the fault-tolerant load/exception-table
+implementation. JIT_ALWAYS_ON stays enabled; disabling it or bypassing fault
+handling is not the fix. The iterator is not pinned and accounting is not fixed.
+Temporary Rooted debugging was used to capture diagnostics and compare BTF;
+the official service disabled it again. Cleanup rechecked UID2000/rootdebugfalse.
+The probe requiring a working iterator has not run yet; no fabricated pass.
+
+The corrected follow-up is built from:
+
+- [282b0b486](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/282b0b486): adapt upstream [ARM64 BPF exception tables](https://github.com/torvalds/linux/commit/800834285361dcf8e98b018e891df876472a4fac) to the existing JIT conventions.
+- [ecf66a6f9](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/ecf66a6f9): include the later [userspace-address rejection fix](https://github.com/torvalds/linux/commit/66e13b615a0ce76b785d780ecc9776ba71983629). ARM64 uses its full64-bit user boundary even for a compat loading task; the older backend has no PROBE_MEMSX.
+- [dc07aa16f](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/dc07aa16f): host tests extracting the actual fixup/builder/dispatch/validation functions and verifier guard generation statements.
+
+All four modified kernel objects compiled with the real Kbuild flags before the
+full build. Host ASan/UBSan fixtures passed124 destination-register/load-width
+cases, PC/zero-register behavior with flags/SP retained, table/range/count checks,
+ordinary non-BPF exception behavior and user/kernel/effective-offset/wrap/alias
+address guards. These are host logic tests, not real ARM64 execution or induced
+kernel data aborts. The dedicated JIT region, generic BPF exception lookup and
+CFI checks already exist in this tree and are retained. Full ROM, boot, actual
+loader/accounting/lifetime tests and recovery verification are still required.
+
+
+## Live accounting passed on the JIT candidate
+
+Signed candidate **1792944959**, kernel **dc07aa16fd2e**, passed the full ROM,
+strict VINTF, embedded config/BTF and signing checks, then a no-wipe installation
+and Android boot. Its exact inputs are
+[resolved candidate manifest](../manifests/candidates/dmabuf-jit-20261025.xml)
+and [four maintained forks](../manifests/candidates/dmabuf-jit-forks-20261025.xml).
+This includes the separately tested thermal fix; it does not include TI audio work.
+
+The real Android loader now pins the typed DMA-BUF iterator. Android's normal
+framework memory report and the native accounting consumer can read it. A
+temporary native probe allocated 1,024 system-heap buffers of 4 KiB each and
+verified their actual inode identities and sizes through the pinned iterator:
+
+- Read chunks of 1, 17, 4,096 and 65,536 bytes each returned every owned buffer exactly once.
+- Ten additional full scans retained every owned buffer during concurrent allocation/free (2,667 operations).
+- Two hundred early-close cycles deliberately closed while a subsequent owned buffer was retained as the reader's resume reference. After closing all allocation FDs, no owned buffer remained in the iterator.
+
+The owner confirmed existing pattern/setup and Wi-Fi, both cameras, speakers,
+S Pen, auto-rotate, video and File Transfer. This is functional accounting and
+bounded lifetime/concurrency evidence, not proof of a memory-usage or battery
+improvement, exhaustive stress coverage, or induced ARM64 kernel fault handling.
+Other optional BPF program failures inherited from the baseline are separate
+work; do not describe the kernel as supporting every modern BPF feature.
+
+Six follow-up accounting snapshots passed; live kernel BTF matches the built
+ELF. There were no new observed kernel faults or crash-buffer entries after the
+probe. A bounded userspace simpleperf recording passed (720 samples, none lost);
+this checks functionality, not performance. The temporary probe was removed and
+the official service disabled Rooted debugging, with ordinary UID2000 verified.
+
+The matching recovery booted; its actual kernel/config and full boot, DTBO and
+recovery partition hashes match the signed images. Original vbmeta is unchanged.
+The final recovery-menu return to Android passed, including the owner's usual
+unlock, encrypted-data/test-file persistence, enforcing SELinux, ordinary
+UID2000 and Rooted debugging off. Accounting remains readable after reboot.
+The owned data marker and all temporary helpers are removed.
+Public release/feed/source pins remain **1792894491**.

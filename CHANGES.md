@@ -42,8 +42,18 @@ and inherited type/string limits plus error propagation
 The parser-repair bundle passed host checks but was superseded before flashing.
 The next candidate also backports upstream's perf type-name disambiguation
 ([4c536a5bc](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/4c536a5bc))
-and requires iterator/helper type IDs to agree. It is rebuilding; no OTA was
-published.
+and requires iterator/helper type IDs to agree. Corrected candidate1792942729 passed build/signature/VINTF/host checks and a
+no-wipe boot with data/hardware intact. BTF setup worked, but DMA accounting
+was then blocked by missing ARM64 JIT probe-load support. The corrected candidate adds
+upstream exception handling ([282b0b486](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/282b0b486)),
+the later user-address guard ([ecf66a6f9](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/ecf66a6f9))
+and source-based host tests ([dc07aa16f](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/dc07aa16f)).
+Signed candidate **1792944959** now boots with working pinned DMA-BUF accounting.
+The live test found all 1,024 owned buffers exactly once at four read sizes,
+passed concurrent allocation/free and 200 early-close checks with no owned
+buffers retained. The owner confirmed setup and hardware smoke checks. Matching
+recovery/full partition hashes and final Android return, encrypted-data
+persistence and security/cleanup checks passed; Rooted debugging is off. No OTA was published.
 TI speaker processing remains an
 experiment, with no released audio tuning change.
 
@@ -121,6 +131,7 @@ features.
 
 | Change | Implementation commits |
 | --- | --- |
+| Add a reusable fail-closed BTF boundary/limit/iterator-helper identity preflight, including optimized-Python rejection checks. | [project `4444cd7`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/4444cd7) |
 | Add commit-linked release history and require future maintenance entries. | [project `b65fab2`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/b65fab2) |
 | Document exact upstream branches and the routine update workflow. | [project `e3037f0`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/e3037f0), [project `02aae54`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/02aae54) |
 | Audit TI speaker feedback and Dolby paths. The TI prototype sounded clearer, but production routing/lifecycle validation remains unfinished; Dolby mainly increased volume. Normal audio was restored. | [project `ff9eb2b`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/ff9eb2b), [project `71be255`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/71be255), [project `758bf6b`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/758bf6b) |

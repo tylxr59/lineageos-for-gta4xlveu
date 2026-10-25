@@ -319,3 +319,16 @@ it. TI IV-width/VBAT module0x1000fc00 rejection persists from the paused audio
 investigation; DMA-BUF iterator and fallback remain absent. Historical22:13–22:24
 watchdog DropBox entries belong to rejected1792893543, not the current boot.
 No device/source/OTA changes made by this audit; raw logs stay private.
+
+
+Current follow-up work is recorded in docs/runtime-fixes.md. Shared thermal fix
+uses new fourth fork tylxr59/android_hardware_google_pixel, branch
+fix/los24-thermal-empty-queries atd4f83b6 (base8bd3c71). Service compiled and all11
+standalone native tests passed as UID2000; installed HAL/release1792894491 stays
+unchanged. Full ROM build pending. Candidate overrides are separate from released
+pins. Workspace local manifest currently selects this candidate; do not overwrite
+it with tools/sync-source before preserving the work. DMA-BUF BPF/BTF experiment
+is in an isolated kernel worktree/output, not the main kernel source/output or
+release. No live audio changes or new publication. Temporary test files removed,
+Rooted debugging remained off. User's overnight report100→97 includes30minYouTube;
+duration not supplied, no measured suspend/energy proof or ROM battery-gain claim.

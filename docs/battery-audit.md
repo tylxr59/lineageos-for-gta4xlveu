@@ -50,3 +50,14 @@ Use percentage/time and suspend evidence as the primary comparisons. The
 fuel-gauge charge-counter implementation derives a value from configured
 capacity and raw SOC; software power estimates are not laboratory measurements
 of physical capacity, battery health or individual component consumption.
+
+
+## Owner follow-up report (2026-10-25)
+
+On release1792894491, the owner reports starting at100%, playing YouTube for
+about30 minutes, force-stopping YouTube, and waking to97%. Exact overnight hours
+and start/end diagnostics were not supplied. This is3 percentage points combined
+playback/standby, substantially better than the earlier confounded100→70 report.
+It supports background workload as the earlier cause, but does not isolate
+standby energy, prove deep suspend or establish a measured ROM power improvement.
+No power/governor tuning was made in response.

@@ -334,3 +334,30 @@ identified thermal-framework integration and launch-bandwidth hint issues plus
 compatibility/tuning follow-ups. These are investigation findings, not new
 performance or hardware pass results. Release1792876959 and its OTA assets are
 unchanged; no settings, root mode or ROM were modified during that review.
+
+
+## Performance follow-up local candidate1792894491
+
+Device f38d06f8845b55cf1011445b0b64aa4411c3fc14; kernel0c5ccf4fc/vendor1c0a6f2
+unchanged. Exact source: manifests/candidates/performance-startup-fix-20261024.xml.
+Signed ROM SHA256:
+`a8fee3b61b96d8cb087401a00aa2e1888b1436b732f5852d8ca4489bf01d0199`.
+Recovery SHA256:
+`2c4d23d7e17094289c728bd3434cabe7183e96acdd2f4d44c20acb5a841b78ed`.
+Boot/DTBO remain byte-identical to public1792876959. Full live partition hashes
+matched, and original vbmeta95bafe991ff7875d… remained unchanged.
+
+Full build/strict VINTF, existing-key APK/APEX/AVB/whole-OTA signatures, signed
+no-wipe installation, Android boot and recovery round trip passed. Owner confirmed
+usual pattern/setup, Wi-Fi, both cameras, speakers, S Pen, auto-rotate and Dolphin
+File Transfer. Final unlocked data/checksum, FBE, enforcing SELinux, actual kernel
+config, UID2000, Rooted debugging off and empty crash buffer passed. Standard
+thermal AIDL HAL reports four CPU/GPU/battery readings; repeated samples, raw-unit
+scaling, thresholds and listener registration checked. No induced-hot callback,
+calibrated skin/headroom or battery-endurance certification. Small Settings
+startup samples showed no meaningful speed change. See the performance audit.
+
+Predecessor1792893543 is rejected: thermal init scheduled after boot completion
+blocked framework boot waiting for declared IThermal. Corrected on-boot startup
+is hardware-tested above. All temporary marker/Perfetto files were removed.
+No public OTA release/feed advancement was requested or performed.

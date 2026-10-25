@@ -227,3 +227,43 @@ Device f38d06f moves the explicit service start to `on boot`, after post-fs-data
 and before the framework wait. The corrected archive check now validates the
 actual init action, rather than merely the presence of a start command. A full
 replacement package is rebuilding; no wipe or vbmeta change is involved.
+
+
+### Corrected signed Android test
+
+Corrected build1792894491, device f38d06f, passed signed no-wipe installation and
+Android boot. The owner confirmed the original pattern, setup, Wi-Fi, both
+cameras, speakers, S Pen, auto-rotate and Dolphin File Transfer. The saved marker
+checksum persisted; file encryption, enforcing SELinux, release keys, unchanged
+kernel/config, normal ADB and Rooted debugging off passed. Crash buffer was empty.
+
+Framework thermal feedback is now working: AIDL HAL ready, four CPU/GPU/battery
+temperatures, threshold queries and registered listeners. Three samples over
+12 seconds returned plausible readings; raw millidegree sysfs values confirmed
+Celsius scaling. Captured boot logs contained no thermal-domain denials/fatal
+errors. No induced-hot callback test, calibrated skin/headroom model or battery
+endurance validation is claimed; headroom thresholds remain NaN.
+
+Two candidate cold Settings launches measured693.94/699.44ms, similar to the
+718.45/694.13ms baseline. This does not demonstrate a meaningful general speed
+improvement. No new LLCC write errors appeared during the launch trace; source
+requests the observed supported maximum8136. FrameTimeline attribution was absent.
+Matching recovery boot and full boot/DTBO/recovery partition hashes passed;
+the original vbmeta is unchanged. The final recovery-menu Android return and unlocked-data/security checks
+also passed. The public release and OTA feed remain1792876959.
+
+
+The thermal process used0.03 CPU seconds during a60.08-second observation
+(0.05% of one CPU), without restarting. This short, charging observation during
+owner checks is not an idle power/battery endurance result. BPF capability
+coverage, DMA-BUF accounting interfaces and controlled graphics comparisons
+remain separate unresolved work; no speculative kernel/backpressure change was
+included in this tested candidate.
+
+
+Final return repeated HAL-ready/four-reading checks and retained the saved marker
+checksum, enforcing SELinux, encrypted unlocked data, normal ADB, disabled Rooted
+debugging and an empty crash buffer. The owned marker and Perfetto configuration
+were removed; both owned on-device trace paths are absent. No persistent logger,
+app-root or new public release was added. This is a tested local candidate;
+public release/feed1792876959 remains unchanged.

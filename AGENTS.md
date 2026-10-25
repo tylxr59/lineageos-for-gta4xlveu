@@ -273,3 +273,17 @@ Thermal startup permission queries passed using Android libsepol, but inherited
 Qualcomm policy already permits thermal sysfs writes; the reporting-only boundary
 is configuration/code behavior, not a full-policy write prohibition. Public feed
 remains1792876959. Owner authorized no-wipe local correction/testing.
+
+
+Latest tested installation is now **1792894491**, device **f38d06f**, kernel/vendor
+unchanged from public1792876959. Manifest:
+`manifests/candidates/performance-startup-fix-20261024.xml`. Full corrected build,
+existing-key signing, signed no-wipe installation, owner pattern/setup/hardware
+(including rotate and Dolphin MTP), standard thermal HAL/four readings, matching
+recovery/full partition hashes and final recovery-menu Android return passed.
+FBE/enforcing SELinux/normal ADB/Rooted debugging off, retained marker checksum
+and empty crash buffer passed. Owned marker/Perfetto configuration/traces cleaned.
+Public resolved/fork pins and feed deliberately remain release1792876959; this
+local test authorization does not authorize publication. Earlier1792893543 is
+rejected for the startup cycle. No general launch-speed or battery gain claimed;
+headroom/skin calibration, BPF capabilities, DMA-BUF and graphics work remain.

@@ -7,8 +7,8 @@ matches the signed target files. This is a focused audit, not a full CVE,
 CTS/VTS or penetration-test certification. Official-device submission is not
 the owner's goal; priorities here are safe, useful Android behavior on SM-P613.
 
-No ROM source, image, sysctl or persistent tuning changed. No build, install,
-flash or reboot. Temporary Rooted debugging was used only for inspection and
+No ROM source, image, sysctl or persistent tuning changed. No ROM build, installation,
+flashing or reboot. Temporary Rooted debugging was used only for inspection and
 restored off through the official service. Temporary native catalog clients
 were removed; their crash records were deliberately preserved as evidence.
 Raw logs, policy/process snapshots and reproducer details remain private.

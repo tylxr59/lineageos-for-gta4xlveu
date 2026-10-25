@@ -449,3 +449,19 @@ probe, owner hardware/pattern/data checks and matching recovery round trip passe
 as documented above. Final boot/UID2000/rootdebugfalse checks passed. Existing
 keys/rollback assets unchanged; no app-root/logger/audio experiments included.
 Earlier no-publication/pending statements are historical. See CHANGES/testing.
+
+
+## Active Bluetooth media fix (2026-10-25)
+
+Owner's first real AirPods Pro2 audio test exposed connected A2DP/AAC but no
+media route: policy rejects adding A2DP, output stays on speakers. Read
+docs/bluetooth-audio.md. Device branch fix/los24-bluetooth-audio at038bb20 adds
+AOSP android.hardware.bluetooth.audio-impl + automatic VINTF fragment. Existing
+audio service loads it; legacy session utilities already bridge AIDL. No root
+enabled or device settings changed during diagnosis. Full signed pipeline
+los24-bluetooth-candidate.service active; logs/bluetooth-airpods-build.log and
+artifacts/bluetooth-airpods-20261025/progress.json are actual state. No automatic
+installation in pipeline. Follow signing/host/no-wipe/audio tests before claiming
+fix. Current installed/public release1792944959 and livefeed unchanged; no new
+publication request. Local manifest selects candidate device038bb20, preserves
+kerneldc07aa16f/Pixeld4f83b6/vendor1c0a6f2. TI audio remains paused.

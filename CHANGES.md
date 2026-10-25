@@ -12,7 +12,9 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
-No additional changes staged.
+| Change | Implementation commit |
+| --- | --- |
+| Include the AOSP AIDL Bluetooth audio provider and its VINTF fragment so the stack can discover a media audio service. Candidate building; hardware validation pending. | [device `038bb20`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/038bb20) |
 
 ## 2026-10-25 — DMA-BUF accounting and thermal queries
 

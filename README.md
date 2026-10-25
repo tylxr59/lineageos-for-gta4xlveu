@@ -14,12 +14,12 @@ and the update feed. The device, kernel, and vendor sources live in the
 
 ## Downloads
 
-**[Download the 2026-10-24 USB and hardening update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792876959)** — LineageOS 24.0 / Android 17,
-security patch **2026-10-01**. This update fixes USB File Transfer and duplicate
-ADB interfaces, enables kernel page-table isolation, restores build/vendor checks
-and corrects targeted SELinux labels. It retains the previous upstream LineageOS,
-Wi-Fi tablet and UI/app improvements. Signed installation and recovery tests
-preserved the original unlock pattern, setup and data.
+**[Download the thermal reporting and launch-hint update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792894491)** — LineageOS 24.0 / Android 17,
+security patch **2026-10-01**, build **1792894491**. This update restores Android
+thermal feedback, fixes a rejected launch-boost request and removes obsolete
+settings. It retains the USB File Transfer fix, hardened kernel and Wi-Fi tablet
+improvements. Signed installation and recovery tests preserved the original
+unlock pattern, setup and data. No general speed or battery gain is claimed.
 Do not install images intended for the 2020 Exynos SM-P610/P615 or
 LTE SM-P619.
 

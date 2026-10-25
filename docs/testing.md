@@ -336,7 +336,7 @@ performance or hardware pass results. Release1792876959 and its OTA assets are
 unchanged; no settings, root mode or ROM were modified during that review.
 
 
-## Performance follow-up local candidate1792894491
+## Thermal and launch-hint release1792894491
 
 Device f38d06f8845b55cf1011445b0b64aa4411c3fc14; kernel0c5ccf4fc/vendor1c0a6f2
 unchanged. Exact source: manifests/candidates/performance-startup-fix-20261024.xml.
@@ -361,3 +361,12 @@ Predecessor1792893543 is rejected: thermal init scheduled after boot completion
 blocked framework boot waiting for declared IThermal. Corrected on-boot startup
 is hardware-tested above. All temporary marker/Perfetto files were removed.
 No public OTA release/feed advancement was requested or performed.
+
+
+The owner subsequently authorized [publication of1792894491](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792894491). All12
+public asset sizes and SHA256 digests, a fresh downloaded ROM/checksum file, and
+the canonical five-entry HTTPS feed fetched by host and tablet matched. The
+public bundle is byte-identical to the locally installed signed ROM. No further
+older-to-newer public Updater install was performed because the tablet already
+ran this exact timestamp. Earlier no-publication statements describe local-test
+history. Live source pins and feed now identify this release.

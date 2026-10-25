@@ -137,7 +137,7 @@ A fresh download of the public ROM ZIP matched the tested bundle SHA256. The
 tablet also fetched the canonical three-entry HTTPS feed successfully.
 
 
-## Current USB and hardening release
+## Previous USB and hardening release
 
 [Build 1792876959](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792876959) publishes the exact signed, locally tested USB/hardening
 build with the existing signing identity. All 12 public assets, downloaded ROM
@@ -145,3 +145,14 @@ and checksums, and canonical four-entry HTTPS feed matched the tested bundle.
 Source manifests pin device02b4ef7, kernel0c5ccf4fc and vendor1c0a6f2.
 The tablet already ran this build before publication, so no separate
 older-to-newer public Updater installation is claimed. See [testing](testing.md).
+
+
+## Current thermal and launch-hint release
+
+[Build1792894491](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792894491) publishes the exact signed, locally tested thermal and
+launch-hint update with the same persistent identity. All12 public assets,
+freshly downloaded ROM/checksums and canonical five-entry HTTPS feed matched.
+The tablet fetched the canonical feed too. Source manifests pin devicef38d06f,
+kernel0c5ccf4fc and vendor1c0a6f2. The tablet already ran this build, so no new
+older-to-newer public Updater installation is claimed. See [testing](testing.md)
+and [performance findings](performance-followup-audit.md).

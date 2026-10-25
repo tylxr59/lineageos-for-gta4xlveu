@@ -29,8 +29,8 @@ branches should remain intact; use maintained work branches in the source forks.
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
 `manifests/resolved.xml` pins the current privately signed, hardware-tested
-source: device `02b4ef7`, kernel `0c5ccf4fc`, vendor `1c0a6f2`. Current public
-release is `1792876959`; its exact candidate manifest is retained separately.
+source: device `f38d06f`, kernel `0c5ccf4fc`, vendor `1c0a6f2`. Current public
+release is `1792894491`; its exact candidate manifest is retained separately.
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
 proof separate from advertised public HTTPS OTA download/install evidence.
@@ -208,7 +208,7 @@ recovery payload/updater target matches its signed recovery and live partition.
 A pending sideload-auto-reboot request can show No command while ADB is already
 in sideload mode; inspect USB/ADB state before another bootloader restore.
 
-## Current USB and hardening release 1792876959
+## Previous USB and hardening release 1792876959
 
 Read docs/usb-mtp-audit.md before USB init changes. Release 1792876959 uses
 manifest manifests/candidates/usb-mtp-20261024.xml: device02b4ef7, kernel0c5ccf4fc,
@@ -295,3 +295,17 @@ The exact signed local-test bundle is being packaged; live feed remains179287695
 until all release assets upload successfully. Do not rebuild or publish rejected
 1792893543. Check actual release/feed state and local publish progress before
 retrying any publication command.
+
+
+## Published thermal and launch-hint release1792894491
+
+The owner authorized publication. [Release1792894491](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792894491) now includes the
+exact signed/hardware-tested local candidate; resolved/fork manifests and live
+feed match devicef38d06f, kernel0c5ccf4fc, vendor1c0a6f2. All12 public asset sizes/
+SHA256 digests, downloaded checksums/ROM and canonical five-entry HTTPS feed from
+both host and tablet matched. The tablet already ran this timestamp; no new
+older-to-newer public Updater installation is claimed. Earlier local no-wipe,
+owner hardware/pattern/data and matching recovery/full partition hashes passed.
+No new keys, logger or app-root. Rooted debugging remains off. See testing and
+performance audit for limits, including no demonstrated speed/battery gain.
+The earlier no-publication sections above record historical authorization states.

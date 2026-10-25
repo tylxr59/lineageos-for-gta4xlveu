@@ -267,3 +267,14 @@ debugging and an empty crash buffer. The owned marker and Perfetto configuration
 were removed; both owned on-device trace paths are absent. No persistent logger,
 app-root or new public release was added. This is a tested local candidate;
 public release/feed1792876959 remains unchanged.
+
+
+## Published release1792894491
+
+The owner subsequently requested publication. [The public release](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792894491) is the
+exact tested signed1792894491 bundle described above, not the rejected
+1792893543 image. All12 asset sizes and GitHub SHA256 digests, downloaded ROM and
+checksums, and the canonical five-entry HTTPS feed on host/tablet matched.
+Resolved/fork manifests pin the tested source. The tablet already ran this build;
+no additional older-to-newer public Updater installation is claimed. Previous
+references to unchanged public pins/feed describe the earlier local-test stage.

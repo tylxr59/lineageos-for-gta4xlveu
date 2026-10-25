@@ -4,9 +4,9 @@
   <remote name="github" fetch=".." review="review.lineageos.org"/>
   <remote name="los24-forks" fetch="https://github.com/"/>
   <remote name="private" fetch="ssh://git@github.com"/>
-  
+
   <default remote="github" revision="refs/heads/lineage-24.0" sync-j="4" sync-c="true"/>
-  
+
   <project name="LineageOS/android" path="android" revision="b51a0c449a3279ca55fb6d4d91d2143e42e2fff5" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0"/>
   <project name="LineageOS/android_art" path="art" revision="747707d6ce1c145f2249f120c692e0aeb2b8a257" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk"/>
   <project name="LineageOS/android_bionic" path="bionic" revision="ff3bb041547924ac1a7504e4b3bd3ea18169ca2f" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk"/>
@@ -1278,6 +1278,6 @@
   <project name="tylxr59/android_hardware_google_pixel" path="hardware/google/pixel" remote="los24-forks" revision="d4f83b63e6f03bfeb7e903c11f689fca9d65788b" upstream="fix/los24-thermal-empty-queries" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="dc07aa16fd2eb4be6dea6a9a14d3385bcb663d3a" upstream="fix/los24-dmabuf-candidate" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_vendor_samsung_gta4xlveu" path="vendor/samsung/gta4xlveu" remote="los24-forks" revision="1c0a6f2cb802bc9f15e5b53ceb00ab7caefc8695" upstream="fix/los24-hardening" groups="local::gta4xlveu"/>
-  
+
   <contactinfo bugurl="go/repo-bug"/>
 </manifest>

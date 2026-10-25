@@ -12,9 +12,15 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
+No additional changes staged.
+
+## 2026-10-25 — Bluetooth media audio
+
+[Release 1792961358](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792961358) · Android 17 / LineageOS 24.0
+
 | Change | Implementation commit |
 | --- | --- |
-| Include the AOSP AIDL Bluetooth audio provider and its VINTF fragment so the stack can discover a media audio service. Signed local candidate1792961358 plays AAC through AirPods Pro2, reconnects and falls back to speakers with separate volumes. Matching recovery/full partition hashes and final Android/data/security/cleanup passed. Rooted debugging remained off. Not published. | [device `038bb20`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/038bb20) |
+| Include the AOSP AIDL Bluetooth audio provider and its VINTF fragment so the stack can discover a media audio service. Signed local candidate1792961358 plays AAC through AirPods Pro2, reconnects and falls back to speakers with separate volumes. Matching recovery/full partition hashes and final Android/data/security/cleanup passed. Rooted debugging remained off. All 12 public assets and the seven-entry HTTPS feed were verified, including a fresh ROM download. | [device `038bb20`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/038bb20) |
 
 ## 2026-10-25 — DMA-BUF accounting and thermal queries
 

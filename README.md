@@ -16,12 +16,12 @@ See [CHANGES.md](CHANGES.md) for release changes and their source commits.
 
 ## Downloads
 
-**[Download the DMA-BUF accounting and thermal-query update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792944959)** — LineageOS 24.0 / Android 17,
-security patch **2026-10-01**, build **1792944959**. This update fixes shared
-buffer memory accounting and thermal API queries for absent sensors. It retains
-USB File Transfer, the hardened kernel and Wi-Fi tablet improvements. Signed
-installation and recovery tests preserved the original pattern, setup and data.
-No general performance or battery gain is claimed.
+**[Download the Bluetooth audio fix](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792961358)** — LineageOS 24.0 / Android 17,
+security patch **2026-10-01**, build **1792961358**. This update fixes Bluetooth
+media routing, tested with AirPods Pro 2. Playback, reconnecting, switching back
+to speakers and separate device volume levels work. It retains the DMA-BUF,
+thermal, USB and Wi-Fi tablet improvements. Signed no-wipe installation and
+recovery checks preserved the original unlock, setup and data.
 Do not install images intended for the 2020 Exynos SM-P610/P615 or
 LTE SM-P619.
 

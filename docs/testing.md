@@ -29,7 +29,7 @@ The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 | Speakers | Owner playback smoke test passed |
 | S Pen | Owner writing/hover smoke test passed; pressure-level accuracy untested |
 | Crash buffer | Empty after ordinary build boot; not an endurance test |
-| Bluetooth audio | Released1792944959 pairs but fails media routing. Local1792961358 fixes AirPods Pro2 AAC playback/reconnect/speaker fallback; see [Bluetooth findings](bluetooth-audio.md). |
+| Bluetooth audio | Release1792961358: AirPods Pro2 AAC playback, reconnect, speaker fallback and separate volumes passed. Microphone/calls/other headsets untested; see [Bluetooth findings](bluetooth-audio.md). |
 | Deep suspend / battery endurance | Initial overnight confounded by background media; controlled baseline pending ([audit](battery-audit.md)) |
 | microSD | Untested |
 | Credential-protected encryption after update/reboot | Original pattern unlock and saved-file checksum passed on corrected signed build |
@@ -434,3 +434,16 @@ passed, prior vbmeta unchanged. Final recovery-menu Android return/owner unlock,
 data/test-file persistence, setup flags, FBE, enforcing SELinux, normal UID2000
 and Rooted debugging off passed. Owned test marker removed; no root was needed.
 Public release/feed remain1792944959; no new OTA publication requested.
+
+
+## Published Bluetooth media update1792961358
+
+The owner authorized [publication](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792961358) of the exact signed locally tested
+1792961358 bundle. All12 public asset sizes/GitHub SHA256 digests, downloaded
+ROM/checksum file and canonical seven-entry HTTPS feed fetched by host/tablet
+matched. Released manifests pin device038bb20, kerneldc07aa16f, vendor1c0a6f2
+and Pixeld4f83b6. Earlier unchanged-feed/no-publication statements describe the
+local-test stage. The tablet already ran this timestamp, so no additional
+older-to-newer public Updater installation is claimed. Actual signed no-wipe,
+AirPods playback/switch/reconnect and recovery/data/security checks passed
+separately. Rooted debugging remains off; existing signing identity unchanged.

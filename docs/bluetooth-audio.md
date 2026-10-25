@@ -18,7 +18,7 @@ from the declared list. The audio service deliberately supports loading
 provider; this library also installs its VINTF fragment. Existing Bluetooth audio
 session utilities bridge the legacy audio HAL to AIDL sessions.
 
-## Candidate1792961358: media playback verified
+## Release1792961358: media playback verified
 
 [Device038bb20](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/038bb20)
 adds the existing AOSP `android.hardware.bluetooth.audio-impl` package. No new
@@ -50,7 +50,8 @@ and empty crash buffer passed; the provider remains registered after reboot.
 The owned persistence marker is removed. No temporary app, logger, audio
 override or root helper was installed. Rooted debugging stayed off throughout.
 SCO microphone/call audio and other headsets/codecs need separate evidence.
-The public release/feed remain1792944959; no new release requested.
+The owner subsequently authorized publication of1792961358; public source pins
+and feed now match this tested build.
 
 
 ## Comparison with maintained LineageOS device integration
@@ -60,3 +61,16 @@ The same AOSP provider package is included by LineageOS
 and [Pixel4/coral](https://github.com/LineageOS/android_device_google_coral/blob/lineage-23.2/device-common.mk)
 on lineage-23.2. This supports the integration choice; it does not replace
 SM-P613 build and actual playback tests or establish identical vendor stacks.
+
+
+## Published Bluetooth media update1792961358
+
+The owner authorized [publication](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792961358) of the exact signed locally tested
+1792961358 bundle. All12 public asset sizes/GitHub SHA256 digests, downloaded
+ROM/checksum file and canonical seven-entry HTTPS feed fetched by host/tablet
+matched. Released manifests pin device038bb20, kerneldc07aa16f, vendor1c0a6f2
+and Pixeld4f83b6. Earlier unchanged-feed/no-publication statements describe the
+local-test stage. The tablet already ran this timestamp, so no additional
+older-to-newer public Updater installation is claimed. Actual signed no-wipe,
+AirPods playback/switch/reconnect and recovery/data/security checks passed
+separately. Rooted debugging remains off; existing signing identity unchanged.

@@ -168,3 +168,16 @@ Pixel d4f83b6, device f38d06f and vendor1c0a6f2. Earlier unchanged-feed statemen
 record the local-test stage. The tablet already ran this timestamp; no additional
 older-to-newer public Updater installation is claimed. Local signed no-wipe,
 data/hardware/accounting and matching recovery checks passed separately.
+
+
+## Published Bluetooth media update1792961358
+
+The owner authorized [publication](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792961358) of the exact signed locally tested
+1792961358 bundle. All12 public asset sizes/GitHub SHA256 digests, downloaded
+ROM/checksum file and canonical seven-entry HTTPS feed fetched by host/tablet
+matched. Released manifests pin device038bb20, kerneldc07aa16f, vendor1c0a6f2
+and Pixeld4f83b6. Earlier unchanged-feed/no-publication statements describe the
+local-test stage. The tablet already ran this timestamp, so no additional
+older-to-newer public Updater installation is claimed. Actual signed no-wipe,
+AirPods playback/switch/reconnect and recovery/data/security checks passed
+separately. Rooted debugging remains off; existing signing identity unchanged.

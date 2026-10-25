@@ -29,9 +29,8 @@ branches should remain intact; use maintained work branches in the source forks.
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
 `manifests/resolved.xml` pins the current privately signed, hardware-tested
-source prepared for authorized release1792961358: device `038bb20`, kernel
-`dc07aa16f`, vendor `1c0a6f2`, Pixel `d4f83b6`. Public feed stays1792944959
-until assets upload successfully. Inspect actual release/feed state on retry.
+source: device `038bb20`, kernel `dc07aa16f`, vendor `1c0a6f2`, Pixel `d4f83b6`.
+Current public release is **1792961358**, with matching resolved/fork pins and feed.
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
 proof separate from advertised public HTTPS OTA download/install evidence.
@@ -487,3 +486,21 @@ Owner authorized publishing tested Bluetooth candidate1792961358. Exact tested
 bundle prepared under artifacts/bluetooth-release-20261025; source pins prepared,
 live feed remains1792944959 until successful asset upload. Preserve releases
 and inspect actual remote state before retrying publisher.
+
+
+## Published Bluetooth media release1792961358
+
+Owner authorized publication. [Release1792961358](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792961358) contains the exact
+signed installed/tested ROM, SHA256
+422a5e58b584c5855b6d66683763b8387efae0ae32ecb201a90fc0d025e9bef6.
+All12 public asset sizes/GitHubSHA256, freshly downloaded ROM/checksums and
+canonical seven-entry HTTPS feed on host/tablet passed. All1242source pins
+compared with prior1792944959: only device038bb20 differs. Four maintained
+forks retained; device branch now fix/los24-bluetooth-audio. Full no-wipe local
+install, owner AirPods AAC/speaker fallback/volume/reconnect, recovery/full
+partition hashes and final Android/data/security checks passed as documented.
+Final provider/boot/UID2000/rootdebugOFF checks passed. Existing keys/backups and
+rollback releases unchanged. No new public older-to-newer Updater install was
+repeated because tablet already ran this exact timestamp. No fresh vbmeta flash,
+SCO mic/other-headset/codec/endurance proof. Earlier pending/no-publication notes
+are historical. See Bluetooth findings, testing and CHANGES for implementation.

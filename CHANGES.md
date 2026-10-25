@@ -147,6 +147,7 @@ features.
 
 | Change | Implementation commits |
 | --- | --- |
+| Audit remaining compatibility/security gaps against release1792961358; reproduce codec-catalog teardown failure and wakelock BPF instruction mismatch; consolidate the current test overview. No ROM change. | [project `8a69758`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/8a69758) |
 | Add a reusable fail-closed BTF boundary/limit/iterator-helper identity preflight, including optimized-Python rejection checks. | [project `4444cd7`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/4444cd7) |
 | Add commit-linked release history and require future maintenance entries. | [project `b65fab2`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/b65fab2) |
 | Document exact upstream branches and the routine update workflow. | [project `e3037f0`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/e3037f0), [project `02aae54`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/02aae54) |

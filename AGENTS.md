@@ -321,19 +321,29 @@ watchdog DropBox entries belong to rejected1792893543, not the current boot.
 No device/source/OTA changes made by this audit; raw logs stay private.
 
 
-Current follow-up work is recorded in docs/runtime-fixes.md. Shared thermal fix
-uses new fourth fork tylxr59/android_hardware_google_pixel, branch
-fix/los24-thermal-empty-queries atd4f83b6 (base8bd3c71). Service compiled and all11
-standalone native tests passed as UID2000; installed HAL/release1792894491 stays
-unchanged. Clean full ROM1792933707 built and signed; host VINTF, OTA/component
-signatures and embedded recovery/update digest checks passed. Not installed.
-Candidate overrides are separate from released
-pins. Workspace local manifest currently selects this candidate; do not overwrite
-it with tools/sync-source before preserving the work. DMA-BUF BPF/BTF experiment
-is in an isolated kernel worktree/output, not the main kernel source/output or
-release. No live audio changes or new publication. Temporary test files removed,
-Rooted debugging remained off. User's overnight report100→97 includes30minYouTube;
-duration not supplied, no measured suspend/energy proof or ROM battery-gain claim.
+Current runtime follow-up: read docs/runtime-fixes.md and CHANGES.md. Installed
+signed candidate1792933707 is NOT public; release/feed still1792894491. New fourth
+fork tylxr59/android_hardware_google_pixel, fix/los24-thermal-empty-queries,
+d4f83b6 based on released8bd3c71. All11 native tests, clean full ROM/strict VINTF,
+persistent-key signatures, no-wipe sideload, owner pattern/setup/hardware tests,
+live thermal queries, matching recovery/full partition hashes and recovery-menu
+Android return passed. Only the Pixel project changes from the released resolved
+manifest; kernel/DTBO identical, original vbmeta unchanged. No thermal query
+exceptions or crashes observed, no fabricated skin/cooling. Rooted debugging off,
+UID2000, temporary native tests and data marker removed. See candidate manifests
+runtime-fixes-20261025.xml and runtime-fixes-forks-20261025.xml. Workspace local
+manifest selects this candidate; preserve before any sync-source overwrite.
+
+The isolated kernel branch wip/los24-dmabuf-iterator at423e21526 adds optional
+DMA-BUF iteration plus BTF host-tool repairs bbac598e2 and conditional ID fix
+2756333ec. Two Image builds passed, including source-integrated host tooling;
+duplicate-name regression/missing-BTF negative tests passed. BTF kinds1–15 and
+DMA-BUF ID verified. Default-off, NOT in installed thermal ROM or release pins.
+No kernel boot, CO-RE loader, accounting/stress/suspend/performance proof yet.
+TI audio source review found unowned-mux cleanup risk in the saved prototype;
+no live audio changes. Keep factory calibration/gain/protection untouched.
+User overnight report100→97 included30minYouTube; exact duration not supplied,
+no measured suspend/energy proof or ROM battery-gain claim.
 
 Maintain CHANGES.md with links to implementation commits in the relevant forks
 and project tooling. Keep uninstalled work under Unreleased; promote entries only

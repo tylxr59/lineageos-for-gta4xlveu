@@ -17,11 +17,19 @@ certification. Published releases are immutable; fixes appear in new builds.
 | Return successful empty thermal API results for absent sensor/cooling types; preserve real read failures. Repair the native test entry point and add regression tests. | [pixel `d4f83b6`](https://github.com/tylxr59/android_hardware_google_pixel/commit/d4f83b6) |
 
 The thermal service and full ROM compile, signing/host checks pass, and all 11
-standalone native tests passed on the tablet. The patched ROM has **not been
-installed**; the installed/public build remains 1792894491. Candidate sources
-are separate from release manifests. See [runtime fixes](docs/runtime-fixes.md).
-DMA-BUF/BTF kernel work and TI speaker processing remain experiments, with no
-released implementation or audio tuning change.
+standalone native tests passed on the tablet. Signed candidate **1792933707**
+passed a no-wipe installation, live thermal queries, owner pattern/setup/hardware
+checks, matching recovery/full partition hashes, and the final recovery-to-Android
+return with encrypted data intact. The **public release remains 1792894491**; candidate
+sources are separate from release manifests. See [runtime fixes](docs/runtime-fixes.md).
+The opt-in DMA-BUF/BTF kernel experiment is saved on
+`wip/los24-dmabuf-iterator`: [host BTF resolver/build repair `bbac598e2`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/bbac598e2),
+[conditional fault-injection BTF IDs `2756333ec`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/2756333ec),
+and [DMA-BUF iterator `423e21526`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/423e21526).
+Both the initial isolated kernel image and the build using committed host-tool
+rules compiled successfully. These changes are not enabled in a released kernel and are excluded
+from the thermal candidate. TI speaker processing remains an experiment, with
+no released audio tuning change.
 
 ## 2026-10-24 — Thermal reporting and launch hints
 
@@ -97,6 +105,7 @@ features.
 
 | Change | Implementation commits |
 | --- | --- |
+| Add commit-linked release history and require future maintenance entries. | [project `b65fab2`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/b65fab2) |
 | Document exact upstream branches and the routine update workflow. | [project `e3037f0`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/e3037f0), [project `02aae54`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/02aae54) |
 | Audit TI speaker feedback and Dolby paths. The TI prototype sounded clearer, but production routing/lifecycle validation remains unfinished; Dolby mainly increased volume. Normal audio was restored. | [project `ff9eb2b`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/ff9eb2b), [project `71be255`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/71be255), [project `758bf6b`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/758bf6b) |
 | Record the battery test protocol and runtime-log audit. | [project `7b2c0c9`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/7b2c0c9), [project `a0116a0`](https://github.com/tylxr59/lineageos-for-gta4xlveu/commit/a0116a0) |

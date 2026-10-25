@@ -188,3 +188,42 @@ The earlier72a336a build also passed, but is superseded and must not be installe
 The [final candidate manifest](../manifests/candidates/performance-followup-20261024.xml)
 keeps all1,242 paths and changes only the device project from the public release.
 No new public OTA publication is authorized by this test request.
+
+
+### Signed local candidate verification
+
+Build1792893543 (device d61cc85) passed full target-files/recovery compilation,
+strict VINTF, kernel/config and permissive-domain checks. Existing-key APK/APEX,
+recovery trust, AVB and whole-file OTA signature verification passed. Boot and
+DTBO remain byte-identical to release1792876959; the vendor recovery payload
+and automatic updater target match the new signed recovery. Signed no-wipe
+sideload transfer completed; Android/runtime validation is pending. No public
+release or feed change has been made.
+
+Source-matched compiled-policy queries confirm the thermal startup Power/IStats
+Binder and scoped-property access. The inherited Qualcomm thermal domain already
+has thermal sysfs write permission. This candidate adds read rules, but the full
+policy does **not** prohibit writes. Its reporting-only behavior depends on the
+reviewed configuration and upstream code paths (unmonitored physical sensors,
+no trigger/severity references, no cooling devices), rather than an assumed
+SELinux write barrier. An older host libsepol could not parse the Android policy;
+queries were repeated using Android's matching libsepol instead.
+
+The unlocked baseline trace yielded two cold Settings starts (718.45/694.13ms).
+No attributable Settings FrameTimeline rows were available. This tiny sample,
+with uncontrolled cache/thermal state, cannot establish general performance or
+jank changes. An earlier locked-screen capture was excluded.
+
+
+### Runtime rejection and ordering correction
+
+Candidate1792893543 installed, but did not complete Android boot. Ordinary ADB
+remained available. Android17's ThermalManagerService waits for declared IThermal
+at PHASE_ACTIVITY_MANAGER_READY; scheduling that service on sys.boot_completed
+created a startup cycle. This is a demonstrated integration defect, not a passed
+hardware test. Do not reinstall or publish this candidate unchanged.
+
+Device f38d06f moves the explicit service start to `on boot`, after post-fs-data
+and before the framework wait. The corrected archive check now validates the
+actual init action, rather than merely the presence of a start command. A full
+replacement package is rebuilding; no wipe or vbmeta change is involved.

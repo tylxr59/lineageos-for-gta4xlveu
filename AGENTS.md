@@ -262,3 +262,14 @@ source d61cc85 includes source-proven startup Power HAL client/config access and
 scheduled IStats Binder dependencies. Full corrected build passed; signing and
 runtime validation pending. See manifests/candidates/performance-followup-20261024.xml.
 Public release/feed stays1792876959 until a separate shipping request.
+
+
+Performance runtime update: signed candidate1792893543 (d61cc85) installed but
+stalled before boot completion because framework waits for declared IThermal
+before the sys.boot_completed service trigger. Do not install/publish that image.
+Source f38d06f starts reporting at `on boot`; rebuilding in a separate local
+artifact directory. See manifests/candidates/performance-startup-fix-20261024.xml.
+Thermal startup permission queries passed using Android libsepol, but inherited
+Qualcomm policy already permits thermal sysfs writes; the reporting-only boundary
+is configuration/code behavior, not a full-policy write prohibition. Public feed
+remains1792876959. Owner authorized no-wipe local correction/testing.

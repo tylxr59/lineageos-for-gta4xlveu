@@ -243,3 +243,15 @@ unlock, encrypted-data/test-file persistence, enforcing SELinux, ordinary
 UID2000 and Rooted debugging off. Accounting remains readable after reboot.
 The owned data marker and all temporary helpers are removed.
 Public release/feed/source pins remain **1792894491**.
+
+
+## Published DMA-BUF and thermal-query update
+
+The owner subsequently authorized [release1792944959](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792944959), the exact locally
+tested signed bundle above. All12 asset sizes and GitHub SHA256 digests, a fresh
+public ROM/checksum download and the canonical six-entry HTTPS feed fetched by
+host and tablet matched. Public resolved/fork manifests pin kernel dc07aa16f,
+Pixel d4f83b6, device f38d06f and vendor1c0a6f2. Earlier unchanged-feed statements
+record the local-test stage. The tablet already ran this timestamp; no additional
+older-to-newer public Updater installation is claimed. Local signed no-wipe,
+data/hardware/accounting and matching recovery checks passed separately.

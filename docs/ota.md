@@ -147,7 +147,7 @@ The tablet already ran this build before publication, so no separate
 older-to-newer public Updater installation is claimed. See [testing](testing.md).
 
 
-## Current thermal and launch-hint release
+## Previous thermal and launch-hint release
 
 [Build1792894491](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792894491) publishes the exact signed, locally tested thermal and
 launch-hint update with the same persistent identity. All12 public assets,
@@ -156,3 +156,15 @@ The tablet fetched the canonical feed too. Source manifests pin devicef38d06f,
 kernel0c5ccf4fc and vendor1c0a6f2. The tablet already ran this build, so no new
 older-to-newer public Updater installation is claimed. See [testing](testing.md)
 and [performance findings](performance-followup-audit.md).
+
+
+## Published DMA-BUF and thermal-query update
+
+The owner subsequently authorized [release1792944959](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792944959), the exact locally
+tested signed bundle above. All12 asset sizes and GitHub SHA256 digests, a fresh
+public ROM/checksum download and the canonical six-entry HTTPS feed fetched by
+host and tablet matched. Public resolved/fork manifests pin kernel dc07aa16f,
+Pixel d4f83b6, device f38d06f and vendor1c0a6f2. Earlier unchanged-feed statements
+record the local-test stage. The tablet already ran this timestamp; no additional
+older-to-newer public Updater installation is claimed. Local signed no-wipe,
+data/hardware/accounting and matching recovery checks passed separately.

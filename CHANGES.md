@@ -12,6 +12,12 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
+No additional changes staged.
+
+## 2026-10-25 — DMA-BUF accounting and thermal queries
+
+[Release 1792944959](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792944959) · Android 17 / LineageOS 24.0
+
 | Change | Implementation commits |
 | --- | --- |
 | Return successful empty thermal API results for absent sensor/cooling types; preserve real read failures. Repair the native test entry point and add regression tests. | [pixel `d4f83b6`](https://github.com/tylxr59/android_hardware_google_pixel/commit/d4f83b6) |
@@ -20,8 +26,8 @@ The thermal service and full ROM compile, signing/host checks pass, and all 11
 standalone native tests passed on the tablet. Signed candidate **1792933707**
 passed a no-wipe installation, live thermal queries, owner pattern/setup/hardware
 checks, matching recovery/full partition hashes, and the final recovery-to-Android
-return with encrypted data intact. The **public release remains 1792894491**; candidate
-sources are separate from release manifests. See [runtime fixes](docs/runtime-fixes.md).
+return with encrypted data intact. Its thermal fix is included in release
+**1792944959**, together with the DMA-BUF repairs below. See [runtime fixes](docs/runtime-fixes.md).
 The opt-in DMA-BUF/BTF kernel experiment is saved on
 `wip/los24-dmabuf-iterator`: [host BTF resolver/build repair `bbac598e2`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/bbac598e2),
 [conditional fault-injection BTF IDs `2756333ec`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/2756333ec),
@@ -53,7 +59,9 @@ The live test found all 1,024 owned buffers exactly once at four read sizes,
 passed concurrent allocation/free and 200 early-close checks with no owned
 buffers retained. The owner confirmed setup and hardware smoke checks. Matching
 recovery/full partition hashes and final Android return, encrypted-data
-persistence and security/cleanup checks passed; Rooted debugging is off. No OTA was published.
+persistence and security/cleanup checks passed; Rooted debugging is off.
+The owner subsequently authorized publication. All 12 public assets and the
+six-entry HTTPS feed were verified, including a fresh ROM download.
 TI speaker processing remains an
 experiment, with no released audio tuning change.
 

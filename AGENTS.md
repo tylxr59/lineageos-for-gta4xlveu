@@ -29,9 +29,8 @@ branches should remain intact; use maintained work branches in the source forks.
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
 `manifests/resolved.xml` pins the current privately signed, hardware-tested
-source prepared for authorized release1792944959: device `f38d06f`, kernel
-`dc07aa16f`, vendor `1c0a6f2`, Pixel `d4f83b6`. Public feed remains1792894491
-until upload succeeds; inspect actual release/feed state before retrying.
+source: device `f38d06f`, kernel `dc07aa16f`, vendor `1c0a6f2`, Pixel `d4f83b6`.
+Current public release is **1792944959**, with matching resolved/fork pins and feed.
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
 proof separate from advertised public HTTPS OTA download/install evidence.
@@ -430,3 +429,23 @@ is prepared under artifacts/dmabuf-release-20261025. Pins prepared; live feed
 stays1792894491 until successful upload. Kernel upstream hint corrected to
 fix/los24-dmabuf-candidate without changing any revision. Inspect actual remote
 release/feed before retrying publication.
+
+
+## Published DMA-BUF and thermal-query release1792944959
+
+Owner authorized publication. [Release1792944959](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792944959) publishes the exact
+signed, locally installed/tested bundle, ROM SHA256
+b4805ab09c75b65b4157a34bec6e1919e5a1d8593a8008cf657f0ac1c2f6b6ee.
+All12 public asset sizes/SHA256 digests, downloaded ROM/checksums and canonical
+six-entry HTTPS feed on host/tablet passed. Only kernel and Pixel HAL differ
+from1792894491 among all1242project pins. Kernel upstream hint now correctly
+names fix/los24-dmabuf-candidate; revision unchanged. Four maintained forks are
+needed, including Pixel fix/los24-thermal-empty-queries. Update-source map and
+building guide record them. Do not sync using the old three-fork manifest.
+
+Tablet already ran1792944959, so no additional older-to-newer public Updater
+install is claimed. Signed local no-wipe update, pinned iterator/live bounded
+probe, owner hardware/pattern/data checks and matching recovery round trip passed
+as documented above. Final boot/UID2000/rootdebugfalse checks passed. Existing
+keys/rollback assets unchanged; no app-root/logger/audio experiments included.
+Earlier no-publication/pending statements are historical. See CHANGES/testing.

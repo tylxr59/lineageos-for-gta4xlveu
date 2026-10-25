@@ -144,3 +144,15 @@ intact, thermal HAL ready, no observed thermal API exceptions, empty crash buffe
 and Rooted debugging off. The owned marker and earlier native-test files were
 removed; ordinary USB debugging remains on. The experimental DMA-BUF kernel and TI
 work were excluded. No public OTA install/publication was repeated or claimed.
+
+
+## Published DMA-BUF and thermal-query update
+
+The owner subsequently authorized [release1792944959](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792944959), the exact locally
+tested signed bundle above. All12 asset sizes and GitHub SHA256 digests, a fresh
+public ROM/checksum download and the canonical six-entry HTTPS feed fetched by
+host and tablet matched. Public resolved/fork manifests pin kernel dc07aa16f,
+Pixel d4f83b6, device f38d06f and vendor1c0a6f2. Earlier unchanged-feed statements
+record the local-test stage. The tablet already ran this timestamp; no additional
+older-to-newer public Updater installation is claimed. Local signed no-wipe,
+data/hardware/accounting and matching recovery checks passed separately.

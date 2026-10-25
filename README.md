@@ -9,19 +9,19 @@ speakers, and S Pen writing/hover passed owner smoke tests. See [tested features
 for what remains unverified.
 
 This repository holds installation guidance, reproducible source manifests,
-and the update feed. The device, kernel, and vendor sources live in the
+and the update feed. The device, kernel, vendor and thermal HAL sources live in the
 [linked forks](docs/building.md#sources).
 
 See [CHANGES.md](CHANGES.md) for release changes and their source commits.
 
 ## Downloads
 
-**[Download the thermal reporting and launch-hint update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261024-gta4xlveu-1792894491)** — LineageOS 24.0 / Android 17,
-security patch **2026-10-01**, build **1792894491**. This update restores Android
-thermal feedback, fixes a rejected launch-boost request and removes obsolete
-settings. It retains the USB File Transfer fix, hardened kernel and Wi-Fi tablet
-improvements. Signed installation and recovery tests preserved the original
-unlock pattern, setup and data. No general speed or battery gain is claimed.
+**[Download the DMA-BUF accounting and thermal-query update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792944959)** — LineageOS 24.0 / Android 17,
+security patch **2026-10-01**, build **1792944959**. This update fixes shared
+buffer memory accounting and thermal API queries for absent sensors. It retains
+USB File Transfer, the hardened kernel and Wi-Fi tablet improvements. Signed
+installation and recovery tests preserved the original pattern, setup and data.
+No general performance or battery gain is claimed.
 Do not install images intended for the 2020 Exynos SM-P610/P615 or
 LTE SM-P619.
 

@@ -29,12 +29,13 @@ branches should remain intact; use maintained work branches in the source forks.
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
 `manifests/resolved.xml` pins the current privately signed, hardware-tested
-source: device `f38d06f`, kernel `0c5ccf4fc`, vendor `1c0a6f2`. Current public
-release is `1792894491`; its exact candidate manifest is retained separately.
+source prepared for authorized release1792944959: device `f38d06f`, kernel
+`dc07aa16f`, vendor `1c0a6f2`, Pixel `d4f83b6`. Public feed remains1792894491
+until upload succeeds; inspect actual release/feed state before retrying.
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
 proof separate from advertised public HTTPS OTA download/install evidence.
-`manifests/gta4xlveu.xml` pins the three device-specific forks for upstream sync.
+`manifests/gta4xlveu.xml` pins four maintained forks, including the Pixel thermal HAL.
 Platform source updates and Android major-version migrations are separate risk
 levels: review compatibility and installation/signing implications explicitly.
 
@@ -422,3 +423,10 @@ owner unlock, data-marker persistence/security checks passed. Owned marker and
 temporary helpers removed; Rooted debugging off/UID2000 verified. Local evidence stays private
 under artifacts/dmabuf-jit-candidate-20261025/. Do not publish raw logs/helpers.
 TI audio remains paused; no factory calibration/gain/protection changes.
+
+
+Owner explicitly authorized publication of tested1792944959. Exact tested bundle
+is prepared under artifacts/dmabuf-release-20261025. Pins prepared; live feed
+stays1792894491 until successful upload. Kernel upstream hint corrected to
+fix/los24-dmabuf-candidate without changing any revision. Inspect actual remote
+release/feed before retrying publication.

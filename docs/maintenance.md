@@ -14,7 +14,7 @@ OTA”** means carry the reviewed changes through the release workflow below.
 A new Android/LineageOS major version is a separate porting task.
 
 Start from the current release's source manifest and
-[`manifests/resolved.xml`](../manifests/resolved.xml). The three maintained fork
+[`manifests/resolved.xml`](../manifests/resolved.xml). The four maintained fork
 pins are in [`manifests/gta4xlveu.xml`](../manifests/gta4xlveu.xml). Check
 [`ota/gta4xlveu.json`](../ota/gta4xlveu.json), the matching
 [release assets](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases),
@@ -32,12 +32,14 @@ default branch is not automatically the released baseline.
 | Samsung kernel integration | [sevenrock/android_kernel_samsung_gta4xlve](https://github.com/sevenrock/android_kernel_samsung_gta4xlve/tree/lineage-24.0) and [gta4xlve-dev/android_kernel_samsung_gta4xlve](https://github.com/gta4xlve-dev/android_kernel_samsung_gta4xlve/tree/lineage-23.2) | Sevenrock `lineage-24.0`; original maintainer `lineage-23.2`. Check these **in addition to** the shared Lineage kernel base. |
 | Proprietary vendor files | [sevenrock/android_vendor_samsung_gta4xlveu](https://github.com/sevenrock/android_vendor_samsung_gta4xlveu/tree/lineage-24.0) and [gta4xlve-dev/android_vendor_samsung_gta4xlveu](https://github.com/gta4xlve-dev/android_vendor_samsung_gta4xlveu/tree/lineage-23.2) | Sevenrock `lineage-24.0`; original maintainer `lineage-23.2`. A new commit must be reviewed for blob provenance and device compatibility. |
 | Samsung firmware provenance | Official SM-P613 [XAR history](https://doc.samsungmobile.com/SM-P613/XAR/doc.html) and [BTU history](https://doc.samsungmobile.com/SM-P613/BTU/doc.html) | Follow the English history/iframe (`dflt_page`) if the wrapper is empty. Record region, firmware build and vendor security date. Do not substitute another model's blobs or flash firmware as an ordinary source update. |
-| Our maintained destination forks | [Device](https://github.com/tylxr59/android_device_samsung_gta4xlveu), [kernel](https://github.com/tylxr59/android_kernel_samsung_gta4xlve), [vendor](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu) | Device `fix/los24-performance-followup`, kernel/vendor `fix/los24-hardening`; exact release SHAs come from manifests, not moving branch tips. |
+| Our maintained destination forks | [Device](https://github.com/tylxr59/android_device_samsung_gta4xlveu), [kernel](https://github.com/tylxr59/android_kernel_samsung_gta4xlve), [vendor](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu), [Pixel thermal HAL](https://github.com/tylxr59/android_hardware_google_pixel) | Device `fix/los24-performance-followup`, kernel `fix/los24-dmabuf-candidate`, vendor `fix/los24-hardening`, Pixel `fix/los24-thermal-empty-queries`; exact release SHAs come from manifests, not moving branch tips. |
 
 For USB-related updates, inspect the manifest-selected
 LineageOS/android_vendor_qcom_opensource_usb lineage-24.0 source as well. The
 SM-P613 correction is in device init; it uses upstream QTI HAL ownership and
-requires no fourth maintained fork. See [USB findings](usb-mtp-audit.md).
+requires no additional USB fork. The fourth maintained fork is for the unrelated
+Pixel thermal-query fix. Compare that fork with manifest-selected
+LineageOS/android_hardware_google_pixel lineage-24.0 on future updates. See [USB findings](usb-mtp-audit.md).
 
 Use the platform manifest's selected AOSP revisions; do not independently
 replace them with AOSP `main` or an arbitrary newer tag. Merged upstream changes

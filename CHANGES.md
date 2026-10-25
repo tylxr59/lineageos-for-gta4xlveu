@@ -28,8 +28,13 @@ The opt-in DMA-BUF/BTF kernel experiment is saved on
 and [DMA-BUF iterator `423e21526`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/423e21526).
 Both the initial isolated kernel image and the build using committed host-tool
 rules compiled successfully. These changes are not enabled in a released kernel and are excluded
-from the thermal candidate. TI speaker processing remains an experiment, with
-no released audio tuning change.
+from the thermal candidate. A subsequent [DMA-BUF candidate](docs/dmabuf-accounting.md) fixes legacy
+multi-read resumption ([52847c63d](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/52847c63d)),
+enables the device test config ([0618060fb](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/0618060fb)),
+adds lifecycle tests ([40dd1806a](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/40dd1806a))
+and adapts the host build to Android's LLVM tools ([1d5531f9a](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/1d5531f9a)).
+Full ROM/device validation is pending. TI speaker processing remains an
+experiment, with no released audio tuning change.
 
 ## 2026-10-24 — Thermal reporting and launch hints
 

@@ -348,3 +348,14 @@ no measured suspend/energy proof or ROM battery-gain claim.
 Maintain CHANGES.md with links to implementation commits in the relevant forks
 and project tooling. Keep uninstalled work under Unreleased; promote entries only
 after the release runbook checks. Do not list experiments as shipped fixes.
+
+DMA-BUF follow-up active: read docs/dmabuf-accounting.md. Kernel candidate branch
+fix/los24-dmabuf-candidate at1d5531f9a adds legacy reader resume/close repair52847c63d,
+device BTF/iterator enable0618060fb, host ASan/UBSan lifecycle harness40dd1806a,
+and Android-sandbox LLVM host-tool selection1d5531f9a. Host actual-source tests
+and all9 Android-object field relocations passed; device loader/accounting/race
+proof pending. Candidate manifests dmabuf-20261025.xml and dmabuf-forks-20261025.xml
+change only the kernel from locally tested thermal1792933707. Public release
+manifests/feed remain1792894491. Do not reinstall the earlier iterator prototype:
+it can truncate output at legacy read boundaries. Main workspace kernel checkout
+now selects this candidate; preserve before syncing. No audio source changes.

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest>
+  <remote name="los24-forks" fetch="https://github.com/" />
+  <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="f38d06f8845b55cf1011445b0b64aa4411c3fc14" upstream="fix/los24-performance-followup" />
+  <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="1d5531f9a017e26b6ce357ae47e36d42bbded68b" upstream="fix/los24-hardening" />
+  <project name="tylxr59/android_vendor_samsung_gta4xlveu" path="vendor/samsung/gta4xlveu" remote="los24-forks" revision="1c0a6f2cb802bc9f15e5b53ceb00ab7caefc8695" upstream="fix/los24-hardening" />
+  <remove-project name="LineageOS/android_hardware_google_pixel" />
+  <project name="tylxr59/android_hardware_google_pixel" path="hardware/google/pixel" remote="los24-forks" revision="d4f83b63e6f03bfeb7e903c11f689fca9d65788b" upstream="fix/los24-thermal-empty-queries" />
+</manifest>

@@ -29,8 +29,9 @@ branches should remain intact; use maintained work branches in the source forks.
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
 `manifests/resolved.xml` pins the current privately signed, hardware-tested
-source: device `f38d06f`, kernel `dc07aa16f`, vendor `1c0a6f2`, Pixel `d4f83b6`.
-Current public release is **1792944959**, with matching resolved/fork pins and feed.
+source prepared for authorized release1792961358: device `038bb20`, kernel
+`dc07aa16f`, vendor `1c0a6f2`, Pixel `d4f83b6`. Public feed stays1792944959
+until assets upload successfully. Inspect actual release/feed state on retry.
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
 proof separate from advertised public HTTPS OTA download/install evidence.
@@ -480,3 +481,9 @@ setup/security/cleanup passed; old vbmeta unchanged. Owned Bluetooth marker
 removed. Evidence artifacts/bluetooth-airpods-20261025/progress.json. Local
 manifest selects device038bb20; preserve candidate before sync. Public released
 manifests/feed stay1792944959 until separate release request. Read Bluetooth doc.
+
+
+Owner authorized publishing tested Bluetooth candidate1792961358. Exact tested
+bundle prepared under artifacts/bluetooth-release-20261025; source pins prepared,
+live feed remains1792944959 until successful asset upload. Preserve releases
+and inspect actual remote state before retrying publisher.

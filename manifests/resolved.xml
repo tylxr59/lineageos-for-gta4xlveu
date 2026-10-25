@@ -1274,7 +1274,7 @@
   <project name="trusty/vendor/google/aosp" remote="aosp" revision="93e3ca36bc59e5d357b226e4e5254f8e478213f2" upstream="refs/tags/android-17.0.0_r1" dest-branch="refs/tags/android-17.0.0_r1" groups="pdk,trusty">
     <copyfile src="lk_inc.mk" dest="lk_inc.mk"/>
   </project>
-  <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="f38d06f8845b55cf1011445b0b64aa4411c3fc14" upstream="fix/los24-performance-followup" groups="local::gta4xlveu"/>
+  <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="038bb209fda6cfd9f0a70b00c78491eb4cec3551" upstream="fix/los24-bluetooth-audio" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_hardware_google_pixel" path="hardware/google/pixel" remote="los24-forks" revision="d4f83b63e6f03bfeb7e903c11f689fca9d65788b" upstream="fix/los24-thermal-empty-queries" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="dc07aa16fd2eb4be6dea6a9a14d3385bcb663d3a" upstream="fix/los24-dmabuf-candidate" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_vendor_samsung_gta4xlveu" path="vendor/samsung/gta4xlveu" remote="los24-forks" revision="1c0a6f2cb802bc9f15e5b53ceb00ab7caefc8695" upstream="fix/los24-hardening" groups="local::gta4xlveu"/>

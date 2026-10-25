@@ -5,7 +5,7 @@
 | Component | Repository | Maintained revision/branch |
 | --- | --- | --- |
 | Platform | [LineageOS/android](https://github.com/LineageOS/android) | LOS24; exact project pins in manifests |
-| Device | [device fork](https://github.com/tylxr59/android_device_samsung_gta4xlveu) | fix/los24-performance-followup |
+| Device | [device fork](https://github.com/tylxr59/android_device_samsung_gta4xlveu) | fix/los24-bluetooth-audio |
 | Kernel | [kernel fork](https://github.com/tylxr59/android_kernel_samsung_gta4xlve) | fix/los24-dmabuf-candidate |
 | Vendor | [vendor fork](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu) | fix/los24-hardening |
 | Pixel thermal HAL | [Pixel fork](https://github.com/tylxr59/android_hardware_google_pixel) | fix/los24-thermal-empty-queries |

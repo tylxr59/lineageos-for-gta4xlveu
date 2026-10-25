@@ -309,3 +309,13 @@ owner hardware/pattern/data and matching recovery/full partition hashes passed.
 No new keys, logger or app-root. Rooted debugging remains off. See testing and
 performance audit for limits, including no demonstrated speed/battery gain.
 The earlier no-publication sections above record historical authorization states.
+
+
+Before log cleanup or further thermal/audio changes, read docs/runtime-log-audit.md.
+Read-only release1792894491 capture found no current crash/ANR/watchdog/AVC, but
+identified TYPE_SKIN empty-threshold queries incorrectly throwing EX_ILLEGAL_STATE
+in Pixel thermal helper. CPU/GPU/battery still work. Do not fake SKIN data to hide
+it. TI IV-width/VBAT module0x1000fc00 rejection persists from the paused audio
+investigation; DMA-BUF iterator and fallback remain absent. Historical22:13–22:24
+watchdog DropBox entries belong to rejected1792893543, not the current boot.
+No device/source/OTA changes made by this audit; raw logs stay private.

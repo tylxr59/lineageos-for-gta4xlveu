@@ -1,13 +1,20 @@
 # Test status
 
-Current release: [lineage-24.0-20261023-gta4xlveu-1792787032](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792787032), with device `eb9bc69`, kernel `75a416868` and vendor
-`4388d72`. Public HTTPS OTA, data persistence, security checks and the released
-recovery round trip passed. Owner Wi-Fi/camera/speaker/S Pen smoke and lock-icon
-visual checks passed on the same-source signed build; executable/package
-contents match the published build. See the [follow-up evidence](#wi-fi-tablet-and-lock-icon-follow-up)
-for exact results and remaining untested hardware cases.
+Current release: [1792961358](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792961358), device038bb20, kerneldc07aa16f,
+vendor1c0a6f2, Pixeld4f83b6. Signed no-wipe updates, encrypted-data/unlock
+persistence, matching recovery/full partition hashes, enforcing SELinux and
+public distribution/feed checks passed. Wi-Fi, cameras, speakers, S Pen, rotate
+and USB have owner smoke evidence; the latest focused update adds verified
+AirPods Pro2 AAC playback/reconnect/speaker fallback. This is not a full hardware,
+CTS/VTS, security or endurance certification.
 
-## Initial port validation
+Read the [current compatibility/security audit](security-compatibility-audit.md)
+for remaining work, including the newly reproduced NDK catalog client-teardown
+bug. The older sections below preserve **historical** tests/findings, including
+failures that have since been fixed; do not treat their old release references
+or VINTF/CFI status as current. The dated follow-ups record those corrections.
+
+## Initial port validation (historical)
 
 The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 2026-10-23. Sources: device `44bda91`, kernel `75a416868`, unchanged vendor

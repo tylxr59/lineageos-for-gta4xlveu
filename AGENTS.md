@@ -504,3 +504,37 @@ rollback releases unchanged. No new public older-to-newer Updater install was
 repeated because tablet already ran this exact timestamp. No fresh vbmeta flash,
 SCO mic/other-headset/codec/endurance proof. Earlier pending/no-publication notes
 are historical. See Bluetooth findings, testing and CHANGES for implementation.
+
+
+## Practical security/compatibility audit (2026-10-25)
+
+Owner is not pursuing official status; prioritize actual device behavior/security.
+Read docs/security-compatibility-audit.md before further hardening. Baseline
+1792961358 unchanged: no ROM source/build/install/reboot/release or sysctl changes.
+Temporary rooted inspection restored OFF via official service, helpers removed.
+Evidence artifacts/security-compat-audit-20261025/summary.json and private raw
+snapshots/reproducers. Live actual policy queried with Android source-matched
+libsepol (Ubuntu validator rejects Android serialization). Ordinary/isolated app
+BPF/perf/privileged-cap grants denied in sampled decisions;21 app UID processes
+had CapEff0. No blanket unprivileged-BPF disable: trusted map consumers matter.
+
+New priority1: public NDK codec-catalog lookup returns successfully, but caller
+aborts at libmediandk capability cleanup. Minimal header-typed lookup reproduces;
+no-teardown control succeeds. Ownership bug in capability performance points.
+No ROM fix made; preserve private repro details.48 catalog entries incl hardware
+AVC/HEVC and C2 H263/MPEG4. System/media-service PIDs unchanged. Audit-owned client
+crashes remain in crash buffer/tombstones; do not claim it is empty or clear it.
+
+Priority2: shipped wakelock BPF object has CMPXCHG/fetch atomics rejected by
+legacy verifier/JIT; live EINVAL and no aggregate duration. Need real backport
+or capability gate. FUSE-BPF absent/disabled with working non-BPF fallback;
+gate loader rather than backport filesystem just to hide errors. Kernel-version
+override remains compatibility debt. Filesystem protected_* live0, REFCOUNT_FULL
+off, old FORTIFY excluded under Clang, JIT harden0/kallsyms1 are isolated future
+candidates, not proven exploits or changes to apply blindly. Existing CFI/KPTI/
+SELinux/stack+allocation zeroing/module signatures remain. No AVB retry/relock.
+Vendor May2025 date unchanged; no exhaustive CVE/firmware availability audit.
+Correct vm.unprivileged_userfaultfd live value not read; source gate/default
+reviewed, ordinary shell denied after root cleanup. No disabling ART UFFD or
+Perfetto solely for permissive-looking sysctls. Updated test-doc current header
+separates history from present; retain remaining hardware/endurance limits.

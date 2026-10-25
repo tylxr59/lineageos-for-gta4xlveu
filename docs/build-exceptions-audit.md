@@ -1,5 +1,9 @@
 # Build and security exceptions audit (2026-10-24)
 
+For the current released-build review and remaining priorities, read the
+[2026-10-25 compatibility/security audit](security-compatibility-audit.md).
+This page retains the original findings and their resolution history.
+
 Historical baseline: read-only review of released build **1792851872**, device `12c0e2d`, kernel
 `88b63b7ae`, vendor `4388d72`. No ROM source, tablet setting, root mode or public
 feed was changed. This is a targeted configuration audit, not a complete

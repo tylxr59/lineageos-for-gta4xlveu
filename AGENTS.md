@@ -253,3 +253,12 @@ pins/feed1792876959 remain unchanged. Temporary rooted inspection was cleaned up
 and normal ADB/Rooted debugging off verified. BPF override/active graphics tuning
 remain, DMA-BUF fallback is confirmed absent, and newer-kernel work is only a
 researched lead. Retain these limits in future claims and source reviews.
+
+
+The owner later explicitly authorized flashing/testing this performance candidate
+on the same evening. A signed no-wipe local update is now authorized; publishing
+an OTA is not. The earlier no-flash constraint above is historical. Final device
+source d61cc85 includes source-proven startup Power HAL client/config access and
+scheduled IStats Binder dependencies. Full corrected build passed; signing and
+runtime validation pending. See manifests/candidates/performance-followup-20261024.xml.
+Public release/feed stays1792876959 until a separate shipping request.

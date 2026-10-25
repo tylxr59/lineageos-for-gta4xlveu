@@ -176,3 +176,15 @@ A newer kernel could reduce future compatibility/backport burden, but does not
 establish faster rendering or better battery life. Panel/S Pen, graphics/vendor
 interfaces, cameras, audio, power and encryption/boot must be evaluated. No
 kernel-port implementation, checkout switch or device experiment was started.
+
+
+### Installation authorization and corrected build
+
+The owner subsequently authorized a signed no-wipe test installation. Final
+source d61cc85 adds the startup Power HAL client/config permissions and scheduled
+IStats client access required by the inspected upstream implementation. The
+corrected full build passed in3m46s; signing/runtime tests are still pending.
+The earlier72a336a build also passed, but is superseded and must not be installed.
+The [final candidate manifest](../manifests/candidates/performance-followup-20261024.xml)
+keeps all1,242 paths and changes only the device project from the public release.
+No new public OTA publication is authorized by this test request.

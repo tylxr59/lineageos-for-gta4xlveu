@@ -29,7 +29,7 @@ The owner’s SM-P613 booted the ordinary logger-free LOS24/Android17 build on
 | Speakers | Owner playback smoke test passed |
 | S Pen | Owner writing/hover smoke test passed; pressure-level accuracy untested |
 | Crash buffer | Empty after ordinary build boot; not an endurance test |
-| Bluetooth audio | Untested |
+| Bluetooth audio | Released1792944959 pairs but fails media routing. Local1792961358 fixes AirPods Pro2 AAC playback/reconnect/speaker fallback; see [Bluetooth findings](bluetooth-audio.md). |
 | Deep suspend / battery endurance | Initial overnight confounded by background media; controlled baseline pending ([audit](battery-audit.md)) |
 | microSD | Untested |
 | Credential-protected encryption after update/reboot | Original pattern unlock and saved-file checksum passed on corrected signed build |
@@ -409,3 +409,28 @@ Pixel d4f83b6, device f38d06f and vendor1c0a6f2. Earlier unchanged-feed statemen
 record the local-test stage. The tablet already ran this timestamp; no additional
 older-to-newer public Updater installation is claimed. Local signed no-wipe,
 data/hardware/accounting and matching recovery checks passed separately.
+
+
+## Locally tested Bluetooth audio candidate1792961358
+
+Device038bb20 adds the standard AOSP AIDL Bluetooth audio provider; all other
+1,241 project pins match release1792944959. See [Bluetooth findings](bluetooth-audio.md)
+and manifests/candidates/bluetooth-audio-20261025.xml for exact inputs. Build,
+strict VINTF, BTF checks, persistent-key component/whole-OTA signing and no-wipe
+installation passed. Boot/DTBO images and kernel config are identical to the
+release; audio XML/USB/SELinux/thermal inputs remain unchanged.
+
+Actual provider registration and A2DP media output availability passed. Owner
+confirmed AirPods Pro2 AAC playback, case/disconnect fallback to speakers,
+separate device volume levels and playback after reconnect. Stream start/suspend
+succeeded over software A2DP; no observed audio/Bluetooth AVCs, original A2DP
+route rejection or crash-buffer entries. SCO microphone/call audio, other
+codecs/headsets and long-term audio endurance remain untested. Other hardware
+smoke results belong to the source-identical underlying released components;
+no new full hardware matrix is claimed for this focused follow-up.
+
+Matching actual recovery/config and full boot/DTBO/recovery partition hashes
+passed, prior vbmeta unchanged. Final recovery-menu Android return/owner unlock,
+data/test-file persistence, setup flags, FBE, enforcing SELinux, normal UID2000
+and Rooted debugging off passed. Owned test marker removed; no root was needed.
+Public release/feed remain1792944959; no new OTA publication requested.

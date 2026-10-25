@@ -465,3 +465,18 @@ installation in pipeline. Follow signing/host/no-wipe/audio tests before claimin
 fix. Current installed/public release1792944959 and livefeed unchanged; no new
 publication request. Local manifest selects candidate device038bb20, preserves
 kerneldc07aa16f/Pixeld4f83b6/vendor1c0a6f2. TI audio remains paused.
+
+
+Bluetooth candidate1792961358 is now installed and locally complete, superseding
+the earlier build-pending checkpoint. Device038bb20 only changed project among
+1242pins vs1792944959; kernel/DTBO/boot identical, Pixel/vendor unchanged. Full
+build/strictVINTF/BTF/existing-key signing/no-wipe install passed. Real AIDL
+provider registered; A2DP route available. Owner confirmed AirPodsPro2 AAC audio,
+speaker fallback, independent volume and reconnect playback. Standard software
+A2DP start/suspend passed; no original route errors/new observed audio AVCs or
+crashes. No SCO mic/other headset/codec/endurance proof. No root ever enabled.
+Matching recovery/full boot/DTBO/recovery hashes and final Android unlock/data/
+setup/security/cleanup passed; old vbmeta unchanged. Owned Bluetooth marker
+removed. Evidence artifacts/bluetooth-airpods-20261025/progress.json. Local
+manifest selects device038bb20; preserve candidate before sync. Public released
+manifests/feed stay1792944959 until separate release request. Read Bluetooth doc.

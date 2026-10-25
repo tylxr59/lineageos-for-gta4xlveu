@@ -14,7 +14,7 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 | Change | Implementation commit |
 | --- | --- |
-| Include the AOSP AIDL Bluetooth audio provider and its VINTF fragment so the stack can discover a media audio service. Candidate building; hardware validation pending. | [device `038bb20`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/038bb20) |
+| Include the AOSP AIDL Bluetooth audio provider and its VINTF fragment so the stack can discover a media audio service. Signed local candidate1792961358 plays AAC through AirPods Pro2, reconnects and falls back to speakers with separate volumes. Matching recovery/full partition hashes and final Android/data/security/cleanup passed. Rooted debugging remained off. Not published. | [device `038bb20`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/038bb20) |
 
 ## 2026-10-25 — DMA-BUF accounting and thermal queries
 

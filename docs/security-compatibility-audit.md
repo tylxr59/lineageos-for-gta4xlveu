@@ -242,6 +242,21 @@ were removed. These are bounded tests and owner smoke checks, not exhaustive
 security, performance or endurance certification. ROM SHA256:
 `8524422271201c2423e452f15eb575c1de23691a3f15599b431edd55f0501b30`.
 
-Sources and regression tests are linked in [CHANGES](../CHANGES.md). Published
-release/feed pins remain1792961358. Existing keys, rollback assets and live
+Sources and regression tests are linked in [CHANGES](../CHANGES.md). The owner subsequently authorized publication of 1793018822; released
+source pins and the eight-entry feed now match the tested bundle. Existing keys, rollback assets and live
 vbmeta are unchanged. No hardware performance or battery improvement is claimed.
+
+
+## Published security and compatibility update1793018822
+
+The owner authorized [release1793018822](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793018822) after the documented staged tests.
+The exact tested signed ROM was published without rebuilding. All 12 asset sizes
+and GitHub SHA256 digests, downloaded checksum file, fresh public ROM hash and
+canonical eight-entry HTTPS feed on host/tablet matched. Released resolved/fork
+manifests pin six maintained forks; only kernel, frameworks/av and BPF loader change
+from 1792961358. Existing identity and rollback releases are preserved.
+The tablet already ran this timestamp, so no separate older-to-newer public
+Updater installation was repeated. Local signed no-wipe, owner hardware, runtime
+protection/accounting and matching-recovery/data checks passed independently.
+Rooted debugging remains off. Known AVB/vendor/compatibility/endurance limits
+remain documented; no new battery/performance or formal certification claim.

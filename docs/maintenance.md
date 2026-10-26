@@ -45,8 +45,7 @@ moving branch tips, including newer test-only kernel commits.
 For USB-related updates, inspect the manifest-selected
 LineageOS/android_vendor_qcom_opensource_usb lineage-24.0 source as well. The
 SM-P613 correction is in device init; it uses upstream QTI HAL ownership and
-requires no additional USB fork. The fourth maintained fork is for the unrelated
-Pixel thermal-query fix. Compare that fork with manifest-selected
+requires no additional USB fork. The Pixel fork carries the unrelated thermal-query fix. Compare that fork with manifest-selected
 LineageOS/android_hardware_google_pixel lineage-24.0 on future updates. See [USB findings](usb-mtp-audit.md).
 
 Use the platform manifest's selected AOSP revisions; do not independently

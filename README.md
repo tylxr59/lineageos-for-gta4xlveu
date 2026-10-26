@@ -9,19 +9,21 @@ speakers, and S Pen writing/hover passed owner smoke tests. See [tested features
 for what remains unverified.
 
 This repository holds installation guidance, reproducible source manifests,
-and the update feed. The device, kernel, vendor and thermal HAL sources live in the
+and the update feed. The maintained ROM sources live in the
 [linked forks](docs/building.md#sources).
 
 See [CHANGES.md](CHANGES.md) for release changes and their source commits.
 
 ## Downloads
 
-**[Download the Bluetooth audio fix](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792961358)** — LineageOS 24.0 / Android 17,
-security patch **2026-10-01**, build **1792961358**. This update fixes Bluetooth
-media routing, tested with AirPods Pro 2. Playback, reconnecting, switching back
-to speakers and separate device volume levels work. It retains the DMA-BUF,
-thermal, USB and Wi-Fi tablet improvements. Signed no-wipe installation and
-recovery checks preserved the original unlock, setup and data.
+**[Download the security and compatibility update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793018822)** — LineageOS 24.0 / Android 17,
+security patch **2026-10-01**, build **1793018822**. This update fixes codec cleanup,
+optional FUSE-BPF loading and kernel wakelock accounting, and adds kernel memory,
+filesystem and JIT protections. Signed no-wipe installation, owner hardware
+checks and the matching recovery round trip preserved the original unlock,
+setup and encrypted data. Bluetooth audio, File Transfer and prior tablet fixes
+are retained.
+
 Do not install images intended for the 2020 Exynos SM-P610/P615 or
 LTE SM-P619.
 

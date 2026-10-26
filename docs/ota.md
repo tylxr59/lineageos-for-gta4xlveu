@@ -161,7 +161,7 @@ and [performance findings](performance-followup-audit.md).
 ## Published DMA-BUF and thermal-query update
 
 The owner subsequently authorized [release1792944959](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792944959), the exact locally
-tested signed bundle above. All12 asset sizes and GitHub SHA256 digests, a fresh
+tested signed bundle above. All 12 asset sizes and GitHub SHA256 digests, a fresh
 public ROM/checksum download and the canonical six-entry HTTPS feed fetched by
 host and tablet matched. Public resolved/fork manifests pin kernel dc07aa16f,
 Pixel d4f83b6, device f38d06f and vendor1c0a6f2. Earlier unchanged-feed statements
@@ -181,3 +181,26 @@ local-test stage. The tablet already ran this timestamp, so no additional
 older-to-newer public Updater installation is claimed. Actual signed no-wipe,
 AirPods playback/switch/reconnect and recovery/data/security checks passed
 separately. Rooted debugging remains off; existing signing identity unchanged.
+
+
+## Published security and compatibility update1793018822
+
+The owner authorized [release1793018822](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793018822) after the documented staged tests.
+The exact tested signed ROM was published without rebuilding. All 12 asset sizes
+and GitHub SHA256 digests, downloaded checksum file, fresh public ROM hash and
+canonical eight-entry HTTPS feed on host/tablet matched. Released resolved/fork
+manifests pin six maintained forks; only kernel, frameworks/av and BPF loader change
+from 1792961358. Existing identity and rollback releases are preserved.
+The tablet already ran this timestamp, so no separate older-to-newer public
+Updater installation was repeated. Local signed no-wipe, owner hardware, runtime
+protection/accounting and matching-recovery/data checks passed independently.
+Rooted debugging remains off. Known AVB/vendor/compatibility/endurance limits
+remain documented; no new battery/performance or formal certification claim.
+
+
+The publisher needs Python3, OpenSSL, Git and an authenticated GitHub CLI in the
+same execution environment. It can run on the host when the Android build
+container lacks `gh`; it does not need Android build binaries. Keep Android
+building/signing in the configured build environment. Check tool availability
+before publication and inspect remote release/feed state before retrying a
+failed command; do not move credentials or recreate an existing release blindly.

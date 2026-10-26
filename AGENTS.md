@@ -28,16 +28,12 @@ branches should remain intact; use maintained work branches in the source forks.
 
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
-`manifests/resolved.xml` pins the current privately signed, hardware-tested
-source prepared for authorized release **1793018822**: device `038bb20`, kernel
+`manifests/resolved.xml` pins released1793018822: device `038bb20`, kernel
 `a99cbdcd5`, vendor `1c0a6f2`, Pixel `d4f83b6`, frameworks/av `b911f1a`,
-system/bpf `c2621ec`. Public feed remains1792961358 until the assets upload.
-Inspect actual release/feed state before retrying publication.
-Current locally installed/tested candidate is **1793018822**, with exact sources in
-`manifests/candidates/security-hardening-20261026.xml` and six-fork pins in
-`security-hardening-forks-20261026.xml`. Read the latest security audit/testing
-follow-up. The public feed/released manifests are intentionally still1792961358;
-do not overwrite the active six-fork checkout with those four-fork release pins.
+system/bpf `c2621ec`. Current public release, feed and tested installation are
+**1793018822**. The six-fork source set is in `manifests/gta4xlveu.xml`; dated
+candidate snapshots retain the staging history. Do not replace exact released
+pins with moving branch tips or the preceding four-fork manifest.
 
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
@@ -684,3 +680,19 @@ prepared in artifacts/security-release-20261026/release; sourcepins promoted to
 testedmanifest, feed unchanged until successful upload. No rebuild or key change.
 Only3/1242projects differ from priorrelease (kernel/frameworksAV/BPFloader).
 Preserve releases and inspect actual remote state before any retry.
+
+
+## Published security/compatibility release1793018822
+
+Owner authorized [publication](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793018822) after complete signed no-wipe local testing.
+Exact tested ROM SHA2568524422271201c2423e452f15eb575c1de23691a3f15599b431edd55f0501b30;
+12assets/GitHubSHA256/sizes, freshpublicROM/checksums and canonical8entryHTTPSfeed
+onhost/tablet allverified. Resolved/fork pins match1242projects; onlykernel,
+frameworksAV andBPFloader differ from1792961358. Six maintainedforks nowreleased.
+Newertest-onlykernel400e isnotROMpina99. No rebuild/newkeys/wipe/manualvbmetaflash.
+Alllocalhardware/data/rootOFF/recovery/runtimeproof remains documented separately.
+Tablet alreadyruns1793018822, so no new older-to-newer publicUpdaterinstallclaim.
+Earlier pending/no-publication statements are historical. Source/docs/README and
+feed now identifythisrelease. Evidence artifacts/security-release-20261026/.
+Publisher isstandalonePython/OpenSSL/Git/gh andranonhostwithauthenticatedgh;
+Ubuntu signing/buildenvironment lacksgithubCLI. No credentials copied or newpackages.

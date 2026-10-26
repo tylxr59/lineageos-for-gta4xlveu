@@ -1,27 +1,23 @@
 # Test status
 
-Current release: [1792961358](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792961358), device038bb20, kerneldc07aa16f,
-vendor1c0a6f2, Pixeld4f83b6. Signed no-wipe updates, encrypted-data/unlock
-persistence, matching recovery/full partition hashes, enforcing SELinux and
-public distribution/feed checks passed. Wi-Fi, cameras, speakers, S Pen, rotate
-and USB have owner smoke evidence; the latest focused update adds verified
-AirPods Pro2 AAC playback/reconnect/speaker fallback. This is not a full hardware,
-CTS/VTS, security or endurance certification.
+Current release: [1793018822](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793018822), device `038bb20`, kernel `a99cbdcd5`,
+vendor `1c0a6f2`, Pixel `d4f83b6`, frameworks/av `b911f1a` and loader `c2621ec`. Six maintained
+forks are pinned in the full 1,242-project source manifest. Signed no-wipe local
+updates, owner hardware smoke, encrypted data/pattern persistence, recovery/full
+partition hashes, memory/filesystem/BPF regression checks and public asset/feed
+verification passed. This is not exhaustive CTS/VTS, security or endurance proof.
 
-The current **unpublished local candidate is 1793018822**, covering codec ownership,
-FUSE-BPF capability selection, BPF atomic/wakelock accounting support and kernel
-hardening. See the [compatibility/security findings](security-compatibility-audit.md)
-and [exact six-fork candidate sources](../manifests/candidates/security-hardening-20261026.xml).
-The public release/feed remains 1792961358. The older sections below preserve
-**historical** tests/findings, including defects corrected by later work.
+See [compatibility/security findings](security-compatibility-audit.md) and the
+[exact source snapshot](../manifests/candidates/security-hardening-20261026.xml).
+The older sections preserve historical tests and corrected defects.
 
-## Local security/compatibility candidate 1793018822 — 2026-10-26
+## Security/compatibility release 1793018822 — 2026-10-26
 
 | Check | Result |
 | --- | --- |
 | Source/build | Only kernel differs from validated 1793017415; six maintained forks in full 1,242-project manifest. Full ROM/recovery/strict VINTF/policy/BTF/signing checks pass. |
-| Codec and loader | Normal-UID lookup and 48-entry catalog cleanup exit0. Earlier 1792969106 passed 8 loader tests in each ABI and removed the unsupported-FUSE load error while preserving fallback storage. |
-| Actual protections | Full refcounts and Clang FORTIFY enabled; 672 emitted FORTIFY call sites. Live protected links1/FIFO+regular2 and JIT blinding2. No generated JIT symbol exports. |
+| Codec and loader | Normal-UID lookup and 48-entry catalog cleanup exits 0. Earlier 1792969106 passed 8 loader tests in each ABI and removed the unsupported-FUSE load error while preserving fallback storage. |
+| Actual protections | Full refcounts and Clang FORTIFY enabled; 672 emitted FORTIFY call sites. Live hardlink/symlink protection=1, FIFO/regular protection=2 and JIT blinding=2. No generated JIT symbol exports. |
 | Behavioral tests | Cross-owner FS protection tests with child CapEff=0; 43 atomic cases; 1,024 unique concurrent fetch results; AOSP wakelock 6 pass / 2 expected skips per ABI; DMA-BUF 1,024 buffers / concurrent allocation / 200 early closes / 0 retained. |
 | Accounting/logs | Initialized production map and numeric aggregate duration, no BPFloader errors or captured refcount/FORTIFY/CFI failure patterns; empty crash buffer. |
 | Owner smoke | Original pattern/setup, video, Wi-Fi, cameras, speakers/AirPods, S Pen, rotate and File Transfer passed. |
@@ -30,7 +26,8 @@ The public release/feed remains 1792961358. The older sections below preserve
 | Limits | No exhaustive CTS/VTS/security/codec/endurance certification or new public HTTPS OTA install. Existing AVB/closed-vendor/BPF-version compatibility limitations remain. |
 
 ROM SHA256: `8524422271201c2423e452f15eb575c1de23691a3f15599b431edd55f0501b30`.
-No new keys, manual vbmeta flash, wipe or release publication occurred.
+No new keys, manual vbmeta flash or wipe occurred. Publication was authorized
+after these local tests; distribution verification is recorded below.
 
 ## Initial port validation (historical)
 
@@ -427,7 +424,7 @@ measured performance/battery improvement is claimed. See
 ## Published DMA-BUF and thermal-query update
 
 The owner subsequently authorized [release1792944959](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261025-gta4xlveu-1792944959), the exact locally
-tested signed bundle above. All12 asset sizes and GitHub SHA256 digests, a fresh
+tested signed bundle above. All 12 asset sizes and GitHub SHA256 digests, a fresh
 public ROM/checksum download and the canonical six-entry HTTPS feed fetched by
 host and tablet matched. Public resolved/fork manifests pin kernel dc07aa16f,
 Pixel d4f83b6, device f38d06f and vendor1c0a6f2. Earlier unchanged-feed statements
@@ -472,3 +469,18 @@ local-test stage. The tablet already ran this timestamp, so no additional
 older-to-newer public Updater installation is claimed. Actual signed no-wipe,
 AirPods playback/switch/reconnect and recovery/data/security checks passed
 separately. Rooted debugging remains off; existing signing identity unchanged.
+
+
+## Published security and compatibility update1793018822
+
+The owner authorized [release1793018822](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793018822) after the documented staged tests.
+The exact tested signed ROM was published without rebuilding. All 12 asset sizes
+and GitHub SHA256 digests, downloaded checksum file, fresh public ROM hash and
+canonical eight-entry HTTPS feed on host/tablet matched. Released resolved/fork
+manifests pin six maintained forks; only kernel, frameworks/av and BPF loader change
+from 1792961358. Existing identity and rollback releases are preserved.
+The tablet already ran this timestamp, so no separate older-to-newer public
+Updater installation was repeated. Local signed no-wipe, owner hardware, runtime
+protection/accounting and matching-recovery/data checks passed independently.
+Rooted debugging remains off. Known AVB/vendor/compatibility/endurance limits
+remain documented; no new battery/performance or formal certification claim.

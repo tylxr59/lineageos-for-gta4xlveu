@@ -191,15 +191,28 @@ encrypted/unlocked data, enforcing SELinux, UID2000, Rooted debugging off and
 saved-marker checksum passed again. Owned probes/marker were removed. ROM SHA256:
 `fe8ec1b2763f662dbce892fb072626f8753c9b66a31ac3971f83e040a5893499`.
 
-The isolated BPF atomic kernel backport includes generic operations, ARM64
-encoders/JIT, fetch bounds/subregister fixes and cmpxchg pointer-leak protection.
-Changed objects and the complete kernel compile with enforcing CFI; the normally
-excluded interpreter was also compiled diagnostically. Actual-source LL/SC
-semantic tests pass21,840 ASan/UBSan cases, and previous probe/fixup tests pass.
-BTF limits/linker boundaries/type identity pass. The target disables LSE and uses
-LL/SC. An atomic-only full ROM is building; no atomic kernel has been installed,
-and unchanged-kernel userspace1792969106 still has the old wakelock load errors.
-Live verifier/concurrency/accounting/networking proof is pending.
+Signed atomic-only candidate **1793017415** now passes the complete local update
+path. Only the kernel project changes from1792969106; configuration, policy,
+DTBO and audio/USB/thermal inputs are unchanged. The backport includes generic
+operations, ARM64 encoders/JIT, fetch bounds/subregister fixes and cmpxchg
+pointer-leak protection. Strict build/VINTF/signing/BTF checks passed.
+
+On the tablet,43 atomic execution/rejection cases and1,024 concurrent increments
+passed, returning every old value exactly once. Android's six active wakelock
+accounting tests passed in each ABI; two disabled-feature tests per ABI correctly
+skipped. Production accounting is initialized and suspend_control_internal now
+reports a total duration; the old loader errors are absent. The extra diagnostic
+initially encoded a load incorrectly; that helper macro was corrected before
+successful execution, without changing the candidate kernel or weakening checks.
+
+DMA-BUF regression checks passed1,024 owned buffers across read sizes, concurrent
+allocation/free and200 early closes without retained buffers. Owner hardware/
+video/AirPods/MTP and pattern/setup checks passed. Matching recovery/full
+partition hashes, unchanged vbmeta and final Android return/data-marker checksum
+passed. Probes/marker were removed, UID2000/Rooted debugging off restored and the
+crash buffer remains empty. Rooted inspection also confirms the previously
+unreadable vm.unprivileged_userfaultfd value is0; ART behavior stays intact.
+No battery improvement is inferred from repaired accounting.
 
 A separate hardening kernel also compiles with real Clang FORTIFY and full
 refcounts enabled. Actual-wrapper host tests pass valid operations, compile-time

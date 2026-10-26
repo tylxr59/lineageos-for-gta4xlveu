@@ -615,3 +615,27 @@ los24-security-atomic-rom.service/logs/security-atomic-rom-build.log, no automat
 install. Helpers/output artifacts/security-atomic-candidate-20261026/. Its signing
 uses existing47 identities. Device remains booted/unlocked1792969106, UID2000,
 RooteddebugOFF. Keep atomic vs hardening candidates separate for fault isolation.
+
+
+Atomic1793017415 is now locally COMPLETE: owner original-pattern/setup/hardware,
+43live atomic cases +1024concurrent unique fetch values, both AOSP ABI suites
+6pass/2intentional-disabled-skip each, initialized productionmap and real suspend
+aggregate duration, no BPFloader errors, DMA1024buffers/200earlycloses/concurrent
+allocation and final recovery/full partition hashes/menu-return/data checks pass.
+RooteddebugOFF/UID2000/enforcing/FBE/emptycrashbuffer; probes/marker removed.
+Correct vm.unprivileged_userfaultfd runtime0 confirmed. Initial malformed EXTRA
+probe corrected in a99cbdcd5; kernel unchanged and verifier rejection preserved.
+Private stageB/runtime retains all original/retry logs. No OTA publication.
+
+Full hardening ROM now building separately in artifacts/security-hardening-rom-20261026,
+unitlos24-security-hardening-rom, logs/security-hardening-rom-build.log. Main
+Android kernel a99cbdcd54c31cbfab2a6699e0731c99df04bf73 on local
+fix/los24-security-hardening-rom; local six-fork manifest points canonical pushed
+fix/los24-security-hardening branch. Other five forks unchanged. Code remains
+931040132/739fbedf7 plus test-only commits. Actual matched targetfiles/kernel
+metadata, binary defaults/FORTIFY callsites, BTF, signing and one-project diff
+must pass before installing. prepare-install.py allows only specific hardening
+config deltas plus already-disabled PROFILE_ALL_BRANCHES prompt disappearing
+because its Kconfig prompt depends !FORTIFY_SOURCE; it remains disabled.
+Current installed/rollback remains tested1793017415. Hardening tests/installation
+are authorized by owner fixing request, no new publication request.

@@ -1,5 +1,10 @@
 # Remaining compatibility and security audit
 
+For the subsequent BPF version-selection, OOM tracepoint and legacy-library
+review of released1793018822, read [BPF/vendor compatibility](bpf-vendor-compatibility.md).
+The historical actionable defects below were fixed as recorded later in this
+document; the new review identifies a separate OOM event-layout mismatch.
+
 Baseline: public **1792961358**, device **038bb20**, kernel **dc07aa16f**,
 vendor **1c0a6f2**, Pixel HAL **d4f83b6**. Four maintained source checkouts are
 clean and match the released manifest; the actual live kernel configuration

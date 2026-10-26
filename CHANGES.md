@@ -15,6 +15,11 @@ certification. Published releases are immutable; fixes appear in new builds.
 No additional ROM changes staged. Newer diagnostic-only source commits do not
 change this release's pinned ROM inputs.
 
+Documentation: [BPF/vendor compatibility audit](docs/bpf-vendor-compatibility.md)
+records a live OOM tracepoint-layout mismatch, API/minor-version update gates,
+and legacy crypto/protobuf/shim provenance and consumers. No image, library or
+device configuration was changed during the audit.
+
 ## 2026-10-26 — Security and compatibility
 
 [Release 1793018822](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793018822) · Android 17 / LineageOS 24.0

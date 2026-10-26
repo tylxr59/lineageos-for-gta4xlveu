@@ -103,6 +103,13 @@ integrated base after each kernel maintenance release. Keep paused experimental 
 
 For a platform update, save the resolved manifest before and after the reviewed
 sync and compare **project revisions**, not just the manifest repository tip.
+Also compare the platform's **full API/minor version** and Connectivity's
+kernel-admission and feature gates. The pinned loader introduces a 5.15 minimum
+at API37.1, while released1793018822 is37.0 and retains a5.10 compatibility
+override over a substantially backported4.14 kernel. Do not raise that override
+to satisfy a new gate without proving the affected capabilities. The
+[BPF/vendor review](bpf-vendor-compatibility.md) documents the compile-time
+minimum assumptions and a separate live OOM tracepoint-layout mismatch.
 Summarize relevant framework, security, build/toolchain, kernel and device
 changes and any blockers. Never sync just to answer a read-only update query.
 

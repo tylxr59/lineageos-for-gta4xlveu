@@ -1,5 +1,15 @@
 # Agent instructions
 
+Before BPF compatibility or legacy-library changes, read
+[docs/bpf-vendor-compatibility.md](docs/bpf-vendor-compatibility.md). The
+2026-10-26 audit leaves release1793018822 unchanged. It confirms a live PID-only
+OOM tracepoint against a richer shipped BPF reader; upstream tracepoint patches
+were reviewed but not applied. Removing the version override alone does not
+remove API37 platform-header minimum assumptions. Future API37.1 has a separate
+Connectivity5.15 admission gate. Legacy crypto has an actual ASN1_ITEM layout
+change, not just a missing function; preserve credential continuity. Runtime
+bpffs/loaded-library inspection is pending temporary rooted-debugging access.
+
 ## Goal and repository boundaries
 
 Maintain an ordinary unofficial LineageOS installation for **SM-P613 / gta4xlveu**.

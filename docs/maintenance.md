@@ -34,6 +34,15 @@ default branch is not automatically the released baseline.
 | Samsung firmware provenance | Official SM-P613 [XAR history](https://doc.samsungmobile.com/SM-P613/XAR/doc.html) and [BTU history](https://doc.samsungmobile.com/SM-P613/BTU/doc.html) | Follow the English history/iframe (`dflt_page`) if the wrapper is empty. Record region, firmware build and vendor security date. Do not substitute another model's blobs or flash firmware as an ordinary source update. |
 | Our maintained destination forks | [Device](https://github.com/tylxr59/android_device_samsung_gta4xlveu), [kernel](https://github.com/tylxr59/android_kernel_samsung_gta4xlve), [vendor](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu), [Pixel thermal HAL](https://github.com/tylxr59/android_hardware_google_pixel) | Device `fix/los24-bluetooth-audio`, kernel `fix/los24-dmabuf-candidate`, vendor `fix/los24-hardening`, Pixel `fix/los24-thermal-empty-queries`; exact release SHAs come from manifests, not moving branch tips. |
 
+Two additional forks are staged for the unreleased security/compatibility
+candidate: [frameworks/av](https://github.com/tylxr59/android_frameworks_av/tree/fix/los24-codec-lifetime)
+(`fix/los24-codec-lifetime`) and [system/bpf](https://github.com/tylxr59/android_system_bpf/tree/fix/los24-fuse-capability)
+(`fix/los24-fuse-capability`). Compare both with their manifest-selected
+LineageOS `lineage-24.0` projects before future platform updates; preserve the
+codec ownership and FUSE capability fixes unless upstream contains equivalent
+repairs. Candidate manifests pin six forks; published1792961358 still pins four.
+Do not overwrite active candidate pins with the released manifest during sync.
+
 For USB-related updates, inspect the manifest-selected
 LineageOS/android_vendor_qcom_opensource_usb lineage-24.0 source as well. The
 SM-P613 correction is in device init; it uses upstream QTI HAL ownership and

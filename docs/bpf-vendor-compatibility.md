@@ -1,8 +1,9 @@
 # BPF and legacy vendor compatibility review
 
 Reviewed on 2026-10-26 against released and installed **1793018822**. This is a
-source, immutable target-files and read-only device audit. No Android source,
-device property, image or OTA feed was changed, and no ROM was built or flashed.
+source, immutable target-files and read-only device audit. Temporary Rooted
+debugging and a removed read-only query helper were used for runtime inspection.
+No ROM source, image or OTA feed was changed, and no ROM was built or flashed.
 Earlier codec, FUSE load-gating, atomic and hardening defects are already fixed
 in this release; see [the preceding audit](security-compatibility-audit.md).
 
@@ -83,8 +84,12 @@ LP64. Those additional fields are absent from the live tracepoint.
 
 Thus a successfully loaded program is insufficient: the OOM reader's data ABI
 does not match its producer. The audit did not trigger an OOM, induce memory
-pressure, or demonstrate what records a live OOM would deliver. Live program
-attachment inspection remains separate from this confirmed format mismatch.
+pressure, or demonstrate what records a live OOM would deliver. Follow-up
+inspection found the AMS OOM program loaded and pinned but no active OOM perf
+attachment in that snapshot. This is a latent producer/reader compatibility
+defect, not evidence of currently delivered corrupt OOM records. Four LMKD
+reclaim/kswapd programs were attached. Why the AMS listener was not attached was
+not established from the available logs.
 The corresponding vmscan wake/sleep format was also captured for comparison;
 their fixed fields agree with the reader's expected offsets.
 
@@ -196,11 +201,42 @@ demonstrated here; removing them would leave required imports unsatisfied.
 
 ## Runtime follow-up and boundaries
 
-Ordinary ADB confirms build 1793018822, API 37.0, effective BPF property 5.10.239,
-enforcing SELinux and Rooted debugging off. Tracepoint formats were readable
-without root. Listing bpffs and inspecting other processes' loaded libraries
-requires privilege and remains pending. An empty tag-filtered log capture did
-not provide startup evidence; it must not be reported as a new loader pass.
+The owner enabled temporary Rooted debugging for the remaining inspection.
+Metadata-only reads found 78 loaded programs and 97 maps, including socket
+storage, ring buffers, a devmap hash and two mmap-flagged maps. The DMA-BUF
+iterator and wakelock activate/deactivate links are present. These observations
+establish instantiated objects, not exhaustive feature semantics or performance.
+
+The generic `bpftool cgroup show` returned status255 without usable attachment
+results. A small native helper using only `BPF_PROG_QUERY` then queried the
+existing root cgroup. All 14 selected hooks succeeded with one attached program
+each: ingress/egress, socket create/release, IPv4/IPv6 bind/connect,
+IPv4/IPv6 sendmsg/recvmsg, getsockopt and setsockopt. Nothing was loaded,
+attached, detached, pinned or updated by the helper; it was removed afterward.
+This is stronger evidence for those backports than source declarations alone.
+
+Mappings from 13 selected Android/native hardware services show actual use:
+
+| Service | Legacy library mapped |
+| --- | --- |
+| Gatekeeper and Samsung Keymaster | 64-bit `libcrypto-v33.so` |
+| Widevine DRM | 32-bit CBS shim and protobuf lite3.9.1 |
+| Sensor multihal | 64-bit protobuf lite3.9.1 |
+| Samsung camera provider | 32-bit protobuf full/lite3.9.1 |
+
+Third-party app maps and application data were not inspected. The UI shim was
+not mapped in these sampled idle services; its four actual scaler dependencies
+remain, and no camera/scaler workload was launched to prove dynamic use or
+non-use. No credential operations, media session or service restart was induced.
+
+The available tag-filtered/kernel logs contained no retained startup/listener
+evidence. They cannot explain the absent AMS attachment or establish a fresh
+loader startup pass. No OOM/memory-pressure test or map-content dump was run.
+
+Final checks confirm the same build1793018822, bootcomplete, encrypted data,
+enforcing SELinux, normal ADB UID2000, Rooted debugging off and both temporary
+helpers absent. Tracepoint formats were initially readable without root. The
+public release and source pins are unchanged.
 
 Keep the public release/source pins unchanged during this audit. Next work
 should isolate the OOM tracepoint repair from changes to library identity or

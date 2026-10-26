@@ -8,7 +8,11 @@ were reviewed but not applied. Removing the version override alone does not
 remove API37 platform-header minimum assumptions. Future API37.1 has a separate
 Connectivity5.15 admission gate. Legacy crypto has an actual ASN1_ITEM layout
 change, not just a missing function; preserve credential continuity. Runtime
-bpffs/loaded-library inspection is pending temporary rooted-debugging access.
+follow-up completed: AMS OOM program loaded/pinned but no OOM perf attachment;
+four LMKD listeners attached. Read-only BPF_PROG_QUERY confirms all14 selected
+network hooks, and mappings confirm actual credential/DRM/sensor/camera legacy
+library use. Rooted debugging restored OFF/UID2000, temporary helpers removed.
+No new ROM build, flash, OOM test or release. Detailed audit qualifies limits.
 
 ## Goal and repository boundaries
 

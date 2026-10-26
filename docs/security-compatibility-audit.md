@@ -170,3 +170,30 @@ from a controlled battery measurement. No new ROM power improvement is claimed.
    Clang-compatible FORTIFY/JIT hardening with measured compatibility costs.
 5. Continue real hardware/codec/storage/endurance testing; avoid performance
    tuning based only on noisy logs or desktop hardening checklists.
+
+## Fix validation checkpoint — 2026-10-26
+
+Signed userspace candidate **1792969106** contains the codec lifetime fix and
+FUSE-BPF capability gate. Full ROM/recovery and strict VINTF checks, component
+signing, OTA whole-file signature and existing certificate continuity passed.
+Its boot/DTBO, kernel configuration, policy and audio/USB/thermal inputs match
+release1792961358. The candidate is not installed or published. Loader unit tests
+were compiled separately and excluded from product files; runtime tests remain.
+
+The isolated BPF atomic backport includes the upstream generic operations,
+ARM64 encoders/JIT, fetch bounds/subregister fixes and cmpxchg pointer-leak fix.
+All changed core objects compile with the real kernel CFI flags; the normally
+excluded interpreter was additionally compiled in a diagnostic configuration.
+An actual-source LL/SC emitter semantic model passes21,840 ASan/UBSan cases,
+including failed store retries and preserved registers. Existing actual-source
+probe/fixup tests still pass. These host models do not execute ARM64 machine code
+or establish live verifier, concurrency, wakelock-accounting or networking success.
+The isolated complete kernel build is in progress. Target LSE is disabled, so
+LL/SC support is necessary. No kernel has been installed from this work.
+
+A Clang FORTIFY adaptation is being tested against the old inline implementation,
+with initial valid-operation, compile-time overflow rejection and dynamic trap
+checks on Clang22 and GCC. This remains preparation, not an enabled ROM feature.
+Filesystem protection, full refcounts and JIT hardening are still pending.
+Release/feed pins remain1792961358; keys, rollback assets and live vbmeta are
+unchanged. No new hardware or battery improvement is claimed.

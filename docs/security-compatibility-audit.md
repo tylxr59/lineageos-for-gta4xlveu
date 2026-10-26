@@ -214,15 +214,33 @@ crash buffer remains empty. Rooted inspection also confirms the previously
 unreadable vm.unprivileged_userfaultfd value is0; ART behavior stays intact.
 No battery improvement is inferred from repaired accounting.
 
-A separate hardening kernel also compiles with real Clang FORTIFY and full
-refcounts enabled. Actual-wrapper host tests pass valid operations, compile-time
-read/write rejection and dynamic overflow trapping on Clang22 and GCC. The built
-kernel contains672 FORTIFY call sites. Binary inspection confirms hardlink/
-symlink protection defaults1, FIFO/regular protection2, JIT blinding2 and JIT
-symbol export0. BTF checks pass. These protections are not installed: runtime
-compatibility, vendor-driver warnings, networking and performance remain untested.
-The legacy FORTIFY adaptation preserves whole-object bounds; it does not add
-newer member-bound checking. No global BPF/ART/Perfetto disable was introduced.
+Signed hardening candidate **1793018822** also completed a no-wipe installation,
+owner pattern/setup/hardware smoke checks, matching-recovery/full-partition hash
+verification and a final recovery-menu Android return. Its genuine kernel config
+enables Clang FORTIFY and full refcounts, with672 emitted FORTIFY call sites.
+Actual-source host tests pass valid operations, constant read/write rejection
+and dynamic overflow trapping on Clang22 and GCC. Deliberate kernel buffer
+corruption was not induced on the tablet. The legacy adaptation preserves
+whole-object bounds rather than newer member bounds.
+
+Live filesystem values are hardlink/symlink protection1 and FIFO/regular
+protection2. Controlled cross-owner tests pass with child effective capabilities
+cleared, including world/group-sticky directories and ordinary DAC controls.
+JIT blinding is2. Android's standard NetBpfLoad requests privileged JIT symbols
+by writing bpf_jit_kallsyms=1; the kernel explicitly overrides symbol export when
+blinding is active, and no generated JIT program symbols appear in the live
+table. This required no Connectivity fork or temporary sysctl write.
+
+The43 atomic cases,1,024 concurrent unique fetch results, both AOSP accounting
+suites and DMA-BUF allocation/early-close regression tests pass again with these
+protections enabled. Production accounting is initialized, loader errors are
+absent and the captured kernel log has no refcount/FORTIFY/CFI failure patterns.
+Normal-UID codec lookup and48-entry enumeration still exit successfully with
+normal cleanup. Crash buffer empty; encrypted data unlocked; enforcing SELinux;
+normal UID2000; Rooted debugging off. Owned markers, binaries and file fixtures
+were removed. These are bounded tests and owner smoke checks, not exhaustive
+security, performance or endurance certification. ROM SHA256:
+`8524422271201c2423e452f15eb575c1de23691a3f15599b431edd55f0501b30`.
 
 Sources and regression tests are linked in [CHANGES](../CHANGES.md). Published
 release/feed pins remain1792961358. Existing keys, rollback assets and live

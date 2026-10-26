@@ -31,6 +31,12 @@ Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md f
 `manifests/resolved.xml` pins the current privately signed, hardware-tested
 source: device `038bb20`, kernel `dc07aa16f`, vendor `1c0a6f2`, Pixel `d4f83b6`.
 Current public release is **1792961358**, with matching resolved/fork pins and feed.
+Current locally installed/tested candidate is **1793018822**, with exact sources in
+`manifests/candidates/security-hardening-20261026.xml` and six-fork pins in
+`security-hardening-forks-20261026.xml`. Read the latest security audit/testing
+follow-up. The public feed/released manifests are intentionally still1792961358;
+do not overwrite the active six-fork checkout with those four-fork release pins.
+
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
 proof separate from advertised public HTTPS OTA download/install evidence.
@@ -639,3 +645,32 @@ config deltas plus already-disabled PROFILE_ALL_BRANCHES prompt disappearing
 because its Kconfig prompt depends !FORTIFY_SOURCE; it remains disabled.
 Current installed/rollback remains tested1793017415. Hardening tests/installation
 are authorized by owner fixing request, no new publication request.
+
+
+## Completed local security/compatibility candidate1793018822
+
+Owner-requested actionable fixes are installed/tested, not publicly released.
+Exact sources: frameworksb911f1a, loaderc2621ec, kernela99cbdcd5; device038bb20,
+vendor1c0a6f2, Pixeld4f83b6 unchanged. Six-fork candidate manifests are committed.
+Kernelcanonicalfix/los24-security-hardening now has test-only400e815c0 beyond ROM
+pina99; do not rebuild/publish a moving tip as though it were this tested image.
+
+Full strict build/signing/VINTF/BTF and actualbinary672FORTIFYcalls/defaults passed.
+Live FS1/1/2/2 and JITharden2 pass behavioral/regressiontests, including capless
+cross-owner filesystem checks, atomic43+1024uniqueconcurrentreturns, bothAOSP
+6pass/2intentional-skip accountingABIs, initializedproductionduration and DMA1k/
+200earlyclose/no-retained tests. Standard NetBpfLoad writes kallsyms1, but kernel
+bpf_jit_kallsyms_enabled returnsfalsewhenharden>0; actualhashedJITsymbolcount0.
+Do not add a Connectivity fork or blind sysctl counterwrite for this benign
+request. vm.unprivileged_userfaultfd0 observed; trustedBPF/ART/Perfetto preserved.
+
+Owner usualpattern/setup/video/Wi-Fi/cameras/speakers/AirPods/SPen/rotate/MTP passed.
+Matchingrecovery/fullboot-DTBO-recoveryhashes/originalvbmeta and finalmenuAndroid
+return/FBE/unlockedmarker/setupflags passed. Markers/helpers/FSfixtures removed,
+normalUID2000/rootdebugOFF/SELinuxenforcing/emptycrashbuffer. No wipe/logger/rootapp,
+AVBretry/relock or new keys. Rawlogs stay private in the workspace; evidence
+artifacts/security-hardening-rom-20261026/progress.json COMPLETE and final-cleanup.json.
+Earlier pending notes above are historical. Public release/feed still1792961358;
+no shipping request was given. Docs/CHANGES reflect bounded proof and limitations.
+An explicit future push-update request can publish the exact tested candidate
+using existing keys/runbook after preparing/verifying all release assets.

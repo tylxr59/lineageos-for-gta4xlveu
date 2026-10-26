@@ -171,29 +171,46 @@ from a controlled battery measurement. No new ROM power improvement is claimed.
 5. Continue real hardware/codec/storage/endurance testing; avoid performance
    tuning based only on noisy logs or desktop hardening checklists.
 
-## Fix validation checkpoint — 2026-10-26
+## Fix validation — 2026-10-26
 
-Signed userspace candidate **1792969106** contains the codec lifetime fix and
-FUSE-BPF capability gate. Full ROM/recovery and strict VINTF checks, component
-signing, OTA whole-file signature and existing certificate continuity passed.
-Its boot/DTBO, kernel configuration, policy and audio/USB/thermal inputs match
-release1792961358. The candidate is not installed or published. Loader unit tests
-were compiled separately and excluded from product files; runtime tests remain.
+Signed userspace candidate **1792969106** fixes codec performance-point ownership
+and adds the FUSE-BPF capability gate. Full ROM/recovery, strict VINTF, component
+signing and whole-OTA signature/certificate continuity passed. A no-wipe update
+booted and retained the original pattern/setup and saved marker. Minimal codec
+lookup and complete48-entry enumeration now exit0 with normal cleanup; both
+previously aborted. The crash buffer is empty. All8 loader tests passed in both
+32-bit and64-bit form on the tablet as ordinary UID2000. Its actual boot log
+shows bpfloader exit0 without the old missing-FUSE-entry load error; the object
+remains packaged and storage uses the existing fallback. This does not add the
+kernel FUSE-BPF backend.
 
-The isolated BPF atomic backport includes the upstream generic operations,
-ARM64 encoders/JIT, fetch bounds/subregister fixes and cmpxchg pointer-leak fix.
-All changed core objects compile with the real kernel CFI flags; the normally
-excluded interpreter was additionally compiled in a diagnostic configuration.
-An actual-source LL/SC emitter semantic model passes21,840 ASan/UBSan cases,
-including failed store retries and preserved registers. Existing actual-source
-probe/fixup tests still pass. These host models do not execute ARM64 machine code
-or establish live verifier, concurrency, wakelock-accounting or networking success.
-The isolated complete kernel build is in progress. Target LSE is disabled, so
-LL/SC support is necessary. No kernel has been installed from this work.
+Owner checks passed for video, Wi-Fi, cameras, speakers/AirPods, S Pen, auto-rotate
+and File Transfer. The matching recovery booted; full boot/DTBO/recovery hashes
+match signed images, and original vbmeta is unchanged. Recovery-menu return,
+encrypted/unlocked data, enforcing SELinux, UID2000, Rooted debugging off and
+saved-marker checksum passed again. Owned probes/marker were removed. ROM SHA256:
+`fe8ec1b2763f662dbce892fb072626f8753c9b66a31ac3971f83e040a5893499`.
 
-A Clang FORTIFY adaptation is being tested against the old inline implementation,
-with initial valid-operation, compile-time overflow rejection and dynamic trap
-checks on Clang22 and GCC. This remains preparation, not an enabled ROM feature.
-Filesystem protection, full refcounts and JIT hardening are still pending.
-Release/feed pins remain1792961358; keys, rollback assets and live vbmeta are
-unchanged. No new hardware or battery improvement is claimed.
+The isolated BPF atomic kernel backport includes generic operations, ARM64
+encoders/JIT, fetch bounds/subregister fixes and cmpxchg pointer-leak protection.
+Changed objects and the complete kernel compile with enforcing CFI; the normally
+excluded interpreter was also compiled diagnostically. Actual-source LL/SC
+semantic tests pass21,840 ASan/UBSan cases, and previous probe/fixup tests pass.
+BTF limits/linker boundaries/type identity pass. The target disables LSE and uses
+LL/SC. An atomic-only full ROM is building; no atomic kernel has been installed,
+and unchanged-kernel userspace1792969106 still has the old wakelock load errors.
+Live verifier/concurrency/accounting/networking proof is pending.
+
+A separate hardening kernel also compiles with real Clang FORTIFY and full
+refcounts enabled. Actual-wrapper host tests pass valid operations, compile-time
+read/write rejection and dynamic overflow trapping on Clang22 and GCC. The built
+kernel contains672 FORTIFY call sites. Binary inspection confirms hardlink/
+symlink protection defaults1, FIFO/regular protection2, JIT blinding2 and JIT
+symbol export0. BTF checks pass. These protections are not installed: runtime
+compatibility, vendor-driver warnings, networking and performance remain untested.
+The legacy FORTIFY adaptation preserves whole-object bounds; it does not add
+newer member-bound checking. No global BPF/ART/Perfetto disable was introduced.
+
+Sources and regression tests are linked in [CHANGES](../CHANGES.md). Published
+release/feed pins remain1792961358. Existing keys, rollback assets and live
+vbmeta are unchanged. No hardware performance or battery improvement is claimed.

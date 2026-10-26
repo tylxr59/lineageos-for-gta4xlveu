@@ -603,3 +603,15 @@ independent artifacts/security-{kernel,hardening}-candidate-20261026 outputs.
 Do not edit source used by an active full kernel compilation. Legacy wrappers
 retain object-size type0; this does not add newer member-bound checking. Both
 Clang22/GCC actual-wrapper valid/constant-overflow/dynamic-trap host tests pass.
+
+Latest checkpoint: userspace1792969106 recovery-menu Android return completed;
+owner pattern/setup and saved marker persisted, standard final checks passed.
+Owned marker removed; no temporary native binaries remain. Progress COMPLETE in
+artifacts/security-userspace-candidate-20261025/. Public feed still1792961358.
+Hardening full isolated kernel AND BTF checks passed. Binary checker confirms672
+real FORTIFY calls and actual intended protected*/JIT defaults, not config-only
+claims. No hardening runtime install/test yet. Atomic-only ROM pipeline is active
+los24-security-atomic-rom.service/logs/security-atomic-rom-build.log, no automatic
+install. Helpers/output artifacts/security-atomic-candidate-20261026/. Its signing
+uses existing47 identities. Device remains booted/unlocked1792969106, UID2000,
+RooteddebugOFF. Keep atomic vs hardening candidates separate for fault isolation.

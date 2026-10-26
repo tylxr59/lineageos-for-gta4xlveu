@@ -29,8 +29,10 @@ branches should remain intact; use maintained work branches in the source forks.
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
 `manifests/resolved.xml` pins the current privately signed, hardware-tested
-source: device `038bb20`, kernel `dc07aa16f`, vendor `1c0a6f2`, Pixel `d4f83b6`.
-Current public release is **1792961358**, with matching resolved/fork pins and feed.
+source prepared for authorized release **1793018822**: device `038bb20`, kernel
+`a99cbdcd5`, vendor `1c0a6f2`, Pixel `d4f83b6`, frameworks/av `b911f1a`,
+system/bpf `c2621ec`. Public feed remains1792961358 until the assets upload.
+Inspect actual release/feed state before retrying publication.
 Current locally installed/tested candidate is **1793018822**, with exact sources in
 `manifests/candidates/security-hardening-20261026.xml` and six-fork pins in
 `security-hardening-forks-20261026.xml`. Read the latest security audit/testing
@@ -40,7 +42,8 @@ do not overwrite the active six-fork checkout with those four-fork release pins.
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
 proof separate from advertised public HTTPS OTA download/install evidence.
-`manifests/gta4xlveu.xml` pins four maintained forks, including the Pixel thermal HAL.
+`manifests/gta4xlveu.xml` pins six maintained forks, including the Pixel HAL,
+frameworks/av and system/bpf fixes.
 Platform source updates and Android major-version migrations are separate risk
 levels: review compatibility and installation/signing implications explicitly.
 
@@ -674,3 +677,10 @@ Earlier pending notes above are historical. Public release/feed still1792961358;
 no shipping request was given. Docs/CHANGES reflect bounded proof and limitations.
 An explicit future push-update request can publish the exact tested candidate
 using existing keys/runbook after preparing/verifying all release assets.
+
+
+Owner explicitly authorized publication of tested1793018822. Exact12-asset bundle
+prepared in artifacts/security-release-20261026/release; sourcepins promoted to
+testedmanifest, feed unchanged until successful upload. No rebuild or key change.
+Only3/1242projects differ from priorrelease (kernel/frameworksAV/BPFloader).
+Preserve releases and inspect actual remote state before any retry.

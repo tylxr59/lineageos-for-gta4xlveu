@@ -79,7 +79,6 @@
   <project name="LineageOS/android_external_vim" path="external/vim" revision="f31199df8fca8148b61ae94bbfcb834021f5bdd9" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0"/>
   <project name="LineageOS/android_external_wpa_supplicant_8" path="external/wpa_supplicant_8" revision="1063d796b547c4cd2c23c21da72ed988ac70a84a" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk"/>
   <project name="LineageOS/android_external_zstd" path="external/zstd" revision="1bfdf8aef6bdec0e817c1f75aeaf382db22de668" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0"/>
-  <project name="LineageOS/android_frameworks_av" path="frameworks/av" revision="937eb9047ec2f88620f1f6a4d9e407f6c869d91a" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk,sysui-studio"/>
   <project name="LineageOS/android_frameworks_base" path="frameworks/base" revision="653be4a9d2b0c727136694c789975e27fa7cdcef" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk-cw-fs,pdk-fs,sysui-studio"/>
   <project name="LineageOS/android_frameworks_hardware_interfaces" path="frameworks/hardware/interfaces" revision="f80da5a738798ed94d061f79ebe78edf26391424" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk,sysui-studio"/>
   <project name="LineageOS/android_frameworks_libs_systemui" path="frameworks/libs/systemui" revision="0e181d3d5dd8456ee158d9ac8725d9cd59fecd28" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk-cw-fs,pdk-fs,sysui-studio"/>
@@ -227,7 +226,6 @@
   <project name="LineageOS/android_prebuilts_clang_kernel_linux-x86_clang-r416183b" path="prebuilts/clang/kernel/linux-x86/clang-r416183b" revision="54220fd601050b350b2af7adc913089ebf0e7aed" upstream="lineage-20.0" dest-branch="lineage-20.0" clone-depth="1"/>
   <project name="LineageOS/android_prebuilts_extract-tools" path="prebuilts/extract-tools" revision="aaeb969a477321411279c03799f45ae9f94f770b" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" clone-depth="1"/>
   <project name="LineageOS/android_prebuilts_tools-lineage" path="prebuilts/tools-lineage" revision="7cf9452c82a0265d00e8c444f25639b7aa66969d" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" clone-depth="1"/>
-  <project name="LineageOS/android_system_bpf" path="system/bpf" revision="1787201ef62581ee5532fdb1e5b0cbc3fb137dab" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk"/>
   <project name="LineageOS/android_system_ca-certificates" path="system/ca-certificates" revision="3eafa7527b96dee31eb8afd7586f3e4ca8c07de0" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk"/>
   <project name="LineageOS/android_system_chre" path="system/chre" revision="a0edaf6836e32fb54a077c068cfd472f2cc1fca5" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk"/>
   <project name="LineageOS/android_system_core" path="system/core" revision="65d661b1a536701e8b118be4e9728d7b5ca727c9" upstream="refs/heads/lineage-24.0" dest-branch="refs/heads/lineage-24.0" groups="pdk"/>
@@ -1275,8 +1273,10 @@
     <copyfile src="lk_inc.mk" dest="lk_inc.mk"/>
   </project>
   <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="038bb209fda6cfd9f0a70b00c78491eb4cec3551" upstream="fix/los24-bluetooth-audio" groups="local::gta4xlveu"/>
+  <project name="tylxr59/android_frameworks_av" path="frameworks/av" remote="los24-forks" revision="b911f1a2e8eec6b0ad7fe96176646ae92c072881" upstream="fix/los24-codec-lifetime" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_hardware_google_pixel" path="hardware/google/pixel" remote="los24-forks" revision="d4f83b63e6f03bfeb7e903c11f689fca9d65788b" upstream="fix/los24-thermal-empty-queries" groups="local::gta4xlveu"/>
-  <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="dc07aa16fd2eb4be6dea6a9a14d3385bcb663d3a" upstream="fix/los24-dmabuf-candidate" groups="local::gta4xlveu"/>
+  <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="a99cbdcd54c31cbfab2a6699e0731c99df04bf73" upstream="fix/los24-security-hardening" groups="local::gta4xlveu"/>
+  <project name="tylxr59/android_system_bpf" path="system/bpf" remote="los24-forks" revision="c2621ec2befeb71e96072250f6758e3b4462f9b8" upstream="fix/los24-fuse-capability" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_vendor_samsung_gta4xlveu" path="vendor/samsung/gta4xlveu" remote="los24-forks" revision="1c0a6f2cb802bc9f15e5b53ceb00ab7caefc8695" upstream="fix/los24-hardening" groups="local::gta4xlveu"/>
 
   <contactinfo bugurl="go/repo-bug"/>

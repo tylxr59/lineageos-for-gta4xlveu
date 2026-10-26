@@ -6,9 +6,11 @@
 | --- | --- | --- |
 | Platform | [LineageOS/android](https://github.com/LineageOS/android) | LOS24; exact project pins in manifests |
 | Device | [device fork](https://github.com/tylxr59/android_device_samsung_gta4xlveu) | fix/los24-bluetooth-audio |
-| Kernel | [kernel fork](https://github.com/tylxr59/android_kernel_samsung_gta4xlve) | fix/los24-dmabuf-candidate |
+| Kernel | [kernel fork](https://github.com/tylxr59/android_kernel_samsung_gta4xlve) | fix/los24-security-hardening |
 | Vendor | [vendor fork](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu) | fix/los24-hardening |
 | Pixel thermal HAL | [Pixel fork](https://github.com/tylxr59/android_hardware_google_pixel) | fix/los24-thermal-empty-queries |
+| Media framework | [frameworks/av fork](https://github.com/tylxr59/android_frameworks_av) | fix/los24-codec-lifetime |
+| BPF loader | [system/bpf fork](https://github.com/tylxr59/android_system_bpf) | fix/los24-fuse-capability |
 
 `manifests/known-good.xml` records the tested prototype. `manifests/resolved.xml`
 pins the release-key source including the OTA endpoint, Gatekeeper

@@ -11,13 +11,26 @@ See [compatibility/security findings](security-compatibility-audit.md) and the
 [exact source snapshot](../manifests/candidates/security-hardening-20261026.xml).
 The older sections preserve historical tests and corrected defects.
 
+Current locally tested installation is the unreleased OOM candidate below;
+public release/feed and resolved release pins remain 1793018822.
+
 ## Unreleased OOM tracepoint candidate 1793039898 — 2026-10-26
 
 Kernel `f0f9fc67947a37d2e530367c227d228ec5d966d2` changes only the OOM
 tracepoint and its call site. The other 1,241 project revisions and the actual
-kernel config are identical to released 1793018822. The candidate has not been
-installed or published; it has no new Android/recovery boot, credential/data,
-hardware, live event or end-to-end OOM validation.
+kernel config are identical to released 1793018822. The signed candidate is now
+installed and locally validated, but has not been published.
+
+| Check | Result |
+| --- | --- |
+| Installation/data | Signed no-wipe sideload and Android boot; owner readiness after usual pattern/setup/hardware prompt. Saved marker checksum and setup flags survived installation and recovery round trip. |
+| Live OOM compatibility | Actual fields match reader offsets/sizes. AMS program using the OOM ring buffer is now attached to `mark_victim` in system_server; it was absent in the baseline snapshot. Four LMKD listeners remain attached. |
+| Network backports | Read-only queries confirm one program at each of 14 selected root-cgroup hooks. No production attachment was modified by the query. |
+| Accounting/DMA-BUF | Both ABI wakelock suites: 6 pass / 2 expected skips each. Production accounting initialized with numeric duration. DMA-BUF: 1,024 buffers, concurrent allocation/free, 200 early closes and no retained owned buffers. |
+| Retained protections/logs | Expected filesystem/JIT/userfaultfd settings, JIT blinding2 and no generated JIT symbols. No captured kernel failure patterns/BPF load errors; empty crash buffer. |
+| Recovery | Actual matching kernel/config and full boot/DTBO/recovery hashes passed. Original vbmeta unchanged. Owner recovery-menu return and unlocked Android passed. |
+| Cleanup | Final UID2000, Rooted debugging off, encrypted/unlocked data, enforcing SELinux; exact owned marker and temporary helpers removed. |
+| Limits | No deliberate OOM/pressure test, end-to-end OOM record-content test, new public HTTPS OTA installation or fresh vbmeta-pair flash. Existing vendor/AVB/version-override and endurance limits remain. |
 
 Full target-files/recovery/check-vintf-all build passed in 5m54s. Strict target
 VINTF, compiled BTF boundaries/iterator types, CFI/KPTI/FORTIFY/refcount/JIT and
@@ -32,7 +45,7 @@ Source manifests: [resolved candidate](../manifests/candidates/oom-tracepoint-20
 [fork pins](../manifests/candidates/oom-tracepoint-forks-20261026.xml).
 ROM SHA256: `50a3cb9756c3e9e956dfdc6d0821b8a2c8da05f03574ecd7f019f35beeda32bb`.
 The preceding live audit found the old AMS OOM program loaded but not attached;
-the current record-layout defect is latent in that snapshot. No deliberate OOM
+the repaired record layout now allows an actual AMS attachment. No deliberate OOM
 or memory-pressure test was run. Read [the compatibility audit](bpf-vendor-compatibility.md)
 before changing version selection or legacy library identities.
 

@@ -15,17 +15,25 @@ library use. Rooted debugging restored OFF/UID2000, temporary helpers removed.
 No new ROM build, flash, OOM test or release. Detailed audit qualifies limits.
 
 
-The owner then authorized building fixes. Isolated OOM candidate 1793039898 is
-signed and verified offline: kernel f0f9fc679 on fix/los24-oom-tracepoint, based
-on released a99, with only two source files changed. Candidate manifests are
-manifests/candidates/oom-tracepoint[-forks]-20261026.xml. The other 1,241 projects
-and kernel config are identical. Compiled tracepoint size/offsets, strict VINTF,
-BTF, retained hardening, existing-key component/OTA signatures and packaged
-kernel/config/recovery checks passed. No installation, reboot, OOM test,
-hardware verification or publication yet; public and installed stay 1793018822.
-The local workspace kernel/manifest pin candidate f0; preserve it before sync.
-Version override and legacy libraries are unchanged. See docs/testing.md and
-CHANGES.md.
+The owner then authorized building and hardware testing. Current installed
+candidate **1793039898** passed signed no-wipe Android installation, owner
+pattern/setup/hardware checks, live OOM layout/AMS attachment, all 14 selected
+network attachments, both ABI accounting suites and bounded DMA-BUF regression
+checks. Matching recovery/full boot-DTBO-recovery hashes and the final
+recovery-menu Android return/data/setup/security checks passed. Normal ADB
+UID2000, Rooted debugging off, FBE/enforcing SELinux and empty crash buffer;
+owned marker/helpers removed. No deliberate OOM or end-to-end event-content
+test was run. No manual vbmeta flash or new keys; original vbmeta is unchanged.
+
+Kernel f0f9fc679 on fix/los24-oom-tracepoint is based on released a99 with only
+two source files changed. Candidate manifests are
+manifests/candidates/oom-tracepoint[-forks]-20261026.xml; the other 1,241 projects,
+kernel config, version override and nine legacy native libraries are unchanged.
+Compiled ABI/BTF/hardening, strict VINTF and existing-key signatures passed.
+Public release/feed/resolved pins remain **1793018822**. Candidate publication
+has not been requested. Preserve the local kernel/manifest candidate pins before
+sync; an explicit shipping request can release this exact tested bundle after
+the usual asset/feed checks. See docs/testing.md and CHANGES.md.
 
 ## Goal and repository boundaries
 

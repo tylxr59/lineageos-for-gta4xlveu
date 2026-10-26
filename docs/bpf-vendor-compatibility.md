@@ -6,6 +6,8 @@ debugging and a removed read-only query helper were used for runtime inspection.
 No ROM source, image or OTA feed was changed, and no ROM was built or flashed.
 Earlier codec, FUSE load-gating, atomic and hardening defects are already fixed
 in this release; see [the preceding audit](security-compatibility-audit.md).
+The audit-stage findings below led to the installed, locally tested OOM
+candidate described at the end. Public release pins remain 1793018822.
 
 ## Findings and priorities
 
@@ -90,6 +92,14 @@ attachment in that snapshot. This is a latent producer/reader compatibility
 defect, not evidence of currently delivered corrupt OOM records. Four LMKD
 reclaim/kswapd programs were attached. Why the AMS listener was not attached was
 not established from the available logs.
+Subsequent source review found a specific compatibility check:
+`kernel/events/core.c:perf_event_set_bpf_prog` rejects a program whose maximum
+context access exceeds `trace_event_get_offsets()`. The latter returns the
+last field's offset plus size: 12 for the old event, 66 after the extension.
+The shipped program reads through byte65 (access end66). Thus the source check
+would reject the old combination with EACCES; this explains the observed
+absence without assuming corrupt records were delivered. The old runtime
+EACCES itself was not retained in logs. The check is unchanged in the fix.
 The corresponding vmscan wake/sleep format was also captured for comparison;
 their fixed fields agree with the reader's expected offsets.
 
@@ -254,6 +264,36 @@ kernel configuration, version override or legacy library changes are included.
 
 Full build, strict VINTF, compiled tracepoint-layout/BTF/config/default checks
 and private-key signing/OTA verification passed; see [testing](testing.md).
-This is a built candidate, not an installed or hardware-verified fix. Installed
-and public1793018822, OTA feed and release pins remain unchanged. The earlier
-statement that no patch was applied describes the audit stage before this build.
+At that stage only build verification existed; installed/public1793018822 and
+the release pins were unchanged. Installation and hardware checks followed
+below. The earlier statement that no patch was applied describes the audit
+stage before this build.
+
+## Completed local installation and validation
+
+The owner then authorized hardware testing. Signed candidate **1793039898** is
+now installed and locally validated. No-wipe sideload, Android boot, saved-file
+and setup persistence, actual matching recovery/full boot-DTBO-recovery hashes,
+and the final recovery-menu Android return/unlock passed. The owner reported
+ready after the requested pattern/setup/video/Wi-Fi/cameras/speakers/AirPods/
+S Pen/rotate/File Transfer checks, with no failures reported.
+
+The actual OOM event fields match the shipped reader, and the AMS OOM program
+is now attached in system_server using its expected ring buffer. Four LMKD
+listeners and all 14 selected networking hooks remain attached. Both ABI
+wakelock suites passed 6 active tests with 2 expected skips each; production
+duration accounting is initialized. The DMA-BUF probe passed 1,024 buffers,
+concurrent allocation/free and 200 early closes without retained owned buffers.
+Retained hardening settings and disabled JIT symbol export passed; captured
+logs had no tested kernel failure patterns or BPF load errors. No deliberate
+OOM/pressure event or end-to-end OOM record-content test was performed.
+
+Final normal ADB UID 2000, Rooted debugging off, encrypted/unlocked data,
+enforcing SELinux and empty crash buffer passed. Owned marker/native helpers
+were removed. The original vbmeta and signing identity are unchanged; no wipe,
+manual vbmeta flash, new library identity or version-override change occurred.
+The candidate remains **unpublished**. Public release/feed/resolved pins remain
+1793018822; there was no new public HTTPS OTA installation test. See
+[testing](testing.md) and [CHANGES](../CHANGES.md) for the exact source snapshot
+and digest. Broader BPF capability selection and ABI-preserving library
+maintenance remain separate work.

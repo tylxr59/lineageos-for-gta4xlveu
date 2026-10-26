@@ -14,8 +14,11 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 Signed local candidate **1793039898** extends the OOM tracepoint to match
 Android's memory-event reader. Full build/recovery, strict VINTF, compiled BTF
-field layout/configuration and signatures pass. **Not installed, hardware-tested
-or published**; the public release/feed remain 1793018822.
+field layout/configuration and signatures pass. Signed no-wipe Android and
+matching-recovery testing, owner hardware smoke checks, live OOM/network
+attachments, accounting/DMA-BUF regression checks and final pattern/data/setup
+persistence passed. **Locally tested; not published**. Public release/feed
+remain 1793018822. Rooted debugging is off and owned probes/marker are removed.
 
 | Change | Implementation commit |
 | --- | --- |

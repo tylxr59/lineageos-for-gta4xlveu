@@ -572,3 +572,34 @@ Never ship incomplete generic support before correct JIT and verifier tests.
 User asked to continue; tablet currently absent from ADB, reconnect question pending.
 Rooted debugging stays off. Fix syscall/FS/refcount/FORTIFY/JIT hardening in
 isolated candidates; no blind BPF-disable, AVB retry/relock, or audio TI work.
+
+Security continuation: userspace1792969106 is now installed with original kernel.
+Both native loader test ABIs passed8 tests each as UID2000. Minimal NDK lookup
+and complete48-entry catalog both exit0 with NORMAL teardown; no _Exit bypass,
+allocator suppression or crash-buffer clearing. Empty current crash buffer and
+standard encrypted/unlocked/enforcing/UID2000/RooteddebugOFF checks passed.
+Owner confirmed pattern/setup/video and hardware smoke checks. Actual boot log
+has bpfloader exit0 and no old missing-FUSE-entry error; fuseMedia object remains
+in the package. Backend remains unsupported and normal filesystem fallback stays.
+Wakelock errors remain expected with unchanged dc07 kernel. Matching recovery and
+full boot/DTBO/recovery hashes passed; original vbmeta unchanged. Owner recovery-
+menu Android return is pending. Private evidence in security-userspace candidate.
+
+Atomic-only full isolated kernel build and public BTF validator passed at e803
+(code) plus test-only321c39c9f. Atomic source branch pushed. Main Android kernel
+now321c39c9f on fix/los24-bpf-atomics; six-fork local manifest updated. Separate
+artifacts/security-atomic-candidate-20261026 queues full ROM/signing after isolated
+hardening build to bound memory; unitlos24-security-atomic-rom. No auto-install.
+Its expected baseline is1792969106; do not run installer against another build.
+
+Separate worktree branch fix/los24-security-hardening has931040132 (Clang-aware
+FORTIFY adaptation/actual attribute+version probe),739fbedf7 (full refcounts,
+FS protections and all-program JIT blinding/no JIT exports),936030e83 (actual-source
+FORTIFY host tests), pushed. Hardening config has real FORTIFY/REFCOUNT_FULL enabled;
+full isolated kernel unitlos24-security-hardening is compiling/linking. No runtime
+hardening success claimed and main atomic ROM excludes these changes. Private
+preparation and results under artifacts/security-compat-fixes-20261025/; keep
+independent artifacts/security-{kernel,hardening}-candidate-20261026 outputs.
+Do not edit source used by an active full kernel compilation. Legacy wrappers
+retain object-size type0; this does not add newer member-bound checking. Both
+Clang22/GCC actual-wrapper valid/constant-overflow/dynamic-trap host tests pass.

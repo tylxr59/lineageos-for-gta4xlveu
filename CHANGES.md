@@ -12,13 +12,20 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
-Signed local candidate **1793039898** extends the OOM tracepoint to match
-Android's memory-event reader. Full build/recovery, strict VINTF, compiled BTF
-field layout/configuration and signatures pass. Signed no-wipe Android and
-matching-recovery testing, owner hardware smoke checks, live OOM/network
-attachments, accounting/DMA-BUF regression checks and final pattern/data/setup
-persistence passed. **Locally tested; not published**. Public release/feed
-remain 1793018822. Rooted debugging is off and owned probes/marker are removed.
+No additional ROM changes staged.
+
+## 2026-10-26 — OOM event reporting
+
+[Release 1793039898](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793039898) · Android 17 / LineageOS 24.0
+
+The exact signed, locally tested build is published with the existing signing
+identity. All 12 assets, public ROM/checksum downloads and the nine-entry HTTPS
+feed on host/tablet matched. Only the kernel project changes from 1793018822.
+Signed no-wipe Android/recovery installation, owner hardware checks, data/setup
+persistence and live OOM/network/accounting/DMA-BUF checks passed. Rooted debugging
+is off; test helpers and marker are removed. The tablet already ran this exact
+timestamp before publication, so no new older-to-newer public Updater install
+is claimed. No deliberate OOM/pressure test was performed.
 
 | Change | Implementation commit |
 | --- | --- |

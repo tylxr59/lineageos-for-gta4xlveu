@@ -7,7 +7,7 @@ No ROM source, image or OTA feed was changed, and no ROM was built or flashed.
 Earlier codec, FUSE load-gating, atomic and hardening defects are already fixed
 in this release; see [the preceding audit](security-compatibility-audit.md).
 The audit-stage findings below led to the installed, locally tested OOM
-candidate described at the end. Public release pins remain 1793018822.
+candidate described at the end. The resulting published release is 1793039898.
 
 ## Findings and priorities
 
@@ -292,8 +292,28 @@ Final normal ADB UID 2000, Rooted debugging off, encrypted/unlocked data,
 enforcing SELinux and empty crash buffer passed. Owned marker/native helpers
 were removed. The original vbmeta and signing identity are unchanged; no wipe,
 manual vbmeta flash, new library identity or version-override change occurred.
-The candidate remains **unpublished**. Public release/feed/resolved pins remain
-1793018822; there was no new public HTTPS OTA installation test. See
+The owner subsequently authorized publication as **1793039898**. Public
+release/feed/resolved pins now match the exact tested source. No additional
+older-to-newer public HTTPS OTA installation test was repeated. See
 [testing](testing.md) and [CHANGES](../CHANGES.md) for the exact source snapshot
 and digest. Broader BPF capability selection and ABI-preserving library
 maintenance remain separate work.
+
+
+## Published OOM reporting update 1793039898
+
+The owner authorized [release 1793039898](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793039898) after signed local installation,
+hardware, live BPF and matching-recovery/data tests. The exact tested ROM was
+published without rebuilding or changing keys. All 12 public asset sizes and
+GitHub SHA256 digests, downloaded checksums, fresh public ROM hash and canonical
+nine-entry HTTPS feed on host/tablet matched. Only kernel f0f9fc679 differs from
+1793018822; the other 1,241 project pins and nine legacy native libraries are
+unchanged. ROM SHA256:
+`50a3cb9756c3e9e956dfdc6d0821b8a2c8da05f03574ecd7f019f35beeda32bb`.
+
+The tablet already ran the exact timestamp before publication, so no additional
+older-to-newer public Updater installation is claimed. Local installation and
+actual AMS attachment/accounting/DMA-BUF/recovery/data proof are separate from
+distribution checks. No deliberate OOM/end-to-end OOM record-content test or
+new manual vbmeta flash occurred. Rooted debugging remains off. Existing
+AVB/vendor/version-override and endurance limits remain documented.

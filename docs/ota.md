@@ -204,3 +204,22 @@ container lacks `gh`; it does not need Android build binaries. Keep Android
 building/signing in the configured build environment. Check tool availability
 before publication and inspect remote release/feed state before retrying a
 failed command; do not move credentials or recreate an existing release blindly.
+
+
+## Published OOM reporting update 1793039898
+
+The owner authorized [release 1793039898](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793039898) after signed local installation,
+hardware, live BPF and matching-recovery/data tests. The exact tested ROM was
+published without rebuilding or changing keys. All 12 public asset sizes and
+GitHub SHA256 digests, downloaded checksums, fresh public ROM hash and canonical
+nine-entry HTTPS feed on host/tablet matched. Only kernel f0f9fc679 differs from
+1793018822; the other 1,241 project pins and nine legacy native libraries are
+unchanged. ROM SHA256:
+`50a3cb9756c3e9e956dfdc6d0821b8a2c8da05f03574ecd7f019f35beeda32bb`.
+
+The tablet already ran the exact timestamp before publication, so no additional
+older-to-newer public Updater installation is claimed. Local installation and
+actual AMS attachment/accounting/DMA-BUF/recovery/data proof are separate from
+distribution checks. No deliberate OOM/end-to-end OOM record-content test or
+new manual vbmeta flash occurred. Rooted debugging remains off. Existing
+AVB/vendor/version-override and endurance limits remain documented.

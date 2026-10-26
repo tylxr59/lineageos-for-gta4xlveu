@@ -1,39 +1,31 @@
 # Agent instructions
 
 Before BPF compatibility or legacy-library changes, read
-[docs/bpf-vendor-compatibility.md](docs/bpf-vendor-compatibility.md). The
-2026-10-26 audit leaves release1793018822 unchanged. It confirms a live PID-only
-OOM tracepoint against a richer shipped BPF reader; upstream tracepoint patches
-were reviewed but not applied. Removing the version override alone does not
-remove API37 platform-header minimum assumptions. Future API37.1 has a separate
-Connectivity5.15 admission gate. Legacy crypto has an actual ASN1_ITEM layout
-change, not just a missing function; preserve credential continuity. Runtime
-follow-up completed: AMS OOM program loaded/pinned but no OOM perf attachment;
-four LMKD listeners attached. Read-only BPF_PROG_QUERY confirms all14 selected
-network hooks, and mappings confirm actual credential/DRM/sensor/camera legacy
-library use. Rooted debugging restored OFF/UID2000, temporary helpers removed.
-No new ROM build, flash, OOM test or release. Detailed audit qualifies limits.
+[docs/bpf-vendor-compatibility.md](docs/bpf-vendor-compatibility.md). The baseline
+audit found the OOM format mismatch repaired by the current release below.
+Removing the version override alone does not remove API37 platform-header
+minimum assumptions. API37.1 introduces a separate Connectivity5.15 admission
+gate; review actual capabilities before changing it. Legacy crypto has a real
+ASN1_ITEM layout difference, not just a missing function. Preserve credential
+continuity and the existing library identities until an ABI-safe replacement
+is validated. Detailed findings and staged evidence remain in the audit.
 
+Current installed AND public release is **1793039898**, kernel f0f9fc679 on
+fix/los24-oom-tracepoint. Owner-authorized publication used the exact signed,
+locally tested ROM without rebuilding or new keys. All 12 public asset sizes/
+digests, fresh public ROM/checksum download and canonical nine-entry HTTPS feed
+on host/tablet matched. Signed no-wipe Android/recovery and owner hardware/data/
+setup tests passed. Actual AMS OOM attachment, 14 selected network hooks, both
+ABI accounting suites and bounded DMA-BUF checks passed. Final UID2000, Rooted
+debugging off, FBE/enforcing, empty crash buffer; helpers/marker removed. No
+deliberate OOM/content-delivery or additional public older-to-newer install test.
+Original vbmeta unchanged; no manual vbmeta flash or new recovery/vbmeta pair
+fresh-install test. Legacy libraries and version override remain unchanged.
 
-The owner then authorized building and hardware testing. Current installed
-candidate **1793039898** passed signed no-wipe Android installation, owner
-pattern/setup/hardware checks, live OOM layout/AMS attachment, all 14 selected
-network attachments, both ABI accounting suites and bounded DMA-BUF regression
-checks. Matching recovery/full boot-DTBO-recovery hashes and the final
-recovery-menu Android return/data/setup/security checks passed. Normal ADB
-UID2000, Rooted debugging off, FBE/enforcing SELinux and empty crash buffer;
-owned marker/helpers removed. No deliberate OOM or end-to-end event-content
-test was run. No manual vbmeta flash or new keys; original vbmeta is unchanged.
-
-Kernel f0f9fc679 on fix/los24-oom-tracepoint is based on released a99 with only
-two source files changed. Candidate manifests are
-manifests/candidates/oom-tracepoint[-forks]-20261026.xml; the other 1,241 projects,
-kernel config, version override and nine legacy native libraries are unchanged.
-Compiled ABI/BTF/hardening, strict VINTF and existing-key signatures passed.
-Public release/feed/resolved pins remain **1793018822**. Candidate publication
-has not been requested. Preserve the local kernel/manifest candidate pins before
-sync; an explicit shipping request can release this exact tested bundle after
-the usual asset/feed checks. See docs/testing.md and CHANGES.md.
+Released manifests now pin f0 and all other 1,241 tested project revisions.
+Candidate manifests remain as immutable staging records. Prior statements about
+unpublished/uninstalled candidates are historical. See docs/testing.md,
+docs/bpf-vendor-compatibility.md and CHANGES.md for evidence and limits.
 
 ## Goal and repository boundaries
 
@@ -63,12 +55,12 @@ branches should remain intact; use maintained work branches in the source forks.
 
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
-`manifests/resolved.xml` pins released1793018822: device `038bb20`, kernel
-`a99cbdcd5`, vendor `1c0a6f2`, Pixel `d4f83b6`, frameworks/av `b911f1a`,
-system/bpf `c2621ec`. Current public release, feed and tested installation are
-**1793018822**. The six-fork source set is in `manifests/gta4xlveu.xml`; dated
-candidate snapshots retain the staging history. Do not replace exact released
-pins with moving branch tips or the preceding four-fork manifest.
+`manifests/resolved.xml` pins released 1793039898: device `038bb20`, kernel
+`f0f9fc679`, vendor `1c0a6f2`, Pixel `d4f83b6`, frameworks/av `b911f1a`,
+system/bpf `c2621ec`. Public release, feed and tested installation are
+**1793039898**. The six-fork source set is in `manifests/gta4xlveu.xml`; dated
+candidate snapshots retain staging history. Use exact tested pins, not moving
+branch tips or the preceding kernel's test-only 400e commit.
 
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
@@ -686,7 +678,7 @@ are authorized by owner fixing request, no new publication request.
 Owner-requested actionable fixes are installed/tested, not publicly released.
 Exact sources: frameworksb911f1a, loaderc2621ec, kernela99cbdcd5; device038bb20,
 vendor1c0a6f2, Pixeld4f83b6 unchanged. Six-fork candidate manifests are committed.
-Kernelcanonicalfix/los24-security-hardening now has test-only400e815c0 beyond ROM
+Kernelcanonicalfix/los24-security-hardening now has test-only 400e815c0 beyond ROM
 pina99; do not rebuild/publish a moving tip as though it were this tested image.
 
 Full strict build/signing/VINTF/BTF and actualbinary672FORTIFYcalls/defaults passed.

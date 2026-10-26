@@ -1,25 +1,24 @@
 # Test status
 
-Current release: [1793018822](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793018822), device `038bb20`, kernel `a99cbdcd5`,
-vendor `1c0a6f2`, Pixel `d4f83b6`, frameworks/av `b911f1a` and loader `c2621ec`. Six maintained
-forks are pinned in the full 1,242-project source manifest. Signed no-wipe local
-updates, owner hardware smoke, encrypted data/pattern persistence, recovery/full
-partition hashes, memory/filesystem/BPF regression checks and public asset/feed
-verification passed. This is not exhaustive CTS/VTS, security or endurance proof.
+Current release and locally tested installation:
+[1793039898](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793039898), device `038bb20`, kernel `f0f9fc679`, vendor `1c0a6f2`,
+Pixel `d4f83b6`, frameworks/av `b911f1a` and loader `c2621ec`. Six maintained
+forks and all 1,242 projects are pinned. Only the kernel changes from 1793018822.
+Signed no-wipe Android/recovery, owner hardware, encrypted pattern/data/setup,
+live OOM/network/accounting/DMA-BUF and public asset/feed checks passed. These
+are bounded tests, not exhaustive CTS/VTS, security or endurance certification.
 
-See [compatibility/security findings](security-compatibility-audit.md) and the
-[exact source snapshot](../manifests/candidates/security-hardening-20261026.xml).
-The older sections preserve historical tests and corrected defects.
+See [BPF/vendor compatibility](bpf-vendor-compatibility.md),
+[earlier security findings](security-compatibility-audit.md) and the
+[exact source snapshot](../manifests/candidates/oom-tracepoint-20261026.xml).
+Older sections retain historical evidence.
 
-Current locally tested installation is the unreleased OOM candidate below;
-public release/feed and resolved release pins remain 1793018822.
-
-## Unreleased OOM tracepoint candidate 1793039898 — 2026-10-26
+## OOM event reporting release 1793039898 — 2026-10-26
 
 Kernel `f0f9fc67947a37d2e530367c227d228ec5d966d2` changes only the OOM
 tracepoint and its call site. The other 1,241 project revisions and the actual
 kernel config are identical to released 1793018822. The signed candidate is now
-installed and locally validated, but has not been published.
+installed, locally validated and published as the exact tested bundle.
 
 | Check | Result |
 | --- | --- |
@@ -522,3 +521,22 @@ Updater installation was repeated. Local signed no-wipe, owner hardware, runtime
 protection/accounting and matching-recovery/data checks passed independently.
 Rooted debugging remains off. Known AVB/vendor/compatibility/endurance limits
 remain documented; no new battery/performance or formal certification claim.
+
+
+## Published OOM reporting update 1793039898
+
+The owner authorized [release 1793039898](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793039898) after signed local installation,
+hardware, live BPF and matching-recovery/data tests. The exact tested ROM was
+published without rebuilding or changing keys. All 12 public asset sizes and
+GitHub SHA256 digests, downloaded checksums, fresh public ROM hash and canonical
+nine-entry HTTPS feed on host/tablet matched. Only kernel f0f9fc679 differs from
+1793018822; the other 1,241 project pins and nine legacy native libraries are
+unchanged. ROM SHA256:
+`50a3cb9756c3e9e956dfdc6d0821b8a2c8da05f03574ecd7f019f35beeda32bb`.
+
+The tablet already ran the exact timestamp before publication, so no additional
+older-to-newer public Updater installation is claimed. Local installation and
+actual AMS attachment/accounting/DMA-BUF/recovery/data proof are separate from
+distribution checks. No deliberate OOM/end-to-end OOM record-content test or
+new manual vbmeta flash occurred. Rooted debugging remains off. Existing
+AVB/vendor/version-override and endurance limits remain documented.

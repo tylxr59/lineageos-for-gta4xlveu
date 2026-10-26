@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest>
+  <remote name="los24-forks" fetch="https://github.com/" />
+  <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="038bb209fda6cfd9f0a70b00c78491eb4cec3551" upstream="fix/los24-bluetooth-audio" />
+  <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="dc07aa16fd2eb4be6dea6a9a14d3385bcb663d3a" upstream="fix/los24-dmabuf-candidate" />
+  <project name="tylxr59/android_vendor_samsung_gta4xlveu" path="vendor/samsung/gta4xlveu" remote="los24-forks" revision="1c0a6f2cb802bc9f15e5b53ceb00ab7caefc8695" upstream="fix/los24-hardening" />
+  <remove-project name="LineageOS/android_hardware_google_pixel" />
+  <project name="tylxr59/android_hardware_google_pixel" path="hardware/google/pixel" remote="los24-forks" revision="d4f83b63e6f03bfeb7e903c11f689fca9d65788b" upstream="fix/los24-thermal-empty-queries" />
+  <remove-project name="LineageOS/android_frameworks_av" />
+  <project name="tylxr59/android_frameworks_av" path="frameworks/av" remote="los24-forks" revision="b911f1a2e8eec6b0ad7fe96176646ae92c072881" upstream="fix/los24-codec-lifetime" />
+  <remove-project name="LineageOS/android_system_bpf" />
+  <project name="tylxr59/android_system_bpf" path="system/bpf" remote="los24-forks" revision="c2621ec2befeb71e96072250f6758e3b4462f9b8" upstream="fix/los24-fuse-capability" />
+</manifest>

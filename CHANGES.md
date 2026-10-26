@@ -12,7 +12,10 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
-No additional changes staged.
+| Change | Implementation commits |
+| --- | --- |
+| Retain the owning video capabilities for NDK performance points; actual-wrapper sanitizer lifetime tests pass. ROM candidate validation in progress. | [framework `b911f1a`](https://github.com/tylxr59/android_frameworks_av/commit/b911f1a) |
+| Skip optional FUSE-BPF objects only when the kernel program-type entry is absent; retain real read/parse errors and add regression tests. Candidate validation in progress. | [BPF `ee7db63`](https://github.com/tylxr59/android_system_bpf/commit/ee7db63), [lint follow-up `c2621ec`](https://github.com/tylxr59/android_system_bpf/commit/c2621ec) |
 
 ## 2026-10-25 — Bluetooth media audio
 

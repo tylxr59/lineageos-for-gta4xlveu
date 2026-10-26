@@ -538,3 +538,37 @@ Correct vm.unprivileged_userfaultfd live value not read; source gate/default
 reviewed, ordinary shell denied after root cleanup. No disabling ART UFFD or
 Perfetto solely for permissive-looking sysctls. Updated test-doc current header
 separates history from present; retain remaining hardware/endurance limits.
+
+
+## Active fixes following the practical audit (2026-10-26 continuation)
+
+Owner requested fixing the actionable audit findings. Current installed/public
+1792961358 remains rollback baseline. No new publication requested. Userspace
+candidate artifacts/security-userspace-candidate-20261025 includes new maintained
+forks tylxr59/android_frameworks_av b911f1a (fix/los24-codec-lifetime) and
+android_system_bpf c2621ec (fix/los24-fuse-capability), both pushed. Six-fork local
+manifest and candidate manifests security-userspace-20261025.xml /
+security-userspace-forks-20261025.xml preserve existing four source pins.
+Do not sync using released four-fork pins over this active work.
+
+Codec original extracted wrappers fail ASan; corrected alias-owner lifetime and
+100copy/teardown cycles pass ASan/UBSan, including retained point outliving its
+wrapper/original reference. Actual-source host regression lives in framework fork.
+Loader has seven FUSE-entry parser tests plus original release-parser test;
+test binaries archived privately outside product staging, not run on tablet yet.
+Initial Clippy nested-if build failure fixed without disabling warnings. Full
+ROM/recovery/check-vintf-all build finished; host guard rejected only inherited
+EMPTY DATA/nativetest directories, not test files. Guard now rejects files only;
+los24-security-userspace-package.service verifies/signs exact archived targetfiles.
+Check actual unit/log/progress; no install was performed as of this checkpoint.
+
+Kernel backport preparation is isolated at artifacts/kernel-security-source-20261025
+on fix/los24-bpf-atomics; main Android kernel and userspace candidate remain dc07.
+Generic atomics commits adapted with original authors: d420e8e44,56613e4ec,
+8a905eec2,cf273dacb,4317c7a6f,a381f62f1. ARM64 JIT/encoder prerequisites and
+security follow-ups still in progress; no kernel build/device claim. Private
+upstream patches/history/helpers in artifacts/security-compat-fixes-20261025.
+Never ship incomplete generic support before correct JIT and verifier tests.
+User asked to continue; tablet currently absent from ADB, reconnect question pending.
+Rooted debugging stays off. Fix syscall/FS/refcount/FORTIFY/JIT hardening in
+isolated candidates; no blind BPF-disable, AVB retry/relock, or audio TI work.

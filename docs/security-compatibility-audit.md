@@ -179,7 +179,7 @@ signing and whole-OTA signature/certificate continuity passed. A no-wipe update
 booted and retained the original pattern/setup and saved marker. Minimal codec
 lookup and complete48-entry enumeration now exit0 with normal cleanup; both
 previously aborted. The crash buffer is empty. All8 loader tests passed in both
-32-bit and64-bit form on the tablet as ordinary UID2000. Its actual boot log
+32-bit and64-bit form on the tablet as ordinary UID 2000. Its actual boot log
 shows bpfloader exit0 without the old missing-FUSE-entry load error; the object
 remains packaged and storage uses the existing fallback. This does not add the
 kernel FUSE-BPF backend.
@@ -187,7 +187,7 @@ kernel FUSE-BPF backend.
 Owner checks passed for video, Wi-Fi, cameras, speakers/AirPods, S Pen, auto-rotate
 and File Transfer. The matching recovery booted; full boot/DTBO/recovery hashes
 match signed images, and original vbmeta is unchanged. Recovery-menu return,
-encrypted/unlocked data, enforcing SELinux, UID2000, Rooted debugging off and
+encrypted/unlocked data, enforcing SELinux, UID 2000, Rooted debugging off and
 saved-marker checksum passed again. Owned probes/marker were removed. ROM SHA256:
 `fe8ec1b2763f662dbce892fb072626f8753c9b66a31ac3971f83e040a5893499`.
 
@@ -209,7 +209,7 @@ DMA-BUF regression checks passed1,024 owned buffers across read sizes, concurren
 allocation/free and200 early closes without retained buffers. Owner hardware/
 video/AirPods/MTP and pattern/setup checks passed. Matching recovery/full
 partition hashes, unchanged vbmeta and final Android return/data-marker checksum
-passed. Probes/marker were removed, UID2000/Rooted debugging off restored and the
+passed. Probes/marker were removed, UID 2000/Rooted debugging off restored and the
 crash buffer remains empty. Rooted inspection also confirms the previously
 unreadable vm.unprivileged_userfaultfd value is0; ART behavior stays intact.
 No battery improvement is inferred from repaired accounting.
@@ -217,27 +217,27 @@ No battery improvement is inferred from repaired accounting.
 Signed hardening candidate **1793018822** also completed a no-wipe installation,
 owner pattern/setup/hardware smoke checks, matching-recovery/full-partition hash
 verification and a final recovery-menu Android return. Its genuine kernel config
-enables Clang FORTIFY and full refcounts, with672 emitted FORTIFY call sites.
+enables Clang FORTIFY and full refcounts, with 672 emitted FORTIFY call sites.
 Actual-source host tests pass valid operations, constant read/write rejection
-and dynamic overflow trapping on Clang22 and GCC. Deliberate kernel buffer
+and dynamic overflow trapping on Clang 22 and GCC. Deliberate kernel buffer
 corruption was not induced on the tablet. The legacy adaptation preserves
 whole-object bounds rather than newer member bounds.
 
-Live filesystem values are hardlink/symlink protection1 and FIFO/regular
-protection2. Controlled cross-owner tests pass with child effective capabilities
+Live filesystem values are hardlink/symlink protection 1 and FIFO/regular
+protection 2. Controlled cross-owner tests pass with child effective capabilities
 cleared, including world/group-sticky directories and ordinary DAC controls.
-JIT blinding is2. Android's standard NetBpfLoad requests privileged JIT symbols
+JIT blinding is 2. Android's standard NetBpfLoad requests privileged JIT symbols
 by writing bpf_jit_kallsyms=1; the kernel explicitly overrides symbol export when
 blinding is active, and no generated JIT program symbols appear in the live
 table. This required no Connectivity fork or temporary sysctl write.
 
-The43 atomic cases,1,024 concurrent unique fetch results, both AOSP accounting
+The 43 atomic cases, 1,024 concurrent unique fetch results, both AOSP accounting
 suites and DMA-BUF allocation/early-close regression tests pass again with these
 protections enabled. Production accounting is initialized, loader errors are
 absent and the captured kernel log has no refcount/FORTIFY/CFI failure patterns.
-Normal-UID codec lookup and48-entry enumeration still exit successfully with
+Normal-UID codec lookup and 48-entry enumeration still exit successfully with
 normal cleanup. Crash buffer empty; encrypted data unlocked; enforcing SELinux;
-normal UID2000; Rooted debugging off. Owned markers, binaries and file fixtures
+normal UID 2000; Rooted debugging off. Owned markers, binaries and file fixtures
 were removed. These are bounded tests and owner smoke checks, not exhaustive
 security, performance or endurance certification. ROM SHA256:
 `8524422271201c2423e452f15eb575c1de23691a3f15599b431edd55f0501b30`.

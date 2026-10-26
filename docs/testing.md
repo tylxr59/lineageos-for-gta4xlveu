@@ -8,25 +8,25 @@ and USB have owner smoke evidence; the latest focused update adds verified
 AirPods Pro2 AAC playback/reconnect/speaker fallback. This is not a full hardware,
 CTS/VTS, security or endurance certification.
 
-The current **unpublished local candidate is1793018822**, covering codec ownership,
+The current **unpublished local candidate is 1793018822**, covering codec ownership,
 FUSE-BPF capability selection, BPF atomic/wakelock accounting support and kernel
 hardening. See the [compatibility/security findings](security-compatibility-audit.md)
 and [exact six-fork candidate sources](../manifests/candidates/security-hardening-20261026.xml).
-The public release/feed remains1792961358. The older sections below preserve
+The public release/feed remains 1792961358. The older sections below preserve
 **historical** tests/findings, including defects corrected by later work.
 
-## Local security/compatibility candidate1793018822 — 2026-10-26
+## Local security/compatibility candidate 1793018822 — 2026-10-26
 
 | Check | Result |
 | --- | --- |
-| Source/build | Only kernel differs from validated1793017415; six maintained forks in full1,242-project manifest. Full ROM/recovery/strict VINTF/policy/BTF/signing checks pass. |
-| Codec and loader | Normal-UID lookup and48-entry catalog cleanup exit0. Earlier1792969106 passed8 loader tests in each ABI and removed the unsupported-FUSE load error while preserving fallback storage. |
-| Actual protections | Full refcounts and Clang FORTIFY enabled;672 emitted FORTIFY call sites. Live protected links1/FIFO+regular2 and JIT blinding2. No generated JIT symbol exports. |
-| Behavioral tests | Cross-owner FS protection tests with child CapEff0;43 atomic cases;1,024 unique concurrent fetch results; AOSP wakelock6pass/2intentional-skip per ABI; DMA1,024buffers/concurrency/200earlycloses/0retained. |
+| Source/build | Only kernel differs from validated 1793017415; six maintained forks in full 1,242-project manifest. Full ROM/recovery/strict VINTF/policy/BTF/signing checks pass. |
+| Codec and loader | Normal-UID lookup and 48-entry catalog cleanup exit0. Earlier 1792969106 passed 8 loader tests in each ABI and removed the unsupported-FUSE load error while preserving fallback storage. |
+| Actual protections | Full refcounts and Clang FORTIFY enabled; 672 emitted FORTIFY call sites. Live protected links1/FIFO+regular2 and JIT blinding2. No generated JIT symbol exports. |
+| Behavioral tests | Cross-owner FS protection tests with child CapEff=0; 43 atomic cases; 1,024 unique concurrent fetch results; AOSP wakelock 6 pass / 2 expected skips per ABI; DMA-BUF 1,024 buffers / concurrent allocation / 200 early closes / 0 retained. |
 | Accounting/logs | Initialized production map and numeric aggregate duration, no BPFloader errors or captured refcount/FORTIFY/CFI failure patterns; empty crash buffer. |
 | Owner smoke | Original pattern/setup, video, Wi-Fi, cameras, speakers/AirPods, S Pen, rotate and File Transfer passed. |
 | Update/data/recovery | Signed no-wipe update, FBE/data-marker/setup persistence, actual matching recovery/full boot-DTBO-recovery hashes and final menu-return/unlock passed. Original vbmeta unchanged. |
-| Cleanup | Owned markers/native helpers/fixtures removed; UID2000, enforcing SELinux and Rooted debugging off. No app-root/logger added. |
+| Cleanup | Owned markers/native helpers/fixtures removed; UID 2000, enforcing SELinux and Rooted debugging off. No app-root/logger added. |
 | Limits | No exhaustive CTS/VTS/security/codec/endurance certification or new public HTTPS OTA install. Existing AVB/closed-vendor/BPF-version compatibility limitations remain. |
 
 ROM SHA256: `8524422271201c2423e452f15eb575c1de23691a3f15599b431edd55f0501b30`.
@@ -84,7 +84,7 @@ It passed ZIP/certificate continuity checks; OTA boot/DTBO match the preceding
 working package byte for byte, and its actual product filesystem contains the
 correct endpoint. It was installed by recovery sideload-auto-reboot without
 wiping. The subsequent Android boot reports its unique new timestamp and URL,
-boot complete, encrypted data, enforcing SELinux, normal ADB UID2000, and an
+boot complete, encrypted data, enforcing SELinux, normal ADB UID 2000, and an
 empty crash buffer. Rooted debugging stays off. The owner confirmed the live
 Updater refresh succeeds with the empty v2 feed. This does not establish a
 public release-signed OTA download/install or a key-migration procedure.
@@ -108,7 +108,7 @@ OTA then passed recovery's real signature check and installed with status 0.
 Its boot/DTBO/recovery/vbmeta partition hashes matched the signed bundle.
 
 The clean private-key Android installation completed setup and reported
-release-keys, FBE, SELinux enforcing, normal ADB UID2000, rooted debugging off,
+release-keys, FBE, SELinux enforcing, normal ADB UID 2000, rooted debugging off,
 and an empty crash buffer. Its installed Updater APK matched the private platform
 certificate. Android Updater imported and verified a newer same-key full OTA,
 then rebooted to recovery and installed it without a format. The new build
@@ -128,7 +128,7 @@ pattern unlocked it; the original saved-file checksum matched and Gatekeeper
 AVCs disappeared. A subsequent same-source, newer signed build then imported,
 verified and installed through Android Updater's local-update path. It booted at
 `1792775790`, unlocked with that same pattern, and retained setup and the saved
-file. Android reports FBE, enforcing SELinux, normal shell UID2000, disabled
+file. Android reports FBE, enforcing SELinux, normal shell UID 2000, disabled
 Rooted debugging and an empty crash buffer. The owner repeated Wi-Fi, both
 cameras, speakers and S Pen smoke checks successfully.
 
@@ -153,7 +153,7 @@ OTA trust. The normal Install confirmation rebooted into the exact released
 recovery, installed the package, and returned to Android at timestamp1792775790.
 The owner unlocked with the original pattern and confirmed setup intact. The
 original saved-file SHA-256 matched, user 0 was RUNNING_UNLOCKED, FBE and SELinux
-enforcing remained active, normal ADB UID2000 and disabled Rooted debugging were
+enforcing remained active, normal ADB UID 2000 and disabled Rooted debugging were
 verified, and the crash buffer was empty with no Gatekeeper AVCs. No factory
 reset was used. Temporary test files/local-import entry were removed and the
 original screen-awake setting restored. This is an actual advertised network
@@ -187,7 +187,7 @@ voice/SMS/mobile-data capability resources set to false. Lock-icon padding
 resolves to `24.0dip`: 36px per side at the unchanged native 240dpi, leaving a
 36px foreground within the unchanged 108px target. The owner confirmed the icon
 looks normal. The original pattern, setup and saved-file checksum survived;
-FBE, SELinux enforcing, normal shell UID2000, Rooted debugging disabled and an
+FBE, SELinux enforcing, normal shell UID 2000, Rooted debugging disabled and an
 empty crash buffer passed. Owner Wi-Fi, both cameras, speakers and S Pen smoke
 tests passed again.
 
@@ -201,7 +201,7 @@ The installed previous same-key test build detected the new entry through the
 canonical HTTPS feed, downloaded the GitHub asset, completed signature
 verification, and installed it through Updater's normal recovery flow. Android
 booted at1792787032 without a wipe. Encrypted data unlocked, the saved-file
-checksum and setup flags persisted, SELinux was enforcing, ADB UID2000 and
+checksum and setup flags persisted, SELinux was enforcing, ADB UID 2000 and
 Rooted debugging off passed, and the crash buffer was empty with no observed
 Gatekeeper data AVCs. A further recovery/Android round trip repeated the data
 and security checks.
@@ -242,7 +242,7 @@ Full target-files/recovery compilation and strict VINTF checks passed, using
 authentic kernel metadata with enforcing CFI. Persistent signing identity and
 whole-file OTA/component signatures passed. A no-wipe recovery sideload booted
 Android, retained the existing pattern/setup and saved-file checksum, and passed
-FBE, enforcing SELinux, UID2000, Rooted debugging off and empty initial crash
+FBE, enforcing SELinux, UID 2000, Rooted debugging off and empty initial crash
 buffer checks. WebView reports 156.0.8078.47. The owner confirmed Wi-Fi, both
 cameras, speakers, S Pen and general operation.
 
@@ -269,7 +269,7 @@ A fresh download of the public ROM ZIP matched the tested bundle SHA256. The
 tablet also fetched the canonical three-entry HTTPS feed successfully.
 
 
-## Hardening candidate1792860066 (not published)
+## Hardening candidate 1792860066 (not published)
 
 The signed candidate uses deviceb07f055, kernel0c5ccf4fc and vendor1c0a6f2,
 with the other1,239 projects unchanged from public1792851872. Exact source:
@@ -299,7 +299,7 @@ ROM SHA256: `bc901b5f5f7c3d22f55cb823af89ebca8610c1435cead341c78d48bb34614d41`.
   vendor sensor child labels were present. Ordinary Android ADB does not expose
   the complete kernel audit stream, so elimination of all AVCs is not claimed.
 - The final recovery-menu Android return retained unlocked encrypted data and
-  the saved-file checksum. SELinux enforcing, normal UID2000, Rooted debugging
+  the saved-file checksum. SELinux enforcing, normal UID 2000, Rooted debugging
   off, release-keys, expected WebView and an empty crash buffer passed. The owned
   temporary marker and probe DEX were removed. No reset, new keys, app-root or
   public OTA publication occurred.
@@ -324,7 +324,7 @@ the tested hardening candidate. ROM SHA256:
   tested hardening candidate. Normal boot selects HAL ownership configfs2.
 - Signed no-wipe sideload and Android boot passed. Original pattern/setup and
   saved-file checksums persisted. File encryption, enforcing SELinux/CFI/KPTI,
-  normal ADB UID2000, disabled Rooted debugging and empty crash buffer passed.
+  normal ADB UID 2000, disabled Rooted debugging and empty crash buffer passed.
 - Five USB mode selections passed with exactly one ADB interface, plus one MTP
   interface when selected. ADB reattached without host-server restarts or
   debugging toggles. KDE KIO host/tablet/readback checksums matched. The owner
@@ -376,7 +376,7 @@ Full build/strict VINTF, existing-key APK/APEX/AVB/whole-OTA signatures, signed
 no-wipe installation, Android boot and recovery round trip passed. Owner confirmed
 usual pattern/setup, Wi-Fi, both cameras, speakers, S Pen, auto-rotate and Dolphin
 File Transfer. Final unlocked data/checksum, FBE, enforcing SELinux, actual kernel
-config, UID2000, Rooted debugging off and empty crash buffer passed. Standard
+config, UID 2000, Rooted debugging off and empty crash buffer passed. Standard
 thermal AIDL HAL reports four CPU/GPU/battery readings; repeated samples, raw-unit
 scaling, thresholds and listener registration checked. No induced-hot callback,
 calibrated skin/headroom or battery-endurance certification. Small Settings
@@ -417,7 +417,7 @@ kernel faults or crash-buffer entries; userspace perf recording works.
 
 The actual matching recovery booted with the exact config and full boot/DTBO/
 recovery hashes; prior vbmeta remains unchanged. Recovery-menu reboot, original
-unlock/data-file persistence, FBE, enforcing SELinux, UID2000, Rooted debugging
+unlock/data-file persistence, FBE, enforcing SELinux, UID 2000, Rooted debugging
 off and empty crash buffer passed. Owned marker/probe/helpers removed. No new
 public HTTPS OTA install, fresh-install, long endurance, induced ARM64 fault or
 measured performance/battery improvement is claimed. See
@@ -436,7 +436,7 @@ older-to-newer public Updater installation is claimed. Local signed no-wipe,
 data/hardware/accounting and matching recovery checks passed separately.
 
 
-## Locally tested Bluetooth audio candidate1792961358
+## Locally tested Bluetooth audio candidate 1792961358
 
 Device038bb20 adds the standard AOSP AIDL Bluetooth audio provider; all other
 1,241 project pins match release1792944959. See [Bluetooth findings](bluetooth-audio.md)
@@ -456,7 +456,7 @@ no new full hardware matrix is claimed for this focused follow-up.
 
 Matching actual recovery/config and full boot/DTBO/recovery partition hashes
 passed, prior vbmeta unchanged. Final recovery-menu Android return/owner unlock,
-data/test-file persistence, setup flags, FBE, enforcing SELinux, normal UID2000
+data/test-file persistence, setup flags, FBE, enforcing SELinux, normal UID 2000
 and Rooted debugging off passed. Owned test marker removed; no root was needed.
 Public release/feed remain1792944959; no new OTA publication requested.
 

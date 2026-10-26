@@ -11,6 +11,31 @@ See [compatibility/security findings](security-compatibility-audit.md) and the
 [exact source snapshot](../manifests/candidates/security-hardening-20261026.xml).
 The older sections preserve historical tests and corrected defects.
 
+## Unreleased OOM tracepoint candidate 1793039898 — 2026-10-26
+
+Kernel `f0f9fc67947a37d2e530367c227d228ec5d966d2` changes only the OOM
+tracepoint and its call site. The other 1,241 project revisions and the actual
+kernel config are identical to released 1793018822. The candidate has not been
+installed or published; it has no new Android/recovery boot, credential/data,
+hardware, live event or end-to-end OOM validation.
+
+Full target-files/recovery/check-vintf-all build passed in 5m54s. Strict target
+VINTF, compiled BTF boundaries/iterator types, CFI/KPTI/FORTIFY/refcount/JIT and
+filesystem defaults, existing-key component signatures and whole-file OTA
+signature pass. The actual compiled raw OOM tracepoint is 72 bytes with all
+Android reader fields at expected offsets. BOOT/recovery packaged kernels match
+the compiled kernel; extracted embedded config/release match target metadata.
+OTA boot/DTBO and vendor recovery payload/updater hashes match signed images.
+Policy/audio/USB/thermal/DTBO and the legacy native library bytes are unchanged.
+
+Source manifests: [resolved candidate](../manifests/candidates/oom-tracepoint-20261026.xml),
+[fork pins](../manifests/candidates/oom-tracepoint-forks-20261026.xml).
+ROM SHA256: `50a3cb9756c3e9e956dfdc6d0821b8a2c8da05f03574ecd7f019f35beeda32bb`.
+The preceding live audit found the old AMS OOM program loaded but not attached;
+the current record-layout defect is latent in that snapshot. No deliberate OOM
+or memory-pressure test was run. Read [the compatibility audit](bpf-vendor-compatibility.md)
+before changing version selection or legacy library identities.
+
 ## Security/compatibility release 1793018822 — 2026-10-26
 
 | Check | Result |

@@ -12,8 +12,19 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
-No additional ROM changes staged. Newer diagnostic-only source commits do not
-change this release's pinned ROM inputs.
+Signed local candidate **1793039898** extends the OOM tracepoint to match
+Android's memory-event reader. Full build/recovery, strict VINTF, compiled BTF
+field layout/configuration and signatures pass. **Not installed, hardware-tested
+or published**; the public release/feed remain 1793018822.
+
+| Change | Implementation commit |
+| --- | --- |
+| Backport the detailed OOM victim tracepoint and preserve credential references at its call site. Retain PID offset and supply command, UID, memory counters and OOM score at Android's expected offsets. | [kernel `f0f9fc679`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/f0f9fc67947a37d2e530367c227d228ec5d966d2) |
+
+Exact candidate [source manifest](manifests/candidates/oom-tracepoint-20261026.xml)
+and [fork pins](manifests/candidates/oom-tracepoint-forks-20261026.xml) are retained.
+The version override and legacy libraries are unchanged. Newer diagnostic-only
+commits on other branches are not this candidate's source pins.
 
 Documentation: [BPF/vendor compatibility audit](docs/bpf-vendor-compatibility.md)
 records a live OOM tracepoint-layout mismatch, API/minor-version update gates,

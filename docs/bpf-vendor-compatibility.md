@@ -242,3 +242,18 @@ Keep the public release/source pins unchanged during this audit. Next work
 should isolate the OOM tracepoint repair from changes to library identity or
 the global version override, retaining current recovery/rollback and all prior
 network, accounting, DMA-BUF, credential and hardware regressions.
+
+## Subsequent isolated candidate build
+
+The owner subsequently authorized building the suggested fixes. Candidate
+**1793039898**, kernel [`f0f9fc679`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/f0f9fc67947a37d2e530367c227d228ec5d966d2),
+backports the OOM tracepoint extension and call site from the reviewed Android
+common patch, adapting include placement to4.14 while retaining credential
+references and the existing task/mm lifetime requirements. No other project,
+kernel configuration, version override or legacy library changes are included.
+
+Full build, strict VINTF, compiled tracepoint-layout/BTF/config/default checks
+and private-key signing/OTA verification passed; see [testing](testing.md).
+This is a built candidate, not an installed or hardware-verified fix. Installed
+and public1793018822, OTA feed and release pins remain unchanged. The earlier
+statement that no patch was applied describes the audit stage before this build.

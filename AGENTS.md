@@ -14,6 +14,19 @@ network hooks, and mappings confirm actual credential/DRM/sensor/camera legacy
 library use. Rooted debugging restored OFF/UID2000, temporary helpers removed.
 No new ROM build, flash, OOM test or release. Detailed audit qualifies limits.
 
+
+The owner then authorized building fixes. Isolated OOM candidate 1793039898 is
+signed and verified offline: kernel f0f9fc679 on fix/los24-oom-tracepoint, based
+on released a99, with only two source files changed. Candidate manifests are
+manifests/candidates/oom-tracepoint[-forks]-20261026.xml. The other 1,241 projects
+and kernel config are identical. Compiled tracepoint size/offsets, strict VINTF,
+BTF, retained hardening, existing-key component/OTA signatures and packaged
+kernel/config/recovery checks passed. No installation, reboot, OOM test,
+hardware verification or publication yet; public and installed stay 1793018822.
+The local workspace kernel/manifest pin candidate f0; preserve it before sync.
+Version override and legacy libraries are unchanged. See docs/testing.md and
+CHANGES.md.
+
 ## Goal and repository boundaries
 
 Maintain an ordinary unofficial LineageOS installation for **SM-P613 / gta4xlveu**.

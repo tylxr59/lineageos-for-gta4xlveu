@@ -1,18 +1,36 @@
 # Agent instructions
 
-## Assisted GPS implementation candidate (2026-10-29)
+## Assisted GPS candidate locally validated (2026-10-29)
 
-Current installed/public release remains1793039898. Candidate device1099a44 and
-vendorec725c3 on fix/los24-assisted-gps are committed/pushed. Init now owns XTRA;
-izat.conf disables launcher ownership. No vendor binary/library or policy change.
-Vendorimage/SELinux/strictVINTF/full-product init verification passed; 1454 compared
-vendor files and compiled policy equal release. Candidate manifests are staged
-under manifests/candidates/assisted-gps[-forks]-20261029.xml. See docs/assisted-gps.md
-and docs/testing.md. This is only a development vendor image: full target-files
-packaging/signing, installation and live off/on/reboot/GNSS tests remain pending.
-Do not publish/install the standalone vendor image as a signed ROM. Released
-manifests/feed still pin the validated release; no shipping request was made.
+Installed candidate is **1793279242**; public release/feed/resolved pins remain
+**1793039898**. The owner authorized packaging, installation and testing, with
+publication pending safety/release confirmation. Exact ROM SHA256:
+`2228d2fd11dff98a99394ddecb0a1418e9b6847ec8bf06305dc37863b4de6135`.
+Device `1099a44` and vendor `ec725c3` on `fix/los24-assisted-gps` are pushed;
+only two of 1,242 projects differ. Full build, strict VINTF, signing, components,
+images and init checks passed. All 1,655 compared vendor bin/lib archive entries,
+kernel/config and policy match the release, excluding the generated recovery
+installer; paired init/izat and recovery payload are verified.
 
+Signed no-wipe installation, owner pattern/setup/available hardware checks,
+encrypted data and saved setup flags, enforcing SELinux, empty crash buffer,
+actual recovery and full partition hashes passed. Original vbmeta is unchanged.
+Live off/on and enabled boot passed. Actual enabled DNS control captured six
+A/AAAA questions; off capture ran for 720.6 seconds with 47 samples, zero questions,
+processes or drops, and stable other location children. Saved off state survived
+recovery-menu Android return. Ordinary shell cannot read the vendor status
+property; blank output is not proof of stopped state. A temporary ordinary probe
+recorded 94 fresh nonmock GPS fixes with assistance off; owner confirmed fixes.
+Final UID2000/Rooted debugging off/AGPS0 and marker/probe/helper cleanup passed.
+See docs/assisted-gps.md and docs/testing.md for scope and evidence.
+
+The exact 12-asset bundle is prepared offline in the private candidate's release/
+directory. Do not rebuild, re-sign or move source tips when publishing this tested
+bundle. Candidate pins are under manifests/candidates/assisted-gps[-forks]-20261029.xml.
+Released pins/feed stay unchanged until owner confirmation and successful asset
+publication/verification. Do not claim an additional public HTTPS Updater install
+when the tablet already runs the candidate. Existing 47 keys/backups are unchanged;
+TI work remains paused.
 
 Before BPF compatibility or legacy-library changes, read
 [docs/bpf-vendor-compatibility.md](docs/bpf-vendor-compatibility.md). The baseline

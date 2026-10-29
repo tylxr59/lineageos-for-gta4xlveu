@@ -541,21 +541,33 @@ distribution checks. No deliberate OOM/end-to-end OOM record-content test or
 new manual vbmeta flash occurred. Rooted debugging remains off. Existing
 AVB/vendor/version-override and endurance limits remain documented.
 
-## Assisted GPS implementation candidate — 2026-10-29
+## Assisted GPS candidate 1793279242 — local validation complete (2026-10-29)
 
-Device `1099a44` and vendor `ec725c3`, on `fix/los24-assisted-gps`, move only
-XTRA supervision to init. The resolved candidate changes two of 1,242 released
-projects. `vendorimage`, `selinux_policy`, `host_init_verifier` and strict
-`check-vintf-all` passed in the configured Android build environment. Standalone
-and full-product init parser checks passed. Inspection of the actual vendor
-filesystem confirmed the exact new service and disabled launcher stanza.
-All 1,454 compared vendor binary/library files and compiled SELinux policy match
-the signed release byte for byte. The generated recovery installer is supplied
-at target-files packaging time and is absent from standalone vendorimage staging;
-this development image is not a signed installation bundle.
+Device `1099a44` and vendor `ec725c3` on `fix/los24-assisted-gps` move XTRA
+supervision to init, changing only two of 1,242 released project revisions.
+Full build/strict archive VINTF, signing/image/component/whole-OTA checks passed.
+Signed no-wipe sideload, original pattern/setup/data persistence, owner available
+hardware checks, enforcing/FBE and actual matching recovery passed. Full
+boot/DTBO/recovery hashes match; original vbmeta is unchanged.
 
-[Implementation and device acceptance checks](assisted-gps.md) record the
-remaining signed-candidate packaging, install, live off/on, reboot-state,
-DNS-suppression and ordinary GNSS tests. None are claimed complete. Installed
-and public release1793039898, released manifests, OTA feed, signing keys and
-paused TI work are unchanged. No device settings changed during implementation.
+Live toggle and enabled-state reboot passed. Enabled positive control captured
+six A/AAAA questions for the three XTRA hosts. Off-state capture ran for 720.6 seconds
+with 47 samples, zero matching DNS questions, zero XTRA processes/respawns, stable
+other location processes and zero drops. The off setting/process absence survived
+recovery-menu Android return. Ordinary ADB cannot read the vendor service-status
+property; blank output is not interpreted as stopped. With assistance off, an
+ordinary temporary probe recorded 94 fresh nonmock GPS fixes, up to 23 satellites used;
+owner confirmed fixes. No coordinates recorded and no cold-start benchmark claim.
+
+Final UID2000/rootdebugOFF/encrypted-unlocked/enforcing/crash0 passed. Probe,
+owned marker, capture/PID files and root helper removed; AGPS0 and screen-awake0
+retained. All 1,655 compared vendor bin/lib archive entries and kernel/config/policy
+match the release except the generated recovery installer; paired config and
+matching signed recovery payload verified. No new keys, wipe or manual AVB flash.
+
+Exact ROM SHA256:
+`2228d2fd11dff98a99394ddecb0a1418e9b6847ec8bf06305dc37863b4de6135`.
+[Implementation, scope and evidence](assisted-gps.md) and candidate manifests
+record the tested source. A complete 12-asset bundle is prepared offline.
+Installed candidate is 1793279242; public release/manifests/feed remain 1793039898.
+Publication awaits owner confirmation. No public HTTPS OTA install is claimed.

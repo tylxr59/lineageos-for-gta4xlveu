@@ -46,45 +46,70 @@ and [fork pins](../manifests/candidates/assisted-gps-forks-20261029.xml) change
 only device and vendor among the 1,242 released project revisions. Released
 manifests and OTA feed continue to identify 1793039898.
 
-## Validation
+## Signed candidate 1793279242 — local validation complete
 
-The configured Android build completed `vendorimage`, `selinux_policy`,
-`host_init_verifier` and `check-vintf-all` successfully. Standalone and full-product
-init verification pass against the built property contexts and account files.
-The generated vendor filesystem contains the exact new init file and paired
-izat.conf. All 1,454 compared vendor binary/library files match the signed release
-byte for byte, and the compiled policy is identical (SHA256
-`b30484e2b3b574fd6b31d9e82221688da15db0c57a8ecdb1487cc065de374a2d`).
-Only the XTRA process state changes in the effective izat.conf content.
+The exact candidate ROM is signed with the existing persistent identity and has
+been installed through recovery without wiping. Public release/feed remain
+1793039898 pending owner release confirmation. ROM SHA256:
+`2228d2fd11dff98a99394ddecb0a1418e9b6847ec8bf06305dc37863b4de6135`.
 
-This vendor image is a development validation artifact, not a complete signed
-installation bundle. Target-files packaging creates the recovery installer and
-recovery payload; the generated installer script is absent from this standalone
-vendorimage staging tree and is excluded from the 1,454-file comparison. A future
-install requires complete target-files packaging, persistent-key signing and
-normal image/signature validation. Source and build checks do not establish
-live DNS suppression or GPS functionality.
+Full target-files/recovery build, strict VINTF, image checks, APK/APEX signatures,
+actual recovery OTA trust, AVB signatures and whole-file OTA signature passed.
+Component verification covered 120 standalone APKs, 37 APEX containers/payloads
+and 26 nested APKs, retaining the presigned CTS shim. Recovery trusts the one
+existing OTA certificate. No keys were regenerated or signing identity changed.
+The generated recovery installer refers to the exact bundled signed recovery.
+Standalone development vendorimage output is not the installation bundle.
 
-Before installing a candidate, verify the packaged init file and the disabled
-XTRA stanza together; deploying either half alone is incomplete. Verify all
-vendor executables and libraries remain byte-identical to the release, and all
-other izat.conf process stanzas are unchanged.
+All 1,655 compared vendor bin/lib archive entries, including symlinks, match the
+released signed target files, excluding the generated recovery installer. The
+kernel/config, boot and DTBO images, compiled policy, audio, USB and thermal
+components match the release. The paired XTRA init/izat configuration is present
+in the actual candidate. Standalone and full-product init verification pass.
 
-Device acceptance checks on a signed, no-wipe candidate:
+### Device evidence
 
-1. Boot with Assisted GPS off. Check `init.svc.vendor.xtra-daemon` is stopped and
-   no XTRA process or fresh XTRA queries appear over at least two retry periods.
-   Confirm the launcher, GNSS HAL and other expected location children remain.
-2. Enable Assisted GPS. Check exactly one XTRA process, parent PID 1, expected
-   UID/groups/SELinux context, and service running. Existing DNS blocking may
-   remain: download success is a separate test and must not be inferred.
-3. Disable while running. Check immediate service/process stop and no retries
-   for at least 10–15 minutes. Verify no launcher respawn or crash restart.
-4. Repeat off/on and reboot with each saved setting. Confirm intended state
-   without manually killing services or altering SELinux.
-5. Test ordinary GNSS location outdoors in standalone mode and assisted mode,
-   then normal location toggles and hardware/data/security smoke checks.
-   Record whether assistance downloads actually succeeded under the DNS policy.
+- Signed no-wipe sideload returned success and Android booted candidate1793279242.
+  The owner confirmed the usual pattern, normal home screen/setup and all
+  available hardware smoke checks. Encrypted FBE, enforcing SELinux, saved setup
+  flags and a checksum-verified temporary data marker persisted across testing.
+- Two live off/on cycles passed. Enabled XTRA is exactly one init child with
+  primary UID/GID `gps`, supplementary `inet`/`system`, `vendor_location` context
+  and zero permitted/effective/ambient capabilities. Init omits the launcher's
+  redundant supplementary primary GPS group; the effective group set is equal.
+  Other launcher/GNSS HAL/LOWI process IDs remained stable through toggle tests.
+- A real enabled positive control captured six outgoing A/AAAA questions for
+  path1/path2/path3.xtracloud.net, with no packet drops. Startup download attempts
+  can be delayed; a short 30-second capture was insufficient. Two transient
+  default-network DNS cache flushes were used while establishing the capture;
+  DNS settings and blocking rules were unchanged. Downloads remained blocked.
+- Disabling stopped XTRA. A 720.6-second observation with 47 state samples and a
+  hostname-filtered IPv4 UDP DNS capture found zero matching questions, zero
+  XTRA processes/respawns and zero packet drops. Other location processes stayed
+  stable, including while an ordinary foreground GPS request was active.
+- A fresh reboot with the setting enabled retained it and started one correctly
+  supervised daemon. After switching off, an actual matching-recovery boot and
+  owner menu return retained setting0 and no XTRA process. Rooted inspection
+  established property/service behavior; ordinary shell cannot read the
+  `vendor_default_prop` service-status property, and blank output is not treated
+  as proof of a stopped service.
+- Actual recovery kernel/config and full boot/DTBO/recovery partition hashes
+  matched the signed candidate. Original live vbmeta remained unchanged. No
+  manual vbmeta flash, relock, wipe or fresh recovery/vbmeta-pair installation
+  was performed or claimed.
+- With Assisted GPS off, the temporary ordinary GPS probe recorded 94 fresh,
+  nonmock GPS fixes with up to 23 satellites used. The owner also confirmed fixes.
+  The probe recorded satellite counts, fix counts, reported accuracy and age;
+  it had no network/storage permission and did not record coordinates. This is
+  a functional fix test, not a cold-start or accuracy benchmark; cached assistance
+  was not cleared.
+- Final normal ADB UID2000, Rooted debugging off, encrypted/unlocked FBE,
+  enforcing SELinux and empty crash buffer passed. The temporary probe, owned
+  data marker, capture processes, PID files and root helper were removed.
+  Assisted GPS remains off and the screen-awake setting remains0.
 
-Runtime, reboot, DNS-suppression, GNSS and signed installation checks are pending.
-No new ROM installation or publication is claimed by this implementation record.
+The complete 12-asset bundle is prepared offline from this exact tested ROM,
+including matching recovery and correctly padded 64KiB signed vbmeta. Publication
+is pending owner confirmation; released manifests and the OTA feed are unchanged.
+No new public HTTPS Updater installation is claimed for this candidate. These
+bounded checks do not constitute battery/performance or CTS/VTS certification.

@@ -12,14 +12,29 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
-Assisted GPS candidate **1793279242** is installed and locally validated, with
-publication pending owner confirmation. Init now starts/stops the existing XTRA
-daemon with the switch; launcher ownership is disabled to prevent duplicates.
-Samsung binaries/libraries and policy remain unchanged. Live toggles, saved
-states across reboots, 12 minutes without matching DNS queries, real GPS fixes with
-assistance off, signed no-wipe/data/hardware and matching-recovery checks passed.
-See [implementation and bounded validation](docs/assisted-gps.md). The exact signed
-bundle is staged offline; current public release/feed remain1793039898.
+No additional ROM changes staged.
+
+## 2026-10-29 — Assisted GPS control
+
+[Release 1793279242](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261029-gta4xlveu-1793279242) · Android 17 / LineageOS 24.0
+
+The exact signed, locally tested ROM is published with the existing keys. The
+Assisted GPS switch now controls the existing XTRA daemon at runtime and after
+reboot. Only device and vendor change among the 1,242 pinned projects; native
+libraries/executables, kernel/config, policy and prior fixes are retained.
+
+| Change | Implementation commit |
+| --- | --- |
+| Supervise the existing XTRA daemon with init and the framework control property. | [device `1099a44`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/1099a44a51f34475b2c32011e1854828fb658610) |
+| Disable duplicate vendor-launcher ownership of XTRA. | [vendor `ec725c3`](https://github.com/tylxr59/android_vendor_samsung_gta4xlveu/commit/ec725c3b9a88845f9ebe7b37a01fa1b23619d595) |
+
+Live toggles and saved states across reboots, 720.6 seconds without matching DNS
+queries while off, 94 real GPS fixes with assistance off, signed no-wipe/data/
+hardware and actual matching-recovery checks passed. All 12 public assets, fresh
+public ROM/checksum downloads and the 10-entry HTTPS feed on host/tablet matched.
+Rooted debugging is off and temporary probes/markers are removed. The tablet
+already ran this exact build, so no additional public Updater install is claimed.
+See [implementation and bounded evidence](docs/assisted-gps.md).
 
 ## 2026-10-26 — OOM event reporting
 

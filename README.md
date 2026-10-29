@@ -16,12 +16,12 @@ See [CHANGES.md](CHANGES.md) for release changes and their source commits.
 
 ## Downloads
 
-**[Download the OOM reporting update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793039898)** — LineageOS 24.0 / Android 17,
-security patch **2026-10-01**, build **1793039898**. This update fixes Android's
-monitoring of kernel out-of-memory kills. Signed no-wipe installation, owner
-hardware checks and the matching recovery round trip preserved the original
-unlock, setup and encrypted data. Prior codec, accounting, hardening, Bluetooth
-audio, File Transfer and tablet fixes are retained.
+**[Download the Assisted GPS update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261029-gta4xlveu-1793279242)** — LineageOS 24.0 / Android 17,
+security patch **2026-10-01**, build **1793279242**. The Assisted GPS switch now
+starts and stops Qualcomm's background satellite-assistance downloads and their
+retry queries. Ordinary GPS still works with assistance off. Signed no-wipe
+installation, data/setup persistence, owner hardware checks and matching recovery
+passed. Prior OOM, accounting, hardening, Bluetooth audio and tablet fixes remain.
 
 Do not install images intended for the 2020 Exynos SM-P610/P615 or
 LTE SM-P619.

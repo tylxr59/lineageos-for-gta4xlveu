@@ -1,36 +1,27 @@
 # Agent instructions
 
-## Assisted GPS candidate locally validated (2026-10-29)
+## Assisted GPS public release complete (2026-10-29)
 
-Installed candidate is **1793279242**; public release/feed/resolved pins remain
-**1793039898**. The owner authorized packaging, installation and testing, with
-publication pending safety/release confirmation. Exact ROM SHA256:
+Installed AND public release is **1793279242**, immutable tag
+lineage-24.0-20261029-gta4xlveu-1793279242. Owner explicitly authorized publication
+after local validation. Exact tested ROM SHA256:
 `2228d2fd11dff98a99394ddecb0a1418e9b6847ec8bf06305dc37863b4de6135`.
-Device `1099a44` and vendor `ec725c3` on `fix/los24-assisted-gps` are pushed;
-only two of 1,242 projects differ. Full build, strict VINTF, signing, components,
-images and init checks passed. All 1,655 compared vendor bin/lib archive entries,
-kernel/config and policy match the release, excluding the generated recovery
-installer; paired init/izat and recovery payload are verified.
+All 12 public asset sizes/GitHub SHA256 values, downloaded checksums, fresh public
+ROM hash and canonical 10-entry HTTPS feed on host/tablet matched. No rebuild,
+re-sign or new keys. Device1099a44/vendor ec725c3 onfix/los24-assisted-gps are the
+only two changed projects among1,242; the other four maintained forks are unchanged.
+Current source manifests pin the tested revisions; candidate snapshots retained.
 
-Signed no-wipe installation, owner pattern/setup/available hardware checks,
-encrypted data and saved setup flags, enforcing SELinux, empty crash buffer,
-actual recovery and full partition hashes passed. Original vbmeta is unchanged.
-Live off/on and enabled boot passed. Actual enabled DNS control captured six
-A/AAAA questions; off capture ran for 720.6 seconds with 47 samples, zero questions,
-processes or drops, and stable other location children. Saved off state survived
-recovery-menu Android return. Ordinary shell cannot read the vendor status
-property; blank output is not proof of stopped state. A temporary ordinary probe
-recorded 94 fresh nonmock GPS fixes with assistance off; owner confirmed fixes.
-Final UID2000/Rooted debugging off/AGPS0 and marker/probe/helper cleanup passed.
-See docs/assisted-gps.md and docs/testing.md for scope and evidence.
-
-The exact 12-asset bundle is prepared offline in the private candidate's release/
-directory. Do not rebuild, re-sign or move source tips when publishing this tested
-bundle. Candidate pins are under manifests/candidates/assisted-gps[-forks]-20261029.xml.
-Released pins/feed stay unchanged until owner confirmation and successful asset
-publication/verification. Do not claim an additional public HTTPS Updater install
-when the tablet already runs the candidate. Existing 47 keys/backups are unchanged;
-TI work remains paused.
+Signed no-wipe/data/setup/pattern, owner available hardware, actual recovery/full
+partition hashes and original vbmeta passed. Live off/on and enabled reboot,
+saved off state, 720.6sec/47sample zero-query off capture and94fresh nonmock GPS
+fixes with assistance off passed. The unchanged native/kernel/policy bytes retain
+prior OOM/BPF/hardening fixes. FinalUID2000/rootdebugOFF/FBE/unlocked/enforcing/
+crash0/AGPS0 and probe/marker/helper cleanup passed. Ordinary shell cannot read the
+vendor service-status property; blank is not stopped-state proof. See
+ docs/assisted-gps.md and docs/testing.md. Existing 47 keys/backups unchanged;
+TI work remains paused. Tablet already ran this timestamp, so no additional
+older-to-newer public HTTPS OTA install is claimed. Preserve this tag and assets.
 
 Before BPF compatibility or legacy-library changes, read
 [docs/bpf-vendor-compatibility.md](docs/bpf-vendor-compatibility.md). The baseline
@@ -42,22 +33,12 @@ ASN1_ITEM layout difference, not just a missing function. Preserve credential
 continuity and the existing library identities until an ABI-safe replacement
 is validated. Detailed findings and staged evidence remain in the audit.
 
-Current installed AND public release is **1793039898**, kernel f0f9fc679 on
-fix/los24-oom-tracepoint. Owner-authorized publication used the exact signed,
-locally tested ROM without rebuilding or new keys. All 12 public asset sizes/
-digests, fresh public ROM/checksum download and canonical nine-entry HTTPS feed
-on host/tablet matched. Signed no-wipe Android/recovery and owner hardware/data/
-setup tests passed. Actual AMS OOM attachment, 14 selected network hooks, both
-ABI accounting suites and bounded DMA-BUF checks passed. Final UID2000, Rooted
-debugging off, FBE/enforcing, empty crash buffer; helpers/marker removed. No
-deliberate OOM/content-delivery or additional public older-to-newer install test.
-Original vbmeta unchanged; no manual vbmeta flash or new recovery/vbmeta pair
-fresh-install test. Legacy libraries and version override remain unchanged.
-
-Released manifests now pin f0 and all other 1,241 tested project revisions.
-Candidate manifests remain as immutable staging records. Prior statements about
-unpublished/uninstalled candidates are historical. See docs/testing.md,
-docs/bpf-vendor-compatibility.md and CHANGES.md for evidence and limits.
+The previous OOM release1793039898 supplied the detailed mark_victim layout and
+actual AMS attachment with kernel f0f9fc679. Those changes and its bounded live
+network/accounting/DMA-BUF validation remain documented and are retained unchanged
+in the current Assisted GPS release. No deliberate OOM/pressure/content-delivery
+test or fresh manual recovery/vbmeta-pair installation is claimed. Earlier notes
+about unpublished candidates refer to historical phases.
 
 ## Goal and repository boundaries
 
@@ -87,12 +68,12 @@ branches should remain intact; use maintained work branches in the source forks.
 
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
-`manifests/resolved.xml` pins released 1793039898: device `038bb20`, kernel
-`f0f9fc679`, vendor `1c0a6f2`, Pixel `d4f83b6`, frameworks/av `b911f1a`,
-system/bpf `c2621ec`. Public release, feed and tested installation are
-**1793039898**. The six-fork source set is in `manifests/gta4xlveu.xml`; dated
-candidate snapshots retain staging history. Use exact tested pins, not moving
-branch tips or the preceding kernel's test-only 400e commit.
+`manifests/resolved.xml` pins released1793279242: device `1099a44`, kernel
+`f0f9fc679`, vendor `ec725c3`, Pixel `d4f83b6`, frameworks/av `b911f1a`,
+system/bpf `c2621ec`. Public release/feed and tested installation match.
+`manifests/gta4xlveu.xml` pins the same six maintained forks; dated candidate
+snapshots retain staging history. Use exact tested SHAs, not moving branch tips
+or the preceding kernel's test-only400e commit.
 
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install

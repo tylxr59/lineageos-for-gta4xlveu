@@ -19,7 +19,7 @@ prebuilt launcher imports `loc_read_process_conf` from that library. A shell
 `getprop` returning blank is not evidence the property is unset: ordinary shell
 is denied access to `xtra_control_prop` by SELinux.
 
-## Unreleased fix
+## Released implementation
 
 The paired device and vendor commits move XTRA supervision to Android init:
 
@@ -44,13 +44,13 @@ Implementation: [device commit](https://github.com/tylxr59/android_device_samsun
 Candidate [resolved manifest](../manifests/candidates/assisted-gps-20261029.xml)
 and [fork pins](../manifests/candidates/assisted-gps-forks-20261029.xml) change
 only device and vendor among the 1,242 released project revisions. Released
-manifests and OTA feed continue to identify 1793039898.
+manifests and OTA feed now identify the tested build 1793279242.
 
-## Signed candidate 1793279242 — local validation complete
+## Release 1793279242 — validation complete
 
 The exact candidate ROM is signed with the existing persistent identity and has
-been installed through recovery without wiping. Public release/feed remain
-1793039898 pending owner release confirmation. ROM SHA256:
+been installed through recovery without wiping. The owner authorized publication after local validation. Public release/feed
+and source pins now identify the exact tested build1793279242. ROM SHA256:
 `2228d2fd11dff98a99394ddecb0a1418e9b6847ec8bf06305dc37863b4de6135`.
 
 Full target-files/recovery build, strict VINTF, image checks, APK/APEX signatures,
@@ -108,8 +108,10 @@ in the actual candidate. Standalone and full-product init verification pass.
   data marker, capture processes, PID files and root helper were removed.
   Assisted GPS remains off and the screen-awake setting remains0.
 
-The complete 12-asset bundle is prepared offline from this exact tested ROM,
-including matching recovery and correctly padded 64KiB signed vbmeta. Publication
-is pending owner confirmation; released manifests and the OTA feed are unchanged.
+The [published 12-asset bundle](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261029-gta4xlveu-1793279242) is this exact tested ROM, including
+matching recovery and correctly padded 64KiB signed vbmeta. All asset sizes and
+GitHub SHA256 digests, downloaded checksums, fresh public ROM hash and canonical
+10-entry HTTPS feed on host/tablet matched. Released source pins match all 1,242
+tested projects. No rebuild, re-sign or new keys were used for publication.
 No new public HTTPS Updater installation is claimed for this candidate. These
 bounded checks do not constitute battery/performance or CTS/VTS certification.

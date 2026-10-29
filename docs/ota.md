@@ -223,3 +223,19 @@ actual AMS attachment/accounting/DMA-BUF/recovery/data proof are separate from
 distribution checks. No deliberate OOM/end-to-end OOM record-content test or
 new manual vbmeta flash occurred. Rooted debugging remains off. Existing
 AVB/vendor/version-override and endurance limits remain documented.
+
+
+## Published Assisted GPS update 1793279242
+
+[Release 1793279242](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261029-gta4xlveu-1793279242) publishes the exact signed ROM installed and tested
+locally without wiping. The owner authorized publication after data/pattern/setup,
+available hardware, actual matching recovery, live toggles and boot states,
+720.6 seconds without matching off-state DNS queries and 94 fresh nonmock GPS fixes
+with assistance disabled passed. All 12 public asset sizes and GitHub SHA256 digests, downloaded
+checksums, fresh public ROM hash and canonical 10-entry HTTPS feed on host/tablet matched.
+Released manifests pin all 1,242 tested projects; only device/vendor changed. Signing
+identity and original live vbmeta are unchanged; no rebuild, re-sign or manual AVB flash.
+
+The tablet already ran this build, so no extra older-to-newer public Updater
+installation is claimed. Rooted debugging is off, and temporary probes/markers
+were removed. Existing AVB/vendor/version-override and certification limits remain.

@@ -1,17 +1,19 @@
 # Test status
 
 Current release and locally tested installation:
-[1793039898](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261026-gta4xlveu-1793039898), device `038bb20`, kernel `f0f9fc679`, vendor `1c0a6f2`,
-Pixel `d4f83b6`, frameworks/av `b911f1a` and loader `c2621ec`. Six maintained
-forks and all 1,242 projects are pinned. Only the kernel changes from 1793018822.
-Signed no-wipe Android/recovery, owner hardware, encrypted pattern/data/setup,
-live OOM/network/accounting/DMA-BUF and public asset/feed checks passed. These
-are bounded tests, not exhaustive CTS/VTS, security or endurance certification.
+[1793279242](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261029-gta4xlveu-1793279242), device `1099a44`, kernel `f0f9fc679`, vendor `ec725c3`,
+Pixel `d4f83b6`, frameworks/av `b911f1a` and loader `c2621ec`. All 1,242 projects
+match the released source pins. Only device and vendor change from1793039898.
+Signed no-wipe installation, original pattern/data/setup, owner available hardware,
+actual matching recovery, live XTRA toggles, saved boot states, a 12-minute
+zero-query off capture and real GPS fixes with assistance off passed. All 12
+public assets, fresh ROM/checksum download and host/tablet HTTPS feed matched.
 
-See [BPF/vendor compatibility](bpf-vendor-compatibility.md),
-[earlier security findings](security-compatibility-audit.md) and the
-[exact source snapshot](../manifests/candidates/oom-tracepoint-20261026.xml).
-Older sections retain historical evidence.
+See [Assisted GPS evidence](assisted-gps.md) and the
+[exact tested snapshot](../manifests/candidates/assisted-gps-20261029.xml).
+The earlier OOM/BPF/accounting and hardening fixes are retained with the same
+kernel and native binaries. Older sections preserve their prior validation;
+no new stress, performance or CTS/VTS certification is claimed here.
 
 ## OOM event reporting release 1793039898 — 2026-10-26
 
@@ -541,7 +543,7 @@ distribution checks. No deliberate OOM/end-to-end OOM record-content test or
 new manual vbmeta flash occurred. Rooted debugging remains off. Existing
 AVB/vendor/version-override and endurance limits remain documented.
 
-## Assisted GPS candidate 1793279242 — local validation complete (2026-10-29)
+## Assisted GPS release 1793279242 — 2026-10-29
 
 Device `1099a44` and vendor `ec725c3` on `fix/los24-assisted-gps` move XTRA
 supervision to init, changing only two of 1,242 released project revisions.
@@ -568,6 +570,8 @@ matching signed recovery payload verified. No new keys, wipe or manual AVB flash
 Exact ROM SHA256:
 `2228d2fd11dff98a99394ddecb0a1418e9b6847ec8bf06305dc37863b4de6135`.
 [Implementation, scope and evidence](assisted-gps.md) and candidate manifests
-record the tested source. A complete 12-asset bundle is prepared offline.
-Installed candidate is 1793279242; public release/manifests/feed remain 1793039898.
-Publication awaits owner confirmation. No public HTTPS OTA install is claimed.
+record the tested source. The exact 12-asset bundle is [published](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261029-gta4xlveu-1793279242). Installed and public release,
+source pins and the 10-entry feed now identify1793279242. All public asset sizes/
+GitHub digests, downloaded checksums, fresh ROM hash and host/tablet canonical
+HTTPS feed matched. The tablet already ran the tested candidate, so no additional
+older-to-newer public HTTPS OTA installation is claimed.

@@ -1,5 +1,19 @@
 # Agent instructions
 
+## Assisted GPS implementation candidate (2026-10-29)
+
+Current installed/public release remains1793039898. Candidate device1099a44 and
+vendorec725c3 on fix/los24-assisted-gps are committed/pushed. Init now owns XTRA;
+izat.conf disables launcher ownership. No vendor binary/library or policy change.
+Vendorimage/SELinux/strictVINTF/full-product init verification passed; 1454 compared
+vendor files and compiled policy equal release. Candidate manifests are staged
+under manifests/candidates/assisted-gps[-forks]-20261029.xml. See docs/assisted-gps.md
+and docs/testing.md. This is only a development vendor image: full target-files
+packaging/signing, installation and live off/on/reboot/GNSS tests remain pending.
+Do not publish/install the standalone vendor image as a signed ROM. Released
+manifests/feed still pin the validated release; no shipping request was made.
+
+
 Before BPF compatibility or legacy-library changes, read
 [docs/bpf-vendor-compatibility.md](docs/bpf-vendor-compatibility.md). The baseline
 audit found the OOM format mismatch repaired by the current release below.

@@ -540,3 +540,22 @@ actual AMS attachment/accounting/DMA-BUF/recovery/data proof are separate from
 distribution checks. No deliberate OOM/end-to-end OOM record-content test or
 new manual vbmeta flash occurred. Rooted debugging remains off. Existing
 AVB/vendor/version-override and endurance limits remain documented.
+
+## Assisted GPS implementation candidate — 2026-10-29
+
+Device `1099a44` and vendor `ec725c3`, on `fix/los24-assisted-gps`, move only
+XTRA supervision to init. The resolved candidate changes two of 1,242 released
+projects. `vendorimage`, `selinux_policy`, `host_init_verifier` and strict
+`check-vintf-all` passed in the configured Android build environment. Standalone
+and full-product init parser checks passed. Inspection of the actual vendor
+filesystem confirmed the exact new service and disabled launcher stanza.
+All 1,454 compared vendor binary/library files and compiled SELinux policy match
+the signed release byte for byte. The generated recovery installer is supplied
+at target-files packaging time and is absent from standalone vendorimage staging;
+this development image is not a signed installation bundle.
+
+[Implementation and device acceptance checks](assisted-gps.md) record the
+remaining signed-candidate packaging, install, live off/on, reboot-state,
+DNS-suppression and ordinary GNSS tests. None are claimed complete. Installed
+and public release1793039898, released manifests, OTA feed, signing keys and
+paused TI work are unchanged. No device settings changed during implementation.

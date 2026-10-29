@@ -12,7 +12,11 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
-No additional ROM changes staged.
+Assisted GPS control fix is staged: move the existing Qualcomm XTRA daemon to
+property-controlled Android init supervision, and remove its duplicate launcher
+ownership. Samsung binaries/libraries remain unchanged. See the [implementation
+and validation status](docs/assisted-gps.md). Candidate is not installed or
+published; the current release remains 1793039898.
 
 ## 2026-10-26 — OOM event reporting
 

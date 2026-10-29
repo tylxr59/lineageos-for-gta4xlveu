@@ -119,3 +119,10 @@ See [the 2026-10-24 audit](build-exceptions-audit.md) for disabled KPTI, three
 build-validation exceptions, four vendor ELF-check exclusions, known AVB/vendor
 limitations and unresolved runtime policy checks. The audit made no source or
 tablet changes; findings are separate from the resolved CFI/VINTF defects.
+
+## Assisted GPS switch and XTRA supervision
+
+Release 1793039898 continued vendor XTRA retries after disabling Assisted GPS.
+The framework control property has no consumer in the selected Samsung prebuilt
+GPS utility. The paired candidate gives init ownership of XTRA while retaining
+vendor binaries and other services. See [findings and validation](assisted-gps.md).

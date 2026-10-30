@@ -5,12 +5,28 @@
 [The first signed release](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261023-gta4xlveu-1792775790) is available. These instructions describe the tested
 Lineage Recovery procedure and its matching release assets. Only
 **SM-P613 (2022 Qualcomm Wi-Fi), gta4xlveu** was tested. Do not use these images
-for the Exynos 2020 models or LTE variants. The tested bootloader/firmware base
-was `P613XXS7CXJ1`; other firmware bases have not been validated.
+for the Exynos 2020 models or LTE variants. The maintainer-tested bootloader/
+firmware base was `P613XXS7CXJ1`. The ROM does not flash Samsung bootloader or
+modem firmware, so it does not require a downgrade.
 
-The tested starting point was an already-unlocked tablet running danielml3’s
-LineageOS 23.2 with Lineage Recovery. Unlocking from stock is a separate process
-and is not documented as tested here. First installation wipes userdata.
+The maintainer-tested starting point was an already-unlocked tablet running
+danielml3’s LineageOS 23.2 with Lineage Recovery. Unlocking from stock is a
+separate process and is not documented as tested here. First installation wipes
+userdata.
+
+### Community reports
+
+These were reported by users and not repeated by the maintainer:
+
+- **`P613XXS8CYE1` / bootloader binary 8 from stock One UI** — thanks to
+  [Nokuty](https://github.com/Nokuty) ([#2](https://github.com/tylxr59/lineageos-for-gta4xlveu/issues/2)).
+  Starting from stock Android 14 (CSC PHE), they unlocked the bootloader, flashed
+  the matching `recovery.tar` with Odin 3.14.1 on Windows 11, formatted data and
+  sideloaded build 2026-10-29 followed by MindTheGapps (see below). Android 17
+  booted and setup completed; the bootloader still reports `P613XXS8CYE1`.
+  Wi-Fi, Bluetooth, touch, S Pen, cameras, audio, rotation, USB debugging/charging
+  passed basic everyday checks with SELinux enforcing. No long-term battery or
+  stability testing was reported. Unlocking trips Knox (warranty bit 1).
 
 ## First install from an unlocked device
 
@@ -34,7 +50,9 @@ and is not documented as tested here. First installation wipes userdata.
    The original Heimdall build encountered connection failures; a fresh blue
    Downloading screen was required for each session. Do not repartition or
    flash unrelated bootloader/modem firmware. `recovery.tar` contains these same
-   two images for Samsung flashing tools; Windows/Odin installation is untested.
+   two images for Samsung flashing tools. Odin is not maintainer-tested, but
+   flashing `recovery.tar` with Odin 3.14.1 on Windows 11 worked in a
+   [community report](#community-reports).
 4. Boot the installed recovery directly: Power + Volume Down until black, then
    immediately Power + Volume Up with USB connected. Confirm **Lineage Recovery
    24.0**. The old 23.2 recovery is not the tested LOS24 installation path.
@@ -50,6 +68,16 @@ and is not documented as tested here. First installation wipes userdata.
    to stop and check the matching package/recovery and published certificate.
 8. Choose **Reboot system now**. Complete Android setup. The first startup can
    take longer than subsequent boots.
+
+## Optional Google apps
+
+Google apps are not included or maintainer-tested. A
+[community report](#community-reports) installed **MindTheGapps 17.0.0 ARM64**
+(`20261022_132445`) by sideloading it in recovery immediately after the ROM,
+before the first Android boot. It fit without a space error; Google sign-in,
+Play Store and Google services worked. Play Store shows **Device is not
+certified**. Play Integrity, banking apps, Widevine/HD streaming and OTA updates
+with GApps installed were not tested.
 
 A change from another maintainer’s signing keys, including the local test-key
 prototype, is not an ordinary same-key update. A separately verified migration

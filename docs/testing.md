@@ -15,6 +15,14 @@ The earlier OOM/BPF/accounting and hardening fixes are retained with the same
 kernel and native binaries. Older sections preserve their prior validation;
 no new stress, performance or CTS/VTS certification is claimed here.
 
+## Community reports
+
+Reports from other users, not repeated by the maintainer:
+
+| Report | Firmware / setup | Result |
+| --- | --- | --- |
+| [#2](https://github.com/tylxr59/lineageos-for-gta4xlveu/issues/2) by [Nokuty](https://github.com/Nokuty) | Build 2026-10-29 (1793279242), clean install from stock `P613XXS8CYE1` (binary 8, CSC PHE), recovery via Odin 3.14.1, MindTheGapps 17.0.0 ARM64 | Boot/setup, Google sign-in/Play Store, Wi-Fi, Bluetooth, touch, S Pen, cameras, audio, rotation, USB debugging/charging passed basic checks; SELinux enforcing. Play Store "not certified"; Play Integrity, banking, Widevine/HD streaming, GApps OTA and endurance untested. |
+
 ## OOM event reporting release 1793039898 — 2026-10-26
 
 Kernel `f0f9fc67947a37d2e530367c227d228ec5d966d2` changes only the OOM

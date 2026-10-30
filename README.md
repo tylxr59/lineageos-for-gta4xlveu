@@ -29,14 +29,17 @@ LTE SM-P619.
 Later builds appear under [Releases](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases).
 The release includes the ROM, matching recovery/vbmeta package, SHA-256
 checksums, and its exact source manifest. Google apps and app-root tools are
-not included. Optional rooted ADB is a developer setting and is off on the
+not included; MindTheGapps has a [community report](docs/installing.md#optional-google-apps)
+but is not maintainer-tested. Optional rooted ADB is a developer setting and is off on the
 tested installation.
 
 ## Installing
 
 1. Check **Settings → About tablet → Model**: this project targets SM-P613 only.
 2. Back up your files. First installation requires an unlocked bootloader and
-   a factory reset. The tested firmware base is `P613XXS7CXJ1`.
+   a factory reset. The maintainer tested firmware base `P613XXS7CXJ1`; a
+   [community report](https://github.com/tylxr59/lineageos-for-gta4xlveu/issues/2)
+   also confirms `P613XXS8CYE1` (bootloader binary 8) without downgrading.
 3. Download the release ROM and **matching recovery/vbmeta**
    assets, then verify them against that release’s `SHA256SUMS`.
 4. Install the matching Lineage Recovery, format data, and sideload the ROM as
@@ -76,4 +79,7 @@ LineageOS support channels.
 Thanks to [LineageOS](https://lineageos.org/),
 [Sevenrock](https://github.com/sevenrock),
 [gta4xlve-dev](https://github.com/gta4xlve-dev), and
-[danielml3](https://github.com/danielml3). This is an independent unofficial port.
+[danielml3](https://github.com/danielml3). Thanks also to
+[Nokuty](https://github.com/Nokuty) for the first community install report on
+bootloader binary 8 with MindTheGapps ([#2](https://github.com/tylxr59/lineageos-for-gta4xlveu/issues/2)).
+This is an independent unofficial port.

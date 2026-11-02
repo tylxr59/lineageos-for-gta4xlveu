@@ -1,5 +1,9 @@
 # Device-source freshness audit
 
+Latest: [November 2 update-readiness audit](november-2026-update-audit.md) compares
+release1793279242 with live platform, security, shared-kernel and device sources.
+November ASB integration is pending upstream; routine platform previews pass.
+
 Live GitHub checks on2026-10-24 compared the installed release1792787032 source
 pins, rather than the local experimental audio branches. The initial read-only audit did not change sources or the tablet. The later
 owner-requested maintenance candidate is recorded separately below.

@@ -6,7 +6,70 @@ previews only; no source checkout sync, working-branch merge, build, install or
 publication. The tablet was unavailable to ADB, so installed state comes from
 the completed October 29 validation record, not a fresh device observation.
 
-## Decision
+## November 4 follow-up
+
+The Wednesday morning recheck still finds November security integration pending.
+The merged platform manifest advanced to
+`e4b71068f6ee045ff30e4865a8d82f4047eb78ea`: the original ten ASB fork
+selections and an additional system/gsid fork have landed, followed by a Broadcom
+WLAN fork. The AOSP default tag remains android-17.0.0_r1; the unchanged 940
+AOSP project selections were not individually fetched. Queried all 299 GitHub
+project selections plus the seven device/shared-kernel upstream heads.
+
+The [November topic](https://review.lineageos.org/q/topic:C_asb_2026-11+branch:lineage-24.0)
+contains **105 changes: 2 MERGED manifest changes and 103 NEW changes** at the
+check. The open changes include framework privilege/permission repairs, media
+bounds/lifetime fixes, Bluetooth L2CAP validation, Wi-Fi access control and the
+[November patch-string change](https://review.lineageos.org/c/LineageOS/android_vendor_lineage/+/508070).
+Current vendor/lineage head `528681ef98b8dee25ff9d8ca76cd9e2c4f4ba4ec` still
+sets 2026-10-01. Fork creation is not patch integration. The live Google bulletin
+still contains its initial patch-release notice; its presence is not used to
+infer that source patches are absent everywhere. Reviewed Gerrit patches are
+available, but importing this entire open series would be a separate integration
+and validation task rather than an ordinary merged-upstream refresh.
+
+The eleven new ASB fork selections currently have the same head objects as the
+released AOSP project pins. They add no effective security patch delta yet.
+Excluding Broadcom WLAN, there are 110 incoming platform commits across 48
+project paths, with clean merge-tree previews. Counts include infrastructure,
+translations and components for other products. New routine changes since Monday
+include microG provider/signature-check refactoring, a Launcher secondary-display
+fix, Aperture location accuracy handling, test updates and firmware imports for
+other hardware. Our frameworks/av, BPF and Pixel forks still have no incoming
+commits from their selected Lineage bases. Build/make and Connectivity selections
+are unchanged; no new API37.1 gate activation was found.
+
+Broadcom WLAN is a special case: the baseline checkout is shallow and the new
+fork lacks a locally demonstrable merge base with its pinned AOSP object. A
+bounded attempt to fetch the AOSP ancestry failed with HTTP500; the GitHub fork
+did not serve that old object. Do not treat its raw history count as thousands
+of new applicable patches or claim a clean merge preview. A direct tree diff is
+available and mainly adds firmware plus HAL changes. This tablet selects qcwcn,
+not the Broadcom WLAN implementation. Reassess ancestry if that component becomes
+relevant; it does not block assessing the open November security series.
+
+Shared Qualcomm kernel lineage-20 advanced to
+`bae1ba425fe341c281db0158f649fc76c0efa229`. Its effective diff from the previously
+integrated `285869032` base adds drivers/nfc/sn-nci and its Kconfig/Makefile wiring
+(25 paths, 3,641 inserted lines). Five first-parent integration commits import
+and adapt the driver; the much larger ancestry count includes the driver's
+historic repository. Merge-tree against released f0f9fc679 is clean. The new
+NXP_NFC_I2C option depends on !NFC_NQ, while the actual retained build config has
+CONFIG_NFC_NQ=y. This is not evidence that the broader November kernel bulletin
+has been addressed. Keep the prior kernel security-coverage review requirement.
+
+Sevenrock and gta4xlve-dev device/kernel/vendor branch heads are unchanged since
+Monday. The existing device-tree conflicts and optional display reserved-memory
+change remain as documented below; do not replace our maintained trees wholesale.
+
+Recommendation: recheck after the November patches and patch-date update merge,
+then prepare one combined maintenance candidate. Thursday is a reasonable next
+check, not a promised integration date. No source sync, working-branch merge,
+build, tablet operation or publication occurred during this review. Public feed
+and resolved manifest remain on build1793279242. Evidence is retained privately
+in the dated November 4 audit directory; no raw logs were added to this repository.
+
+## November 2 decision (historical)
 
 Routine merged LineageOS updates are candidates for integration, with clean Git
 merge previews. A complete November security update is **not yet established**.

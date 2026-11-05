@@ -6,6 +6,39 @@ previews only; no source checkout sync, working-branch merge, build, install or
 publication. The tablet was unavailable to ADB, so installed state comes from
 the completed October 29 validation record, not a fresh device observation.
 
+## November 5 follow-up
+
+The upstream integration blocker has cleared. All **105 changes** in the
+[C_asb_2026-11 LOS24 topic](https://review.lineageos.org/q/topic:C_asb_2026-11+branch:lineage-24.0)
+are now MERGED. The [patch-string change](https://review.lineageos.org/c/LineageOS/android_vendor_lineage/+/508070)
+merged November 4 at18:35:59UTC, and current vendor/lineage head
+`64dc805d0cdc77519b80cb93eb3e2d0a0c801a5c` sets **2026-11-01**.
+The manifest remains `e4b71068f6ee045ff30e4865a8d82f4047eb78ea`;
+project heads now contain the security changes selected by its new forks.
+
+The refreshed heads include the November framework, native, media, Bluetooth,
+Wi-Fi, provisioning, image/codec library and filesystem-manager changes.
+Lineage frameworks/av head `1c5914737a1a89d0c5b3e52e8289019eab3f8cbf`
+adds five security commits. Merge-tree against our released `b911f1a` codec fork
+passes, preserving our codec ownership repair; the effective merged delta is
+six files, 57 insertions and19 deletions. System/bpf and Pixel upstream heads
+remain contained in our maintained pins. Build/make and Connectivity selections
+are unchanged, so no new API37.1/kernel5.15 gate activation was found.
+
+All available platform merge previews passed apart from the already documented
+Broadcom WLAN ancestry limitation. The full Sevenrock device merge still has
+the existing conflicts; do selective integration. Shared Qualcomm kernel,
+Sevenrock and gta4xlve-dev device/kernel/vendor heads are unchanged since
+November4. The shared NFC import remains distinct from bulletin kernel coverage.
+
+We can proceed to prepare a combined maintenance candidate from merged upstream
+sources. First finish the kernel/vendor applicability review and candidate pin
+capture; then build, sign and validate with the existing identity and runbook.
+Upstream2026-11-01 does not establish2026-11-05 coverage for our kernel or old
+proprietary vendor. No build, install, source checkout sync or publication was
+performed by this review. Released manifest/feed remain build1793279242.
+Evidence is retained privately in the dated November5 audit directory.
+
 ## November 4 follow-up
 
 The Wednesday morning recheck still finds November security integration pending.

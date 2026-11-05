@@ -7,7 +7,8 @@ A full reread covers **97 November5 bulletin entries**, not only the original
 seven-item kernel shortlist:31 kernel,3 Arm,12 Imagination,30 MediaTek,4 Unisoc,
 9 public Qualcomm and8 closed-source Qualcomm. The self-authored
 [coverage matrix](november5-coverage.json) records every entry and its scope.
-Eight closed-source entries remain unverified at the device/firmware level;
+The original eight closed-source entries received a follow-up review below.
+Samsung excludes two; six still lack confirmed fixed-firmware evidence;
 **no full November5 patch-level claim is made**. Platform date remains2026-11-01.
 
 Candidate kernel is `be84fa84d82073f331e94e8d21def1b2a90bd341` on
@@ -144,7 +145,7 @@ than this tablet's Kryo465/A55/A76 class. The other two Arm entries are Mali GPU
 issues. Imagination, MediaTek and Unisoc implementations do not match this
 Qualcomm/Adreno tablet. See the matrix for all per-entry classifications.
 
-Eight Qualcomm closed-source entries remain **vendor coverage unverified**.
+At publication, eight Qualcomm closed-source entries remained **vendor coverage unverified**.
 Some public CNA records are unavailable; others name newer components or broad
 product lists without establishing this Samsung firmware's patch provenance.
 The TPM2 reference-code item does not imply a TPM exists on the tablet
@@ -152,3 +153,30 @@ The TPM2 reference-code item does not imply a TPM exists on the tablet
 inferred from that. No newer maintained vendor blob head was found; the inherited
 vendor patch date stays2025-05-01. Fixing open source does not establish the
 missing device-specific firmware evidence or justify a2026-11-05 patch claim.
+
+
+## Closed firmware follow-up, November5
+
+Samsung's [November security bulletin](https://security.samsungmobile.com/securityUpdate.smsb),
+revision1.1 datedNovember5, explicitly lists **CVE-2026-6726** and
+**CVE-2026-65076** as not applicable to Samsung devices. The matrix now records
+that vendor applicability evidence; it does not claim those flaws were patched
+in our binaries. Thus two of the original eight uncertainties can be resolved.
+
+Qualcomm's [CNA record for CVE-2026-57546](https://cveawg.mitre.org/api/cve/CVE-2026-57546)
+lists only Congo and FastConnect8800. That suggests a product mismatch with
+this SM7125 tablet; independent connectivity implementation verification is
+still needed before promoting it to a firm exclusion. CVE-2026-25302's broad
+component list does not establish a fixed Samsung image. Public CNA lookups for
+25285/25286/25287/57547/65076 returned404 at this review, so missing records are
+not interpreted as absence of a vulnerability.
+
+Six entries consequently still lack conclusive device-specific fixed-firmware
+evidence (including the likely product mismatch above). Samsung's general
+November SMR list is not proof that SM-P613 received that package: its official
+[XAR firmware history](https://doc.samsungmobile.com/SM-P613/023882220819/eng.html)
+still tops out at P613XXS8CYE1, released2025-06-02 with patch2025-05-01.
+A fix could be confirmed through an applicable vendor exclusion, a Samsung
+fixed-version statement mapped to our exact binary provenance, or a verified
+comparison with known fixed binaries. Normal ADB/hardware smoke tests alone
+cannot establish these proprietary security fixes. No ROM/feed/key change.

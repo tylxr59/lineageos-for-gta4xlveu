@@ -903,10 +903,10 @@
     {
       "cve": "CVE-2026-6726",
       "component": "Qualcomm closed-source components",
-      "status": "vendor binary coverage unverified",
-      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "status": "vendor declares not applicable",
+      "reason": "Samsung SMR-NOV-2026 bulletin revision1.1 (2026-11-05) explicitly lists this CVE under Not applicable to Samsung devices. This is applicability evidence, not a firmware patch installation claim.",
       "references": [
-        "#asterisk"
+        "https://security.samsungmobile.com/securityUpdate.smsb"
       ]
     },
     {
@@ -940,9 +940,9 @@
       "cve": "CVE-2026-57546",
       "component": "Qualcomm closed-source components",
       "status": "vendor binary coverage unverified",
-      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "reason": "Qualcomm CNA names only Congo and FastConnect8800. This strongly suggests an affected-product mismatch with this SM7125 tablet, but the exact connectivity implementation/fixed binary is not independently established. Retain unverified status rather than infer all firmware is safe.",
       "references": [
-        "#asterisk"
+        "https://cveawg.mitre.org/api/cve/CVE-2026-57546"
       ]
     },
     {
@@ -957,11 +957,18 @@
     {
       "cve": "CVE-2026-65076",
       "component": "Qualcomm closed-source components",
-      "status": "vendor binary coverage unverified",
-      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "status": "vendor declares not applicable",
+      "reason": "Samsung SMR-NOV-2026 bulletin revision1.1 (2026-11-05) explicitly lists this CVE under Not applicable to Samsung devices. This is applicability evidence, not a firmware patch installation claim.",
       "references": [
-        "#asterisk"
+        "https://security.samsungmobile.com/securityUpdate.smsb"
       ]
     }
-  ]
+  ],
+  "closed_component_followup": {
+    "review_date": "2026-11-05",
+    "original_entries": 8,
+    "samsung_declares_not_applicable": 2,
+    "remaining_without_confirmed_fixed_firmware": 6,
+    "of_remaining_one_has_cna_product_mismatch": true
+  }
 }

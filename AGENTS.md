@@ -1,6 +1,6 @@
 # Agent instructions
 
-## November candidate locally validated; unpublished (2026-11-05)
+## November public release complete (2026-11-05)
 
 Installed1793911332, device dd2a0d3/kernel939ccbcb/AVa7dd9c12; vendor/Pixel/BPF
 unchanged. All1,242 pins in manifests/candidates/november-charger-20261105.xml
@@ -9,7 +9,7 @@ November platform supplies2026-11-01; no fullNovember5 kernel/vendor claim.
 [Candidate evidence and limits](docs/november-2026-candidate.md).
 
 Private evidence artifacts/november-charger-fix-20261105/progress.json is
-COMPLETE_LOCAL_VALIDATION_NOT_PUBLISHED; preceding hardware/runtime evidence in
+COMPLETE_PUBLISHED; preceding hardware/runtime evidence in
 artifacts/november-candidate-20261105. Full build/strictVINTF/BTF/OOM/hardening/
 DTBO and existing47-key signatures/components/OTA passed. Signed no-wipe install,
 unlocked encrypted data/setup/marker, actual matching recovery/full partition
@@ -22,8 +22,12 @@ screenawake0. Build/install units inactive/exit0. No wipe/newkeys/manualvbmeta.
 ROM SHA256fce3f4dcb022cecd98204fa8f21e12b80f9823e4bffd868f29b4a40eb9ae3651.
 Keep exact signed bundle; do not rebuild/re-sign it for publication.
 
-Public release/resolved/feed remain1793279242; NO publication authorized.
-Explicit shipping instruction is needed before publishing the exact tested bundle.
+Owner explicitly authorized publication. Public release/resolved/feed now1793911332,
+immutable taglineage-24.0-20261105-gta4xlveu-1793911332. Release evidence
+artifacts/november-release-20261105/public-verification.json:12assets/hash/size,
+fresh ROM/checksums and canonical11-entry HTTPS feed on host/tablet pass.
+No new older-to-newer publicUpdaterinstall claimed; tablet already runs release.
+Separate November5 kernel/vendor investigation underway; preserve exact release.
 Existing keys/Documents backup unchanged; rawlogs private; TI remains paused.
 
 ## Assisted GPS public release complete (2026-10-29)

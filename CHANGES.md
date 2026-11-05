@@ -1,10 +1,6 @@
 # Changes
 
-November 5 maintenance candidate1793911332 is signed and installed. Android/data,
-owner hardware, kernel/display and matching recovery checks passed. The offline
-charging failure is corrected and the owner confirmed the retest passes. Final
-Android return/data checks and owned-marker/helper cleanup passed; see [validation](docs/november-2026-candidate.md).
-Public1793279242 remains unchanged.
+November update [1793911332](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793911332) is published after completed signed local validation. Platform security patch2026-11-01; legacy kernel/vendor November5 work continues separately.
 
 Changes maintained by this project, with links to their implementation commits.
 Device, kernel, vendor and shared Pixel HAL links point to separate source
@@ -18,8 +14,13 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
-November1 platform security updates and reviewed merged LineageOS/device/kernel
-maintenance are staged in candidate1793911332; not published.
+November5 legacy kernel/vendor applicability and backport investigation is underway.
+
+## 2026-11-05 — November platform and device maintenance
+
+[Release1793911332](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793911332) publishes the exact tested signed candidate.
+All12 assets, fresh ROM/checksums and canonical11-entry HTTPS feed on host/tablet
+match. Existing signing identity and public source pins are retained.
 
 - [Media security merge](https://github.com/tylxr59/android_frameworks_av/commit/a7dd9c12d2629fe100f09dc8f23e909bad1dca72) retains the codec ownership fix.
 - [Kernel maintenance/display merge](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/939ccbcb72b6c9143becd893a59cf84c3a1cf21d) retains the shared display reservation and prior hardening/BPF fixes.

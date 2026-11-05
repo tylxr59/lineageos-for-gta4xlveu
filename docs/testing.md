@@ -1,6 +1,6 @@
 # Test status
 
-## November candidate1793911332 — local validation complete, unpublished
+## November release1793911332 — validation complete
 
 [Candidate status](november-2026-candidate.md): full build, strict VINTF,
 DTBO/BTF/OOM/hardening and existing-key component/whole-OTA signature checks pass.
@@ -24,7 +24,10 @@ original vbmeta unchanged. QTI recovery health, healthy/full battery and live
 display range pass. Final Android return, marker checksum, setup/assistance flags and cleanup pass.
 Owned marker/helpers removed; screen-awake0, UID2000, Rooted debugging off,
 unlocked FBE, enforcing SELinux and empty crash buffer.
-Public release/feed stay1793279242.
+The exact signed bundle is [published](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793911332). All12 asset sizes/GitHub hashes,
+downloaded checksums, fresh public ROM SHA256 and canonical11-entry HTTPS feed
+on host/tablet match. No additional public older-to-newer Updater installation
+is claimed because the tablet already ran this tested build.
 
 
 Previous fully tested public release:

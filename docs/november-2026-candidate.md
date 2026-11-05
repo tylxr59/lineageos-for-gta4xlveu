@@ -1,12 +1,13 @@
 # November 2026 maintenance candidate
 
-Status: **LOCAL VALIDATION COMPLETE; NOT PUBLISHED**, November5,2026.
+Status: **PUBLISHED; LOCAL AND PUBLIC VALIDATION COMPLETE**, November5,2026.
 Corrected candidate **1793911332** is installed after signed no-wipe update.
 Android unlock/data/setup/security, owner hardware, live kernel/display/BPF,
 matching recovery/full partition hashes and powered-off charging retest passed.
 Final Android return passed; the owned continuity marker and helpers are removed,
-Rooted debugging is off, and the crash buffer is empty. The published release,
-resolved manifest and feed remain **1793279242**. Publication was not requested.
+Rooted debugging is off, and the crash buffer is empty. The owner authorized publication of the exact tested signed build. Published
+release/resolved pins and the11-entry feed now identify **1793911332**; all12
+assets and fresh ROM/checksum downloads and host/tablet HTTPS feed matched.
 
 ## Source set
 
@@ -156,7 +157,7 @@ Actual recovery kernel/config and full boot/DTBO/recovery partition hashes match
 the signed candidate. Original vbmeta is unchanged. The new QTI recovery health
 service runs, battery is healthy/full, and the display reservation matches.
 Powered-off charging failed initially and passed after the follow-up below.
-Final Android unlock/data cleanup passed. This candidate has not been published.
+Final Android unlock/data cleanup passed. The exact corrected candidate is now published.
 
 ## Powered-off charging failure and follow-up
 
@@ -190,7 +191,7 @@ normally. Final Android return, marker checksum and setup/assistance flags pass.
 The owned marker was removed after verification; helpers are absent, screen-awake
 setting0, normal UID2000, Rooted debugging off, unlocked FBE, enforcing SELinux and
 empty crash buffer. Build/install units ended successfully.
-No publication is authorized.
+Owner-authorized [publication](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793911332) completed without rebuild/re-sign/newkeys.
 
 ## Final upstream recheck
 

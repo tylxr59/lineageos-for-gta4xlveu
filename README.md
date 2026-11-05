@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/tylxr59/lineageos-for-gta4xlveu?display_name=tag&sort=date"></a>
   <img alt="Android 17" src="https://img.shields.io/badge/Android-17-3ddc84">
-  <img alt="Security patch 2026-10-01" src="https://img.shields.io/badge/security%20patch-2026--10--01-blue">
+  <img alt="Security patch 2026-11-01" src="https://img.shields.io/badge/security%20patch-2026--11--01-blue">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-97ca00"></a>
 </p>
 
@@ -50,10 +50,12 @@ See [tested features](docs/testing.md) for what remains unverified.
 
 ## 📥 Downloads
 
-**[Download the Assisted GPS update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261029-gta4xlveu-1793279242)**,
-build **1793279242**. Signed no-wipe installation, data/setup persistence, owner
-hardware checks and matching recovery passed. Prior OOM, accounting, hardening,
-Bluetooth audio and tablet fixes remain.
+**[Download the November update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793911332)** — LineageOS 24.0 / Android 17,
+platform security patch **2026-11-01**, build **1793911332**. Includes November
+platform/media fixes, maintained kernel/device updates and tested health,
+Bluetooth, display and powered-off charging integration. Signed no-wipe update,
+encrypted-data/setup persistence, hardware and matching recovery checks passed.
+Legacy kernel/vendor November5 coverage review continues separately.
 
 Each release includes the ROM, matching recovery/vbmeta package, SHA-256
 checksums, and its exact source manifest. Later builds appear under

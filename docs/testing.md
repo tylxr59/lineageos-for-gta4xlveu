@@ -6,12 +6,12 @@
 DTBO/BTF/OOM/hardening and existing-key component/whole-OTA signature checks pass.
 Signed no-wipe sideload returned0 and Android booted to1793891339. Actual kernel/
 config, encrypted storage, enforcing SELinux, UID2000, Rooted debugging off,
-AIDL health registration and empty initial crash buffer pass. Owner usual-pattern
-unlock, marker/setup persistence, hardware/charging/display and matching recovery/
-partition checks remain pending. Public release/feed stay1793279242.
+AIDL health registration and empty initial crash buffer pass. Unlocked encrypted data, marker checksum, setup flags and saved assisted-GPS
+setting match baseline. Owner hardware/charging/display confirmation and matching
+recovery/partition checks remain pending. Public release/feed stay1793279242.
 
 
-Current release and locally tested installation:
+Previous fully tested public release:
 [1793279242](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261029-gta4xlveu-1793279242), device `1099a44`, kernel `f0f9fc679`, vendor `ec725c3`,
 Pixel `d4f83b6`, frameworks/av `b911f1a` and loader `c2621ec`. All 1,242 projects
 match the released source pins. Only device and vendor change from1793039898.

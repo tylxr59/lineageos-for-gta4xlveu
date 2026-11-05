@@ -21,7 +21,7 @@ Connectivity selection and the existing BPF override are unchanged.
 - Kernel merge [`939ccbcb`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/939ccbcb72b6c9143becd893a59cf84c3a1cf21d) retains releasedf0f9fc679 fixes and imports the shared Qualcomm base throughbae1ba425. Its delta includes the optional NXP SN driver/wiring and the maintained display-memory overlay removal. NXP_NFC_I2C depends on !NFC_NQ, while the tablet uses NFC_NQ.
 - All candidate commits are pushed on `maintenance/los24-november-20261105` in their respective maintained forks.
 - Device merge [`db669506`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/db669506d8002607452ff1c85627c7f7399899e0) includes QTI AIDL health/charger and recovery services, retires the standard HIDL Bluetooth audio implementation in favor of the already-present AIDL provider, and uses direct partition paths. It preserves strict VINTF kernel checks, QTI USB ownership, scoped credential policy, assisted GPS and thermal reporting. Vendor ec725c3, Pixel d4f83b6 and BPF c2621ec remain unchanged.
-- The owner explicitly expanded scope to include and test the HAL/display changes. The initial platform-only build was stopped during graph generation; its log/manifests are retained separately. The expanded candidate is building under the same resource limits. TI audio remains paused.
+- The owner explicitly expanded scope to include and test the HAL/display changes. The initial platform-only build was stopped during graph generation; its log/manifests are retained separately. The expanded candidate completed compilation and signing. TI audio remains paused.
 
 The source sync changed upstream project identities. Clean-worktree preflight,
 resolved pre-sync sources and18 affected project metadata/ref snapshots were saved
@@ -32,14 +32,14 @@ merge or dropped local repair was used. Historical verified artifacts were retai
 ## Build and signing
 
 The owner initially requested a slow build, temporarily raised resources, resumed
-gaming, then explicitly requested increased resources again. The current four-job
-executor continues without restart under a1200% total CPU quota,CPUWeight100,
-IOWeight50 and best-effort7 disk I/O. Existing nice19 is retained. MemoryHigh28GiB,
-MemoryMax32GiB and the existing swap ceiling remain bounded. The generator phase
+gaming, then explicitly requested increased resources again. The final four-job
+executor ran under a1200% total CPU quota,CPUWeight100,
+IOWeight50 and best-effort7 disk I/O. Existing nice19 is retained. The soft memory limit was raised from28GiB to the existing32GiB hard ceiling
+to clear BTF generation pressure; no OOM kill occurred. The generator phase
 completed earlier with GOMAXPROCS8/GOMEMLIMIT24GiB/GOGC50; the main executor budget
 is12GiB. Completed outputs are preserved through live resource changes.
 No system package installation or persistent host power setting change is needed.
-A temporary sleep inhibitor follows the pipeline lifetime.
+Temporary build/install inhibitors ended with their units.
 
 The pipeline builds target-files/recovery/check-vintf-all, verifies exact source
 pins, strict VINTF with real kernel inputs, paired XTRA config, thermal safety,
@@ -49,7 +49,9 @@ and actual OOM tracepoint layout. It then signs with the existing47 release
 identities and verifies component and whole-file OTA signatures plus matching
 boot/DTBO/recovery and vendor recovery payload. All listed host checks passed on the exact signed candidate. Compilation completed in3h15m29s with earlier owner-directed resource throttling. The archive contains zero native-test payload files; its four empty native-test directories match the released package. Target-files DTBO metadata has a regenerated AVB salt; the complete original image payload matches the compiled output and its packaged AVB hash verifies. Validator corrections are documented privately; no ROM rebuild/source change or compatibility bypass was used.
 
-The connected baseline tablet was verified on1793279242 with boot complete, unlocked file encryption, normal UID2000, enforcing SELinux and Rooted debugging off. Ordinary ADB service/display/battery/USB snapshots and setup flags are retained privately. An owned continuity marker was created and checksum verified. Candidate1793891339 is now installed and booted; usual-pattern/data and hardware/recovery validation remain pending.
+The connected baseline tablet was verified on1793279242 with boot complete, unlocked file encryption, normal UID2000, enforcing SELinux and Rooted debugging off. Ordinary ADB service/display/battery/USB snapshots and setup flags are retained privately. An owned continuity marker was created and checksum verified. Candidate1793891339 is now installed and booted; encrypted data is unlocked, the marker checksum and setup/assistance flags match
+baseline, and the crash buffer is empty. Hardware/runtime/recovery validation
+remains pending.
 It must additionally cover the QTI AIDL health service in Android/recovery, battery/charging behavior and charger mode, Bluetooth audio, display/suspend/wake and the compiled display-memory range. It must cover signed no-wipe update, original pattern and encrypted-data/setup
 continuity, enforcing SELinux, normal ADB/rooted-debugging off, Android/recovery
 boot and full image verification, hardware smoke, USB/MTP, Bluetooth, thermal,

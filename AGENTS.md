@@ -5,24 +5,20 @@
 Owner authorized the combined candidate after the105 November topic changes merged.
 [Candidate status and security-scope review](docs/november-2026-candidate.md) records
 exact1,242-project candidate pins and pushed AVa7dd9c12/kernel939ccbcb/devicedb669506 branches.
-Owner expanded scope to include HAL/display integration and device testing. Device merge preserves existing fixes; vendor/Pixel/BPF pins unchanged. Installed/public remain1793279242.
-Private evidence/runners: artifacts/november-candidate-20261105. Build unit
-los24-november-expanded-build now has its four-job executor capped at1200% CPU,
-CPUWeight100/IOWeight50, best-effort7 I/O, MemoryHigh28G/Max32G/Swap8G after the
-owner explicitly requested increased resources again. Existing nice19 is retained.
-The resource change was applied live; no compilation restart or discarded outputs.
-Earlier attempts and resource changes are recorded privately. Follow current owner
-steering and progress.json rather than assuming the earlier gaming cap still applies.
-Source/full build and host archive/signature/image checks passed. Signed candidate
+Owner expanded scope to include HAL/display integration and device testing. Device merge preserves existing fixes; vendor/Pixel/BPF pins unchanged. Installed1793891339; public remains1793279242.
+Private evidence/runners: artifacts/november-candidate-20261105.
+Full build and strict archive/signature/image checks passed. Signed candidate
 1793891339 installed no-wipe/exit0 and booted. Actual kernel939ccbcb/config,
-encrypted storage, enforcing SELinux, UID2000 and Rooted debugging off pass.
-User is RUNNING_LOCKED awaiting usual-pattern unlock; no unlocked-data/hardware/
-matching-recovery success claimed yet. New health AIDL provider registers with
-healthy/full USB-powered battery and crash0. Owned November continuity marker
-must remain through final recovery/data tests and then be removed. Public release/
-resolved/feed remain1793279242. No publication authorized. All47 existing keys
-retained. The build memory stall was pahole BTF generation; lifting the soft
-threshold to the existing32GiB ceiling resolved it without an OOM kill.
+encrypted unlocked storage, enforcing SELinux, UID2000, Rooted debugging off,
+marker checksum, setup flags, saved assistance setting and crash0 pass.
+New health AIDL provider runs with healthy/full USB-powered battery.
+Owner hardware confirmation, rooted runtime/display inspection and matching
+recovery/full partition checks remain pending. Keep the owned continuity marker
+through final recovery/data tests, then remove it. Public release/resolved/feed
+remain1793279242. No publication authorized. All47 existing keys retained.
+Compilation completed; temporary build/install units are finished. Owner-directed
+resource changes preserved outputs. The pahole BTF memory stall cleared after
+lifting the soft limit to the existing32GiB ceiling without an OOM kill.
 
 ## Assisted GPS public release complete (2026-10-29)
 

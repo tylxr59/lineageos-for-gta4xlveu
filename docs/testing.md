@@ -1,5 +1,27 @@
 # Test status
 
+## November5 candidate1793916221 — local validation complete, unpublished
+
+[Source review and exact candidate hash](november5-kernel-review.md). Full build,
+strict VINTF, BTF/OOM/hardening, unchanged policy/proprietary libraries and
+existing-key component/OTA signatures pass. Signed no-wipe installation retained
+original encrypted data and setup. Owner hardware checks pass, including
+AirPods/speaker routing, cameras, video, S Pen, rotation, sleep/wake, USB and charging.
+Bounded loopback TCP/sendfile/UDP, epoll close, CPU timer and isolated-address
+SCO socket lifecycle tests pass. Both ABI wakelock suites pass6/skip2 expected
+each; DMA1024/churn/200 early-close checks release owned buffers. Production
+accounting,14 network hooks and actual OOM ABI/AMS attachment pass. No deliberate
+OOM, SCO connection-confirmation race, exploit or memory-pressure test claimed.
+
+Actual recovery kernel/config/fullboot-DTBO-recovery hashes and live policy match;
+original vbmeta remains unchanged. QTI recovery health and live display
+reservation0x9c000000/23MiB pass. Owner powered-off charging and final Android
+return pass. Final marker checksum/setup/assistance flags match baseline; owned
+marker and helpers removed. Final UID2000/rootOFF/unlockedFBE/enforcing/crash0,
+screenawake0. Public release/feed remain1793911332. Eight closed firmware coverage
+entries remain unverified; this does not establish a fullNovember5 patch level.
+
+
 ## November release1793911332 — validation complete
 
 [Candidate status](november-2026-candidate.md): full build, strict VINTF,

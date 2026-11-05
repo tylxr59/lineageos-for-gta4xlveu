@@ -1,24 +1,26 @@
 # Agent instructions
 
-## November5 candidate device validation in progress
+## November5 candidate local validation complete
 
-Candidate1793916221 is installed via signed no-wipe update; public/feed remain
-1793911332. Kernelbe84fa84d/HWC64fd995, final candidate manifests pinned. Full
-host build/VINTF/BTF/hardening/signatures/paired images passed. Initial Android
-unlock/FBE/setup/marker/config/SELinux/crash0 and normal bounded native tests pass;
-owner confirmed hardware. Rooted runtime/SCO/BPF/DMA/accounting/14networkhooks/
-OOM ABI+AMS attachment pass, no crash/kernel patterns. Helpers removed and
-Rooted debugging disabled/normalUID2000 verified again. Rebooted to recovery;
-owner Advanced→EnableADB prompt pending. Matching recovery, charger/final data
-cleanup remain pending. Preserve owned Nov5 marker through remaining tests. Private evidence
-artifacts/november5-final-candidate-20261105/progress.json. No candidate publication
-authorized; fullNov5 firmware coverage still unverified. See
-[review and limits](docs/november5-kernel-review.md).
-
+Installed candidate1793916221, kernelbe84fa84d/HWC64fd995, final candidate
+manifests pinned. Public/feed/resolved remain1793911332; candidate publication
+not authorized. ROM SHA256:
+`d4f9cd63ab5776344594e0e9dba6f731ac0be8efe2af4bfb8c57af330592b78c`.
+Full host build/VINTF/BTF/hardening/existing47-key signatures/paired images pass.
+Signed no-wipe Android/data/setup/hardware/native tests, rooted SCO/BPF/DMA/
+accounting/14hooks/OOM ABI+AMS attachment, matching recovery/full partition
+hashes/live policy/QTI health/display reservation and owner offline charging pass.
+Original vbmeta unchanged. Final Android data/setup/marker check passed; owned
+marker/helpers removed, screenawake0, UID2000/rootOFF/FBEunlocked/enforcing/crash0.
+Private evidence artifacts/november5-final-candidate-20261105/progress.json is
+COMPLETE_LOCAL_VALIDATION_NOT_PUBLISHED. Preserve exact signed bundle and keys;
+do not rebuild/re-sign for a future publication. Eight closed firmware entries
+remain unverified, so no fullNov5 patch-level claim; platform date staysNov1.
+[Review and limits](docs/november5-kernel-review.md). TI work remains paused.
 
 ## November public release complete (2026-11-05)
 
-Installed1793911332, device dd2a0d3/kernel939ccbcb/AVa7dd9c12; vendor/Pixel/BPF
+Published1793911332, device dd2a0d3/kernel939ccbcb/AVa7dd9c12; vendor/Pixel/BPF
 unchanged. All1,242 pins in manifests/candidates/november-charger-20261105.xml
 and november-charger-forks-20261105.xml. Source branches pushed. The merged
 November platform supplies2026-11-01; no fullNovember5 kernel/vendor claim.

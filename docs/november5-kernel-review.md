@@ -106,7 +106,13 @@ mark_victim attachment. No crash/kernel failure patterns were observed. Helpers
 were removed and Rooted debugging was disabled; normal UID2000/FBE/unlock/
 config/marker checks passed again. These bounded tests do not exercise the SCO
 connection-confirmation race, deliberate OOM, or prove general race safety.
-Matching recovery and the final charger/data/cleanup round trip remain pending. No candidate is published;
+Matching recovery kernel/config/full boot-DTBO-recovery hashes and live policy
+match the signed package; original vbmeta is unchanged. QTI recovery health and
+the retained display reservation at0x9c000000/23MiB pass. The owner confirmed
+normal powered-off charging and the final Android return. Final encrypted-data
+unlock, setup/assistance flags, marker checksum, enforcing SELinux, empty crash
+buffer and normal UID2000/Rooted debugging off pass. The owned marker and all
+helpers were removed; screen-awake remains0. Local validation is complete. No candidate is published;
 the public release/feed remain1793911332. Earlier build attempts are preserved.
 
 ## Qualcomm source and closed components

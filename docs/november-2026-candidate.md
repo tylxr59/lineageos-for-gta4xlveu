@@ -191,3 +191,16 @@ The owned marker was removed after verification; helpers are absent, screen-awak
 setting0, normal UID2000, Rooted debugging off, unlocked FBE, enforcing SELinux and
 empty crash buffer. Build/install units ended successfully.
 No publication is authorized.
+
+## Final upstream recheck
+
+After local validation on November5, a fresh read-only comparison of306 selected
+moving upstream heads found all runtime source heads included in1793911332.
+The platform manifest head is unchanged. Device/vendor forks, shared Qualcomm
+kernel, media, Pixel HAL and BPF heads are ancestors of the candidate pins.
+The sole new nonincluded commit is LineageOS/charter main
+[`9ee719ec`](https://github.com/LineageOS/charter/commit/9ee719ec4a84fb72cbc04725e55c0da833fe6db6),
+which changes only AI contribution guidance. It changes no ROM code and does not
+require rebuilding this tested candidate. Fixed AOSP inputs remain manifest-tag
+selected. This up-to-date branch comparison does not resolve the separate legacy
+kernel/vendor coverage limitations documented above.

@@ -35,7 +35,7 @@ include alternative kernel-branch versions, so their count is not a patch count.
 | CVE-2026-43499, rtmutex | Both relevant guards already exist: `remove_waiter` returns for a null waiter task, and the proxy-lock wrapper removes only for `ret < 0`. Existing baseline commit [a8306aea3](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/a8306aea3975b86678630be86d03e7c4b897c3be) records the backport. No redundant change staged. This resolves the specific previously outstanding source comparison, not general futex certification. |
 | CVE-2025-38627, F2FS | The cited failure involves delayed decompression-context cleanup dereferencing an evicted inode. This tree's `f2fs_free_dic` frees page arrays directly and does not dereference an inode; the newer asynchronous cleanup and release helper are absent. The specific patched cleanup path is absent; no broad F2FS lifetime certification is claimed. No patch staged. |
 | CVE-2026-89774, Bluetooth SCO | Tailored backport [ea6d573e1](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/ea6d573e1ae4bb3dc4e39713493d755a0800b7cf) includes the delayed-work sleeping-lock prerequisite, protected connection/listener reference acquisition, close/listener-state rechecks, balanced puts and the follow-up socket-before-connection lock order. Connection teardown also acquires its reference under the connection lock. Actual object compile and six deterministic function-model cases pass; no runtime certification yet. |
-| CVE-2026-46242, epoll | The specific modern file-removal race is absent from this implementation. All three `ep_remove` callers were traced: epoll_ctl retains the monitored fdget reference; ep_free and eventpoll_release_file serialize under epmutex, and the latter still owns the file during __fput. The modern refcount/dying conversion which removed that serialization is absent. Do not import the unrelated prerequisite conversion. Bounded concurrent owned-watch close passes on baseline; candidate retest pending. |
+| CVE-2026-46242, epoll | The specific modern file-removal race is absent from this implementation. All three `ep_remove` callers were traced: epoll_ctl retains the monitored fdget reference; ep_free and eventpoll_release_file serialize under epmutex, and the latter still owns the file during __fput. The modern refcount/dying conversion which removed that serialization is absent. Do not import the unrelated prerequisite conversion. Bounded concurrent owned-watch close passes on baseline and candidate. |
 | CVE-2026-64560, POSIX CPU timers | The specific pid-lookup race introduced by the modern conversion is absent. Timers retain a task reference, and __exit_signal still has the older has_group_leader_pid/de_thread workaround which clears group timers before sighand removal. The cited upstream message identifies that workaround as the predecessor to its affected pid-based conversion. The independent NULL-sighand cleanup visibility requirement is still applicable: [be84fa84d](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/be84fa84d82073f331e94e8d21def1b2a90bd341) adds the upstream release/acquire barrier pair without importing the modern PID lookup rewrite. Actual ARM64 exit/signal IR compiles; baseline has no NULL release-store/acquire pair, candidate emits both. Basic bounded timer lifecycle passes on baseline; no exec-race stress or general timer certification claimed. |
 
 Primary fixes: [HID](https://android.googlesource.com/kernel/common/+/15475ee563738135a9978f2a0481b1cf972b3b72),
@@ -85,18 +85,22 @@ A temporary ordinary-ADB native helper passed baseline TCP copy/sendfile checks
 and256 CPU-timer create/set/get/delete cycles. An additional16 normal nonleader
 exec cases with an armed process CPU timer pass; no concurrent delete is used. Only loopback and an immediately
 unlinked owned scratch file are used. No external network, user-data access,
-exploit, OOM or memory-pressure test. The helper was removed. Repeat on candidate.
+exploit, OOM or memory-pressure test. The helper was removed; the same checks also pass on candidate1793916221.
 
-The preceding snapshot passed full kernel/product build, strict VINTF, unchanged
-policy, BTF/OOM/hardening and built HDR binary checks. Before device installation,
-the independent timer ordering hunk was identified and added; earlier unsigned
-artifacts and checks are preserved, signing stopped, and a fresh final snapshot
-is rebuilding with all gates. A fresh full target-files/recovery/strict-VINTF build, BTF/OOM/hardening checks,
-existing47-key signing/component/OTA checks and paired-image verification are
-running. The first kernel-only graph attempt was stopped before expanding the
-source snapshot to include the discovered active display fix; outputs are reused.
-Signed candidate install, Android/hardware/runtime and matching-recovery/data
-validation remain required. No candidate is published by this work.
+The final candidate **1793916221**, kernel `be84fa84d` and HWC `64fd995`,
+passed full target-files/recovery build, strict VINTF, unchanged policy and
+proprietary libraries, BTF/OOM/hardening checks, built HDR guard checks,
+existing 47-key component/whole-OTA signatures and paired-image verification.
+ROM SHA256: `d4f9cd63ab5776344594e0e9dba6f731ac0be8efe2af4bfb8c57af330592b78c`.
+
+Signed no-wipe installation and Android boot passed. Original encrypted data
+unlocked; setup flags and the continuity marker match baseline. The actual kernel
+and configuration match the signed image, SELinux is enforcing, the crash buffer
+is empty and Rooted debugging was off during normal checks. All bounded native
+regressions listed above pass on this candidate, and the owner confirmed the
+available hardware checks. Privileged runtime checks, matching recovery and the
+final charger/data/cleanup round trip remain pending. No candidate is published;
+the public release/feed remain1793911332. Earlier build attempts are preserved.
 
 ## Qualcomm source and closed components
 

@@ -138,3 +138,20 @@ Signed installation returned exit0 without a wipe, and actual Android timestamp,
 kernel and embedded/live config match. Original live vbmeta and actual matching
 recovery partition hashes still require the planned recovery check. The owned
 continuity marker must remain until final unlocked data/recovery tests pass.
+
+## Device validation progress
+
+Owner confirmed usual setup, Wi-Fi/video, both cameras, speakers/AirPods routing,
+S Pen, rotation, sleep/wake, USB file transfer and charging. Android live device
+ tree confirms the inherited display reservation at0x9c000000, size23MiB.
+The real OOM field ABI and system_server attachment,14 network hooks, both ABI
+wakelock suites (6pass/2expected skips each), production accounting and bounded
+DMA-BUF1024/churn/200early-close/no-owned-leak tests pass. No deliberate OOM or
+pressure test was performed. No captured kernel failure patterns; crash buffer
+empty. Temporary helpers removed and Rooted debugging disabled afterward.
+
+Actual recovery kernel/config and full boot/DTBO/recovery partition hashes match
+the signed candidate. Original vbmeta is unchanged. The new QTI recovery health
+service runs, battery is healthy/full, and the display reservation matches.
+Powered-off wall-charger testing and final Android unlock/data cleanup remain
+pending. This candidate has not been published.

@@ -12,9 +12,13 @@ Full build and strict archive/signature/image checks passed. Signed candidate
 encrypted unlocked storage, enforcing SELinux, UID2000, Rooted debugging off,
 marker checksum, setup flags, saved assistance setting and crash0 pass.
 New health AIDL provider runs with healthy/full USB-powered battery.
-Owner hardware confirmation, rooted runtime/display inspection and matching
-recovery/full partition checks remain pending. Keep the owned continuity marker
-through final recovery/data tests, then remove it. Public release/resolved/feed
+Owner confirmed the requested hardware matrix. Live display reservation matches
+0x9c000000/23MiB; OOM attachment/ABI,14 network hooks, both ABI wakelock suites
+and bounded DMA-BUF regressions pass. Rooted debugging disabled and helpers
+removed afterward. Actual recovery kernel/config/full image hashes pass; original
+vbmeta unchanged. QTI recovery health service and battery/display checks pass.
+Powered-off wall-charger check and final Android return/data cleanup remain pending.
+Keep the owned marker through final data tests, then remove it. Public release/resolved/feed
 remain1793279242. No publication authorized. All47 existing keys retained.
 Compilation completed; temporary build/install units are finished. Owner-directed
 resource changes preserved outputs. The pahole BTF memory stall cleared after

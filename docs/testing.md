@@ -7,8 +7,15 @@ DTBO/BTF/OOM/hardening and existing-key component/whole-OTA signature checks pas
 Signed no-wipe sideload returned0 and Android booted to1793891339. Actual kernel/
 config, encrypted storage, enforcing SELinux, UID2000, Rooted debugging off,
 AIDL health registration and empty initial crash buffer pass. Unlocked encrypted data, marker checksum, setup flags and saved assisted-GPS
-setting match baseline. Owner hardware/charging/display confirmation and matching
-recovery/partition checks remain pending. Public release/feed stay1793279242.
+setting match baseline. Owner confirmed Wi-Fi/video, cameras, speakers/AirPods routing, S Pen, rotation,
+sleep/wake, USB file transfer, charging and usual setup. Live display reservation
+is0x9c000000/23MiB. OOM attachment/ABI,14 network hooks, both ABI wakelock suites
+(6pass/2expected skips each), production accounting and bounded DMA-BUF tests
+(1024buffers/churn/200early closes/no owned leak) pass without deliberate OOM.
+Rooted debugging is off and temporary helpers removed. Actual recovery kernel/
+config and full boot/DTBO/recovery hashes pass; original vbmeta unchanged. QTI
+recovery health process, healthy battery and live display range pass. Powered-off
+wall charging and final Android return/data cleanup remain pending. Public release/feed stay1793279242.
 
 
 Previous fully tested public release:

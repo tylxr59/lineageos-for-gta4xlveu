@@ -1,8 +1,13 @@
 # November 2026 maintenance candidate
 
-Status: **BUILDING**, November 5, 2026. Source/build preparation is authorized.
-The installed and published release remains **1793279242**; this candidate is
-not installed, hardware-validated or approved for publication.
+Status: **SIGNED CANDIDATE INSTALLED; OWNER UNLOCK/HARDWARE/RECOVERY VALIDATION PENDING**, November5,2026.
+Installed candidate **1793891339** booted successfully through signed no-wipe
+sideload. The published release remains **1793279242**. No publication requested.
+Actual kernel/config, encrypted storage, enforcing SELinux, normalUID2000 and
+Rooted debugging off pass. The user remains RUNNING_LOCKED awaiting the owner's
+usual-pattern unlock. New AIDL health service registers, battery reports healthy/
+USB-powered/full at100%, and the initial crash buffer is empty. These are boot
+and service observations, not completed hardware/data/recovery validation.
 
 ## Source set
 
@@ -42,10 +47,9 @@ the exact display-memory overlay removal with fragment renumbering normalized, u
 no extra permissive domains, compiled hardening defaults, BTF boundaries/type IDs
 and actual OOM tracepoint layout. It then signs with the existing47 release
 identities and verifies component and whole-file OTA signatures plus matching
-boot/DTBO/recovery and vendor recovery payload. These are planned checks until
-the result is recorded; build start is not a successful compilation claim.
+boot/DTBO/recovery and vendor recovery payload. All listed host checks passed on the exact signed candidate. Compilation completed in3h15m29s with earlier owner-directed resource throttling. The archive contains zero native-test payload files; its four empty native-test directories match the released package. Target-files DTBO metadata has a regenerated AVB salt; the complete original image payload matches the compiled output and its packaged AVB hash verifies. Validator corrections are documented privately; no ROM rebuild/source change or compatibility bypass was used.
 
-The connected baseline tablet was verified on1793279242 with boot complete, unlocked file encryption, normal UID2000, enforcing SELinux and Rooted debugging off. Ordinary ADB service/display/battery/USB snapshots and setup flags are retained privately. An owned continuity marker was created and checksum verified. No candidate has been installed. Device validation remains pending after a signed candidate passes host checks.
+The connected baseline tablet was verified on1793279242 with boot complete, unlocked file encryption, normal UID2000, enforcing SELinux and Rooted debugging off. Ordinary ADB service/display/battery/USB snapshots and setup flags are retained privately. An owned continuity marker was created and checksum verified. Candidate1793891339 is now installed and booted; usual-pattern/data and hardware/recovery validation remain pending.
 It must additionally cover the QTI AIDL health service in Android/recovery, battery/charging behavior and charger mode, Bluetooth audio, display/suspend/wake and the compiled display-memory range. It must cover signed no-wipe update, original pattern and encrypted-data/setup
 continuity, enforcing SELinux, normal ADB/rooted-debugging off, Android/recovery
 boot and full image verification, hardware smoke, USB/MTP, Bluetooth, thermal,
@@ -113,3 +117,22 @@ property after normalizing the expected fragment renumbering, requires only the
 specific dump-region override to disappear, and verifies the unchanged base DTB
 still contains its original dump node/range. Actual recovery/Android boot and
 live partition hashes remain required.
+
+## Signed artifact evidence — November5
+
+ROM SHA256: `fce0e47849d02e76da2f5aa4fee04a844f0cd2c32b70c5c3818c0da8f9a01ebb`.
+Kernel: `4.14.357-openela-perf-g939ccbcb72b6`. Existing release OTA certificate
+pin is unchanged. Component verification passed120 standalone APKs,37 signed
+APEX containers/payloads and26 nested APKs, retaining the presigned CTS shim.
+Actual recovery has one matching OTA trust certificate. Whole-file OTA signature,
+signed boot/DTBO images and the matching vendor recovery payload/updater pass.
+Strict VINTF, expected overlay removal with unchanged shared base DTB, BTF/type
+bounds, OOM field layout and compiled hardening defaults pass. Candidate and
+released enabled kernel configurations match;784 compared proprietary native
+entries and all nine legacy compatibility libraries remain byte-identical.
+No full November5 kernel/vendor security certification is claimed.
+
+Signed installation returned exit0 without a wipe, and actual Android timestamp,
+kernel and embedded/live config match. Original live vbmeta and actual matching
+recovery partition hashes still require the planned recovery check. The owned
+continuity marker must remain until final unlocked data/recovery tests pass.

@@ -1,6 +1,6 @@
 # Agent instructions
 
-## November candidate building (2026-11-05)
+## November candidate installed; validation pending (2026-11-05)
 
 Owner authorized the combined candidate after the105 November topic changes merged.
 [Candidate status and security-scope review](docs/november-2026-candidate.md) records
@@ -13,9 +13,16 @@ owner explicitly requested increased resources again. Existing nice19 is retaine
 The resource change was applied live; no compilation restart or discarded outputs.
 Earlier attempts and resource changes are recorded privately. Follow current owner
 steering and progress.json rather than assuming the earlier gaming cap still applies.
-Source sync/merges complete; expanded build/signature/device validation pending. Connected baseline ordinary ADB verified; owned November continuity marker must survive final tests and then be removed. Platform-only attempt stopped during graph generation and preserved separately.
-No install or publication yet; preserve keys, data, released pins/feed and paused TI.
-
+Source/full build and host archive/signature/image checks passed. Signed candidate
+1793891339 installed no-wipe/exit0 and booted. Actual kernel939ccbcb/config,
+encrypted storage, enforcing SELinux, UID2000 and Rooted debugging off pass.
+User is RUNNING_LOCKED awaiting usual-pattern unlock; no unlocked-data/hardware/
+matching-recovery success claimed yet. New health AIDL provider registers with
+healthy/full USB-powered battery and crash0. Owned November continuity marker
+must remain through final recovery/data tests and then be removed. Public release/
+resolved/feed remain1793279242. No publication authorized. All47 existing keys
+retained. The build memory stall was pahole BTF generation; lifting the soft
+threshold to the existing32GiB ceiling resolved it without an OOM kill.
 
 ## Assisted GPS public release complete (2026-10-29)
 

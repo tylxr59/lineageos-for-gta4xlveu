@@ -1,6 +1,6 @@
 # Changes
 
-November 5 maintenance candidate is building; see [source/security scope and validation status](docs/november-2026-candidate.md). Installed/public1793279242 remain unchanged.
+November 5 maintenance candidate1793891339 is signed and installed; owner unlock/hardware/recovery validation is pending; see [source/security scope and validation status](docs/november-2026-candidate.md). Public1793279242 remains unchanged.
 
 Changes maintained by this project, with links to their implementation commits.
 Device, kernel, vendor and shared Pixel HAL links point to separate source

@@ -1,5 +1,16 @@
 # Test status
 
+## November candidate1793891339 — local validation in progress
+
+[Candidate status](november-2026-candidate.md): full build, strict VINTF,
+DTBO/BTF/OOM/hardening and existing-key component/whole-OTA signature checks pass.
+Signed no-wipe sideload returned0 and Android booted to1793891339. Actual kernel/
+config, encrypted storage, enforcing SELinux, UID2000, Rooted debugging off,
+AIDL health registration and empty initial crash buffer pass. Owner usual-pattern
+unlock, marker/setup persistence, hardware/charging/display and matching recovery/
+partition checks remain pending. Public release/feed stay1793279242.
+
+
 Current release and locally tested installation:
 [1793279242](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261029-gta4xlveu-1793279242), device `1099a44`, kernel `f0f9fc679`, vendor `ec725c3`,
 Pixel `d4f83b6`, frameworks/av `b911f1a` and loader `c2621ec`. All 1,242 projects

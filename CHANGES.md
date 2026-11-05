@@ -14,7 +14,10 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
-November5 legacy kernel/vendor applicability and backport investigation is underway.
+[November5 legacy kernel/vendor investigation](docs/november5-kernel-review.md)
+has three compile-checked development commits for HID and network shared-fragment
+handling. They are not part of the published release and need full integration
+and runtime tests.
 
 ## 2026-11-05 — November platform and device maintenance
 

@@ -766,3 +766,22 @@ Earlier pending/no-publication statements are historical. Source/docs/README and
 feed now identifythisrelease. Evidence artifacts/security-release-20261026/.
 Publisher isstandalonePython/OpenSSL/Git/gh andranonhostwithauthenticatedgh;
 Ubuntu signing/buildenvironment lacksgithubCLI. No credentials copied or newpackages.
+
+
+## November5 investigation started (2026-11-05)
+
+See docs/november5-kernel-review.md. Published/installed1793911332 unchanged.
+Kernel developmentbranchsecurity/los24-november5-20261105 pushed at9cde48f44:
+0e4fbdfd4 HID zero-length numbered guard; ffba1e414 shared-fragment transfer;
+9cde48f44 coalescing marker preservation. Actual ARM64 HID/skbuff objects compile
+in isolated artifact outputs with existing flags; focused HID entry test rejects
+empty numbered input before lookup (releasednegativecontrol fails). No full
+kernel link/ROM build/runtime test yet. Normal checkout and localmanifest restored
+to release939ccbcb, developmentbranch remains available. No tablet changes.
+
+rtmutex specific guards already present viaa8306aea3; F2FS cited async inode-free
+path absent, not general filesystem certification. SCO/epoll/timer lifetime work
+outstanding. All supplementary common-kernel references downloaded. Qualcomm
+public graphics/DSP source is separate from closed blobs; most downloads HTTP429.
+One DSP patch fetched; newer frpc_coredump absent, legacy mapping/SSR review still
+needed. Artifacts/november5-investigation-20261105 contains source refs/evidence.

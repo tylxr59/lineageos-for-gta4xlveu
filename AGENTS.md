@@ -1,5 +1,18 @@
 # Agent instructions
 
+## November candidate building (2026-11-05)
+
+Owner authorized the combined candidate after the105 November topic changes merged.
+[Candidate status and security-scope review](docs/november-2026-candidate.md) records
+exact1,242-project candidate pins and pushed AVa7dd9c12/kernel11d3af5b branches.
+Device/vendor/Pixel/BPF fixes unchanged. Installed/public remain1793279242.
+Private evidence/runners: artifacts/november-candidate-20261105. Build unit
+los24-november-candidate is capped at150% CPU/two jobs/nice19/idle I/O/20GiB,
+explicitly requested while owner games. Do not raise these limits without owner
+steering. Source sync complete; build/signature/device validation still pending.
+No install or publication yet; preserve keys, data, released pins/feed and paused TI.
+
+
 ## Assisted GPS public release complete (2026-10-29)
 
 Installed AND public release is **1793279242**, immutable tag

@@ -26,7 +26,10 @@ manifests november-charger[-forks]-20261105.xml preserve original snapshots.
 Retained charger log collected: corrupted text with readable battery-read denial
 fragments supports the compiled-policy diagnosis; no clean full trace claimed.
 Rooted debugging off again and normal data/security checks pass.
-Corrected build not installed yet.
+Corrected build1793911332 compiled and passed all host/signature checks, including
+new battery-access gate. Signed no-wipe install/exit0 and Android unlock/data/
+setup/config/security/crash0 checks pass. Matching recovery and offline-charger
+retest remain pending. ROMSHAfce3f4dcb022cecd98204fa8f21e12b80f9823e4bffd868f29b4a40eb9ae3651.
 Keep the owned marker through final data tests, then remove it. Public release/resolved/feed
 remain1793279242. No publication authorized. All47 existing keys retained.
 Compilation completed; temporary build/install units are finished. Owner-directed

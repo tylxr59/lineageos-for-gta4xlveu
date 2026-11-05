@@ -175,8 +175,13 @@ adds only read-only battery-file access for that domain. SELinux remains enforci
 Fresh candidate manifests are `november-charger-20261105.xml` and
 `november-charger-forks-20261105.xml`; kernel/AV/vendor/Pixel/BPF pins are unchanged.
 
-An incremental full ROM/recovery build and existing-key signing pipeline is running
-with an explicit packaged-policy access gate. Previous signed artifacts and test
-evidence are preserved. The corrected signed build is not installed or validated;
-repeat powered-off charging and final recovery/Android continuity checks before
-calling the candidate ready. No publication is authorized.
+The incremental full ROM/recovery build completed in10m43s. All host checks and
+existing-key signing/component/OTA verification passed, including the explicit
+packaged-policy access gate. Corrected build1793911332 installed no-wipe/exit0
+and booted with unlocked encrypted data, matching marker/setup/config, enforcing
+SELinux, normal ADB, Rooted debugging off and empty crash buffer. Boot/DTBO hashes
+are identical to the preceding candidate; recovery includes the policy fix.
+ROM SHA256: `fce3f4dcb022cecd98204fa8f21e12b80f9823e4bffd868f29b4a40eb9ae3651`.
+Previous signed artifacts and test evidence are preserved. Matching recovery,
+powered-off charging and final Android continuity/cleanup remain pending.
+No publication is authorized.

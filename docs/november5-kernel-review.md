@@ -98,8 +98,15 @@ unlocked; setup flags and the continuity marker match baseline. The actual kerne
 and configuration match the signed image, SELinux is enforcing, the crash buffer
 is empty and Rooted debugging was off during normal checks. All bounded native
 regressions listed above pass on this candidate, and the owner confirmed the
-available hardware checks. Privileged runtime checks, matching recovery and the
-final charger/data/cleanup round trip remain pending. No candidate is published;
+available hardware checks. Privileged runtime checks also pass: isolated-address SCO bind/listen/close64
+cycles, both ABI wakelock suites (6 pass/2 expected skips each), DMA1024/churn/
+200 early-close checks without retained owned buffers, initialized production
+accounting, all14 network-hook queries, actual OOM field ABI and system_server
+mark_victim attachment. No crash/kernel failure patterns were observed. Helpers
+were removed and Rooted debugging was disabled; normal UID2000/FBE/unlock/
+config/marker checks passed again. These bounded tests do not exercise the SCO
+connection-confirmation race, deliberate OOM, or prove general race safety.
+Matching recovery and the final charger/data/cleanup round trip remain pending. No candidate is published;
 the public release/feed remain1793911332. Earlier build attempts are preserved.
 
 ## Qualcomm source and closed components

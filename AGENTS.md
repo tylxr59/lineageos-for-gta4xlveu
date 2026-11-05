@@ -6,9 +6,11 @@ Candidate1793916221 is installed via signed no-wipe update; public/feed remain
 1793911332. Kernelbe84fa84d/HWC64fd995, final candidate manifests pinned. Full
 host build/VINTF/BTF/hardening/signatures/paired images passed. Initial Android
 unlock/FBE/setup/marker/config/SELinux/crash0 and normal bounded native tests pass;
-owner confirmed hardware. Rooted runtime, matching recovery, charger/final data
-cleanup remain pending. Rooted debugging last checked OFF; owner enable prompt
-pending. Preserve owned Nov5 marker through remaining tests. Private evidence
+owner confirmed hardware. Rooted runtime/SCO/BPF/DMA/accounting/14networkhooks/
+OOM ABI+AMS attachment pass, no crash/kernel patterns. Helpers removed and
+Rooted debugging disabled/normalUID2000 verified again. Rebooted to recovery;
+owner Advanced→EnableADB prompt pending. Matching recovery, charger/final data
+cleanup remain pending. Preserve owned Nov5 marker through remaining tests. Private evidence
 artifacts/november5-final-candidate-20261105/progress.json. No candidate publication
 authorized; fullNov5 firmware coverage still unverified. See
 [review and limits](docs/november5-kernel-review.md).

@@ -155,3 +155,27 @@ the signed candidate. Original vbmeta is unchanged. The new QTI recovery health
 service runs, battery is healthy/full, and the display reservation matches.
 Powered-off wall-charger testing and final Android unlock/data cleanup remain
 pending. This candidate has not been published.
+
+## Powered-off charging failure and follow-up
+
+The owner observed the charging ring alternating with the packaged question-mark
+`battery_fail.png` during wall-powered offline charging. This test failed; normal
+Android charging and the recovery battery check do not establish charger-mode
+success. Android subsequently returned with unlocked encrypted data, continuity
+marker intact, enforcing SELinux, Rooted debugging off and an empty crash buffer.
+
+The installed compiled policy permits normal `hal_health_default` to read the
+Samsung `sysfs_battery` files, but has no corresponding read/open/getattr allow
+for `charger_vendor`, the new QTI offline charger domain. This is a concrete
+policy gap and a plausible explanation for the unavailable-battery image; retained
+runtime denial evidence is pending. Device fix
+[`dd2a0d3`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/dd2a0d39a3929c63d2b00cb8c6f31e39134255c5)
+adds only read-only battery-file access for that domain. SELinux remains enforcing.
+Fresh candidate manifests are `november-charger-20261105.xml` and
+`november-charger-forks-20261105.xml`; kernel/AV/vendor/Pixel/BPF pins are unchanged.
+
+An incremental full ROM/recovery build and existing-key signing pipeline is running
+with an explicit packaged-policy access gate. Previous signed artifacts and test
+evidence are preserved. The corrected signed build is not installed or validated;
+repeat powered-off charging and final recovery/Android continuity checks before
+calling the candidate ready. No publication is authorized.

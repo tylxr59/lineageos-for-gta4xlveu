@@ -17,7 +17,14 @@ Owner confirmed the requested hardware matrix. Live display reservation matches
 and bounded DMA-BUF regressions pass. Rooted debugging disabled and helpers
 removed afterward. Actual recovery kernel/config/full image hashes pass; original
 vbmeta unchanged. QTI recovery health service and battery/display checks pass.
-Powered-off wall-charger check and final Android return/data cleanup remain pending.
+Powered-off wall charging FAILED (charging ring/question-mark alternation).
+Final Android returned unlocked/data intact; do not remove continuity marker yet.
+Device follow-updd2a0d3 adds charger_vendor read-only sysfs_battery file access,
+missing from the installed policy. Rebuild/sign/retest in private artifacts/
+november-charger-fix-20261105, unitlos24-november-charger-build. New candidate
+manifests november-charger[-forks]-20261105.xml preserve original snapshots.
+Rooted debugging currently off; optional owner prompt pending enable for retained
+charger-log read, then disable immediately. Corrected build not installed yet.
 Keep the owned marker through final data tests, then remove it. Public release/resolved/feed
 remain1793279242. No publication authorized. All47 existing keys retained.
 Compilation completed; temporary build/install units are finished. Owner-directed

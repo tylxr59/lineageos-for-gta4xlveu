@@ -15,7 +15,10 @@ is0x9c000000/23MiB. OOM attachment/ABI,14 network hooks, both ABI wakelock suite
 Rooted debugging is off and temporary helpers removed. Actual recovery kernel/
 config and full boot/DTBO/recovery hashes pass; original vbmeta unchanged. QTI
 recovery health process, healthy battery and live display range pass. Powered-off
-wall charging and final Android return/data cleanup remain pending. Public release/feed stay1793279242.
+wall charging FAILED with alternating charging/question-mark images. Final Android
+return passed with data intact; marker cleanup is deferred through a corrected
+candidate retest. A narrow charger-domain battery-read fix is building; see the
+[candidate investigation](november-2026-candidate.md#powered-off-charging-failure-and-follow-up). Public release/feed stay1793279242.
 
 
 Previous fully tested public release:

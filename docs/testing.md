@@ -1,24 +1,30 @@
 # Test status
 
-## November candidate1793891339 — local validation in progress
+## November candidate1793911332 — local validation complete, unpublished
 
 [Candidate status](november-2026-candidate.md): full build, strict VINTF,
 DTBO/BTF/OOM/hardening and existing-key component/whole-OTA signature checks pass.
-Signed no-wipe sideload returned0 and Android booted to1793891339. Actual kernel/
-config, encrypted storage, enforcing SELinux, UID2000, Rooted debugging off,
-AIDL health registration and empty initial crash buffer pass. Unlocked encrypted data, marker checksum, setup flags and saved assisted-GPS
-setting match baseline. Owner confirmed Wi-Fi/video, cameras, speakers/AirPods routing, S Pen, rotation,
-sleep/wake, USB file transfer, charging and usual setup. Live display reservation
-is0x9c000000/23MiB. OOM attachment/ABI,14 network hooks, both ABI wakelock suites
+Signed no-wipe installation, Android unlock, exact live kernel/config, encrypted
+data, marker checksum, setup and saved assistance flags, enforcing SELinux,
+normal ADB, Rooted debugging off and empty crash buffer pass.
+
+The preceding1793891339 candidate passed owner Wi-Fi/video, both cameras,
+speakers/AirPods routing, S Pen, rotation, sleep/wake, USB file transfer and usual
+setup checks. Live OOM attachment/ABI,14 network hooks, both ABI wakelock suites
 (6pass/2expected skips each), production accounting and bounded DMA-BUF tests
-(1024buffers/churn/200early closes/no owned leak) pass without deliberate OOM.
-Rooted debugging is off and temporary helpers removed. Actual recovery kernel/
-config and full boot/DTBO/recovery hashes pass; original vbmeta unchanged. QTI
-recovery health process, healthy battery and live display range pass. Powered-off
-wall charging FAILED with alternating charging/question-mark images. Final Android
-return passed with data intact; marker cleanup is deferred through a corrected
-candidate retest. A narrow charger-domain battery-read fix is building; see the
-[candidate investigation](november-2026-candidate.md#powered-off-charging-failure-and-follow-up). Public release/feed stay1793279242.
+(1024buffers/churn/200early closes/no owned leak) passed without deliberate OOM.
+Live display reservation is0x9c000000/23MiB. The follow-up changes only the
+battery-read policy rule; boot/DTBO hashes and kernel/config are identical.
+
+Original offline charging failed with alternating charging/question-mark images.
+Device fixdd2a0d3 adds charger-domain battery-file read access. Owner confirmed
+normal powered-off charging on corrected1793911332. Its actual recovery kernel/
+config/full boot-DTBO-recovery hashes and live policy match the signed package;
+original vbmeta unchanged. QTI recovery health, healthy/full battery and live
+display range pass. Final Android return, marker checksum, setup/assistance flags and cleanup pass.
+Owned marker/helpers removed; screen-awake0, UID2000, Rooted debugging off,
+unlocked FBE, enforcing SELinux and empty crash buffer.
+Public release/feed stay1793279242.
 
 
 Previous fully tested public release:

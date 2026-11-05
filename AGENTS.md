@@ -1,40 +1,30 @@
 # Agent instructions
 
-## November candidate installed; validation pending (2026-11-05)
+## November candidate locally validated; unpublished (2026-11-05)
 
-Owner authorized the combined candidate after the105 November topic changes merged.
-[Candidate status and security-scope review](docs/november-2026-candidate.md) records
-exact1,242-project candidate pins and pushed AVa7dd9c12/kernel939ccbcb/devicedb669506 branches.
-Owner expanded scope to include HAL/display integration and device testing. Device merge preserves existing fixes; vendor/Pixel/BPF pins unchanged. Installed1793891339; public remains1793279242.
-Private evidence/runners: artifacts/november-candidate-20261105.
-Full build and strict archive/signature/image checks passed. Signed candidate
-1793891339 installed no-wipe/exit0 and booted. Actual kernel939ccbcb/config,
-encrypted unlocked storage, enforcing SELinux, UID2000, Rooted debugging off,
-marker checksum, setup flags, saved assistance setting and crash0 pass.
-New health AIDL provider runs with healthy/full USB-powered battery.
-Owner confirmed the requested hardware matrix. Live display reservation matches
-0x9c000000/23MiB; OOM attachment/ABI,14 network hooks, both ABI wakelock suites
-and bounded DMA-BUF regressions pass. Rooted debugging disabled and helpers
-removed afterward. Actual recovery kernel/config/full image hashes pass; original
-vbmeta unchanged. QTI recovery health service and battery/display checks pass.
-Powered-off wall charging FAILED (charging ring/question-mark alternation).
-Final Android returned unlocked/data intact; do not remove continuity marker yet.
-Device follow-updd2a0d3 adds charger_vendor read-only sysfs_battery file access,
-missing from the installed policy. Rebuild/sign/retest in private artifacts/
-november-charger-fix-20261105, unitlos24-november-charger-build. New candidate
-manifests november-charger[-forks]-20261105.xml preserve original snapshots.
-Retained charger log collected: corrupted text with readable battery-read denial
-fragments supports the compiled-policy diagnosis; no clean full trace claimed.
-Rooted debugging off again and normal data/security checks pass.
-Corrected build1793911332 compiled and passed all host/signature checks, including
-new battery-access gate. Signed no-wipe install/exit0 and Android unlock/data/
-setup/config/security/crash0 checks pass. Matching recovery and offline-charger
-retest remain pending. ROMSHAfce3f4dcb022cecd98204fa8f21e12b80f9823e4bffd868f29b4a40eb9ae3651.
-Keep the owned marker through final data tests, then remove it. Public release/resolved/feed
-remain1793279242. No publication authorized. All47 existing keys retained.
-Compilation completed; temporary build/install units are finished. Owner-directed
-resource changes preserved outputs. The pahole BTF memory stall cleared after
-lifting the soft limit to the existing32GiB ceiling without an OOM kill.
+Installed1793911332, device dd2a0d3/kernel939ccbcb/AVa7dd9c12; vendor/Pixel/BPF
+unchanged. All1,242 pins in manifests/candidates/november-charger-20261105.xml
+and november-charger-forks-20261105.xml. Source branches pushed. The merged
+November platform supplies2026-11-01; no fullNovember5 kernel/vendor claim.
+[Candidate evidence and limits](docs/november-2026-candidate.md).
+
+Private evidence artifacts/november-charger-fix-20261105/progress.json is
+COMPLETE_LOCAL_VALIDATION_NOT_PUBLISHED; preceding hardware/runtime evidence in
+artifacts/november-candidate-20261105. Full build/strictVINTF/BTF/OOM/hardening/
+DTBO and existing47-key signatures/components/OTA passed. Signed no-wipe install,
+unlocked encrypted data/setup/marker, actual matching recovery/full partition
+hashes/live policy and original vbmeta continuity passed. Owner hardware matrix
+and live display/BPF/accounting/DMA checks passed on preceding same kernel/DTBO.
+The charger follow-up changes only read-only charger_vendor battery-file access;
+owner confirmed powered-off charging fixed. Final Android/data/setup/crash0 and
+owned-marker/helper cleanup passed; normal UID2000/rootdebugOFF/FBE/enforcing,
+screenawake0. Build/install units inactive/exit0. No wipe/newkeys/manualvbmeta.
+ROM SHA256fce3f4dcb022cecd98204fa8f21e12b80f9823e4bffd868f29b4a40eb9ae3651.
+Keep exact signed bundle; do not rebuild/re-sign it for publication.
+
+Public release/resolved/feed remain1793279242; NO publication authorized.
+Explicit shipping instruction is needed before publishing the exact tested bundle.
+Existing keys/Documents backup unchanged; rawlogs private; TI remains paused.
 
 ## Assisted GPS public release complete (2026-10-29)
 

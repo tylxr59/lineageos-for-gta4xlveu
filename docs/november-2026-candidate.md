@@ -1,17 +1,19 @@
 # November 2026 maintenance candidate
 
-Status: **SIGNED CANDIDATE INSTALLED; OWNER UNLOCK/HARDWARE/RECOVERY VALIDATION PENDING**, November5,2026.
-Installed candidate **1793891339** booted successfully through signed no-wipe
-sideload. The published release remains **1793279242**. No publication requested.
-Actual kernel/config, encrypted storage, enforcing SELinux, normalUID2000 and
-Rooted debugging off pass. The user remains RUNNING_LOCKED awaiting the owner's
-usual-pattern unlock. New AIDL health service registers, battery reports healthy/
-USB-powered/full at100%, and the initial crash buffer is empty. These are boot
-and service observations, not completed hardware/data/recovery validation.
+Status: **LOCAL VALIDATION COMPLETE; NOT PUBLISHED**, November5,2026.
+Corrected candidate **1793911332** is installed after signed no-wipe update.
+Android unlock/data/setup/security, owner hardware, live kernel/display/BPF,
+matching recovery/full partition hashes and powered-off charging retest passed.
+Final Android return passed; the owned continuity marker and helpers are removed,
+Rooted debugging is off, and the crash buffer is empty. The published release,
+resolved manifest and feed remain **1793279242**. Publication was not requested.
 
 ## Source set
 
-[Exact candidate manifest](../manifests/candidates/november-20261105.xml) contains
+The final [exact candidate manifest](../manifests/candidates/november-charger-20261105.xml)
+and [fork pins](../manifests/candidates/november-charger-forks-20261105.xml) include
+the charger follow-updd2a0d3. The original
+[candidate manifest](../manifests/candidates/november-20261105.xml) contains
 1,242 projects. Eighty project identities/revisions differ from the released
 manifest (including AOSP-to-Lineage fork renames). The merged November platform
 security series supplies the **2026-11-01** patch level. API remains37.0;
@@ -49,13 +51,12 @@ and actual OOM tracepoint layout. It then signs with the existing47 release
 identities and verifies component and whole-file OTA signatures plus matching
 boot/DTBO/recovery and vendor recovery payload. All listed host checks passed on the exact signed candidate. Compilation completed in3h15m29s with earlier owner-directed resource throttling. The archive contains zero native-test payload files; its four empty native-test directories match the released package. Target-files DTBO metadata has a regenerated AVB salt; the complete original image payload matches the compiled output and its packaged AVB hash verifies. Validator corrections are documented privately; no ROM rebuild/source change or compatibility bypass was used.
 
-The connected baseline tablet was verified on1793279242 with boot complete, unlocked file encryption, normal UID2000, enforcing SELinux and Rooted debugging off. Ordinary ADB service/display/battery/USB snapshots and setup flags are retained privately. An owned continuity marker was created and checksum verified. Candidate1793891339 is now installed and booted; encrypted data is unlocked, the marker checksum and setup/assistance flags match
-baseline, and the crash buffer is empty. Hardware/runtime/recovery validation
-remains pending.
-It must additionally cover the QTI AIDL health service in Android/recovery, battery/charging behavior and charger mode, Bluetooth audio, display/suspend/wake and the compiled display-memory range. It must cover signed no-wipe update, original pattern and encrypted-data/setup
-continuity, enforcing SELinux, normal ADB/rooted-debugging off, Android/recovery
-boot and full image verification, hardware smoke, USB/MTP, Bluetooth, thermal,
-assisted GPS and retained BPF behavior. No deliberate OOM or data wipe is planned.
+The connected baseline1793279242 was verified before installation. Both signed
+candidates retained the marker checksum, encrypted-data unlock and setup/assistance
+flags. Actual Android/recovery health, display range, owner hardware and BPF
+regressions passed as detailed below. Thermal/XTRA configuration and proprietary
+native bytes are preserved; no new exhaustive thermal or DNS/GNSS campaign is
+claimed. No deliberate OOM, data wipe or manual vbmeta flash was performed.
 
 ## Kernel/vendor security scope
 
@@ -120,7 +121,7 @@ specific dump-region override to disappear, and verifies the unchanged base DTB
 still contains its original dump node/range. Actual recovery/Android boot and
 live partition hashes remain required.
 
-## Signed artifact evidence — November5
+## Initial candidate1793891339 artifact evidence — November5
 
 ROM SHA256: `fce0e47849d02e76da2f5aa4fee04a844f0cd2c32b70c5c3818c0da8f9a01ebb`.
 Kernel: `4.14.357-openela-perf-g939ccbcb72b6`. Existing release OTA certificate
@@ -136,8 +137,9 @@ No full November5 kernel/vendor security certification is claimed.
 
 Signed installation returned exit0 without a wipe, and actual Android timestamp,
 kernel and embedded/live config match. Original live vbmeta and actual matching
-recovery partition hashes still require the planned recovery check. The owned
-continuity marker must remain until final unlocked data/recovery tests pass.
+recovery partition hashes were subsequently verified. The continuity marker
+survived both candidates and recovery/charger round trips, then was removed after
+final Android checksum verification.
 
 ## Device validation progress
 
@@ -153,8 +155,8 @@ empty. Temporary helpers removed and Rooted debugging disabled afterward.
 Actual recovery kernel/config and full boot/DTBO/recovery partition hashes match
 the signed candidate. Original vbmeta is unchanged. The new QTI recovery health
 service runs, battery is healthy/full, and the display reservation matches.
-Powered-off wall-charger testing and final Android unlock/data cleanup remain
-pending. This candidate has not been published.
+Powered-off charging failed initially and passed after the follow-up below.
+Final Android unlock/data cleanup passed. This candidate has not been published.
 
 ## Powered-off charging failure and follow-up
 
@@ -182,6 +184,10 @@ and booted with unlocked encrypted data, matching marker/setup/config, enforcing
 SELinux, normal ADB, Rooted debugging off and empty crash buffer. Boot/DTBO hashes
 are identical to the preceding candidate; recovery includes the policy fix.
 ROM SHA256: `fce3f4dcb022cecd98204fa8f21e12b80f9823e4bffd868f29b4a40eb9ae3651`.
-Previous signed artifacts and test evidence are preserved. Matching recovery,
-powered-off charging and final Android continuity/cleanup remain pending.
+Previous signed artifacts and test evidence are preserved. Matching recovery kernel/config/full partition hashes and actual corrected policy
+passed; original vbmeta unchanged. Owner confirmed powered-off charging now works
+normally. Final Android return, marker checksum and setup/assistance flags pass.
+The owned marker was removed after verification; helpers are absent, screen-awake
+setting0, normal UID2000, Rooted debugging off, unlocked FBE, enforcing SELinux and
+empty crash buffer. Build/install units ended successfully.
 No publication is authorized.

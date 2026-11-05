@@ -1,6 +1,10 @@
 # Changes
 
-November 5 maintenance candidate1793891339 is signed and installed; owner unlock/hardware/recovery validation is pending; see [source/security scope and validation status](docs/november-2026-candidate.md). Public1793279242 remains unchanged.
+November 5 maintenance candidate1793911332 is signed and installed. Android/data,
+owner hardware, kernel/display and matching recovery checks passed. The offline
+charging failure is corrected and the owner confirmed the retest passes. Final
+Android return/data checks and owned-marker/helper cleanup passed; see [validation](docs/november-2026-candidate.md).
+Public1793279242 remains unchanged.
 
 Changes maintained by this project, with links to their implementation commits.
 Device, kernel, vendor and shared Pixel HAL links point to separate source
@@ -14,7 +18,17 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
-No additional ROM changes staged.
+November1 platform security updates and reviewed merged LineageOS/device/kernel
+maintenance are staged in candidate1793911332; not published.
+
+- [Media security merge](https://github.com/tylxr59/android_frameworks_av/commit/a7dd9c12d2629fe100f09dc8f23e909bad1dca72) retains the codec ownership fix.
+- [Kernel maintenance/display merge](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/939ccbcb72b6c9143becd893a59cf84c3a1cf21d) retains the shared display reservation and prior hardening/BPF fixes.
+- [Device HAL/partition integration](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/db669506d8002607452ff1c85627c7f7399899e0) updates health/charger/recovery and Bluetooth integration while preserving maintained fixes.
+- [Charger battery-read policy](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/dd2a0d39a3929c63d2b00cb8c6f31e39134255c5) corrects the offline charging question-mark screen observed during testing.
+
+Exact [candidate pins](manifests/candidates/november-charger-20261105.xml) and
+[security scope](docs/november-2026-candidate.md) are recorded. The patch level is
+2026-11-01; full November5 kernel/vendor coverage is not claimed.
 
 ## 2026-10-29 — Assisted GPS control
 

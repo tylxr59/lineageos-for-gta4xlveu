@@ -239,3 +239,16 @@ identity and original live vbmeta are unchanged; no rebuild, re-sign or manual A
 The tablet already ran this build, so no extra older-to-newer public Updater
 installation is claimed. Rooted debugging is off, and temporary probes/markers
 were removed. Existing AVB/vendor/version-override and certification limits remain.
+
+
+## Published November kernel/display follow-up1793916221
+
+Owner-authorized [release1793916221](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793916221) publishes the exact signed locally
+tested build without rebuilding or re-signing. All12 public asset sizes/GitHub
+hashes, fresh ROM/checksums and canonical12-entry HTTPS feed on host/tablet
+match. Seven maintained forks and1242 exact project pins identify the build.
+Local no-wipe Android/data/hardware/runtime/recovery/offline-charging tests
+passed separately. Tablet already ran this timestamp; no additional public
+older-to-newer Updater installation is claimed. Existing keys and original
+live vbmeta are retained. Closed firmware coverage remains unverified; platform
+patch stays2026-11-01. See [review and limits](november5-kernel-review.md).

@@ -1,6 +1,6 @@
 # Changes
 
-November update [1793911332](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793911332) is published after completed signed local validation. Platform security patch2026-11-01; the validated November5 source candidate remains separate and unpublished.
+November security follow-up [1793916221](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793916221) is published after completed signed local validation. Platform security patch2026-11-01; eight closed firmware coverage entries remain unverified.
 
 Changes maintained by this project, with links to their implementation commits.
 Device, kernel, vendor and shared Pixel HAL links point to separate source
@@ -14,6 +14,14 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
+No staged changes.
+
+## 2026-11-05 — Legacy kernel and display security follow-up
+
+[Release1793916221](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793916221) publishes the exact tested signed bundle. All12
+public assets, downloaded checksums/fresh ROM and canonical12-entry HTTPS feed
+on host/tablet match.
+
 [November5 legacy kernel/vendor investigation](docs/november5-kernel-review.md)
 contains six locally validated commits for HID, network shared-fragment handling,
 SCO lifetime/locking, task cleanup memory ordering and the actively built HWC
@@ -21,7 +29,7 @@ HDR-metadata bounds check.
 Full candidate1793916221 build/signature checks, signed no-wipe Android/data/
 hardware/runtime/recovery/charging validation and cleanup passed. Eight closed
 firmware coverage entries remain unverified; platform security date staysNov1.
-These changes are not part of the published release.
+These changes are included in release1793916221.
 
 ## 2026-11-05 — November platform and device maintenance
 

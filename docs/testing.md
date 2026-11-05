@@ -1,6 +1,6 @@
 # Test status
 
-## November5 candidate1793916221 — local validation complete, unpublished
+## November5 source follow-up1793916221 — released and verified
 
 [Source review and exact candidate hash](november5-kernel-review.md). Full build,
 strict VINTF, BTF/OOM/hardening, unchanged policy/proprietary libraries and
@@ -18,7 +18,10 @@ original vbmeta remains unchanged. QTI recovery health and live display
 reservation0x9c000000/23MiB pass. Owner powered-off charging and final Android
 return pass. Final marker checksum/setup/assistance flags match baseline; owned
 marker and helpers removed. Final UID2000/rootOFF/unlockedFBE/enforcing/crash0,
-screenawake0. Public release/feed remain1793911332. Eight closed firmware coverage
+screenawake0. The exact signed [release1793916221](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793916221) is published. All12 asset sizes/
+GitHub SHA256 digests, downloaded checksums/fresh ROM hash and canonical12-entry
+HTTPS feed on host/tablet match. No additional older-to-newer public Updater
+installation is claimed; the tablet already ran this timestamp. Eight closed firmware coverage
 entries remain unverified; this does not establish a fullNovember5 patch level.
 
 

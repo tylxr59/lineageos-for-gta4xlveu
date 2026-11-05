@@ -50,12 +50,12 @@ See [tested features](docs/testing.md) for what remains unverified.
 
 ## 📥 Downloads
 
-**[Download the November update](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793911332)** — LineageOS 24.0 / Android 17,
-platform security patch **2026-11-01**, build **1793911332**. Includes November
-platform/media fixes, maintained kernel/device updates and tested health,
-Bluetooth, display and powered-off charging integration. Signed no-wipe update,
-encrypted-data/setup persistence, hardware and matching recovery checks passed.
-Legacy kernel/vendor November5 coverage review continues separately.
+**[Download the November security follow-up](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793916221)** — LineageOS 24.0 / Android 17,
+platform security patch **2026-11-01**, build **1793916221**. Adds reviewed HID,
+network, Bluetooth SCO, task-cleanup and display HDR bounds fixes. Signed no-wipe
+installation, encrypted-data/setup, hardware, kernel, recovery and powered-off
+charging checks passed. Closed-source firmware coverage remains unverified;
+this does not establish full November 5 security coverage.
 
 Each release includes the ROM, matching recovery/vbmeta package, SHA-256
 checksums, and its exact source manifest. Later builds appear under

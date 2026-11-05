@@ -1,10 +1,9 @@
 # Agent instructions
 
-## November5 candidate local validation complete
+## November5 follow-up published and verified
 
 Installed candidate1793916221, kernelbe84fa84d/HWC64fd995, final candidate
-manifests pinned. Public/feed/resolved remain1793911332; candidate publication
-not authorized. ROM SHA256:
+manifests pinned. Public/feed/resolved now1793916221; owner explicitly authorized publication. ROM SHA256:
 `d4f9cd63ab5776344594e0e9dba6f731ac0be8efe2af4bfb8c57af330592b78c`.
 Full host build/VINTF/BTF/hardening/existing47-key signatures/paired images pass.
 Signed no-wipe Android/data/setup/hardware/native tests, rooted SCO/BPF/DMA/
@@ -13,8 +12,12 @@ hashes/live policy/QTI health/display reservation and owner offline charging pas
 Original vbmeta unchanged. Final Android data/setup/marker check passed; owned
 marker/helpers removed, screenawake0, UID2000/rootOFF/FBEunlocked/enforcing/crash0.
 Private evidence artifacts/november5-final-candidate-20261105/progress.json is
-COMPLETE_LOCAL_VALIDATION_NOT_PUBLISHED. Preserve exact signed bundle and keys;
-do not rebuild/re-sign for a future publication. Eight closed firmware entries
+COMPLETE_PUBLISHED. Release evidence artifacts/november5-release-20261105/
+public-verification.json:12assets/size/GitHubSHA, freshpublicROM/checksums and
+canonical12-entry HTTPS feed on host/tablet match. No new older-to-newer public
+Updater install claimed. Issue4 closed at owner request with firmware limits.
+Preserve exact signed bundle and keys;
+no rebuild/re-sign/newkeys occurred for publication. Eight closed firmware entries
 remain unverified, so no fullNov5 patch-level claim; platform date staysNov1.
 [Review and limits](docs/november5-kernel-review.md). TI work remains paused.
 
@@ -116,17 +119,17 @@ branches should remain intact; use maintained work branches in the source forks.
 
 Read docs/building.md, docs/port-findings.md, docs/testing.md, and docs/ota.md first.
 `manifests/known-good.xml` retains the earlier tested development prototype;
-`manifests/resolved.xml` pins released1793279242: device `1099a44`, kernel
-`f0f9fc679`, vendor `ec725c3`, Pixel `d4f83b6`, frameworks/av `b911f1a`,
-system/bpf `c2621ec`. Public release/feed and tested installation match.
-`manifests/gta4xlveu.xml` pins the same six maintained forks; dated candidate
+`manifests/resolved.xml` pins released1793916221: device `dd2a0d3`, kernel
+`be84fa84d`, vendor `ec725c3`, Pixel `d4f83b6`, frameworks/av `a7dd9c12`,
+system/bpf `c2621ec`, active CAF display `64fd995`. Public release/feed and tested installation match.
+`manifests/gta4xlveu.xml` pins the same seven maintained forks; dated candidate
 snapshots retain staging history. Use exact tested SHAs, not moving branch tips
 or the preceding kernel's test-only400e commit.
 
 Earlier clean bootstrap and same-key Android Updater local installs retained the
 original unlock pattern, setup and saved data. Keep hardware/local-install
 proof separate from advertised public HTTPS OTA download/install evidence.
-`manifests/gta4xlveu.xml` pins six maintained forks, including the Pixel HAL,
+`manifests/gta4xlveu.xml` pins seven maintained forks, including the Pixel HAL,
 frameworks/av and system/bpf fixes.
 Platform source updates and Android major-version migrations are separate risk
 levels: review compatibility and installation/signing implications explicitly.

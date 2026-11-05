@@ -1,7 +1,7 @@
 # November 5 legacy kernel and vendor review
 
-Status: source/applicability review complete; full candidate build and device
-validation in progress. Published/installed1793911332 is unchanged.
+Status: source/applicability review, signed local/device validation and
+owner-authorized publication complete. Installed/public release1793916221.
 
 A full reread covers **97 November5 bulletin entries**, not only the original
 seven-item kernel shortlist:31 kernel,3 Arm,12 Imagination,30 MediaTek,4 Unisoc,
@@ -112,8 +112,11 @@ the retained display reservation at0x9c000000/23MiB pass. The owner confirmed
 normal powered-off charging and the final Android return. Final encrypted-data
 unlock, setup/assistance flags, marker checksum, enforcing SELinux, empty crash
 buffer and normal UID2000/Rooted debugging off pass. The owned marker and all
-helpers were removed; screen-awake remains0. Local validation is complete. No candidate is published;
-the public release/feed remain1793911332. Earlier build attempts are preserved.
+helpers were removed; screen-awake remains0. Local validation is complete. Owner-authorized [release1793916221](https://github.com/tylxr59/lineageos-for-gta4xlveu/releases/tag/lineage-24.0-20261105-gta4xlveu-1793916221) publishes the exact tested signed
+bundle without rebuilding or re-signing. Public source pins and12-entry feed
+match. All12 asset sizes/GitHub hashes, fresh ROM/checksum downloads and
+host/tablet canonical HTTPS feed passed. No additional older-to-newer public
+Updater installation is claimed because the tablet already ran this build. Earlier build attempts are preserved.
 
 ## Qualcomm source and closed components
 

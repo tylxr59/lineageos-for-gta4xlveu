@@ -775,15 +775,15 @@ Owner requested finishing the work. See docs/november5-kernel-review.md and the
 remain unverified; no2026-11-05 patch-date claim. All public Qualcomm references
 now obtained via CodeLinaro-mirror; older vendor/firmware limitations remain.
 
-Candidate kernel ea6d573e1 (HID/network plus tailored SCO refs/sleeping-lock order)
+Candidate kernel be84fa84d (HID/network/SCO plus timer NULL-sighand ordering)
 and newly maintained CAF sm8150 display64fd995 (bounds HDR metadata before copy)
 are pushed on security/los24-november5-20261105. Seven exact maintained fork pins
-and1,242-project snapshot are manifests/candidates/november5[-forks]-20261105.xml.
+and1,242-project snapshot are manifests/candidates/november5-final[-forks]-20261105.xml.
 Only kernel and selected hardware/qcom-caf/sm8150/display revisions change from
 release; similarly named hardware/qcom/sm8150/display is not the HWC build input.
 Source-object/focused modeled negative-control tests pass; no device proof yet.
-Full build/sign pipeline unitlos24-november5-expanded-build runs in private
-artifacts/november5-candidate-20261105; progress.json authoritative. First graph
+Full build/sign pipeline unitlos24-november5-final-build runs in private
+artifacts/november5-final-candidate-20261105; progress.json authoritative. First graph
 attempt stopped before display source expansion and preserved separately.
 Normal local checkouts/manifests now select candidate pins; public resolved/feed
 remain release1793911332. No publication of this new candidate authorized.
@@ -793,3 +793,7 @@ recovery/data tests, then be removed. Baseline normalADB/rootOFF/unlocked and
 bounded loopback/sendfile/epoll/timer regressions pass. Helper removed, raw logs
 private. Keep existing47keys/backup unchanged. Candidate needs full host checks,
 installation, owner hardware, runtime/recovery/data verification and cleanup.
+
+Preceding expanded snapshot passed full unsigned host checks; signing stopped
+before adding the independently applicable timer release/acquire hunk. Earlier
+artifacts preserved. ARM64 timer IR negative control confirms new barriers.

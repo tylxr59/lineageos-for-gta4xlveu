@@ -10,12 +10,12 @@ seven-item kernel shortlist:31 kernel,3 Arm,12 Imagination,30 MediaTek,4 Unisoc,
 Eight closed-source entries remain unverified at the device/firmware level;
 **no full November5 patch-level claim is made**. Platform date remains2026-11-01.
 
-Candidate kernel is `ea6d573e1ae4bb3dc4e39713493d755a0800b7cf` on
+Candidate kernel is `be84fa84d82073f331e94e8d21def1b2a90bd341` on
 [security/los24-november5-20261105](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/tree/security/los24-november5-20261105),
 based on released939ccbcb. The actively built CAF display fork is
 [`64fd995`](https://github.com/tylxr59/android_hardware_qcom_display/commit/64fd9955352f7265ea8cb4bbd83991d972282046).
-Both changes are source-pinned in [candidate manifest](../manifests/candidates/november5-20261105.xml)
-and [seven fork pins](../manifests/candidates/november5-forks-20261105.xml).
+Both changes are source-pinned in [candidate manifest](../manifests/candidates/november5-final-20261105.xml)
+and [seven fork pins](../manifests/candidates/november5-final-forks-20261105.xml).
 All other1,240 project revisions are unchanged from release. Existing kernel
 configuration, hardening, signing identity and compatibility override are retained.
 
@@ -35,7 +35,7 @@ include alternative kernel-branch versions, so their count is not a patch count.
 | CVE-2025-38627, F2FS | The cited failure involves delayed decompression-context cleanup dereferencing an evicted inode. This tree's `f2fs_free_dic` frees page arrays directly and does not dereference an inode; the newer asynchronous cleanup and release helper are absent. The specific patched cleanup path is absent; no broad F2FS lifetime certification is claimed. No patch staged. |
 | CVE-2026-89774, Bluetooth SCO | Tailored backport [ea6d573e1](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/ea6d573e1ae4bb3dc4e39713493d755a0800b7cf) includes the delayed-work sleeping-lock prerequisite, protected connection/listener reference acquisition, close/listener-state rechecks, balanced puts and the follow-up socket-before-connection lock order. Connection teardown also acquires its reference under the connection lock. Actual object compile and six deterministic function-model cases pass; no runtime certification yet. |
 | CVE-2026-46242, epoll | The specific modern file-removal race is absent from this implementation. All three `ep_remove` callers were traced: epoll_ctl retains the monitored fdget reference; ep_free and eventpoll_release_file serialize under epmutex, and the latter still owns the file during __fput. The modern refcount/dying conversion which removed that serialization is absent. Do not import the unrelated prerequisite conversion. Bounded concurrent owned-watch close passes on baseline; candidate retest pending. |
-| CVE-2026-64560, POSIX CPU timers | The specific pid-lookup race introduced by the modern conversion is absent. Timers retain a task reference, and __exit_signal still has the older has_group_leader_pid/de_thread workaround which clears group timers before sighand removal. The cited upstream message identifies that workaround as the predecessor to its affected pid-based conversion. No modern lookup rewrite imported. Basic bounded CPU-timer lifecycle passes on baseline; no exec-race stress or general timer certification claimed. |
+| CVE-2026-64560, POSIX CPU timers | The specific pid-lookup race introduced by the modern conversion is absent. Timers retain a task reference, and __exit_signal still has the older has_group_leader_pid/de_thread workaround which clears group timers before sighand removal. The cited upstream message identifies that workaround as the predecessor to its affected pid-based conversion. The independent NULL-sighand cleanup visibility requirement is still applicable: [be84fa84d](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/be84fa84d82073f331e94e8d21def1b2a90bd341) adds the upstream release/acquire barrier pair without importing the modern PID lookup rewrite. Actual ARM64 exit/signal IR compiles; baseline has no NULL release-store/acquire pair, candidate emits both. Basic bounded timer lifecycle passes on baseline; no exec-race stress or general timer certification claimed. |
 
 Primary fixes: [HID](https://android.googlesource.com/kernel/common/+/15475ee563738135a9978f2a0481b1cf972b3b72),
 [network transfer](https://android.googlesource.com/kernel/common/+/f6d22ea6ae50acbc3f811a14fb2e55a2c129007d),
@@ -69,7 +69,11 @@ and256 CPU-timer create/set/get/delete cycles. Only loopback and an immediately
 unlinked owned scratch file are used. No external network, user-data access,
 exploit, OOM or memory-pressure test. The helper was removed. Repeat on candidate.
 
-A fresh full target-files/recovery/strict-VINTF build, BTF/OOM/hardening checks,
+The preceding snapshot passed full kernel/product build, strict VINTF, unchanged
+policy, BTF/OOM/hardening and built HDR binary checks. Before device installation,
+the independent timer ordering hunk was identified and added; earlier unsigned
+artifacts and checks are preserved, signing stopped, and a fresh final snapshot
+is rebuilding with all gates. A fresh full target-files/recovery/strict-VINTF build, BTF/OOM/hardening checks,
 existing47-key signing/component/OTA checks and paired-image verification are
 running. The first kernel-only graph attempt was stopped before expanding the
 source snapshot to include the discovered active display fix; outputs are reused.

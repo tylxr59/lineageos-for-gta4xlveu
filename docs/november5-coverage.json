@@ -1,6 +1,6 @@
 {
   "reviewed_rows": 97,
-  "kernel_candidate": "ea6d573e1ae4bb3dc4e39713493d755a0800b7cf",
+  "kernel_candidate": "be84fa84d82073f331e94e8d21def1b2a90bd341",
   "display_candidate": "64fd9955352f7265ea8cb4bbd83991d972282046",
   "full_november5_coverage_claimed": false,
   "rows": [
@@ -313,8 +313,8 @@
     {
       "cve": "CVE-2026-64560",
       "component": "Kernel components",
-      "status": "specific pid-lookup race not present",
-      "reason": "Timer holds task reference; __exit_signal still invokes the old has_group_leader_pid/de_thread cleanup workaround before sighand removal. Modern pid-based conversion identified by Fixes is absent.",
+      "status": "ordering backport implemented; validation pending",
+      "reason": "Retain old referenced-task/de_thread cleanup (modern pid-lookup race absent), and add independent release/acquire ordering pair around NULL sighand from the upstream fix inbe84fa84d.",
       "references": [
         "https://android.googlesource.com/kernel/common/+/585f2c9c9560f7e0dadafbba251183cea83d9dc4",
         "https://android.googlesource.com/kernel/common/+/8eff909dd82da10a599468a514cc1ad07e90c3cc"

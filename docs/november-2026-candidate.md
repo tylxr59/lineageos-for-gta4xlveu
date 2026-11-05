@@ -102,7 +102,7 @@ Sources: [November bulletin](https://source.android.com/docs/security/bulletin/2
 | CVE-2026-64011 | **disabled**: CONFIG_NFC is not set, so the generic LLCP socket implementation is not built. Vendor NFC_NQ is separate. |
 | CVE-2026-64427 | **disabled**: CONFIG_HID_LOGITECH is not set; the newer Logitech DJ report validation also differs. |
 | CVE-2026-64560 | **requires legacy lifecycle review**: This 4.14 POSIX CPU timer implementation predates the newer cpu_timer_task_rcu/pid-based lifecycle in the patch. No coverage claim without reviewing the older task-reference design. |
-| CVE-2026-46232 | **affected driver absent**: drivers/hid/hid-playstation.c is absent; do not confuse it with the older Sony driver. |
+| CVE-2026-46232 | **legacy parser already bounded (corrected)**: hid-playstation is present/enabled but DualSense-only. DualShock4 uses hid-sony, which bounds report count to3USB/4Bluetooth; the newer unbounded DS4 parser is absent. |
 | CVE-2026-23184 | **affected implementation absent**: binder_netlink_report and BR_TRANSACTION_PENDING_FROZEN are absent from this binder tree. |
 | CVE-2026-59046 | **affected pKVM implementation absent**: The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree. |
 | CVE-2026-59047 | **affected pKVM implementation absent**: The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree. |

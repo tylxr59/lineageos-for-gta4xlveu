@@ -249,8 +249,8 @@
     {
       "cve": "CVE-2026-58847",
       "component": "Kernel components",
-      "status": "affected pKVM implementation absent",
-      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "status": "affected implementation disabled and absent",
+      "reason": "KVM/VFIO excluded: CONFIG_VIRTUALIZATION and CONFIG_VFIO are not set. New kvm_vfio_pviommu_attach is also absent from the older vfio source.",
       "references": [
         "https://android.googlesource.com/kernel/common/+/8c62fa09cc8a04cbaaa5d00b5dcd51279bee3bdb"
       ]
@@ -278,8 +278,8 @@
     {
       "cve": "CVE-2026-59043",
       "component": "Kernel components",
-      "status": "affected pKVM implementation absent",
-      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "status": "affected protected-domain implementation absent",
+      "reason": "Old LPAE page tables have no idmapped/pKVM domain-reference design; modern io-pgtable-arm-common protected-domain path is absent. Do not disable normal legacy block-split unmaps by importing its idmap-only condition.",
       "references": [
         "https://android.googlesource.com/kernel/common/+/82cd807f41d89d5cf2b4c3ac7affdb91188baea7"
       ]
@@ -323,8 +323,8 @@
     {
       "cve": "CVE-2026-46232",
       "component": "Kernel components",
-      "status": "affected driver absent",
-      "reason": "drivers/hid/hid-playstation.c is absent; do not confuse it with the older Sony driver.",
+      "status": "legacy affected parser already bounded",
+      "reason": "Correction: HID_PLAYSTATION is enabled and its file exists, but this backport is DualSense-only. DualShock4 is in hid-sony, which limits rd[offset] to1..3USB/1..4Bluetooth before iteration; the newer unbounded hid-playstation DS4 parser is absent.",
       "references": [
         "https://android.googlesource.com/kernel/common/+/a5dca2389c9e2e3c43bedb72f556bf0eafe0cffd",
         "https://android.googlesource.com/kernel/common/+/aab498d0885fd97d010a0cd1013a3479269f41d0",

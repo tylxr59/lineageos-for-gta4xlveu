@@ -24,7 +24,8 @@ configuration, hardening, signing identity and compatibility override are retain
 The [initial bulletin triage](november-2026-candidate.md#kernelvendor-security-scope)
 identified many absent or disabled implementations and seven items requiring
 deeper legacy-path analysis. All public references for those seven were fetched,
-including the supplementary fixes and prerequisite series. Those references
+including all107 referenced common-kernel entries (some repeated across CVEs),
+the supplementary fixes and prerequisite series. Those references
 include alternative kernel-branch versions, so their count is not a patch count.
 
 | Item | Current finding and action |
@@ -44,6 +45,22 @@ Primary fixes: [HID](https://android.googlesource.com/kernel/common/+/15475ee563
 [F2FS](https://android.googlesource.com/kernel/common/+/5d604d40cd3232b09cb339941ef958e49283ed0a),
 [epoll terminal fix](https://android.googlesource.com/kernel/common/+/02f217a4bffc8a00313bf52ebb96003d7ae1d5d8),
 [CPU timers](https://android.googlesource.com/kernel/common/+/585f2c9c9560f7e0dadafbba251183cea83d9dc4).
+
+### Correction to the initial PlayStation classification
+
+The earlier shortlist incorrectly said hid-playstation.c was absent. It exists
+and CONFIG_HID_PLAYSTATION is enabled, but this older backport handles DualSense
+only. DualShock4 is handled by hid-sony.c; its parser accepts a touch count only
+within1..3USB/1..4Bluetooth and otherwise uses1 before iterating. The unbounded
+newer DS4 parser from CVE-2026-46232 is not present. This is an already-bounded
+legacy path, not a disabled/absent driver. Fresh source guards enforce that
+classification. The verification pipeline was paused to check this finding;
+no source change was needed, and it resumes from the completed final archive.
+
+All31 kernel entries were cross-checked against every supplementary reference.
+In particular KVM/VFIO are disabled, while the old IOMMU block-split implementation
+lacks protected idmapped domain reference accounting. Generic filenames alone
+were not treated as proof of applicability or non-applicability.
 
 ## Validation so far
 
@@ -65,7 +82,8 @@ actual source functions/blocks with surrounding helpers modeled:
 
 A temporary ordinary-ADB native helper passed baseline TCP copy/sendfile checks
 (4MiB each),64 large UDP datagrams,256 concurrent epoll/watch close iterations,
-and256 CPU-timer create/set/get/delete cycles. Only loopback and an immediately
+and256 CPU-timer create/set/get/delete cycles. An additional16 normal nonleader
+exec cases with an armed process CPU timer pass; no concurrent delete is used. Only loopback and an immediately
 unlinked owned scratch file are used. No external network, user-data access,
 exploit, OOM or memory-pressure test. The helper was removed. Repeat on candidate.
 

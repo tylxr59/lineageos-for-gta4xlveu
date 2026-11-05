@@ -7,11 +7,13 @@ Owner authorized the combined candidate after the105 November topic changes merg
 exact1,242-project candidate pins and pushed AVa7dd9c12/kernel939ccbcb/devicedb669506 branches.
 Owner expanded scope to include HAL/display integration and device testing. Device merge preserves existing fixes; vendor/Pixel/BPF pins unchanged. Installed/public remain1793279242.
 Private evidence/runners: artifacts/november-candidate-20261105. Build unit
-los24-november-expanded-build continues with its four-job executor capped at150%
-CPU and all threads nice19/idle I/O after owner resumed gaming. MemoryHigh24G/
-Max32G retained to avoid killing active compilers. Owner temporarily authorized
-higher resources; earlier graph attempts are retained separately. Keep gaming
-limits until owner steers otherwise. Source sync/merges complete; expanded build/signature/device validation pending. Connected baseline ordinary ADB verified; owned November continuity marker must survive final tests and then be removed. Platform-only attempt stopped during graph generation and preserved separately.
+los24-november-expanded-build now has its four-job executor capped at1200% CPU,
+CPUWeight100/IOWeight50, best-effort7 I/O, MemoryHigh28G/Max32G/Swap8G after the
+owner explicitly requested increased resources again. Existing nice19 is retained.
+The resource change was applied live; no compilation restart or discarded outputs.
+Earlier attempts and resource changes are recorded privately. Follow current owner
+steering and progress.json rather than assuming the earlier gaming cap still applies.
+Source sync/merges complete; expanded build/signature/device validation pending. Connected baseline ordinary ADB verified; owned November continuity marker must survive final tests and then be removed. Platform-only attempt stopped during graph generation and preserved separately.
 No install or publication yet; preserve keys, data, released pins/feed and paused TI.
 
 

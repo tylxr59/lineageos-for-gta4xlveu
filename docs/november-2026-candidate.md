@@ -26,14 +26,13 @@ merge or dropped local repair was used. Historical verified artifacts were retai
 
 ## Build and signing
 
-The owner initially requested a slow build, temporarily authorized more resources,
-then resumed gaming. The existing four-job executor now continues without restart
-under a150% total CPU quota,CPUWeight1,IOWeight1, with every running thread moved
-to nice19/idle I/O. Future children inherit those priorities. MemoryHigh24GiB,
-MemoryMax32GiB and the existing swap ceiling are retained rather than shrinking
-an active compiler's memory. The generator phase completed at higher resources;
-its GOMAXPROCS8/GOMEMLIMIT24GiB/GOGC50 budget and the main executor's12GiB budget
-remain recorded. Completed compilation outputs are preserved.
+The owner initially requested a slow build, temporarily raised resources, resumed
+gaming, then explicitly requested increased resources again. The current four-job
+executor continues without restart under a1200% total CPU quota,CPUWeight100,
+IOWeight50 and best-effort7 disk I/O. Existing nice19 is retained. MemoryHigh28GiB,
+MemoryMax32GiB and the existing swap ceiling remain bounded. The generator phase
+completed earlier with GOMAXPROCS8/GOMEMLIMIT24GiB/GOGC50; the main executor budget
+is12GiB. Completed outputs are preserved through live resource changes.
 No system package installation or persistent host power setting change is needed.
 A temporary sleep inhibitor follows the pipeline lifetime.
 

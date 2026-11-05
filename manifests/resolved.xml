@@ -131,7 +131,6 @@
   <project name="LineageOS/android_hardware_qcom_bootctrl" path="hardware/qcom-caf/bootctrl" revision="25092672e644459db328b43fd1c7c57cbff65c91" upstream="lineage-24.0-caf" dest-branch="lineage-24.0-caf" groups="kaanapali-vendor,qcom"/>
   <project name="LineageOS/android_hardware_qcom_display" path="hardware/qcom-caf/msm8953/display" revision="fd1cfe095f3cb4073f2ac6216e4d4457ba50f312" upstream="lineage-24.0-caf-msm8953" dest-branch="lineage-24.0-caf-msm8953" groups="qcom"/>
   <project name="LineageOS/android_hardware_qcom_display" path="hardware/qcom-caf/sdm660/display" revision="0ce1694ece44c596362d97c8f375fa7a861b7865" upstream="lineage-24.0-caf-sdm660" dest-branch="lineage-24.0-caf-sdm660" groups="qcom"/>
-  <project name="LineageOS/android_hardware_qcom_display" path="hardware/qcom-caf/sm8150/display" revision="6e9e061073de8c0ae6568cb71a168cc6a2bad5d9" upstream="lineage-24.0-caf-sm8150" dest-branch="lineage-24.0-caf-sm8150" groups="qcom"/>
   <project name="LineageOS/android_hardware_qcom_display" path="hardware/qcom-caf/sm8250/display" revision="1906af862ac456dc8b0d64ea94c30dbb66e02467" upstream="lineage-24.0-caf-sm8250" dest-branch="lineage-24.0-caf-sm8250" groups="qcom"/>
   <project name="LineageOS/android_hardware_qcom_display" path="hardware/qcom-caf/sm8350/display" revision="e9bbe9a980d408af36b52f2abaae7c35647b7425" upstream="lineage-24.0-caf-sm8350" dest-branch="lineage-24.0-caf-sm8350" groups="qcom"/>
   <project name="LineageOS/android_hardware_qcom_display" path="hardware/qcom-caf/sm8450/display" revision="aea8d60119598d755f29e2e15312b4ff491d1808" upstream="lineage-24.0-caf-sm8450" dest-branch="lineage-24.0-caf-sm8450" groups="qcom"/>
@@ -1275,7 +1274,8 @@
   <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="dd2a0d39a3929c63d2b00cb8c6f31e39134255c5" upstream="maintenance/los24-november-20261105" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_frameworks_av" path="frameworks/av" remote="los24-forks" revision="a7dd9c12d2629fe100f09dc8f23e909bad1dca72" upstream="maintenance/los24-november-20261105" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_hardware_google_pixel" path="hardware/google/pixel" remote="los24-forks" revision="d4f83b63e6f03bfeb7e903c11f689fca9d65788b" upstream="fix/los24-thermal-empty-queries" groups="local::gta4xlveu"/>
-  <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="939ccbcb72b6c9143becd893a59cf84c3a1cf21d" upstream="maintenance/los24-november-20261105" groups="local::gta4xlveu"/>
+  <project name="tylxr59/android_hardware_qcom_display" path="hardware/qcom-caf/sm8150/display" remote="los24-forks" revision="64fd9955352f7265ea8cb4bbd83991d972282046" upstream="security/los24-november5-20261105" groups="local::gta4xlveu"/>
+  <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="be84fa84d82073f331e94e8d21def1b2a90bd341" upstream="security/los24-november5-20261105" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_system_bpf" path="system/bpf" remote="los24-forks" revision="c2621ec2befeb71e96072250f6758e3b4462f9b8" upstream="fix/los24-fuse-capability" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_vendor_samsung_gta4xlveu" path="vendor/samsung/gta4xlveu" remote="los24-forks" revision="ec725c3b9a88845f9ebe7b37a01fa1b23619d595" upstream="fix/los24-assisted-gps" groups="local::gta4xlveu"/>
   

@@ -7,16 +7,16 @@ not installed, hardware-validated or approved for publication.
 ## Source set
 
 [Exact candidate manifest](../manifests/candidates/november-20261105.xml) contains
-1,242 projects. Seventy-nine project identities/revisions differ from the released
+1,242 projects. Eighty project identities/revisions differ from the released
 manifest (including AOSP-to-Lineage fork renames). The merged November platform
 security series supplies the **2026-11-01** patch level. API remains37.0;
 Connectivity selection and the existing BPF override are unchanged.
 
 - Media merge [`a7dd9c12`](https://github.com/tylxr59/android_frameworks_av/commit/a7dd9c12d2629fe100f09dc8f23e909bad1dca72) retains our codec owner fix while integrating five upstream media security commits through1c591473.
-- Kernel merge [`11d3af5b`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/11d3af5b49c5c0c50294a4818a2ff5b63c3ff3e2) retains releasedf0f9fc679 fixes and imports the shared Qualcomm base throughbae1ba425. Its effective delta is the optional NXP SN driver and wiring. NXP_NFC_I2C depends on !NFC_NQ, while the tablet uses NFC_NQ.
-- Both new commits are pushed on `maintenance/los24-november-20261105` in their respective maintained forks.
-- Device1099a44, vendorec725c3, Pixeld4f83b6 and BPFc2621ec pins remain unchanged, preserving assisted GPS, thermal reporting, USB ownership, credential/data continuity, Wi-Fi product and loader fixes.
-- Optional Sevenrock health/charger/Bluetooth HAL migrations, recovery partition-path cleanup and the display reserved-memory change are excluded from this security maintenance candidate. They need independent integration and hardware evidence. TI audio remains paused.
+- Kernel merge [`939ccbcb`](https://github.com/tylxr59/android_kernel_samsung_gta4xlve/commit/939ccbcb72b6c9143becd893a59cf84c3a1cf21d) retains releasedf0f9fc679 fixes and imports the shared Qualcomm base throughbae1ba425. Its delta includes the optional NXP SN driver/wiring and the maintained display-memory overlay removal. NXP_NFC_I2C depends on !NFC_NQ, while the tablet uses NFC_NQ.
+- All candidate commits are pushed on `maintenance/los24-november-20261105` in their respective maintained forks.
+- Device merge [`db669506`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/db669506d8002607452ff1c85627c7f7399899e0) includes QTI AIDL health/charger and recovery services, retires the standard HIDL Bluetooth audio implementation in favor of the already-present AIDL provider, and uses direct partition paths. It preserves strict VINTF kernel checks, QTI USB ownership, scoped credential policy, assisted GPS and thermal reporting. Vendor ec725c3, Pixel d4f83b6 and BPF c2621ec remain unchanged.
+- The owner explicitly expanded scope to include and test the HAL/display changes. The initial platform-only build was stopped during graph generation; its log/manifests are retained separately. The expanded candidate is building under the same resource limits. TI audio remains paused.
 
 The source sync changed upstream project identities. Clean-worktree preflight,
 resolved pre-sync sources and18 affected project metadata/ref snapshots were saved
@@ -35,15 +35,15 @@ A temporary sleep inhibitor follows the pipeline lifetime.
 
 The pipeline builds target-files/recovery/check-vintf-all, verifies exact source
 pins, strict VINTF with real kernel inputs, paired XTRA config, thermal safety,
-unchanged DTBO/audio/USB configuration, preserved legacy/proprietary libraries,
+an exact single-property DTBO change plus unchanged audio/USB configuration, preserved legacy/proprietary libraries,
 no extra permissive domains, compiled hardening defaults, BTF boundaries/type IDs
 and actual OOM tracepoint layout. It then signs with the existing47 release
 identities and verifies component and whole-file OTA signatures plus matching
 boot/DTBO/recovery and vendor recovery payload. These are planned checks until
 the result is recorded; build start is not a successful compilation claim.
 
-Device validation remains pending after a signed candidate passes host checks.
-It must cover signed no-wipe update, original pattern and encrypted-data/setup
+The connected baseline tablet was verified on1793279242 with boot complete, unlocked file encryption, normal UID2000, enforcing SELinux and Rooted debugging off. Ordinary ADB service/display/battery/USB snapshots and setup flags are retained privately. An owned continuity marker was created and checksum verified. No candidate has been installed. Device validation remains pending after a signed candidate passes host checks.
+It must additionally cover the QTI AIDL health service in Android/recovery, battery/charging behavior and charger mode, Bluetooth audio, display/suspend/wake and the compiled display-memory range. It must cover signed no-wipe update, original pattern and encrypted-data/setup
 continuity, enforcing SELinux, normal ADB/rooted-debugging off, Android/recovery
 boot and full image verification, hardware smoke, USB/MTP, Bluetooth, thermal,
 assisted GPS and retained BPF behavior. No deliberate OOM or data wipe is planned.

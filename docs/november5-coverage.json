@@ -1,0 +1,967 @@
+{
+  "reviewed_rows": 97,
+  "kernel_candidate": "ea6d573e1ae4bb3dc4e39713493d755a0800b7cf",
+  "display_candidate": "64fd9955352f7265ea8cb4bbd83991d972282046",
+  "full_november5_coverage_claimed": false,
+  "rows": [
+    {
+      "cve": "CVE-2026-53256",
+      "component": "Kernel components",
+      "status": "disabled",
+      "reason": "CONFIG_BT_RFCOMM is not set; the affected RFCOMM socket implementation is not built.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/529c9d587ac146586f9817ee994bd8cfa609769b",
+        "https://android.googlesource.com/kernel/common/+/1542c05a4e0c4d0e76670e356bb5322a7e85b083"
+      ]
+    },
+    {
+      "cve": "CVE-2026-59044",
+      "component": "Kernel components",
+      "status": "affected pKVM implementation absent",
+      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/a4e59da7cad6b445229ae67c0ebed83a7b18dcb5"
+      ]
+    },
+    {
+      "cve": "CVE-2026-59045",
+      "component": "Kernel components",
+      "status": "affected pKVM implementation absent",
+      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/c47ebb7427d5011de67b526eac67b42da640bdc5",
+        "https://android.googlesource.com/kernel/common/+/f0a2d3087b73b442b69fe0a9617ab920400abe15",
+        "https://android.googlesource.com/kernel/common/+/eb970aae88c0f45056f4501b7815a9b5c7ab0435",
+        "https://android.googlesource.com/kernel/common/+/f6510cfbc728061d7a8d4ea4ac91e5fc270aaf6b",
+        "https://android.googlesource.com/kernel/common/+/9f965dd09cad69d0064f8a862d68cfc2163ba9d3",
+        "https://android.googlesource.com/kernel/common/+/22ae719f35b14f88e551f0e858a1087a4b721204",
+        "https://android.googlesource.com/kernel/common/+/bd9aaec66cf50ea3ade2b537d9b730e40fe512e6",
+        "https://android.googlesource.com/kernel/common/+/f89e83e20aa69fbdd5b2f2de284dafcaadbda7c7",
+        "https://android.googlesource.com/kernel/common/+/acce19149cb8ebe92218d0e66c08bc36552ddbdf",
+        "https://android.googlesource.com/kernel/common/+/e10fb80c80387aa1f26695b57df95afe0ef00481",
+        "https://android.googlesource.com/kernel/common/+/01ff2abe4905798e330a70f2970ee33a44419d24"
+      ]
+    },
+    {
+      "cve": "CVE-2026-80604",
+      "component": "Kernel components",
+      "status": "backport implemented; validation pending",
+      "reason": "HID numbered raw report size guard0e4fbdfd4.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/15475ee563738135a9978f2a0481b1cf972b3b72",
+        "https://android.googlesource.com/kernel/common/+/e684fde80e17d695cd52aaefb735fa2c76b0866e"
+      ]
+    },
+    {
+      "cve": "CVE-2026-89774",
+      "component": "Kernel components",
+      "status": "backport implemented; validation pending",
+      "reason": "SCO references and sleeping-lock prerequisite/follow-up adapted inea6d573e1.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/315636ba7cbf03382cfa7bd8887118f59fe96c5f",
+        "https://android.googlesource.com/kernel/common/+/598dbca6a3f78f038650c434935c86d8c3a6edfb",
+        "https://android.googlesource.com/kernel/common/+/84728e305ff666fc2bf2be382b422b51912d7b1c",
+        "https://android.googlesource.com/kernel/common/+/a377ba61de42bb336732bd273330fcbfd3d51f3a"
+      ]
+    },
+    {
+      "cve": "CVE-2026-59048",
+      "component": "Kernel components",
+      "status": "affected pKVM implementation absent",
+      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/e46b3a946c957ab463a8abf9333dea702e8a485e",
+        "https://android.googlesource.com/kernel/common/+/5e31aa53a963b254ddac8a88b48e5b64cfc38eea"
+      ]
+    },
+    {
+      "cve": "CVE-2025-38627",
+      "component": "Kernel components",
+      "status": "specific affected cleanup path absent",
+      "reason": "Legacy f2fs_free_dic directly frees arrays without inode dereference; newer delayed inode-dependent release path absent.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/5d604d40cd3232b09cb339941ef958e49283ed0a",
+        "https://android.googlesource.com/kernel/common/+/4e9efe0d56e73d10e2f72e0328b537cea93198ec",
+        "https://android.googlesource.com/kernel/common/+/84b5a9e56e50b8222cd5999cd8e44d0bdf7fed4f",
+        "https://android.googlesource.com/kernel/common/+/eb95d43efb6bc27e17a5b98031ee41b5f9eee3a8"
+      ]
+    },
+    {
+      "cve": "CVE-2026-23240",
+      "component": "Kernel components",
+      "status": "disabled",
+      "reason": "CONFIG_TLS is not set.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/a5de36d6cee74a92c1a21b260bc507e64bc451de"
+      ]
+    },
+    {
+      "cve": "CVE-2026-31533",
+      "component": "Kernel components",
+      "status": "disabled",
+      "reason": "CONFIG_TLS is not set.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/0e43e0a3c94044acc74b8e0927c27972eb5a59e8",
+        "https://android.googlesource.com/kernel/common/+/aa9facde6c5005205874c37db3fd25799d741baf"
+      ]
+    },
+    {
+      "cve": "CVE-2026-43284",
+      "component": "Kernel components",
+      "status": "backports implemented; validation pending",
+      "reason": "Legacy shared-fragment transfer/coalescing marker fixesffba1e414/9cde48f44.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/f6d22ea6ae50acbc3f811a14fb2e55a2c129007d",
+        "https://android.googlesource.com/kernel/common/+/32b16e61d1a02c4554d48b544ea4739d12e450e7",
+        "https://android.googlesource.com/kernel/common/+/c7fb8c4114577c9f5b34a82259f3d7b8addbacb1",
+        "https://android.googlesource.com/kernel/common/+/055c84c410288cf5169e180f8aca0792b6b8c9de"
+      ]
+    },
+    {
+      "cve": "CVE-2026-43499",
+      "component": "Kernel components",
+      "status": "already fixed in baseline",
+      "reason": "Baselinea8306aea3 has null waiter guard and ret<0 wrapper guard.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/5339d13d8b945cd5841d0e70728ee67474ea74f7",
+        "https://android.googlesource.com/kernel/common/+/e7d9bd94fbdbf9842ea6f1b6d5af45758e87e3d6",
+        "https://android.googlesource.com/kernel/common/+/63493728373acb0b79eb6c94cf462cece1d8110f",
+        "https://android.googlesource.com/kernel/common/+/eb88e44c4e7ac2f5a13b2b51b9dfa2aea677e3e1"
+      ]
+    },
+    {
+      "cve": "CVE-2026-46242",
+      "component": "Kernel components",
+      "status": "specific modern removal race not present",
+      "reason": "All three ep_remove callers either retain a file fdget reference or serialize release/epoll teardown via epmutex; new refcount/dying conversion that removed epmutex is absent.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/58c9b016e12855286370dfb704c08498edbc857a",
+        "https://android.googlesource.com/kernel/common/+/4a33cb8c9fe2dd18962c39568401e35b5de0ae59",
+        "https://android.googlesource.com/kernel/common/+/c7a8aea27b87b74f62a2b2a5d16100caa2cba79c",
+        "https://android.googlesource.com/kernel/common/+/5255cec633890d782c8a1daf792801eb527d0ac8",
+        "https://android.googlesource.com/kernel/common/+/035da2cab032309d387d2935543743fb36c722c3",
+        "https://android.googlesource.com/kernel/common/+/59f29da4ef0793f38ad1dbc01a9ee11bd4df636c",
+        "https://android.googlesource.com/kernel/common/+/b51793e6880dff374dfcd95f8335bfa1e556fadb",
+        "https://android.googlesource.com/kernel/common/+/e0384993ef8206abe4e644c0cb4bdb59d2c7bb4b",
+        "https://android.googlesource.com/kernel/common/+/02f217a4bffc8a00313bf52ebb96003d7ae1d5d8",
+        "https://android.googlesource.com/kernel/common/+/500d67e5110ab44ec1501113db76aa07287c112b",
+        "https://android.googlesource.com/kernel/common/+/690d6106eec64f970d6b2bf87599838b016b1b00",
+        "https://android.googlesource.com/kernel/common/+/3de54f8c502a7ac39095c2b5d30dfe8c17f8a411",
+        "https://android.googlesource.com/kernel/common/+/3dff0800fae61e0de35ef20694c86106da64266d",
+        "https://android.googlesource.com/kernel/common/+/64cea30f9b932d729e64a4098ad00d64e65f4813",
+        "https://android.googlesource.com/kernel/common/+/2d6bc6abd42ae07fa460c0a0de524ed439a61207",
+        "https://android.googlesource.com/kernel/common/+/f01453f20745731644a2bcc8c2a904e73f4db323",
+        "https://android.googlesource.com/kernel/common/+/257b1c2c78c25643526609dee0c15f1544eb3252",
+        "https://android.googlesource.com/kernel/common/+/58c9b016e12855286370dfb704c08498edbc857a"
+      ]
+    },
+    {
+      "cve": "CVE-2026-58824",
+      "component": "Kernel components",
+      "status": "affected pKVM implementation absent",
+      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/8be8949794c96f10348fdd3d8dc7740fdfecd4e2",
+        "https://android.googlesource.com/kernel/common/+/5a6735b89ba7c8684d36e2ecd9b02e834e97de9c"
+      ]
+    },
+    {
+      "cve": "CVE-2026-58825",
+      "component": "Kernel components",
+      "status": "affected implementation absent",
+      "reason": "The new per-process task/mm/files dmabuf_info accounting is absent. Existing DMA-BUF iterator/accounting backports use a different implementation; this is not a certification of all DMA-BUF code.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/efe16a3021b9f95eb1cb83e98d0d1db9bff94ce4",
+        "https://android.googlesource.com/kernel/common/+/009c5006c969826d37a2c5fc2721a7bb20d72555"
+      ]
+    },
+    {
+      "cve": "CVE-2026-58826",
+      "component": "Kernel components",
+      "status": "affected implementation absent",
+      "reason": "The new per-process task/mm/files dmabuf_info accounting is absent. Existing DMA-BUF iterator/accounting backports use a different implementation; this is not a certification of all DMA-BUF code.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/13beada2dac38c2d7303f1700aa16fb5053b919d",
+        "https://android.googlesource.com/kernel/common/+/efe16a3021b9f95eb1cb83e98d0d1db9bff94ce4",
+        "https://android.googlesource.com/kernel/common/+/f7d26609785ce56170645d56f306db38e8ba277a",
+        "https://android.googlesource.com/kernel/common/+/009c5006c969826d37a2c5fc2721a7bb20d72555"
+      ]
+    },
+    {
+      "cve": "CVE-2026-58827",
+      "component": "Kernel components",
+      "status": "affected implementation absent",
+      "reason": "The new per-process task/mm/files dmabuf_info accounting is absent. Existing DMA-BUF iterator/accounting backports use a different implementation; this is not a certification of all DMA-BUF code.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/769fa413e80cca30ff767f6f3e18f920d0353f67",
+        "https://android.googlesource.com/kernel/common/+/6642375b48bea1fc287a9281db591a8edc74db79"
+      ]
+    },
+    {
+      "cve": "CVE-2026-58828",
+      "component": "Kernel components",
+      "status": "affected implementation absent",
+      "reason": "The new per-process task/mm/files dmabuf_info accounting is absent. Existing DMA-BUF iterator/accounting backports use a different implementation; this is not a certification of all DMA-BUF code.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/b597ddd55fd100d3eca5b9c2024a5a09dcc950ec",
+        "https://android.googlesource.com/kernel/common/+/0285abdfbfb9f99898d647dafb2ea7d4bdd22527",
+        "https://android.googlesource.com/kernel/common/+/dd1ca7920b1eb7db5dbd34590c811cd99e2c3fdf",
+        "https://android.googlesource.com/kernel/common/+/f118039ccd1a98d1c4931816832b28c3c9e8e471"
+      ]
+    },
+    {
+      "cve": "CVE-2026-58829",
+      "component": "Kernel components",
+      "status": "affected implementation absent",
+      "reason": "fs/fuse/backing.c and fuse_backing_mmap are absent; no FUSE-BPF backing implementation is installed.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/984713cde654f06871c542c469e3c226c8a79d9b",
+        "https://android.googlesource.com/kernel/common/+/517040c192cebb334766f43604e6a7ebb79d43ae"
+      ]
+    },
+    {
+      "cve": "CVE-2026-58844",
+      "component": "Kernel components",
+      "status": "affected pKVM implementation absent",
+      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/329d7c6e7215f52bb5922b4bcaa6bf713fa4ccff",
+        "https://android.googlesource.com/kernel/common/+/f4633d3767965e89b835bca04981b67cc8aa78bd",
+        "https://android.googlesource.com/kernel/common/+/8c62fa09cc8a04cbaaa5d00b5dcd51279bee3bdb",
+        "https://android.googlesource.com/kernel/common/+/f0a3950f0fa3988e9af43b5656f72fa675672c82",
+        "https://android.googlesource.com/kernel/common/+/7d6d4a26e7ead0bc501f3ed6809a66c2f3d49365",
+        "https://android.googlesource.com/kernel/common/+/82cd807f41d89d5cf2b4c3ac7affdb91188baea7",
+        "https://android.googlesource.com/kernel/common/+/2f86c81dc9453ed385c4f0703d6bd664d0997567",
+        "https://android.googlesource.com/kernel/common/+/d518f4cc29a9a95f631c8c811fe6791ad08c4f56",
+        "https://android.googlesource.com/kernel/common/+/d9b4efaed7a573d245dc5873c7d6c304a9936fdd"
+      ]
+    },
+    {
+      "cve": "CVE-2026-58845",
+      "component": "Kernel components",
+      "status": "affected implementation absent",
+      "reason": "Android pgsize_migration/vma padding implementation is absent; current kernel uses 4KiB pages.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/3b9b40df51bda90ffb2833dcef11905e751dafdb",
+        "https://android.googlesource.com/kernel/common/+/ed0e57e1e27a9eecd6c1a3dd1dd9ed1b8d1a06b4"
+      ]
+    },
+    {
+      "cve": "CVE-2026-58847",
+      "component": "Kernel components",
+      "status": "affected pKVM implementation absent",
+      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/8c62fa09cc8a04cbaaa5d00b5dcd51279bee3bdb"
+      ]
+    },
+    {
+      "cve": "CVE-2026-58942",
+      "component": "Kernel components",
+      "status": "affected implementation absent",
+      "reason": "Android vma_data_pages ELF padding implementation referenced by this fix is absent.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/27d9c79c71ceaaee3c31337658a699364ec7d833",
+        "https://android.googlesource.com/kernel/common/+/019d909caeb85547b9aed2beea73101ea73b958f"
+      ]
+    },
+    {
+      "cve": "CVE-2026-59042",
+      "component": "Kernel components",
+      "status": "affected pKVM implementation absent",
+      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/1569a00286640e452ce917ee8b3cec04c5cc3715",
+        "https://android.googlesource.com/kernel/common/+/382cffbd3842b64260993d2438926a9f2a0a447e"
+      ]
+    },
+    {
+      "cve": "CVE-2026-59043",
+      "component": "Kernel components",
+      "status": "affected pKVM implementation absent",
+      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/82cd807f41d89d5cf2b4c3ac7affdb91188baea7"
+      ]
+    },
+    {
+      "cve": "CVE-2026-64011",
+      "component": "Kernel components",
+      "status": "disabled",
+      "reason": "CONFIG_NFC is not set, so the generic LLCP socket implementation is not built. Vendor NFC_NQ is separate.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/be7eb82f26606f1965d7d4b053e82570ea5f48a1",
+        "https://android.googlesource.com/kernel/common/+/e63aaa33966a89eca6ec07492b0525f0db045bc4",
+        "https://android.googlesource.com/kernel/common/+/1188bc5d16e4f9511414b35b6c56a79f2a5d9529",
+        "https://android.googlesource.com/kernel/common/+/0ad33340b17e71d9764987f0cd30530ad850e817"
+      ]
+    },
+    {
+      "cve": "CVE-2026-64427",
+      "component": "Kernel components",
+      "status": "disabled",
+      "reason": "CONFIG_HID_LOGITECH is not set; the newer Logitech DJ report validation also differs.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/17843f6d225d81b6f210b89bd54123611de7bba7",
+        "https://android.googlesource.com/kernel/common/+/c47a6316399f7dfbddb1d383578838e3969ae90f",
+        "https://android.googlesource.com/kernel/common/+/5db2dcc7b20c370157de9a46978d5a3d005b169c",
+        "https://android.googlesource.com/kernel/common/+/6f13426533c438eaf78caf2a8171fc839417dd45",
+        "https://android.googlesource.com/kernel/common/+/a1f098e5a82ad297062244ee20a44b6131c199c1",
+        "https://android.googlesource.com/kernel/common/+/2b71b414641a5cac8a3bf2a736518e09a73badf5"
+      ]
+    },
+    {
+      "cve": "CVE-2026-64560",
+      "component": "Kernel components",
+      "status": "specific pid-lookup race not present",
+      "reason": "Timer holds task reference; __exit_signal still invokes the old has_group_leader_pid/de_thread cleanup workaround before sighand removal. Modern pid-based conversion identified by Fixes is absent.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/585f2c9c9560f7e0dadafbba251183cea83d9dc4",
+        "https://android.googlesource.com/kernel/common/+/8eff909dd82da10a599468a514cc1ad07e90c3cc"
+      ]
+    },
+    {
+      "cve": "CVE-2026-46232",
+      "component": "Kernel components",
+      "status": "affected driver absent",
+      "reason": "drivers/hid/hid-playstation.c is absent; do not confuse it with the older Sony driver.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/a5dca2389c9e2e3c43bedb72f556bf0eafe0cffd",
+        "https://android.googlesource.com/kernel/common/+/aab498d0885fd97d010a0cd1013a3479269f41d0",
+        "https://android.googlesource.com/kernel/common/+/60eed3576bb0cf3ceb11625240beb63b48f6e3c2",
+        "https://android.googlesource.com/kernel/common/+/cf8ba5678385b2b8832ed2e87c035925eb12bc4a"
+      ]
+    },
+    {
+      "cve": "CVE-2026-23184",
+      "component": "Kernel components",
+      "status": "affected implementation absent",
+      "reason": "binder_netlink_report and BR_TRANSACTION_PENDING_FROZEN are absent from this binder tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/1c8fffa12a81f62411312825521d63a81d1ca92e"
+      ]
+    },
+    {
+      "cve": "CVE-2026-59046",
+      "component": "Kernel components",
+      "status": "affected pKVM implementation absent",
+      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/4a75aa4e840f294efd47084e083a6e91069bce58",
+        "https://android.googlesource.com/kernel/common/+/525cfccadb92e7c9314d03cce600fed7335874d9"
+      ]
+    },
+    {
+      "cve": "CVE-2026-59047",
+      "component": "Kernel components",
+      "status": "affected pKVM implementation absent",
+      "reason": "The Android pKVM implementation or specific protected-guest/IOMMU path is absent from this 4.14 tree.",
+      "references": [
+        "https://android.googlesource.com/kernel/common/+/ba356506706b7bd953c501ea91ee7c0d55c1ad83"
+      ]
+    },
+    {
+      "cve": "CVE-2025-0647",
+      "component": "Arm components",
+      "status": "affected product not used",
+      "reason": "Arm CNA lists Neoverse N2/V2/V3/V3AE, Cortex X2/X3/X4/X925/A710 and C1 Premium/Ultra; tablet Kryo465/A55/A76 class is not listed.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-9040",
+      "component": "Arm components",
+      "status": "affected product not used",
+      "reason": "Mali GPU driver issue; tablet uses Adreno618, not Mali.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-11891",
+      "component": "Arm components",
+      "status": "affected product not used",
+      "reason": "Mali GPU driver issue; tablet uses Adreno618, not Mali.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-22165",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-65587",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-15466",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-16280",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-18629",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-19199",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-41155",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-45199",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-45201",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-45204",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-65586",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-74912",
+      "component": "Imagination Technologies",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20499",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20519",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20520",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20545",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk",
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20546",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk",
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20547",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk",
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20548",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk",
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20549",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20521",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20522",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20523",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20524",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20526",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20553",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20554",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20556",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20557",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20558",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20559",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20565",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20586",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20589",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20525",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk",
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20527",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk",
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20555",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20560",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20561",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20562",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20563",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-20564",
+      "component": "MediaTek components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-66086",
+      "component": "Unisoc components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-79405",
+      "component": "Unisoc components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-80335",
+      "component": "Unisoc components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-80336",
+      "component": "Unisoc components",
+      "status": "affected vendor hardware not used",
+      "reason": "Qualcomm SM7125/Adreno618 target does not use this vendor SoC/GPU implementation.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-25291",
+      "component": "Qualcomm components",
+      "status": "specific affected implementation absent",
+      "reason": "No KGSL shmem backing/reclaim or kgsl_shmem_fill_page Android hook; existing GPU allocation uses older page allocation.",
+      "references": [
+        "https://git.codelinaro.org/clo/la/platform/vendor/qcom/opensource/graphics-kernel/-/commit/c6c74d057c0c1d128ad30da9460765bc02ea85f4"
+      ]
+    },
+    {
+      "cve": "CVE-2026-25301",
+      "component": "Qualcomm components",
+      "status": "hardware/driver absent",
+      "reason": "Adreno Gen8_11_0 snapshot tables absent; tablet uses Adreno618.",
+      "references": [
+        "https://git.codelinaro.org/clo/la/platform/vendor/qcom/opensource/graphics-kernel/-/commit/be1b91c10f5d045f608e88e99598766f3865bfef"
+      ]
+    },
+    {
+      "cve": "CVE-2026-57537",
+      "component": "Qualcomm components",
+      "status": "specific affected implementation absent",
+      "reason": "frpc_coredump/channel gmaps implementation absent; legacy adsprpc uses different maps/SSR paths.",
+      "references": [
+        "https://git.codelinaro.org/clo/la/platform/vendor/qcom/opensource/dsp-kernel/-/commit/3dacc0ac01d64242ffb367c949b36b3e54368950"
+      ]
+    },
+    {
+      "cve": "CVE-2026-57545",
+      "component": "Qualcomm components",
+      "status": "hardware scheduler absent",
+      "reason": "No adreno_hwsched/LPAC command-object implementation.",
+      "references": [
+        "https://git.codelinaro.org/clo/la/kernel/msm-5.10/-/commit/874311dc075047c51c9231e3de1bae0a7677b3b7"
+      ]
+    },
+    {
+      "cve": "CVE-2026-57548",
+      "component": "Qualcomm components",
+      "status": "hardware scheduler absent",
+      "reason": "No hwsched cmd_list object ownership paths.",
+      "references": [
+        "https://git.codelinaro.org/clo/la/platform/vendor/qcom/opensource/graphics-kernel/-/commit/af2e26b0b01a5ca8ef30bf20ee17a1360563bb70",
+        "https://git.codelinaro.org/clo/la/platform/vendor/qcom/opensource/graphics-kernel/-/commit/73214990504422a964b091964cde3c59780b7ff2"
+      ]
+    },
+    {
+      "cve": "CVE-2026-57549",
+      "component": "Qualcomm components",
+      "status": "hardware scheduler absent",
+      "reason": "No Gen7/Gen8 hwsched fence-list implementation.",
+      "references": [
+        "https://git.codelinaro.org/clo/la/platform/vendor/qcom/opensource/graphics-kernel/-/commit/9f382f0cbb0c69b0ddc90e298ca5226b4ecd80a9"
+      ]
+    },
+    {
+      "cve": "CVE-2026-57554",
+      "component": "Qualcomm components",
+      "status": "specific affected implementation absent",
+      "reason": "No async invoke/collector or ctx->perf. Legacy getperfcounter returns file-owned per-thread storage and waits synchronously before context_free.",
+      "references": [
+        "https://git.codelinaro.org/clo/la/platform/vendor/qcom/opensource/dsp-kernel/-/commit/f6ddd79f650d61c7406faf52530d1a4716a5613a",
+        "https://git.codelinaro.org/clo/la/kernel/msm-5.15/-/commit/099b47ce9f7d0104ef131b1e7b407367c756bf72",
+        "https://git.codelinaro.org/clo/la/kernel/msm-5.10/-/commit/a065d4bacdae2cea6678a7528df8008d16452a63"
+      ]
+    },
+    {
+      "cve": "CVE-2026-66113",
+      "component": "Qualcomm components",
+      "status": "specific affected allocator absent",
+      "reason": "No SnapAllocCore. Built ION BufferManager returns before mapping on validation/import failures; does not FreeBuffer/munmap untrusted handle addresses.",
+      "references": [
+        "https://git.codelinaro.org/clo/la/platform/vendor/opensource/display-core/-/commit/1d51d6c52ccc5e9ac759aded27a4ec62a7ccf702"
+      ]
+    },
+    {
+      "cve": "CVE-2026-66114",
+      "component": "Qualcomm components",
+      "status": "backport implemented; validation pending",
+      "reason": "Actively built CAF sm8150 HWC HDR metadata length bounded before copy in64fd995.",
+      "references": [
+        "https://git.codelinaro.org/clo/la/platform/vendor/opensource/display-core/-/commit/0a615ffd20a5677ca18acb53e9b4b1292b836078"
+      ]
+    },
+    {
+      "cve": "CVE-2026-25285",
+      "component": "Qualcomm closed-source components",
+      "status": "vendor binary coverage unverified",
+      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-6726",
+      "component": "Qualcomm closed-source components",
+      "status": "vendor binary coverage unverified",
+      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-25286",
+      "component": "Qualcomm closed-source components",
+      "status": "vendor binary coverage unverified",
+      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-25287",
+      "component": "Qualcomm closed-source components",
+      "status": "vendor binary coverage unverified",
+      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-25302",
+      "component": "Qualcomm closed-source components",
+      "status": "vendor binary coverage unverified",
+      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-57546",
+      "component": "Qualcomm closed-source components",
+      "status": "vendor binary coverage unverified",
+      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-57547",
+      "component": "Qualcomm closed-source components",
+      "status": "vendor binary coverage unverified",
+      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "references": [
+        "#asterisk"
+      ]
+    },
+    {
+      "cve": "CVE-2026-65076",
+      "component": "Qualcomm closed-source components",
+      "status": "vendor binary coverage unverified",
+      "reason": "Public bulletin provides no device-specific fixed Samsung firmware provenance; retained 2025-05-01 vendor artifacts cannot establish current coverage.",
+      "references": [
+        "#asterisk"
+      ]
+    }
+  ]
+}

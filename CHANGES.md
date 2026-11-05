@@ -15,9 +15,10 @@ certification. Published releases are immutable; fixes appear in new builds.
 ## Unreleased
 
 [November5 legacy kernel/vendor investigation](docs/november5-kernel-review.md)
-has three compile-checked development commits for HID and network shared-fragment
-handling. They are not part of the published release and need full integration
-and runtime tests.
+now stages five development commits for HID, network shared-fragment handling,
+SCO lifetime/locking and the actively built HWC HDR-metadata bounds check.
+Focused negative-control tests pass; full candidate build and device tests are
+in progress. These changes are not part of the published release.
 
 ## 2026-11-05 — November platform and device maintenance
 

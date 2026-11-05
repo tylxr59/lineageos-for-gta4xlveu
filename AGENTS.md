@@ -768,20 +768,28 @@ Publisher isstandalonePython/OpenSSL/Git/gh andranonhostwithauthenticatedgh;
 Ubuntu signing/buildenvironment lacksgithubCLI. No credentials copied or newpackages.
 
 
-## November5 investigation started (2026-11-05)
+## November5 completion in progress (2026-11-05)
 
-See docs/november5-kernel-review.md. Published/installed1793911332 unchanged.
-Kernel developmentbranchsecurity/los24-november5-20261105 pushed at9cde48f44:
-0e4fbdfd4 HID zero-length numbered guard; ffba1e414 shared-fragment transfer;
-9cde48f44 coalescing marker preservation. Actual ARM64 HID/skbuff objects compile
-in isolated artifact outputs with existing flags; focused HID entry test rejects
-empty numbered input before lookup (releasednegativecontrol fails). No full
-kernel link/ROM build/runtime test yet. Normal checkout and localmanifest restored
-to release939ccbcb, developmentbranch remains available. No tablet changes.
+Owner requested finishing the work. See docs/november5-kernel-review.md and the
+97-entry docs/november5-coverage.json. Eight closed Qualcomm firmware entries
+remain unverified; no2026-11-05 patch-date claim. All public Qualcomm references
+now obtained via CodeLinaro-mirror; older vendor/firmware limitations remain.
 
-rtmutex specific guards already present viaa8306aea3; F2FS cited async inode-free
-path absent, not general filesystem certification. SCO/epoll/timer lifetime work
-outstanding. All supplementary common-kernel references downloaded. Qualcomm
-public graphics/DSP source is separate from closed blobs; most downloads HTTP429.
-One DSP patch fetched; newer frpc_coredump absent, legacy mapping/SSR review still
-needed. Artifacts/november5-investigation-20261105 contains source refs/evidence.
+Candidate kernel ea6d573e1 (HID/network plus tailored SCO refs/sleeping-lock order)
+and newly maintained CAF sm8150 display64fd995 (bounds HDR metadata before copy)
+are pushed on security/los24-november5-20261105. Seven exact maintained fork pins
+and1,242-project snapshot are manifests/candidates/november5[-forks]-20261105.xml.
+Only kernel and selected hardware/qcom-caf/sm8150/display revisions change from
+release; similarly named hardware/qcom/sm8150/display is not the HWC build input.
+Source-object/focused modeled negative-control tests pass; no device proof yet.
+Full build/sign pipeline unitlos24-november5-expanded-build runs in private
+artifacts/november5-candidate-20261105; progress.json authoritative. First graph
+attempt stopped before display source expansion and preserved separately.
+Normal local checkouts/manifests now select candidate pins; public resolved/feed
+remain release1793911332. No publication of this new candidate authorized.
+
+Fresh owned November5 continuity marker on tablet must remain through final
+recovery/data tests, then be removed. Baseline normalADB/rootOFF/unlocked and
+bounded loopback/sendfile/epoll/timer regressions pass. Helper removed, raw logs
+private. Keep existing47keys/backup unchanged. Candidate needs full host checks,
+installation, owner hardware, runtime/recovery/data verification and cleanup.

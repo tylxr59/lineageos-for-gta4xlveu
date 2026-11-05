@@ -168,7 +168,8 @@ The installed compiled policy permits normal `hal_health_default` to read the
 Samsung `sysfs_battery` files, but has no corresponding read/open/getattr allow
 for `charger_vendor`, the new QTI offline charger domain. This is a concrete
 policy gap and a plausible explanation for the unavailable-battery image; retained
-runtime denial evidence is pending. Device fix
+charger-log fragments support that diagnosis, but the persisted text is corrupted
+and provides no fully intact matching denial line. Device fix
 [`dd2a0d3`](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/dd2a0d39a3929c63d2b00cb8c6f31e39134255c5)
 adds only read-only battery-file access for that domain. SELinux remains enforcing.
 Fresh candidate manifests are `november-charger-20261105.xml` and

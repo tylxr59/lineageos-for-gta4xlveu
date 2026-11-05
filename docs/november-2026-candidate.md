@@ -26,16 +26,19 @@ merge or dropped local repair was used. Historical verified artifacts were retai
 
 ## Build and signing
 
-The durable runner is limited to two compile jobs,150% CPU quota, nice19,
-idle-class disk I/O, MemoryHigh12GiB/MemoryMax20GiB and up to4GiB swap. The actual
-Soong generator environment has GOMAXPROCS2/GOMEMLIMIT16GiB/GOGC50; the main
-executor budget is4GiB. These limits deliberately favor other owner workloads.
+The owner initially requested a slow build; its two-job/150% CPU/nice19/idle-I/O
+limits were verified. They later explicitly authorized increased resources. The
+current durable runner uses four jobs,600% CPU quota,nice10,best-effort7 I/O,
+MemoryHigh24GiB/MemoryMax32GiB and up to8GiB swap. The generator uses
+GOMAXPROCS8/GOMEMLIMIT24GiB/GOGC50; the main executor budget is12GiB. Earlier
+interrupted graph-generation logs are preserved, and no compiled candidate
+snapshot was overwritten.
 No system package installation or persistent host power setting change is needed.
 A temporary sleep inhibitor follows the pipeline lifetime.
 
 The pipeline builds target-files/recovery/check-vintf-all, verifies exact source
 pins, strict VINTF with real kernel inputs, paired XTRA config, thermal safety,
-an exact single-property DTBO change plus unchanged audio/USB configuration, preserved legacy/proprietary libraries,
+the exact display-memory overlay removal with fragment renumbering normalized, unchanged shared base DTB and unchanged audio/USB configuration, preserved legacy/proprietary libraries,
 no extra permissive domains, compiled hardening defaults, BTF boundaries/type IDs
 and actual OOM tracepoint layout. It then signs with the existing47 release
 identities and verifies component and whole-file OTA signatures plus matching
@@ -102,3 +105,11 @@ Sources: [November bulletin](https://source.android.com/docs/security/bulletin/2
 | CVE-2026-57548 | **unverified vendor applicability**: Qualcomm bulletin source applies to newer downstream component branches. Device-specific matching/backport coverage is not established; closed-source blobs remain unchanged. |
 | CVE-2026-57549 | **unverified vendor applicability**: Qualcomm bulletin source applies to newer downstream component branches. Device-specific matching/backport coverage is not established; closed-source blobs remain unchanged. |
 | CVE-2026-57554 | **unverified vendor applicability**: Qualcomm bulletin source applies to newer downstream component branches. Device-specific matching/backport coverage is not established; closed-source blobs remain unchanged. |
+
+Host DTBO validation note: stock fdtoverlay reports FDT_ERR_BADOVERLAY even for
+the released, hardware-tested base/overlay pair. No successful host overlay
+application is claimed. The candidate gate instead compares every parsed overlay
+property after normalizing the expected fragment renumbering, requires only the
+specific dump-region override to disappear, and verifies the unchanged base DTB
+still contains its original dump node/range. Actual recovery/Android boot and
+live partition hashes remain required.

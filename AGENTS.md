@@ -7,9 +7,9 @@ Owner authorized the combined candidate after the105 November topic changes merg
 exact1,242-project candidate pins and pushed AVa7dd9c12/kernel939ccbcb/devicedb669506 branches.
 Owner expanded scope to include HAL/display integration and device testing. Device merge preserves existing fixes; vendor/Pixel/BPF pins unchanged. Installed/public remain1793279242.
 Private evidence/runners: artifacts/november-candidate-20261105. Build unit
-los24-november-expanded-candidate is capped at150% CPU/two jobs/nice19/idle I/O/20GiB,
-explicitly requested while owner games. Do not raise these limits without owner
-steering. Source sync/merges complete; expanded build/signature/device validation pending. Connected baseline ordinary ADB verified; owned November continuity marker must survive final tests and then be removed. Platform-only attempt stopped during graph generation and preserved separately.
+los24-november-expanded-build now uses600% CPU/four jobs/nice10/best-effort7 I/O/32GiB,
+after the owner explicitly authorized more resources. Earlier slow attempts are
+retained separately. Do not change resource limits contrary to owner steering. Source sync/merges complete; expanded build/signature/device validation pending. Connected baseline ordinary ADB verified; owned November continuity marker must survive final tests and then be removed. Platform-only attempt stopped during graph generation and preserved separately.
 No install or publication yet; preserve keys, data, released pins/feed and paused TI.
 
 

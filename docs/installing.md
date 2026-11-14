@@ -56,7 +56,14 @@ These were reported by users and not repeated by the maintainer:
 4. Boot the installed recovery directly: Power + Volume Down until black, then
    immediately Power + Volume Up with USB connected. Confirm **Lineage Recovery
    24.0**. The old 23.2 recovery is not the tested LOS24 installation path.
-5. Choose **Factory reset → Format data/factory reset** and confirm.
+5. Choose **Factory reset → Format system partition** and confirm, then
+   **Factory reset → Format data/factory reset** and confirm.
+
+   Formatting system matters when the tablet already runs another LineageOS 24
+   build. Before writing the new system, the installer runs the old system's
+   `/system/addon.d` scripts and restores their files afterward, so GApps or
+   other add-ons from the previous ROM carry over. Formatting data alone does
+   not prevent this ([#5](https://github.com/tylxr59/lineageos-for-gta4xlveu/issues/5)).
 6. Choose **Apply update → Apply from ADB**, then run:
 
    ```sh

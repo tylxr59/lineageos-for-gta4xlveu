@@ -1,5 +1,18 @@
 # Agent instructions
 
+## December preparation (2026-11-25)
+
+Owner chose to integrate merged upstream now and build/release after the December
+ASB series lands. Read docs/december-2026-prep.md. Replacement-host workspace now
+follows upstream lineage-24.0 with local manifest
+manifests/candidates/december-prep-forks-20261125.xml: only frameworks/av changes,
+to f9b4995 on maintenance/los24-december-20261125. Do not run
+`tools/sync-source upstream` (it copies release pins) over this. The first fresh-out
+unsigned build, strict VINTF and BTF checks passed; not signed or installed. The
+fresh out generated a new kernel module-signing key, so the kernel bytes differ from
+release despite an identical config/source. Public release/feed/resolved remain
+1793916221. Private prep evidence: artifacts/december-prep-20261125/.
+
 ## November5 follow-up published and verified
 
 Installed candidate1793916221, kernelbe84fa84d/HWC64fd995, final candidate

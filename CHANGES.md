@@ -14,7 +14,14 @@ certification. Published releases are immutable; fixes appear in new builds.
 
 ## Unreleased
 
-No staged changes.
+Preparation only; not signed, installed or released. See
+[December 2026 preparation](docs/december-2026-prep.md).
+
+- Merged LineageOS frameworks/av lineage-24.0 into the maintained fork, keeping
+  the codec capability-owner fix ([f9b4995](https://github.com/tylxr59/android_frameworks_av/commit/f9b499551862a5735ef1f068eaaf9090ebbdae90)).
+- Candidate pins track merged upstream lineage-24.0 (WebView 157, lineage-sdk and
+  LineageParts permission fixes, exfatprogs 1.4.4) in
+  [december-prep-20261125.xml](manifests/candidates/december-prep-20261125.xml).
 
 ## 2026-11-05 — Legacy kernel and display security follow-up
 

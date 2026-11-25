@@ -1,9 +1,10 @@
 # Device-source freshness audit
 
-Latest: [November 5 update-readiness follow-up](november-2026-update-audit.md)
-compares release1793279242 with live upstream sources. All105 November topic
-changes and the2026-11-01 patch string are merged. Candidate build/device
-validation and separate kernel/vendor coverage review remain pending.
+Latest: [December 2026 preparation](december-2026-prep.md) compares release
+1793916221 with live upstream sources on 2026-11-25, records the integrated
+shared-kernel base `bae1ba425fe3` (head `d0956ce59` adds only unbuilt fuel-gauge
+fixes) and the prepared unsigned build. The December security series is pending.
+Earlier: [November update readiness](november-2026-update-audit.md).
 
 Live GitHub checks on2026-10-24 compared the installed release1792787032 source
 pins, rather than the local experimental audio branches. The initial read-only audit did not change sources or the tablet. The later

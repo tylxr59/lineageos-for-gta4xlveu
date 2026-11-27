@@ -5,8 +5,9 @@
 Owner chose to integrate merged upstream now and build/release after the December
 ASB series lands. Read docs/december-2026-prep.md. Replacement-host workspace now
 follows upstream lineage-24.0 with local manifest
-manifests/candidates/december-prep-forks-20261125.xml: only frameworks/av changes,
-to f9b4995 on maintenance/los24-december-20261125. Do not run
+manifests/candidates/december-prep-forks-20261125.xml: frameworks/av changes
+to f9b4995 on maintenance/los24-december-20261125, and device to ca4bc70
+(dead swappiness write removed; newer than the first build). Do not run
 `tools/sync-source upstream` (it copies release pins) over this. The first fresh-out
 unsigned build, strict VINTF and BTF checks passed; not signed or installed. The
 fresh out generated a new kernel module-signing key, so the kernel bytes differ from

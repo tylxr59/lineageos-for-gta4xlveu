@@ -126,3 +126,16 @@ Release 1793039898 continued vendor XTRA retries after disabling Assisted GPS.
 The framework control property has no consumer in the selected Samsung prebuilt
 GPS utility. The paired candidate gives init ownership of XTRA while retaining
 vendor binaries and other services. See [findings and validation](assisted-gps.md).
+
+## Inherited swappiness write has no effect
+
+The inherited device init writes `vm.swappiness 145`, but this 4.14 kernel
+limits the value to 0–100, so the write fails. Qualcomm's post-boot memory
+script, which would set 100, returns early by design. A rooted read of release
+1793916221 on 2026-11-27 showed swappiness 60 (kernel default), page-cluster 3,
+min_free_kbytes 7319, extra_free_kbytes 28125 (three 2000×1200 frames),
+watermark_scale_factor 10, and 4 GiB lz4 zram at swap priority -2. These are
+working memory settings, not a known defect. Device `ca4bc70` removes the dead
+write for the December candidate; effective tuning is unchanged. The similar
+`bg` memory-cgroup swappiness write in init.qcom.rc targets a path absent on
+this release and was left alone.

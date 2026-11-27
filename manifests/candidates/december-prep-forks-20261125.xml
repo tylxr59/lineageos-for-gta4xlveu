@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <manifest>
   <remote name="los24-forks" fetch="https://github.com/" />
-  <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="dd2a0d39a3929c63d2b00cb8c6f31e39134255c5" upstream="maintenance/los24-november-20261105" />
+  <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="ca4bc70f117e8c85dc1a3f5abb3fae587b13289f" upstream="maintenance/los24-november-20261105" />
   <project name="tylxr59/android_kernel_samsung_gta4xlve" path="kernel/samsung/gta4xlve" remote="los24-forks" revision="be84fa84d82073f331e94e8d21def1b2a90bd341" upstream="security/los24-november5-20261105" />
   <project name="tylxr59/android_vendor_samsung_gta4xlveu" path="vendor/samsung/gta4xlveu" remote="los24-forks" revision="ec725c3b9a88845f9ebe7b37a01fa1b23619d595" upstream="fix/los24-assisted-gps" />
   <remove-project name="LineageOS/android_hardware_google_pixel" />

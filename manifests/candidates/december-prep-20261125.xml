@@ -1272,7 +1272,7 @@
   <project name="trusty/vendor/google/aosp" remote="aosp" revision="93e3ca36bc59e5d357b226e4e5254f8e478213f2" upstream="refs/tags/android-17.0.0_r1" dest-branch="refs/tags/android-17.0.0_r1" groups="pdk,trusty">
     <copyfile src="lk_inc.mk" dest="lk_inc.mk"/>
   </project>
-  <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="dd2a0d39a3929c63d2b00cb8c6f31e39134255c5" upstream="maintenance/los24-november-20261105" groups="local::gta4xlveu"/>
+  <project name="tylxr59/android_device_samsung_gta4xlveu" path="device/samsung/gta4xlveu" remote="los24-forks" revision="ca4bc70f117e8c85dc1a3f5abb3fae587b13289f" upstream="maintenance/los24-november-20261105" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_frameworks_av" path="frameworks/av" remote="los24-forks" revision="f9b499551862a5735ef1f068eaaf9090ebbdae90" upstream="maintenance/los24-december-20261125" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_hardware_google_pixel" path="hardware/google/pixel" remote="los24-forks" revision="d4f83b63e6f03bfeb7e903c11f689fca9d65788b" upstream="fix/los24-thermal-empty-queries" groups="local::gta4xlveu"/>
   <project name="tylxr59/android_hardware_qcom_display" path="hardware/qcom-caf/sm8150/display" remote="los24-forks" revision="64fd9955352f7265ea8cb4bbd83991d972282046" upstream="security/los24-november5-20261105" groups="local::gta4xlveu"/>

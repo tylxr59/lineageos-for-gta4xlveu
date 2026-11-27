@@ -45,8 +45,14 @@ base `1c5914737a1a`; no file overlap with the codec capability-owner fix
 `b911f1a2e8`, which remains the only difference from Lineage. Its actual-wrapper
 ASan/UBSan host regression passes on the merge.
 
+The [device fork](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/ca4bc70f117e8c85dc1a3f5abb3fae587b13289f)
+`maintenance/los24-november-20261105` at `ca4bc70f117e` removes the inherited
+`vm.swappiness 145` write. The 4.14 kernel rejects values above 100, so the
+release already runs at the kernel default of 60 (rooted read on 2026-11-27);
+effective tuning is unchanged. This commit is newer than the first build below.
+
 Candidate pins: [december-prep-forks-20261125.xml](../manifests/candidates/december-prep-forks-20261125.xml)
-(only frameworks/av differs from the release fork manifest) and the full
+(frameworks/av and device differ from the release fork manifest) and the full
 1,243-project [december-prep-20261125.xml](../manifests/candidates/december-prep-20261125.xml).
 The workspace was switched from the pinned release manifest to upstream
 `lineage-24.0` with this candidate local manifest; every working tree was

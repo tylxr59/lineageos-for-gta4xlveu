@@ -19,6 +19,9 @@ Preparation only; not signed, installed or released. See
 
 - Merged LineageOS frameworks/av lineage-24.0 into the maintained fork, keeping
   the codec capability-owner fix ([f9b4995](https://github.com/tylxr59/android_frameworks_av/commit/f9b499551862a5735ef1f068eaaf9090ebbdae90)).
+- Removed the inherited `vm.swappiness 145` boot write, which this kernel rejects
+  (limit 100); the default of 60 already applied, so memory behaviour is unchanged
+  ([ca4bc70](https://github.com/tylxr59/android_device_samsung_gta4xlveu/commit/ca4bc70f117e8c85dc1a3f5abb3fae587b13289f)).
 - Candidate pins track merged upstream lineage-24.0 (WebView 157, lineage-sdk and
   LineageParts permission fixes, exfatprogs 1.4.4) in
   [december-prep-20261125.xml](manifests/candidates/december-prep-20261125.xml).

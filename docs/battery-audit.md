@@ -61,3 +61,29 @@ playback/standby, substantially better than the earlier confounded100→70 repor
 It supports background workload as the earlier cause, but does not isolate
 standby energy, prove deep suspend or establish a measured ROM power improvement.
 No power/governor tuning was made in response.
+
+
+## Low-battery shutdown behavior (issue #7, 2026-11-27)
+
+A user reported shutdowns shortly after the indicator showed 2–3%, with the
+charger then reporting 0%. Source review of release1793916221 (kernel
+`be84fa84d`, no device test of a full discharge):
+
+- `BatteryService.shouldShutdownLocked()` shuts down only when the reported
+  level is 0 and not charging. The health HAL reports capacity level
+  unsupported (-1), so no separate critical-level trigger applies.
+- The SM5714 fuel-gauge driver and `atoll-sec-gta4xlve-battery-common.dtsi`
+  values are Samsung's, unchanged by our forks. Atomic capacity reporting moves
+  at most 1% per poll (30s discharging poll interval). Below the 3.2V SW
+  voltage-empty alarm (`sw_v_empty_voltage`, recovery 3.48V), the driver
+  decrements SOC by 1% per update until 0. Below 10°C it switches to HW
+  voltage-empty mode at ≤5% raw.
+- A heavy load near empty therefore produces a quick 3→0 walk and a normal
+  Android shutdown. Aged or cold cells sag sooner.
+
+`persist.sys.boot.reason.history` is readable by normal ADB (UID2000) and
+distinguishes `shutdown,battery` from a sudden power loss. Do not lower the
+voltage-empty thresholds or fake SOC to extend runtime: they protect against
+deep discharge. The reported charge counter derives from
+`fuelgauge,capacity = 5000` rather than the 7040mAh cell; that is cosmetic and
+unrelated to the shutdown point.
